@@ -18,4 +18,3 @@ const markdown = MarkdownIt({
   }
 });
 export default markdown;
-//# sourceMappingURL=markdown.js.map

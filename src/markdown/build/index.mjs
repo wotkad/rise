@@ -47,4 +47,3 @@ block content
 })();
 
 export {};
-//# sourceMappingURL=index.js.map
