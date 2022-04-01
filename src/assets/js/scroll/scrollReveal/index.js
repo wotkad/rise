@@ -1,7 +1,7 @@
 import ScrollReveal from "scrollreveal";
 
 function scrollInit() {
-  let options = {
+  const options = {
     distance: "20%",
     origin: "bottom",
     opacity: 0,

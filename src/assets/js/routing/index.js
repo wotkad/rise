@@ -7,8 +7,8 @@ import isCurrentPage from "js/linksChecker/isCurrentPage/index";
 barba.use(barbaPrefetch);
 
 barba.hooks.beforeLeave((data) => {
-  let nextPath = data.next.url.path;
-  let nextItem = $(`a[href="${nextPath}"]`);
+  const nextPath = data.next.url.path;
+  const nextItem = $(`a[href="${nextPath}"]`);
   $(`.${"active"}`).removeClass("active");
   nextItem.addClass("active");
 });

@@ -2,7 +2,7 @@ import $ from "jquery";
 import gsap from "gsap";
 
 function renderPage() {
-  let render = $(".render");
+  const render = $(".render");
   gsap
     .fromTo(
       render,

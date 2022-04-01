@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 function checkInternalLinks() {
-  let links = $("a[href^='/']");
+  const links = $("a[href^='/']");
   Array.from(links).forEach((link) => {
     fetch(link.href, {
       mode: "cors",
