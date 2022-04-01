@@ -1,0 +1,41 @@
+import $ from "jquery";
+import barba from "@barba/core";
+import barbaPrefetch from "@barba/core";
+import gsap from "gsap";
+import isCurrentPage from "js/linksChecker/isCurrentPage/index";
+
+barba.use(barbaPrefetch);
+
+barba.hooks.beforeLeave((data) => {
+  let nextPath = data.next.url.path;
+  let nextItem = $(`a[href="${nextPath}"]`);
+  $(`.${"active"}`).removeClass("active");
+  nextItem.addClass("active");
+});
+
+barba.init({
+  requestError: (trigger, action, url, response) => {
+    if (action === "click" && response.status && response.status === 404) {
+      barba.go("/404");
+    }
+    return false;
+  },
+  transitions: [
+    {
+      name: "opacity-transition",
+      leave(data) {
+        return gsap.to(data.current.container, .4, {
+          opacity: 0,
+          display: "none",
+        });
+      },
+      enter(data) {
+        isCurrentPage();
+        return gsap.from(data.next.container, .4, {
+          opacity: 0,
+          display: "block",
+        });
+      },
+    },
+  ],
+});
