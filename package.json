@@ -15,9 +15,8 @@
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
-    "renamer": "find ./src/markdown/build -name \"*.js\" -exec bash -c 'mv \"$1\" \"${1%.js}\".mjs' - '{}' \\;",
     "compile": "cross-env-shell babel src/markdown/constructor -d ./src/markdown/build --source-maps --extensions '.mts'",
-    "start": "yarn clear && yarn compile && yarn renamer && node ./src/markdown/build/index.mjs",
+    "start": "yarn clear && yarn compile && sh renamer.sh && node ./src/markdown/build/index.mjs",
     "start-typecheck": "yarn typecheck && yarn start",
     "dev": "yarn start-typecheck && yarn develop"
   },
