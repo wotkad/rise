@@ -1,8 +1,8 @@
 // Grid dimensions
 $grid-width-widthout-offset: 1180px;
 $grid-offset: 16px;
-$grid-width: $grid-width + $grid-padding * 2;
-$grid-padding: 0 $grid-padding;
+$grid-width: $grid-width-widthout-offset+$grid-offset * 2;
+$grid-padding: 0 $grid-offset;
 
 // Responsive dimensions
 $responsive-tablet-width: 1024px;

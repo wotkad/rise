@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;  
+  text-rendering: optimizeSpeed;
 }
 
 
@@ -30,7 +30,8 @@ body {
   }
 }
 
-@media screen and(max-width: $mobile-width) {
+@media screen and(max-width: $responsive-mobile-width) {
+
   input[type="text"],
   input[type="password"],
   input[type="email"],
