@@ -10,7 +10,6 @@ exports.pages = function (mode, folder = "") {
   const rootPagesFolderName = "pages";
   const HtmlWebpackPlugin = require("html-webpack-plugin");
   const fs = require("fs");
-  const SitemapGenerator = require('sitemap-generator');
   const path = require("path");
   const viewsFolder = path.join(
     __dirname,
@@ -18,14 +17,6 @@ exports.pages = function (mode, folder = "") {
   );
 
   var pages = [];
-
-  const generator = SitemapGenerator('http://localhost:8080', {
-    stripQuerystring: false,
-    filepath: './src/sitemap.xml',
-    lastMod: new Date().toISOString(),
-    changeFreq: 'monthly',
-  });
-  generator.start();
 
   fs.readdirSync(viewsFolder).forEach((view) => {
     if (view.split(".")[1] === undefined) return false;

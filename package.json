@@ -8,17 +8,17 @@
     "url": "https://wotkad.ru"
   },
   "main": "src/bundle.js",
-  "repository": "",
+  "repository": "git@github.com:wotkad/template-for-front-end-development.git",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress",
+    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./scripts/changeUrl",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
     "compile": "cross-env-shell babel src/markdown/constructor -d ./src/markdown/build --extensions '.mts'",
-    "start": "yarn clear && yarn compile && sh renamer.sh && node ./src/markdown/build/index.mjs",
+    "start": "yarn clear && yarn compile && node ./scripts/renamer && node ./src/markdown/build/index.mjs",
     "start-typecheck": "yarn typecheck && yarn start",
-    "dev": "yarn start-typecheck && yarn develop"
+    "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && node ./scripts/sitemap && yarn develop"
   },
   "resolutions": {
     "upath": "1.1.1"
@@ -78,7 +78,6 @@
     "jquery": "^3.6.0",
     "lottie-web": "^5.9.1",
     "markdown-it-meta": "^0.0.1",
-    "renamer": "^4.0.0",
     "reset-css": "^5.0.1",
     "scrollreveal": "^4.0.9",
     "sitemap-generator": "^8.5.1",
