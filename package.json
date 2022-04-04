@@ -11,14 +11,14 @@
   "repository": "git@github.com:wotkad/template-for-front-end-development.git",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./scripts/changeUrl",
+    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeUrl",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
     "compile": "cross-env-shell babel src/markdown/constructor -d ./src/markdown/build --extensions '.mts'",
-    "start": "yarn clear && yarn compile && node ./scripts/renamer && node ./src/markdown/build/index.mjs",
+    "start": "yarn clear && yarn compile && node ./src/scripts/renamer && node ./src/markdown/build/index.mjs",
     "start-typecheck": "yarn typecheck && yarn start",
-    "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && node ./scripts/sitemap && yarn develop"
+    "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && node ./src/scripts/sitemap && yarn develop"
   },
   "resolutions": {
     "upath": "1.1.1"
