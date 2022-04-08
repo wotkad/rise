@@ -8,7 +8,7 @@
     "url": "https://wotkad.ru"
   },
   "main": "src/bundle.js",
-  "repository": "git@github.com:wotkad/template-for-front-end-development.git",
+  "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeSitemapUrls && node ./src/scripts/createErrorPageDist",
