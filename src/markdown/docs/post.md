@@ -1,5 +1,5 @@
 ---
-title: Статья
+title: Rise | Статья
 description: Post1 postpage
 keywords: post, page
 ---
