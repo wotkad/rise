@@ -19,7 +19,7 @@
     "start": "yarn clear && yarn compile && node ./src/scripts/renameJsFiles && node ./src/markdown/build/index.mjs",
     "start-typecheck": "yarn typecheck && yarn start",
     "dev-network": "webpack serve --env mode=development --config ./webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
-    "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && node ./src/scripts/createSitemap && yarn develop"
+    "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && yarn develop"
   },
   "resolutions": {
     "upath": "1.1.1"

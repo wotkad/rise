@@ -10,6 +10,15 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ASSET_PATH = process.env.ASSET_PATH || "/";
 const utils = require("./utils");
 
+const SitemapGenerator = require('sitemap-generator');
+const generator = SitemapGenerator('http://localhost:8080', {
+	stripQuerystring: false,
+	filepath: './src/sitemap.xml',
+	lastMod: new Date().toISOString(),
+	changeFreq: 'monthly',
+});
+generator.start();
+
 module.exports = (env) => {
   const MODE = env.mode || "production";
   return {
