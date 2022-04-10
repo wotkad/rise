@@ -12,10 +12,10 @@ const utils = require("./utils");
 
 const SitemapGenerator = require('sitemap-generator');
 const generator = SitemapGenerator('http://localhost:8080', {
-	stripQuerystring: false,
-	filepath: './src/sitemap.xml',
-	lastMod: new Date().toISOString(),
-	changeFreq: 'monthly',
+  stripQuerystring: false,
+  filepath: './src/sitemap.xml',
+  lastMod: new Date().toISOString(),
+  changeFreq: 'monthly',
 });
 generator.start();
 
@@ -154,18 +154,8 @@ module.exports = (env) => {
           { from: "../manifest.json", to: "manifest.json" },
           { from: "../browserconfig.xml", to: "browserconfig.xml" },
           { from: "sitemap.xml", to: "sitemap.xml" },
-          {
-            from: "assets/images/favicons/android-chrome-192x192.png",
-            to: "assets/images/android-chrome-192x192.png",
-          },
-          {
-            from: "assets/images/favicons/android-chrome-256x256.png",
-            to: "assets/images/android-chrome-256x256.png",
-          },
-          {
-            from: "assets/images/favicons/mstile-150x150.png",
-            to: "assets/images/mstile-150x150.png",
-          },
+          { from: "assets/images", to: "assets/images" },
+          { from: "assets/fonts", to: "assets/fonts" },
         ],
       }),
       new MiniCssExtractPlugin({
