@@ -1,9 +1,8 @@
-require("./preloader/index");
-require("./linksChecker/isCurrentPage/index");
-require("./linksChecker/checkInternalLinks/index");
-require("./routing/index");
-require("./scroll/smoothScroll/index");
-require("./scroll/scrollReveal/index");
+require("./preloader/preloader");
+require("./linksChecker/checkInternalLinks/checkInternalLinks");
+require("./routing/routing");
+require("./scroll/smoothScroll/smoothScroll");
+require("./scroll/scrollReveal/scrollReveal");
 
 // import feather from "feather-icons";
 // import lottie from "lottie-web";

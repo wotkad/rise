@@ -2,7 +2,7 @@ import $ from "jquery";
 import barba from "@barba/core";
 import barbaPrefetch from "@barba/core";
 import gsap from "gsap";
-import isCurrentPage from "js/linksChecker/isCurrentPage/index";
+import isCurrentPage from "js/linksChecker/isCurrentPage/isCurrentPage";
 
 barba.use(barbaPrefetch);
 
