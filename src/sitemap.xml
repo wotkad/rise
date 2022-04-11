@@ -11,17 +11,17 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/post</loc>
+    <loc>http://localhost:8080/blog/post/</loc>
     <lastmod>2022-04-11</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/post2</loc>
+    <loc>http://localhost:8080/blog/post2/</loc>
     <lastmod>2022-04-11</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/404</loc>
+    <loc>http://localhost:8080/404/</loc>
     <lastmod>2022-04-11</lastmod>
     <changefreq>monthly</changefreq>
   </url>

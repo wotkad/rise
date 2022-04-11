@@ -29,10 +29,10 @@ block title
 
 block content
 
-  +header('post')
+  +header('${markdown.meta.name}')
 
   .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="post")
+    main(data-barba="container" data-barba-namespace="${markdown.meta.name}")
       section
         .wrapper`
         + '\n' + renderedPug.split('\n').map((x: any) => '          ' + x).join('\n');
