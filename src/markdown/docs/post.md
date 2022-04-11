@@ -2,6 +2,7 @@
 title: Rise | Статья
 description: Post1 postpage
 keywords: post, page
+name: post
 ---
 
 # H1 Статья
