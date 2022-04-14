@@ -13,45 +13,45 @@
 
 #### 🛠 Препроцессоры:
 
-- **PUG** [https://pugjs.org](https://pugjs.org) 
+- **PUG**: [https://pugjs.org](https://pugjs.org) 
   - Это механизм шаблонов и самый быстрый способ написания HTML.
-- **SCSS** [https://sass-scss.ru](https://sass-scss.ru) 
+- **SCSS**: [https://sass-scss.ru](https://sass-scss.ru) 
   - Это препроцессор CSS, который используется для написания стилей.
 
 #### 🎨 CSS
 
-- **reset.css** [https://gist.github.com/DavidWells/18e73022e723037a50d6](reset.css)
+- **reset.css**: [https://gist.github.com/DavidWells/18e73022e723037a50d6](reset.css)
   - Библиотека для сброса стандартных стилей назначенных браузером.
-- **tailwind.css** [https://tailwindcss.com](https://tailwindcss.com)
+- **tailwind.css**: [https://tailwindcss.com](https://tailwindcss.com)
   - CSS-фреймворк, ориентированный на утилиты, содержит множество классов, которые можно скомпоновать для создания любого дизайна прямо в разметке.
 
 #### 🔧 JS
 
-- **Barba.js** [https://barba.js.org](https://barba.js.org)
+- **Barba.js**: [https://barba.js.org](https://barba.js.org)
   - Небольшая и простая в использовании библиотека, которая поможет создавать плавные и плавные переходы между страницами веб-сайта.
-- **Gsap.js** [https://greensock.com/gsap](https://greensock.com/gsap)
+- **Gsap.js**: [https://greensock.com/gsap](https://greensock.com/gsap)
   - Набор инструментов для реализации анимации любого уровня сложности).
-- **jQuery.js** [https://jquery.com](https://jquery.com)
+- **jQuery.js**: [https://jquery.com](https://jquery.com)
   - Быстрая, небольшая и многофункциональная библиотека. Она значительно упрощает такие вещи, как обход и манипулирование документами HTML, обработку событий, анимацию и Ajax, с помощью простого в использовании API, который работает во множестве браузеров.
-- **Lottie-Web.js** [http://airbnb.io/lottie](http://airbnb.io/lottie)
+- **Lottie-Web.js**: [http://airbnb.io/lottie](http://airbnb.io/lottie)
   - Библиотека для анализа анимации Adobe After Effects, экспортированную в формате `.json` с помощью Bodymovin.
-- **ScrollReveal.js** [https://scrollrevealjs.org](https://scrollrevealjs.org/)
+- **ScrollReveal.js**: [https://scrollrevealjs.org](https://scrollrevealjs.org/)
   - Библиотека для анимации элементов по мере их прокрутки в поле зрения.
-- **Smooth-Scroll.js** [https://github.com/cferdinandi/smooth-scroll](Smooth-Scroll.js)
+- **Smooth-Scroll.js**: [https://github.com/cferdinandi/smooth-scroll](Smooth-Scroll.js)
   - Легкий скрипт для анимации прокрутки к якорным ссылкам.
 
 #### 🖋 Шрифты
 
-- **FontAwesome 6** [https://fontawesome.com](https://fontawesome.com)
+- **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
   - Иконочный шрифт.
-- **GraphikLCG** [https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b](GraphikLCG)
+- **GraphikLCG**: [https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b](GraphikLCG)
   - Основной шрифт.
 
 #### 🖼 Иконки
 
-- **Feather-Icons** [https://feathericons.com](https://feathericons.com/)
+- **Feather-Icons**: [https://feathericons.com](https://feathericons.com/)
   - Коллекция иконок.
-- **UseAnimations** [https://useanimations.com](https://useanimations.com/)
+- **UseAnimations**: [https://useanimations.com](https://useanimations.com/)
   - Анимирование иконок Feather в Lottie Web.
 
 ## ✨ Установка и запуск
