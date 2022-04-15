@@ -58,7 +58,8 @@
 
 #### 🔗 Установка зависимостей
 
-- **Webpack** и **Webpack Dev Server**: Установите их с помощью `yarn global add webpack webpack-dev-server`.
+- **Webpack** и **Webpack Dev Server**: 
+  - Установите их с помощью `yarn global add webpack webpack-dev-server`.
 
 #### 👨‍💻 Процесс разработки
 
