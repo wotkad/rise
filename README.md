@@ -20,7 +20,7 @@
 
 #### 🎨 CSS
 
-- **reset.css**: [https://gist.github.com/DavidWells/18e73022e723037a50d6](reset.css)
+- **reset.css**: [reset.css](https://gist.github.com/DavidWells/18e73022e723037a50d6)
   - Библиотека для сброса стандартных стилей назначенных браузером.
 - **tailwind.css**: [https://tailwindcss.com](https://tailwindcss.com)
   - CSS-фреймворк, ориентированный на утилиты, содержит множество классов, которые можно скомпоновать для создания любого дизайна прямо в разметке.
@@ -37,14 +37,14 @@
   - Библиотека для анализа анимации Adobe After Effects, экспортированную в формате `.json` с помощью Bodymovin.
 - **ScrollReveal.js**: [https://scrollrevealjs.org](https://scrollrevealjs.org/)
   - Библиотека для анимации элементов по мере их прокрутки в поле зрения.
-- **Smooth-Scroll.js**: [https://github.com/cferdinandi/smooth-scroll](Smooth-Scroll.js)
+- **Smooth-Scroll.js**: [Smooth-Scroll.js](https://github.com/cferdinandi/smooth-scroll)
   - Легкий скрипт для анимации прокрутки к якорным ссылкам.
 
 #### 🖋 Шрифты
 
 - **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
   - Иконочный шрифт.
-- **GraphikLCG**: [https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b](GraphikLCG)
+- **GraphikLCG**: [GraphikLCG](https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b)
   - Основной шрифт.
 
 #### 🖼 Иконки
