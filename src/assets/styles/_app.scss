@@ -5,12 +5,11 @@
 @tailwind utilities;
 
 /*
-  Базовые стили
+  Основный параметры
 */
 @import "./base/dimensions";
 @import "./base/fonts";
 @import "./base/palette";
-@import "./base/global";
 @import "./base/typography";
 
 /*
@@ -18,6 +17,11 @@
 */
 @import "./utils/mixins";
 @import "./utils/keyframes";
+
+/*
+  Базовые стили
+*/
+@import "./base/global";
 
 /*
   Компоненты
