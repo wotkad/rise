@@ -3,6 +3,7 @@ require("./linksChecker/checkInternalLinks/checkInternalLinks");
 require("./routing/routing");
 require("./scroll/smoothScroll/smoothScroll");
 require("./scroll/scrollReveal/scrollReveal");
+require("./linksChecker/checkTarget/checkTarget");
 
 // import feather from "feather-icons";
 // import lottie from "lottie-web";
