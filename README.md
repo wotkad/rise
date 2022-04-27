@@ -43,8 +43,7 @@
 #### 🖋 Шрифты
 
 - **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
-  - Иконочный шрифт. Использовать его можно так: `i.fa.fa-argle-right`, также присутствуют другие категории `fa-solid, fa-regular, fa-light, fa-thin, fa-duotone, fa-brands`.
-
+  - Иконочный шрифт. Использовать его можно так: `i.fa.fa-argle-right`, также присутствуют другие категории `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
 - **GraphikLCG**: [GraphikLCG](https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b)
   - Основной шрифт. Изменить его можно в файле `/assets/styles/base/_fonts.scss`
 
