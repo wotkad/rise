@@ -159,7 +159,7 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - `.nvmrc`: File with NodeJS version of this project.
 - `blc.js`: Script to check if links on the whole site are working.
 - `README.md`: Template description file.
-- `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename - -save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
+- `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename --save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
 - `postcss.config.js`: PostCSS configuration file.
 - `tailwind.config.js`: `Tailwind.css` library configuration file.
 - `tsconfig.json`: `TypeScript` configuration file.
