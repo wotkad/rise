@@ -40,7 +40,7 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - **tailwind.css**: [https://tailwindcss.com](https://tailwindcss.com)
   - The utility-oriented CSS framework contains many classes that can be combined to create any design right in the markup. It is also possible to use directives like `@apply` and functions like `theme()`.
 
-#### 🔧JS
+#### 🔧 JS
 
 - **Barba.js**: [https://barba.js.org](https://barba.js.org)
   - A small and easy-to-use library that will help you create smooth transitions between website pages, as well as configure routing in more detail.
