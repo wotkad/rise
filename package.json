@@ -11,7 +11,7 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeSitemapUrls && node ./src/scripts/replaceErrorPageDist",
+    "build": "rimraf dist && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeSitemapUrls && node ./src/scripts/replaceErrorPageDist && rimraf ./dist/404",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
