@@ -22,7 +22,7 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - **NodeJS**: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
   - To run the project on your local machine, you need to install NodeJS version 14 or higher. From the link above, you can download the executable file for your operating system and install it.
 - **Yarn**: [https://yarnpkg.com](https://yarnpkg.com)
-  - To install the Yarn package manager, you need to open your project in a code editor, for example, Visual Studio Code and run the `brew install yarn` command in the console or follow the specific guide for the OS [https://yarnpkg.com/lang/en/docs/ install/](https://yarnpkg.com/lang/en/docs/install/).
+  - To install packages for your project, you need to install the Yarn package manager.
 - **Webpack**: [https://webpack.js.org](https://webpack.js.org)
   - Module builder to manage all site dependencies (requires version 5 or higher).
 
@@ -75,11 +75,12 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 
 - **Webpack** and **Webpack Dev Server**:
    - You need to install `Webpack and Webpack Dev Server` with `yarn global add webpack webpack-dev-server`.
-   - Then you need to run the `yarn install` process in order to bind all the dependencies in the project.
+- **Yarn**
+   - To install, you need to run the `brew install yarn` command in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/docs/install/).
 
 #### 👨‍💻 Development process
 
-1. You need to clone the project with the command `git clone git@github.com:wotkad/rise.git` to the directory with projects and change its name to the current one.
+1. You need to clone the project with the command `git clone https://git@github.com:wotkad/rise.git` to the directory with projects and change its name to the current one.
 2. Open the `project name` directory in the code editor.
 3. Install all dependencies with the `yarn install` command.
 4. You can start the development process in the project with the `yarn dev` command. (to run the project on your local network, you should run `yarn dev-network` instead, and using the IP address of the host machine (you need to specify it in the `package.json` file for the `dev-network` command), you can get access to the project on other devices).
