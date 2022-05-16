@@ -25,16 +25,19 @@ barba.init({
     {
       name: "opacity-transition",
       leave(data) {
-        return gsap.to(data.current.container, .4, {
+        return gsap.to(data.current.container, .3, {
           opacity: 0,
-          display: "none",
+        });
+      },
+      afterLeave(data) {
+        return gsap.to(data.current.container, 0, {
+          display: 'none',
         });
       },
       enter(data) {
         isCurrentPage();
-        return gsap.from(data.next.container, .4, {
-          opacity: 0,
-          display: "block",
+        return gsap.from(data.next.container, .3, {
+          opacity: 0
         });
       },
     },
