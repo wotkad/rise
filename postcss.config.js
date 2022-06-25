@@ -1,7 +1,11 @@
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
-  plugins: {
-    'postcss-import': {},
-    'tailwindcss': {},
-    'autoprefixer': {},
-  },
+  plugins: [
+    require('postcss-import')({}),
+    require('tailwindcss')({}),
+    autoprefixer({
+      overrideBrowserslist: ['> 1%', 'last 4 versions'],
+    }),
+  ],
 };
