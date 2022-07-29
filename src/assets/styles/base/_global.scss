@@ -23,7 +23,7 @@ body {
   margin: 0 auto;
 }
 
-@media screen and(max-width: $grid-width) {
+@media screen and(max-width: $responsive-tablet-width) {
   .wrapper {
     width: 100%;
   }
