@@ -38,15 +38,7 @@ html(lang='ru')
     block manifestBrowserconfigFiles
       link(rel='manifest', href='./manifest.json', crossorigin)
       meta(name='msapplication-config' content='./browserconfig.xml')
-
-    //- Global site tag (gtag.js) - Google Analytics
-    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-Y")
-    script.
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-XXXXXXXXXX-X');
-
+      
   body
 
     script.
