@@ -31,6 +31,7 @@ barba.init({
         });
       },
       afterLeave(data) {
+        $('body,html').animate({scrollTop: 0}, 200);
         return gsap.to(data.current.container, 0, {
           display: 'none',
         });
