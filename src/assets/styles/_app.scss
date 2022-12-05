@@ -1,11 +1,11 @@
-// @import "reset-css/sass/reset"; // Если используете tailwind base ниже, то данную строку можно закомментировать
+// @import "reset-css/sass/reset"; // If you use tailwind base below, then this line can be commented out
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /*
-  Основные параметры
+  Main parameters styles
 */
 @import "./base/dimensions";
 @import "./base/fonts";
@@ -13,24 +13,24 @@
 @import "./base/typography";
 
 /*
-  Утилиты
+  Utils styles
 */
 @import "./utils/mixins";
 @import "./utils/keyframes";
 
 /*
-  Базовые стили
+  Base styles
 */
 @import "./base/global";
 
 /*
-  Компоненты
+  Components styles
 */
 @import "./components/header";
 @import "./components/footer";
 
 /*
-  Страницы
+  Pages styles
 */
 @import "./pages/index";
 @import "./pages/blog";

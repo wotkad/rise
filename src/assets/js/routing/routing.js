@@ -6,7 +6,7 @@ import isCurrentPage from "js/linksChecker/isCurrentPage/isCurrentPage";
 
 barba.use(barbaPrefetch);
 
-// Если header находится в barba-wrapper, то скрипт ниже не нужен.
+// If the header is in barba-wrapper, then the script below is not needed.
 barba.hooks.beforeLeave((data) => {
   const nextPath = data.next.url.path;
   const nextItem = $(`a[href="${nextPath}"]`);

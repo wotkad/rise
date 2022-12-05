@@ -1,11 +1,11 @@
 ---
-title: Rise | Статья 2
+title: Rise | Article 2
 description: Post2 postpage
 keywords: post, page
 name: post2
 ---
 
-# H1 Статья 2
+# H1 Article 2
 
 ## H2
 

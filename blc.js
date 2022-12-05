@@ -106,27 +106,27 @@ var siteChecker = new blc.SiteChecker(options, {
   site: function (error, siteUrl, customData) {
     if (customData.totalLinkCount > 0) {
       console.log();
-      console.log("Всего страниц просканировано: " + customData.totalPageCount);
+      console.log("Total pages tested: " + customData.totalPageCount);
       console.log();
-      console.log("Всего рабочих ссылок найдено: " + customData.totalLinkCount);
+      console.log("Total working links found: " + customData.totalLinkCount);
       console.log();
       if (customData.totalBrokenCount > 0) {
         console.log(
-          "Всего не рабочих ссылок ссылок: " + customData.totalBrokenCount
+          "Total non-working links found: " + customData.totalBrokenCount
         );
         var brokenMap = summarizeBrokenLinks(customData);
         for (const [outerKey, outerValue] of brokenMap.entries()) {
           console.log("");
-          console.log("Не рабочая ссылка: " + outerKey);
+          console.log("Not working link: " + outerKey);
           for (const [innerKey, innerValue] of outerValue.entries()) {
             console.log(
-              " Найдена на страницах: " + innerKey + " (" + innerValue + ")"
+              " Found on pages: " + innerKey + " (" + innerValue + ")"
             );
           }
         }
         this.fail = true;
       } else {
-        console.log("Всего не рабочих ссылок: " + customData.totalBrokenCount);
+        console.log("Total non-working links found: " + customData.totalBrokenCount);
         this.fail = false;
       }
       console.log();
