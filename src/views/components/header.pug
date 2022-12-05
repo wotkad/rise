@@ -5,12 +5,12 @@ mixin header(currentPage)
         nav
           ul
             li.menu__item
-              a.menu__link(href='/', class=currentPage === 'home' ? 'active' : '') Главная
+              a.menu__link(href='/', class=currentPage === 'home' ? 'active' : '') Main
             li.menu__item
-              a.menu__link(href='/blog/', class=currentPage === 'blog' ? 'active' : '') Блог
+              a.menu__link(href='/blog/', class=currentPage === 'blog' ? 'active' : '') Blog
             li.menu__item
-              a.menu__link(href='/blog/post/', class=currentPage === 'post' ? 'active' : '') Статья
+              a.menu__link(href='/blog/post/', class=currentPage === 'post' ? 'active' : '') Article
             li.menu__item
-              a.menu__link(href='/blog/post2/', class=currentPage === 'post2' ? 'active' : '') Статья 2
+              a.menu__link(href='/blog/post2/', class=currentPage === 'post2' ? 'active' : '') Article 2
             li.menu__item
               a.menu__link(href='/404/', class=currentPage === '404' ? 'active' : '') 404

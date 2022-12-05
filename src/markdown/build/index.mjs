@@ -26,7 +26,7 @@ block manifestBrowserconfigFiles
   meta(name='msapplication-config' content='../../browserconfig.xml')
 
 block title
-    title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
+    title ${markdown.meta.title ? markdown.meta.title : "Untitled page"}
 
 block content
 
