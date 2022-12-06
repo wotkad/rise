@@ -2,15 +2,15 @@
 
 **Rise** is a fast, easy-to-use and customizable template with which you can implement a project of any complexity, from a landing page to a highly loaded service.
 
-The template greatly simplifies such things as building a project, finding the necessary libraries to start a project, generating a sitemap, developing a project architecture, and also offers storing pages in the `.md` format.
+The template greatly simplifies such things as building a project, finding the necessary libraries to start a project, generating a sitemap, setting up basic SEO, setting up a project architecture, and also offers storing pages in the `.md` format.
 
 **Pattern Includes:**
 - Templates in `.pug` and `.scss`
-- Connections of `css` and `js` libraries
-- Post structure generation
-- Scripts for tests
-- Scripts for routing
-- Scripts to check internal link links
+- Easy connection of `css` and `js` libraries
+- Convenient architecture
+- Generation of pages in `.md` format
+- Easy initial SEO setup
+- Tests
 - and much more ...
 
 To get started, you need to install [main dependencies](#-main-dependencies).
