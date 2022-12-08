@@ -2,18 +2,18 @@
 
 **Rise** is a fast, easy-to-use and customizable template with which you can implement a project of any complexity, from a landing page to a highly loaded service.
 
-The template greatly simplifies such things as building a project, finding the necessary libraries to start a project, generating a sitemap, setting up basic SEO, setting up a project architecture, and also offers storing pages in the `.md` format.
+The template greatly simplifies such things as building a project, finding the necessary libraries to start a project, generating a sitemap, setting up basic SEO, setting up a project architecture, and also offers the creation of content in the `.md` format.
 
 **Pattern Includes:**
 - Templates in `.pug` and `.scss`
 - Easy connection of `css` and `js` libraries
 - Convenient architecture
-- Generation of pages in `.md` format
+- Generation of articles in `.md` format
 - Easy initial SEO setup
 - Tests
 - and much more ...
 
-To get started, you need to install [main dependencies](#-main-dependencies).
+To get started, you need to install the [main dependencies](/docs/main-dependencies/).
 
 ## ⚙ Technology
 
@@ -22,16 +22,16 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - **NodeJS**: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
   - To run the project on your local machine, you need to install NodeJS version 14 or higher. From the link above, you can download the executable file for your operating system and install it.
 - **Yarn**: [https://yarnpkg.com](https://yarnpkg.com)
-  - To install packages for your project, you need to install the Yarn package manager.
+  - Required to install various modules in your project.
 - **Webpack**: [https://webpack.js.org](https://webpack.js.org)
   - Module builder to manage all site dependencies (requires version 5 or higher).
 
 #### 🛠 Preprocessors:
 
 - **PUG**: [https://pugjs.org](https://pugjs.org)
-  - It's a templating engine and the fastest way to write HTML. Provides the ability to write mixins for a more modular approach to layout, use variables, loops, conditions, and more.
+  - It's a templating engine and the fastest way to write HTML. Provides the ability to write mixins for a more modular approach to HTML, using variables, loops, conditions, and more.
 - **SCSS**: [https://sass-scss.ru](https://sass-scss.ru)
-  - This is a CSS preprocessor that is used to write styles, allows you to use variables, imports, mixins and inheritance.
+  - This is a CSS preprocessor that is used for writing styles and greatly improves the readability and speed of writing code, and also allows you to use variables, imports, mixins and inheritance.
 
 #### 🎨 CSS
 
@@ -49,71 +49,72 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - **jQuery.js**: [https://jquery.com](https://jquery.com)
   - Fast, small and feature rich library. It greatly simplifies things like traversing and manipulating HTML documents, event handling, animation, and Ajax with an easy-to-use API that works across multiple browsers.
 - **Lottie-Web.js**: [http://airbnb.io/lottie](http://airbnb.io/lottie)
-  - Library for working with Adobe After Effects animations, exported in `.json` format using Bodymovin.
+  - Library for working with animations created in Adobe After Effects and exported in `.json` format using Bodymovin. Allows you to play, stop, get individual frames of animation and much more.
 - **ScrollReveal.js**: [https://scrollrevealjs.org](https://scrollrevealjs.org/)
-  - A library to animate elements as they scroll into view.
+  - A library to animate elements as they scroll in the browser window.
 - **Smooth-Scroll.js**: [Smooth-Scroll.js](https://github.com/cferdinandi/smooth-scroll)
   - Lightweight script to animate scrolling to anchor links.
 
 #### 🖋 Fonts
 
 - **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
-  - Icon font. You can use it like this: `i.fa.fa-argle-right`, there are also other categories `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone` , `fa-brands`.
+  - Icon font. You can use it like this: `i.fa.fa-argle-right`, where the first `.fa` class is responsible for the style of the icon. The face can be regular, bold, thin, or 'branded', allowing for example the Twitter icon `i.fa-brands.fa-twitter`. List of all styles: `fa-brands`, `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
 - **GraphikLCG**: [GraphikLCG](https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b)
-  - Primary font. You can change it in the file `/assets/styles/base/_fonts.scss`
+  - The main font set for the example. You can change it in the file `/assets/styles/base/_fonts.scss`
 
 #### 🖼 Icons
 
 - **Feather-Icons**: [https://feathericons.com](https://feathericons.com/)
-   - Collection of icons.
+  - Static collection of icons.
 - **UseAnimations**: [https://useanimations.com](https://useanimations.com/)
-   - Animation of Feather icons in Lottie Web.
+  - Dynamic collection of Feather-Icons that can be animated using Lottie Web.
 
 ## ✨ Installation and launch
 
 #### 🔗 Install dependencies
 
 - **Webpack** and **Webpack Dev Server**:
-   - You need to install `Webpack and Webpack Dev Server` with `yarn global add webpack webpack-dev-server`.
+  - First you need to install `Webpack and Webpack Dev Server` using `yarn global add webpack webpack-dev-server` command.
 - **Yarn**
-   - To install, you need to run the `brew install yarn` command in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/docs/install/).
+  - To install, you need to run the command `brew install yarn` in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/ docs/install/).
 
 #### 👨‍💻 Development process
 
 1. You need to clone the project with the command `git clone https://git@github.com:wotkad/rise.git` to the directory with projects and change its name to the current one.
 2. Open the `project name` directory in the code editor.
 3. Install all dependencies with the `yarn install` command.
-4. You can start the development process in the project with the `yarn dev` command. (to run the project on your local network, you should run `yarn dev-network` instead, and using the IP address of the host machine (you need to specify it in the `package.json` file for the `dev-network` command), you can get access to the project on other devices).
-5. Check the availability of the pages.
+4. You can start the development process in the project with the `yarn dev` command. (to run the project on your local network, you should run `yarn dev-network` instead of `yarn dev`, and using the IP address of the host computer (it must be specified in the `package.json` file for the `dev-network` command ) you can access the project on other devices).
+5. Check page availability.
 6. Make any necessary modifications.
 
 #### 📄 Adding pages
 
-7. To add a page, you need to create it in the `/views` directory in the required place, after that you need to press `CTRL + C` to stop the development process and run the `yarn dev` command to restart it.
-8. To create any section, for example, `/products/product`, where `/products` is a section, in the `webpack.config.js` file, in the `plugins` object, add the line `...utils.pages (MODE, "products")`.
+7. To add a page, you need to create it in the `/views` directory in the right place, after that you need to restart the project by pressing `CTRL + C` to stop the development process and run the `yarn dev` command to restart it.
+8. To create any section, for example, `/products/product`, where `/products` is the parent section, in the `webpack.config.js` file, in the `plugins` object, add the line `...utils. pages(MODE, "products")`.
 
 #### 📦 Build project
 
-9. To start building the project, you must press `CTRL + C` to stop the development server and run the `yarn build` command - the assembly will be created in the `/dist` directory.
+9. To start building the project, you must press `CTRL + C` to stop the development process and run the `yarn build` command - the project will be created in the `/dist` directory.
 
 #### 🔬 Testing
 
-10. Testing is possible through `http-server` by installing it with the command `yarn global add http-server`. By running `npx http-server -p 9090 ./dist`, you can see the assembly in action at the URL `http://localhost:9090`.
-11. Broken Link Checker - Script to check the functionality of links on the entire site (execute the `node blc` command when the project is running).
+10. Testing is possible via `http-server`. Before starting, you need to build the project with the `yarn build` command. Next, by running `npx http-server -p 9090 ./dist`, you can see the build in action at the URL `http://localhost:9090`.
+11. Broken Link Checker - Script for checking the functionality of links on the entire site (To run, you need to run the `node blc` command when the project is running).
 
 ## 📂 File structure
 
 - `dist`: The assembly will be placed here and ready to be installed on the server. No changes are required here as it is automatically generated from source files.
 - `node_modules`: Contains all javascript dependencies. **Do not modify any files.**
-- `src`: All source code is contained here. Resources, `.js`, `.scss`, `.pug`, etc. **Any changes you want to make to the website must be made here.**
+- `src`: All source code is contained here. Resources, `.js`, `.scss`, `.pug`, etc. **Any changes you wish to make to the website must be made here.**
   - `assets`: Main working directory.
     - `files`: May contain `.pdf`, `.doc` and other files.
     - `fonts`: Fonts.
     - `images`: Images.
-    - `js`: Scripts. (You can create any structure).
+    - `js`: `.js` files. (You can create any structure).
       - `animations`: `.json` files from UseAnimations for animation with Lottie Web.
       - `linksChecker`: Check links.
         - `checkInternalLinks`: Check internal links for 404 errors.
+        - `checkTarget`: Check external links and add `target="_blank"` to them
         - `isCurrentPage`: Check which page the user is on.
       - `preloader`: Preloader script.
       - `routing`: Functionality for page navigation.
@@ -148,7 +149,7 @@ To get started, you need to install [main dependencies](#-main-dependencies).
   - `views`: `.pug` files. (You can create any structure).
     - `components`: Components (files that can be reused throughout the project).
     - `layouts`: Main template files. Here you can also create different themes for the site.
-    - `mixins`: Fragments of `.pug` files that are used for the same purpose as layouts, namely to avoid repeating code in each template and instead use mixins to place the same component, etc. by simply passing the attribute for each once.
+    - `mixins`: Parts of `.pug` files that can be easily reused. Necessary in order to avoid repeating code in each file.
     - `pages`: Page templates.
       - `blog`: Dynamic directory with articles generated from `.md` files in `/src/markdown/docs` directory.
     - `index.pug`: Master page template.
@@ -160,7 +161,7 @@ To get started, you need to install [main dependencies](#-main-dependencies).
 - `.nvmrc`: File with NodeJS version of this project.
 - `blc.js`: Script to check if links on the whole site are working.
 - `README.md`: Template description file.
-- `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename --save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
+- `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename - -save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
 - `postcss.config.js`: PostCSS configuration file.
 - `tailwind.config.js`: `Tailwind.css` library configuration file.
 - `tsconfig.json`: `TypeScript` configuration file.
