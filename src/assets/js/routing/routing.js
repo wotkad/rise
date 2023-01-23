@@ -1,8 +1,7 @@
-import $ from "jquery";
 import barba from "@barba/core";
 import barbaPrefetch from "@barba/core";
 import gsap from "gsap";
-import isCurrentPage from "js/linksChecker/isCurrentPage/isCurrentPage";
+import routingFunctions from "js/routingFunctions/routingFunctions";
 
 barba.use(barbaPrefetch);
 
@@ -37,7 +36,7 @@ barba.init({
         });
       },
       enter(data) {
-        isCurrentPage();
+        routingFunctions();
         return gsap.from(data.next.container, .3, {
           opacity: 0
         });

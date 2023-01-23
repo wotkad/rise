@@ -15,15 +15,12 @@ html(lang='ru')
       meta(name='author' content='wotkad')
 
     meta(name='twitter:card', content='summary')
-    meta(name='twitter:site', content='')
-    meta(name='twitter:image', content='')
     meta(name='twitter:description', content='')
+    meta(name='twitter:image', content='')
 
-    meta(property='og:url', content='')
     meta(property='og:title', content='')
     meta(property='og:description', content='')
     meta(property='og:image', content='')
-    meta(property='og:type', content='website')
 
     link(rel='apple-touch-icon', sizes='180x180', href=require('/assets/images/favicons/apple-touch-icon.png'))
     link(rel='icon', type='image/png', sizes='192x192', href=require('/assets/images/favicons/android-chrome-192x192.png'))
@@ -49,7 +46,7 @@ html(lang='ru')
         Hey, you have JavaScript disabled, that's why you can see this message.
     .render
 
-    include ../components/header.pug
+    include ../mixins/header.pug
     
     block content
 

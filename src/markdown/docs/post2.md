@@ -1,6 +1,6 @@
 ---
 title: Rise | Article 2
-description: Post2 postpage
+description: It's a Post page
 keywords: post, page
 name: post2
 ---

@@ -4,16 +4,16 @@ block title
   title Rise | Main
 
 block basicSeo
-  meta(name='description' content='Index page')
-  meta(name='keywords', content='index, page')
+  meta(name="description" content="It\'s a Main page")
+  meta(name="keywords", content="Main, page")
 
 block manifestBrowserconfigFiles
-  link(href='../manifest.json', rel='manifest')
-  meta(name='msapplication-config' content='../browserconfig.xml')
+  link(href="../manifest.json", rel="manifest")
+  meta(name="msapplication-config" content="../browserconfig.xml")
 
 block content
 
-  +header('home')
+  +header("home")
 
   .barba(data-barba="wrapper")
     main(data-barba="container" data-barba-namespace="home")

@@ -1,4 +1,4 @@
-// @import "reset-css/sass/reset"; // If you use tailwind base below, then this line can be commented out
+// @import "./utils/reset"; // If you use tailwind base below, then this line can be commented out
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,6 @@
 /*
   Utils styles
 */
-@import "./utils/mixins";
 @import "./utils/keyframes";
 
 /*
@@ -24,13 +23,11 @@
 @import "./base/global";
 
 /*
-  Components styles
+  Mixins styles
 */
-@import "./components/header";
-@import "./components/footer";
+@import "./mixins/header";
 
 /*
-  Pages styles
+  Components styles
 */
-@import "./pages/index";
-@import "./pages/blog";
+@import "./components/footer";

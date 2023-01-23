@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 function checkInternalLinks() {
   const links = $("a[href^='/']");
   Array.from(links).forEach((link) => {
