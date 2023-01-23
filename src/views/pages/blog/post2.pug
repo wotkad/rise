@@ -1,19 +1,19 @@
 extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name='description' content="Post2 postpage")
-  meta(name='keywords', content="post, page")
+  meta(name="description" content="Post2 postpage")
+  meta(name="keywords", content="post, page")
 
 block manifestBrowserconfigFiles
-  link(href='../../manifest.json', rel='manifest')
-  meta(name='msapplication-config' content='../../browserconfig.xml')
+  link(href="../../manifest.json", rel="manifest")
+  meta(name="msapplication-config" content="../../browserconfig.xml")
 
 block title
     title Rise | Article 2
 
 block content
 
-  +header('post2')
+  +header("post2")
 
   .barba(data-barba="wrapper")
     main(data-barba="container" data-barba-namespace="post2")

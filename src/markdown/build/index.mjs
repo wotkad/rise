@@ -4,8 +4,8 @@ import html2pug from "html2pug";
 import meta from "markdown-it-meta";
 
 (async function () {
-  const docsPath = './src/markdown/docs/';
-  const compiledPath = './src/views/pages/blog/';
+  const docsPath = "./src/markdown/docs/";
+  const compiledPath = "./src/views/pages/blog/";
   fs.mkdir(compiledPath);
   fs.readdir(docsPath, (err, files) => {
     files.forEach(file => {
@@ -18,19 +18,19 @@ import meta from "markdown-it-meta";
       let renderedFile = `extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name='description' content="${markdown.meta.description ? markdown.meta.description : "Blog postpage"}")
-  meta(name='keywords', content="${markdown.meta.keywords ? markdown.meta.keywords : "blog, page, post"}")
+  meta(name="description" content="${markdown.meta.description ? markdown.meta.description : "It's a Post page"}")
+  meta(name="keywords", content="${markdown.meta.keywords ? markdown.meta.keywords : "blog, page, post"}")
 
 block manifestBrowserconfigFiles
-  link(href='../../manifest.json', rel='manifest')
-  meta(name='msapplication-config' content='../../browserconfig.xml')
+  link(href="../../manifest.json", rel="manifest")
+  meta(name="msapplication-config" content="../../browserconfig.xml")
 
 block title
     title ${markdown.meta.title ? markdown.meta.title : "Untitled page"}
 
 block content
 
-  +header('${markdown.meta.name}')
+  +header("${markdown.meta.name}")
 
   .barba(data-barba="wrapper")
     main(data-barba="container" data-barba-namespace="${markdown.meta.name}")
