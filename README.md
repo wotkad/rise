@@ -114,7 +114,7 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
       - `preloader`: Preloader script.
       - `routing`: Functionality for page navigation.
         - `routing`: Main function.
-        - `routingFunctions`: A function that wraps other functions to restart them in barba.js.
+        - `routingFunctions`: A function that contains other functions to restart them in barba.js.
       - `scroll`: Scroll functionality.
         - `scrollReveal`: Script for smooth appearance of elements.
         - `smoothScroll`: Script for smooth scrolling to anchor links.
