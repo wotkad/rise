@@ -35,8 +35,6 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
 
 #### 🎨 CSS
 
-- **reset.css**: [reset.css](https://gist.github.com/DavidWells/18e73022e723037a50d6)
-  - Library for resetting standard styles assigned by the browser.
 - **tailwind.css**: [https://tailwindcss.com](https://tailwindcss.com)
   - The utility-oriented CSS framework contains many classes that can be combined to create any design right in the markup. It is also possible to use directives like `@apply` and functions like `theme()`.
 
@@ -57,26 +55,22 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
 
 #### 🖋 Fonts
 
-- **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
-  - Icon font. You can use it like this: `i.fa.fa-argle-right`, where the first `.fa` class is responsible for the style of the icon. The face can be regular, bold, thin, or 'branded', allowing for example the Twitter icon `i.fa-brands.fa-twitter`. List of all styles: `fa-brands`, `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
 - **GraphikLCG**: [GraphikLCG](https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b)
   - The main font set for the example. You can change it in the file `/assets/styles/base/_fonts.scss`
 
 #### 🖼 Icons
 
-- **Feather-Icons**: [https://feathericons.com](https://feathericons.com/)
-  - Static collection of icons.
-- **UseAnimations**: [https://useanimations.com](https://useanimations.com/)
-  - Dynamic collection of Feather-Icons that can be animated using Lottie Web.
+- **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
+  - Icon font. You can use it like this: `i.fa.fa-argle-right`, where the first `.fa` class is responsible for the style of the icon. The face can be regular, bold, thin, or 'branded', allowing for example the Twitter icon `i.fa-brands.fa-twitter`. List of all styles: `fa-brands`, `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
 
 ## ✨ Installation and launch
 
 #### 🔗 Install dependencies
 
-- **Webpack** and **Webpack Dev Server**:
-  - First you need to install `Webpack and Webpack Dev Server` using `yarn global add webpack webpack-dev-server` command.
 - **Yarn**
-  - To install, you need to run the command `brew install yarn` in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/ docs/install/).
+  - First you need to run the command `brew install yarn` in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/ docs/install/).
+- **Webpack** and **Webpack Dev Server**:
+  - Then you need to install `Webpack and Webpack Dev Server` using `yarn global add webpack webpack-dev-server` command.
 
 #### 👨‍💻 Development process
 
@@ -109,15 +103,18 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
   - `assets`: Main working directory.
     - `files`: May contain `.pdf`, `.doc` and other files.
     - `fonts`: Fonts.
+      - `fontawesome`: Icon font library.
     - `images`: Images.
+      - `favicons`: Contains all favicons.
     - `js`: `.js` files. (You can create any structure).
-      - `animations`: `.json` files from UseAnimations for animation with Lottie Web.
       - `linksChecker`: Check links.
         - `checkInternalLinks`: Check internal links for 404 errors.
-        - `checkTarget`: Check external links and add `target="_blank"` to them
+        - `checkTarget`: Check external links and add `target="_blank"` to them.
         - `isCurrentPage`: Check which page the user is on.
       - `preloader`: Preloader script.
       - `routing`: Functionality for page navigation.
+        - `routing`: Main function.
+        - `routingFunctions`: A function that wraps other functions to restart them in barba.js.
       - `scroll`: Scroll functionality.
         - `scrollReveal`: Script for smooth appearance of elements.
         - `smoothScroll`: Script for smooth scrolling to anchor links.
@@ -130,11 +127,13 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
         - `_global`: Global styles.
         - `_palette`: Variable color palette.
       - `components`: Components (files that can be reused throughout the project).
-      - `pages`: Detail styles for each individual page.
+      - `mixins`: Parts of `.scss` files that contains small pieces of code for `.pug` mixins.
+        - `_header`: Header mixin.
       - `utils`: Utilities.
         - `_keyframes`: Animations created with @keyframes.
-        - `_mixins`: Mixins.
+        - `_reset`: File to reset the default styles assigned by the browser.
       - `_app`: Main script connection file.
+    - `videos`: Videos.
   - `markdown`: Directory of `.md` files.
     - `build`: A dynamic directory with files generated from files in the `/src/markdown/constructor` directory.
     - `constructor`: Directory with functionality for generating `.pug` from `.md` files.
@@ -148,11 +147,15 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
     - `replaceErrorPageDist`: Script to create `/404.html` file in build mode - `/dist`.
   - `views`: `.pug` files. (You can create any structure).
     - `components`: Components (files that can be reused throughout the project).
+      - `footer`: Footer component.
     - `layouts`: Main template files. Here you can also create different themes for the site.
+      - `layout`: Main layout.
     - `mixins`: Parts of `.pug` files that can be easily reused. Necessary in order to avoid repeating code in each file.
+      - `header`: Header mixin.
     - `pages`: Page templates.
       - `blog`: Dynamic directory with articles generated from `.md` files in `/src/markdown/docs` directory.
-    - `index.pug`: Master page template.
+      - `404`: Error page.
+    - `index`: Master page template.
   - `bundle.js`: The main file that combines CSS and JS for faster website performance.
   - `sitemap.xml`: Site map.
 - `.babelrc`: Babel configuration file.
@@ -163,10 +166,11 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
 - `README.md`: Template description file.
 - `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename - -save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
 - `postcss.config.js`: PostCSS configuration file.
-- `tailwind.config.js`: `Tailwind.css` library configuration file.
+- `tailwind.config.js`: `tailwind.css` library configuration file.
 - `tsconfig.json`: `TypeScript` configuration file.
 - `utils.js`: File to define development/build modes and generate paths for nested `.pug` files.
 - `webpack.config.js`: This is one of the most important files in the project because it creates the build as well as the development environment by compiling the `.scss` and `.pug` files into `.css` and `.html code ` and also minifies all files and creates a sitemap in the `/src` directory.
+- `yarn.lock`: Links to all dependencies of project.
 
 #### 📑 Templates
 
