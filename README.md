@@ -20,7 +20,7 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
 #### ⛓ Main dependencies
 
 - **NodeJS**: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-  - To run the project on your local machine, you need to install NodeJS version 14 or higher. From the link above, you can download the executable file for your operating system and install it.
+  - To run the project on your local machine, you need to install NodeJS version 18.13.0 or higher. From the link above, you can download the executable file for your operating system and install it.
 - **Yarn**: [https://yarnpkg.com](https://yarnpkg.com)
   - Required to install various modules in your project.
 - **Webpack**: [https://webpack.js.org](https://webpack.js.org)
