@@ -1,7 +1,7 @@
 import barba from "@barba/core";
 import barbaPrefetch from "@barba/core";
 import gsap from "gsap";
-import routingFunctions from "js/routingFunctions/routingFunctions";
+import routingFunctions from "./routingFunctions";
 
 barba.use(barbaPrefetch);
 
