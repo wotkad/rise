@@ -11,7 +11,7 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "yarn eslint && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeSitemapUrls && node ./src/scripts/replaceErrorPageBuild",
+    "build": "yarn eslint:pug && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./src/scripts/changeSitemapUrls && node ./src/scripts/replaceErrorPageBuild",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
@@ -20,8 +20,7 @@
     "start-typecheck": "yarn typecheck && yarn start",
     "dev-network": "webpack serve --env mode=development --config ./webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
     "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && yarn develop",
-    "eslint:pug": "eslint \"./src/views/**/*.pug\"",
-    "eslint:scss": "eslint \"./src/assets/styles/**/*.scss\""
+    "eslint:pug": "eslint \"./src/views/**/*.pug\""
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
