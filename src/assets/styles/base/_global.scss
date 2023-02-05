@@ -11,15 +11,10 @@ body {
   @apply container mx-auto
 }
 
-.barba,
-main {
-  @apply w-full
-}
-
 .barba {
-  @apply pt-14
+  @apply pt-14 w-full
 }
 
 main {
-  @apply flex flex-col justify-between items-start
+  @apply flex flex-col justify-between items-start w-full
 }
