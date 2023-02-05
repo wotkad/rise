@@ -27,7 +27,7 @@ exports.pages = function (mode, folder = "") {
         ? `${viewName}/index.html`
         : `${folder}/${viewName}/index.html`;
     const options = {
-      minify: false,
+      minify: !isDevMode(mode),
       filename: fileName,
       template: `views/${rootPagesFolderName}/${folder}/${view}`,
       inject: true,
@@ -35,7 +35,7 @@ exports.pages = function (mode, folder = "") {
 
     if (isDevMode(mode)) {
       options.minify = {
-        removeComments: false,
+        removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true,
       };

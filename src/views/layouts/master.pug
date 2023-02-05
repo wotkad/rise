@@ -10,15 +10,15 @@ html(lang='ru')
     meta(name="theme-color", content="#ffffff")
 
     block basicSeo
-      meta(name='description' content='Index page')
-      meta(name='keywords', content='index, page')
+      meta(name='description' content='Страница без названия')
+      meta(name='keywords', content='Страница, без названия')
       meta(name='author' content='wotkad')
 
     meta(name='twitter:card', content='summary')
     meta(name='twitter:description', content='')
     meta(name='twitter:image', content='')
 
-    meta(property='og:title', content='')
+    meta(property='og:title', content='Страница без названия')
     meta(property='og:description', content='')
     meta(property='og:image', content='')
 
@@ -30,26 +30,25 @@ html(lang='ru')
     link(rel="mask-icon", href="/assets/images/favicons/safari-pinned-tab.svg", color="#5bbad5")
 
     block title
-      title Rise | Untitled page
+      title Rise | Страница без названия
 
     block manifestBrowserconfigFiles
       link(rel='manifest', href='./manifest.json', crossorigin)
       meta(name='msapplication-config' content='./browserconfig.xml')
-      
-  body
 
     script.
         function autorun() {}
           if (window.addEventListener) window.addEventListener('load', autorun, false)
           else window.onload = autorun
     noscript.
-        Hey, you have JavaScript disabled, that's why you can see this message.
+        Похоже у вас отключён Javascript, поэтому вы видете это сообщение.
+
+  body
+
     .render
 
     include ../mixins/header.pug
-    
-    block content
 
-    include ../components/footer.pug
+    block content
 
     block js

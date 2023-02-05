@@ -1,48 +1,25 @@
 html,
 body {
-  height: 100%;
-  text-rendering: optimizeSpeed;
+  @apply h-full
 }
 
 .render {
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  z-index: 99999;
-  background-color: #fff;
+  @apply h-full fixed top-0 left-0 w-full z-[99999] bg-white
 }
 
 .wrapper {
-  max-width: $grid-width;
-  padding: $grid-padding;
-  margin: 0 auto;
+  @apply container mx-auto
 }
 
-@media screen and (max-width: $responsive-tablet-width) {
-  .wrapper {
-    width: 100%;
-  }
+.barba,
+main {
+  @apply w-full
 }
 
-@media screen and (max-width: $responsive-mobile-width) {
-
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  textarea {
-    font-size: 16px;
-  }
+.barba {
+  @apply pt-14
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+main {
+  @apply flex flex-col justify-between items-start
 }

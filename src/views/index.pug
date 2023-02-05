@@ -1,11 +1,11 @@
 extends ./layouts/master.pug
 
 block title
-  title Rise | Main
+  title Rise | Главная
 
 block basicSeo
-  meta(name="description" content="It\'s a Main page")
-  meta(name="keywords", content="Main, page")
+  meta(name="description" content="Главная страница")
+  meta(name="keywords", content="Главная, страница")
 
 block manifestBrowserconfigFiles
   link(href="../manifest.json", rel="manifest")
@@ -13,10 +13,14 @@ block manifestBrowserconfigFiles
 
 block content
 
-  +header("home")
+  +header("main")
 
+  main
   .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="home")
-      section
-        .wrapper
-          h1.font-bold Main
+    .barba-container(data-barba="container" data-barba-namespace="main")
+      sections
+        section
+          .wrapper
+            h1 Главная
+
+  include ./components/footer.pug

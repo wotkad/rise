@@ -1,11 +1,11 @@
 extends ../layouts/master.pug
 
 block title
-  title Rise | Blog
+  title Rise | Блог
 
 block basicSeo
-  meta(name="description" content="It's a Blog page")
-  meta(name="keywords", content="blog, page")
+  meta(name="description" content="Это страница блога")
+  meta(name="keywords", content="Страница, блог")
 
 block manifestBrowserconfigFiles
   link(href="../manifest.json", rel="manifest")
@@ -15,10 +15,13 @@ block content
 
   +header("blog")
 
-  .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="blog")
-      section
-        .wrapper 
-          h1.font-bold Blog
-          
+  main
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="blog")
+        sections
+          section
+            .wrapper 
+              h1 Блог
+            
+    include ../components/footer.pug
 

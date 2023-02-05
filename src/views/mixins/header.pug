@@ -1,16 +1,9 @@
 mixin header(currentPage)
   header.header
     .wrapper
-      .header__wrapper
-        nav
-          ul
-            li.menu__item
-              a.menu__link(href='/', class=currentPage === 'home' ? 'active' : '') Main
-            li.menu__item
-              a.menu__link(href='/blog/', class=currentPage === 'blog' ? 'active' : '') Blog
-            li.menu__item
-              a.menu__link(href='/blog/post/', class=currentPage === 'post' ? 'active' : '') Article
-            li.menu__item
-              a.menu__link(href='/blog/post2/', class=currentPage === 'post2' ? 'active' : '') Article 2
-            li.menu__item
-              a.menu__link(href='/404/', class=currentPage === '404' ? 'active' : '') 404
+      nav.header__menu
+        a.menu__link(href='/', class=currentPage === 'main' ? 'active' : '') Главная
+        a.menu__link(href='/blog/', class=currentPage === 'blog' ? 'active' : '') Блог
+        a.menu__link(href='/blog/post/', class=currentPage === 'post' ? 'active' : '') Запись
+        a.menu__link(href='/blog/post2/', class=currentPage === 'post2' ? 'active' : '') Запись 2
+        a.menu__link(href='/404/', class=currentPage === '404' ? 'active' : '') 404

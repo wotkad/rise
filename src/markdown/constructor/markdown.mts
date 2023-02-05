@@ -18,5 +18,4 @@ const markdown: any = MarkdownIt({
     );
   },
 });
-
 export default markdown;
