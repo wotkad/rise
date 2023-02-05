@@ -13,7 +13,6 @@ const markdown = MarkdownIt({
         }).value + '</code></pre>';
       } catch (__) {}
     }
-
     return '<pre><code class="hljs">' + markdown.utils.escapeHtml(str) + '</code></pre>';
   }
 });

@@ -17,25 +17,27 @@ import meta from "markdown-it-meta";
         `extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name="description" content="${markdown.meta.description ? markdown.meta.description : "It's a Post page"}")
-  meta(name="keywords", content="${markdown.meta.keywords ? markdown.meta.keywords : "blog, page, post"}")
+  meta(name="description" content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}")
+  meta(name="keywords", content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}")
 
 block manifestBrowserconfigFiles
   link(href="../../manifest.json", rel="manifest")
   meta(name="msapplication-config" content="../../browserconfig.xml")
 
 block title
-    title ${markdown.meta.title ? markdown.meta.title : "Untitled page"}
+    title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
 block content
 
   +header("${markdown.meta.name}")
 
-  .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="${markdown.meta.name}")
-      section
-        .wrapper`
-        + '\n' + renderedPug.split('\n').map((x: any) => '          ' + x).join('\n');
+  main
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.name}")
+        section
+          .wrapper`
+          + '\n' + renderedPug.split('\n').map((x: any) => '            ' + x).join('\n') + '\n' 
+          + '    ' + 'include ../../components/footer.pug';
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {
@@ -45,5 +47,4 @@ block content
     });
   });
 })();
-
-export { }
+export {}

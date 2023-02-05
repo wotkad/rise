@@ -4,8 +4,8 @@ block title
   title Rise | 404
 
 block basicSeo
-  meta(name="description" content="It's a 404 page")
-  meta(name="keywords", content="404, page")
+  meta(name="description" content="Это странца 404")
+  meta(name="keywords", content="Страница, 404")
 
 block manifestBrowserconfigFiles
   link(href="../manifest.json", rel="manifest")
@@ -15,9 +15,12 @@ block content
 
   +header("404") 
 
-  .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="404")
-      section
-        .wrapper 
-          h1.font-bold 404
+  main
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="404")
+        sections
+          section
+            .wrapper 
+              h1 404
 
+    include ../components/footer.pug

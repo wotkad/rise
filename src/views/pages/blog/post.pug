@@ -1,7 +1,7 @@
 extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name="description" content="Post1 postpage")
+  meta(name="description" content="It's a Post page")
   meta(name="keywords", content="post, page")
 
 block manifestBrowserconfigFiles
@@ -15,34 +15,36 @@ block content
 
   +header("post")
 
-  .barba(data-barba="wrapper")
-    main(data-barba="container" data-barba-namespace="post")
-      section
-        .wrapper
-          h1 H1 Article
-          h2 H2
-          h3 H3
-          h4 H4
-          p
-            strong bold text
-          p
-            em italicized text
-          blockquote
-            p blockquote
-          ol
-            li First item
-            li Second item
-            li Third item
-          ul
-            li First item
-            li Second item
-            li Third item
-          p
-            code code
-          hr
-          p
-            kbd this is a keyboard input html element
-          p
-            a(href='https://www.devextent.com') Dev Extent
-          p
-            img(src='https://www.devextent.com/images/devextent.png', alt='Dev Extent')
+  main
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="post")
+        section
+          .wrapper
+            h1 H1 Article
+            h2 H2
+            h3 H3
+            h4 H4
+            p
+              strong bold text
+            p
+              em italicized text
+            blockquote
+              p blockquote
+            ol
+              li First item
+              li Second item
+              li Third item
+            ul
+              li First item
+              li Second item
+              li Third item
+            p
+              code code
+            hr
+            p
+              kbd this is a keyboard input html element
+            p
+              a(href='https://www.devextent.com') Dev Extent
+            p
+              img(src='https://www.devextent.com/images/devextent.png', alt='Dev Extent')
+    include ../../components/footer.pug

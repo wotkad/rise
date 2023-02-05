@@ -40,7 +40,7 @@ module.exports = (env) => {
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
-      contentBase: path.join(__dirname, "./src"),
+      static: path.join(__dirname, "./src"),
       compress: true,
       open: true,
     },
