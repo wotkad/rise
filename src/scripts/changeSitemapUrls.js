@@ -1,5 +1,5 @@
 const fs = require('fs')
-const someFile = './dist/sitemap.xml';
+const someFile = './build/sitemap.xml';
 const realUrl = 'https://yourwebsite.ru';
 
 fs.readFile(someFile, 'utf8', function (err, data) {

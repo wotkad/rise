@@ -36,7 +36,7 @@ module.exports = (env) => {
     },
     output: {
       publicPath: ASSET_PATH,
-      path: path.join(__dirname, "./dist"),
+      path: path.join(__dirname, "./build"),
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
@@ -105,26 +105,12 @@ module.exports = (env) => {
           ],
         },
         {
-          test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
-          type: "asset/resource",
-          generator: {
-            filename: "assets/images/[name].[contenthash:7][ext]",
-          },
-        },
-        {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           type: "asset/resource",
           generator: {
             filename: "assets/fonts/[name].[contenthash:7][ext]",
           },
         },
-        /*{
-          test: /\.(mp4)(\?.*)?$/,
-          type: 'asset/resource',
-          generator: {
-            filename: 'assets/videos/[name].[contenthash:7][ext]'
-          },
-        }*/
       ],
     },
     experiments: {

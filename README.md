@@ -88,16 +88,16 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
 
 #### 📦 Build project
 
-9. To start building the project, you must press `CTRL + C` to stop the development process and run the `yarn build` command - the project will be created in the `/dist` directory.
+9. To start building the project, you must press `CTRL + C` to stop the development process and run the `yarn build` command - the project will be created in the `/build` directory.
 
 #### 🔬 Testing
 
-10. Testing is possible via `http-server`. Before starting, you need to build the project with the `yarn build` command. Next, by running `npx http-server -p 9090 ./dist`, you can see the build in action at the URL `http://localhost:9090`.
+10. Testing is possible via `http-server`. Before starting, you need to build the project with the `yarn build` command. Next, by running `npx http-server -p 9090 ./build`, you can see the build in action at the URL `http://localhost:9090`.
 11. Broken Link Checker - Script for checking the functionality of links on the entire site (To run, you need to run the `node blc` command when the project is running).
 
 ## 📂 File structure
 
-- `dist`: The assembly will be placed here and ready to be installed on the server. No changes are required here as it is automatically generated from source files.
+- `build`: The assembly will be placed here and ready to be installed on the server. No changes are required here as it is automatically generated from source files.
 - `node_modules`: Contains all javascript dependencies. **Do not modify any files.**
 - `src`: All source code is contained here. Resources, `.js`, `.scss`, `.pug`, etc. **Any changes you wish to make to the website must be made here.**
   - `assets`: Main working directory.
@@ -144,7 +144,7 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
   - `scripts`: Helper scripts.
     - `changeSitemapUrls.js`: Script to change `http://localhost:8080` addresses in the sitemap to the actual address (the actual address must be specified in the `realUrl` constant in this file).
     - `renameJsFiles.js`: Script to rename files from `.js` to `.mjs` extension in `/src/markdown/build` directory.
-    - `replaceErrorPageDist`: Script to create `/404.html` file in build mode - `/dist`.
+    - `replaceErrorPageBuild`: Script to create `/404.html` file in build mode - `/build`.
   - `views`: `.pug` files. (You can create any structure).
     - `components`: Components (files that can be reused throughout the project).
       - `footer`: Footer component.
@@ -160,7 +160,7 @@ To get started, you need to install the [main dependencies](/docs/main-dependenc
   - `sitemap.xml`: Site map.
 - `.babelrc`: Babel configuration file.
 - `.editorconfig`: Used to set editor code configuration, such as using spaces instead of tabs, character set, files, etc.
-- `.gitignore`: Here you can specify which files/directories should not be tracked by `git`, this means that the file/directory written in this file will not be put into the repository, for example, the directory `/node_modules` and `/ dist`.
+- `.gitignore`: Here you can specify which files/directories should not be tracked by `git`, this means that the file/directory written in this file will not be put into the repository, for example, the directory `/node_modules` and `/ build`.
 - `.nvmrc`: File with NodeJS version of this project.
 - `blc.js`: Script to check if links on the whole site are working.
 - `README.md`: Template description file.
