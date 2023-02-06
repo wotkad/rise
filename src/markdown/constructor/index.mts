@@ -17,27 +17,27 @@ import meta from "markdown-it-meta";
         `extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name="description" content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}")
-  meta(name="keywords", content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}")
+  meta(content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}" name="description")
+  meta(content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}" name="keywords")
 
 block manifestBrowserconfigFiles
-  link(href="../../manifest.json", rel="manifest")
-  meta(name="msapplication-config" content="../../browserconfig.xml")
+  link(href="../../manifest.json" rel="manifest")
+  meta(content="../../browserconfig.xml" name="msapplication-config")
 
 block title
     title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
 block content
-
   +header("${markdown.meta.name}")
 
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.name}")
-        section
-          .wrapper`
-          + '\n' + renderedPug.split('\n').map((x: any) => '            ' + x).join('\n') + '\n' 
-          + '    ' + 'include ../../components/footer.pug';
+        sections
+          section
+            .wrapper`
+            + '\n' + renderedPug.split('\n').map((x: any) => '              ' + x).join('\n') + '\n' 
+            + '      ' + 'include ../../components/footer.pug';
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {

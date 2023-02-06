@@ -1,50 +1,53 @@
 extends ../../layouts/master.pug
 
 block basicSeo
-  meta(name="description" content="It's a Post page")
-  meta(name="keywords", content="post, page")
+  meta(content="Это страница записи 2" name="description")
+  meta(content="Запись 2, страница" name="keywords")
 
 block manifestBrowserconfigFiles
-  link(href="../../manifest.json", rel="manifest")
-  meta(name="msapplication-config" content="../../browserconfig.xml")
+  link(href="../../manifest.json" rel="manifest")
+  meta(content="../../browserconfig.xml" name="msapplication-config")
 
 block title
-    title Rise | Article 2
+  title Rise | Запись 2
 
 block content
-
-  +header("post2")
+  +header("Запись 2")
 
   main
     .barba(data-barba="wrapper")
-      .barba-container(data-barba="container" data-barba-namespace="post2")
-        section
-          .wrapper
-            h1 H1 Article 2
-            h2 H2
-            h3 H3
-            h4 H4
-            p
-              strong bold text
-            p
-              em italicized text
-            blockquote
-              p blockquote
-            ol
-              li First item
-              li Second item
-              li Third item
-            ul
-              li First item
-              li Second item
-              li Third item
-            p
-              code code
-            hr
-            p
-              kbd this is a keyboard input html element
-            p
-              a(href='https://www.devextent.com') Dev Extent
-            p
-              img(src='https://www.devextent.com/images/devextent.png', alt='Dev Extent')
-    include ../../components/footer.pug
+      .barba-container(data-barba="container" data-barba-namespace="Запись 2")
+        sections
+          section
+            .wrapper
+              h1 H1 Запись 2
+              h2 H2
+              h3 H3
+              h4 H4
+              p
+                strong bold text
+              p
+                em italicized text
+              blockquote
+                p blockquote
+              ol
+                li First item
+                li Second item
+                li Third item
+              ul
+                li First item
+                li Second item
+                li Third item
+              p
+                code code
+              hr
+              p
+                kbd this is a keyboard input html element
+              p
+                a(href="https://www.devextent.com") Dev Extent
+              p
+                img(
+                  alt="Dev Extent"
+                  src="https://www.devextent.com/images/devextent.png"
+                )
+      include ../../components/footer.pug

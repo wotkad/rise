@@ -4,7 +4,7 @@ body {
 }
 
 .render {
-  @apply h-full fixed top-0 left-0 w-full z-[99999] bg-white
+  @apply fixed top-0 left-0 z-[99999] h-full w-full bg-white
 }
 
 .wrapper {
@@ -12,9 +12,9 @@ body {
 }
 
 .barba {
-  @apply pt-14 w-full
+  @apply w-full pt-14
 }
 
 main {
-  @apply flex flex-col justify-between items-start w-full
+  @apply flex w-full flex-col items-start justify-between
 }

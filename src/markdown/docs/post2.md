@@ -1,11 +1,11 @@
 ---
-title: Rise | Article 2
-description: It's a Post page
-keywords: post, page
-name: post2
+title: Rise | Запись 2
+description: Это страница записи 2
+keywords: Запись 2, страница
+name: Запись 2
 ---
 
-# H1 Article 2
+# H1 Запись 2
 
 ## H2
 

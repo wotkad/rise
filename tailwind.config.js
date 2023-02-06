@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./src/views/**/*.pug'],
+  content: ['./src/views/**/*.pug', './src/assets/styles/**/*.scss'],
   theme: {
     extend: {},
     fontFamily: {
