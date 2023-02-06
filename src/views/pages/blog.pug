@@ -4,15 +4,14 @@ block title
   title Rise | Блог
 
 block basicSeo
-  meta(name="description" content="Это страница блога")
-  meta(name="keywords", content="Страница, блог")
+  meta(content="Это страница блога" name="description")
+  meta(content="Страница, блог" name="keywords")
 
 block manifestBrowserconfigFiles
-  link(href="../manifest.json", rel="manifest")
-  meta(name="msapplication-config" content="../browserconfig.xml")
+  link(href="../manifest.json" rel="manifest")
+  meta(content="../browserconfig.xml" name="msapplication-config")
 
 block content
-
   +header("blog")
 
   main
@@ -20,8 +19,7 @@ block content
       .barba-container(data-barba="container" data-barba-namespace="blog")
         sections
           section
-            .wrapper 
+            .wrapper
               h1 Блог
-            
-    include ../components/footer.pug
 
+    include ../components/footer.pug

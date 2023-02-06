@@ -1,8 +1,6 @@
-"use strict";
-
 module.exports = {
-  extends: [
-    "eslint:recommended",
+  "extends": [
+    "eslint:recommended"
   ],
   "parser": "@babel/eslint-parser",
   "rules": {
@@ -11,6 +9,7 @@ module.exports = {
     "no-undef": "off",
     "no-global-assign": "off",
     "no-self-assign": "off",
+    "no-trailing-spaces": ["error"],
   },
   "plugins": [
     "pug"
