@@ -16,7 +16,7 @@ exports.pages = function (mode, folder = "") {
     `./src/views/${rootPagesFolderName}/${folder}`
   );
 
-  var pages = [];
+  let pages = [];
 
   fs.readdirSync(viewsFolder).forEach((view) => {
     if (view.split(".")[1] === undefined) return false;
@@ -27,19 +27,11 @@ exports.pages = function (mode, folder = "") {
         ? `${viewName}/index.html`
         : `${folder}/${viewName}/index.html`;
     const options = {
-      minify: !isDevMode(mode),
+      minify: false,
       filename: fileName,
       template: `views/${rootPagesFolderName}/${folder}/${view}`,
       inject: true,
     };
-
-    if (isDevMode(mode)) {
-      options.minify = {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-      };
-    }
 
     pages.push(new HtmlWebpackPlugin(options));
   });

@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const ASSET_PATH = process.env.ASSET_PATH || "/";
 const utils = require("./utils");
 
@@ -23,6 +24,7 @@ module.exports = (env) => {
   const MODE = env.mode || "production";
   return {
     mode: MODE,
+    stats: 'errors-warnings',
     performance: {
       hints: false,
       maxEntrypointSize: 512000,
@@ -40,16 +42,18 @@ module.exports = (env) => {
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
-      static: path.join(__dirname, "./src"),
+      hot: true,
+      static: path.join(__dirname, "/"),
       compress: true,
       open: true,
+      liveReload: false,
     },
     resolve: {
       extensions: ['.js', '.mjs'],
       alias: {
-        source: path.join(__dirname, "./src"),
-        images: path.join(__dirname, "./src/assets/images"),
-        fonts: path.join(__dirname, "./src/assets/fonts"),
+        source: path.join(__dirname, "/"),
+        images: path.join(__dirname, "assets/images"),
+        fonts: path.join(__dirname, "assets/fonts"),
       },
     },
     module: {
@@ -98,9 +102,6 @@ module.exports = (env) => {
           use: [
             {
               loader: "@webdiscus/pug-loader",
-              options: {
-                pretty: true
-              }
             },
           ],
         },
@@ -138,6 +139,9 @@ module.exports = (env) => {
     },
 
     plugins: [
+      new FriendlyErrorsWebpackPlugin({
+        clearConsole: true,
+      }),
       new CopyWebpackPlugin({
         patterns: [
           { from: "../manifest.json", to: "manifest.json" },
