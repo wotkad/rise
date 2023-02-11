@@ -45,8 +45,10 @@ module.exports = (env) => {
       hot: true,
       static: path.join(__dirname, "/"),
       compress: true,
-      open: true,
       liveReload: false,
+      client: {
+        logging: 'error'
+      },
     },
     resolve: {
       extensions: ['.js', '.mjs'],
