@@ -4,6 +4,7 @@ export default function isCurrentPage() {
     $(`a[href="${page}"]`).on("click", function (e) {
       e.preventDefault();
     });
+    $(`a[href="${page}"]`).addClass('active');
   }
 }
 isCurrentPage();

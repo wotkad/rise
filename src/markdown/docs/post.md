@@ -1,11 +1,12 @@
 ---
-title: Rise | Запись
-description: Это страница записи
+title: Rise | Запись в блоге
+description: Это страница записи в блоге
 keywords: Запись, страница
-name: Запись
+name: Запись в блоге
+namespace: post
 ---
 
-# H1 Запись
+# H1 Запись в блоге
 
 ## H2
 
@@ -13,26 +14,29 @@ name: Запись
 
 #### H4
 
-**bold text**
+**Жирный шрифт**
 
 _italicized text_
 
-> blockquote
+> Цитата
 
-1. First item
-2. Second item
-3. Third item
+1. Первый элемент
+2. Второй элемент
+3. Третий элемент
 
-- First item
-- Second item
-- Third item
+- Первый элемент
+- Второй элемент
+- Третий элемент
 
-`code`
+| Заголовок 1 | Заголовок 1 |
+| ----------- | ----------- |
+| Пункт 1     | Пункт 1     |
+| Пункт 2     | Пункт 2     |
+
+`Строчка кода`
 
 ---
 
-<kbd>this is a keyboard input html element</kbd>
+[Rise](https://wotkad.ru/rise/)
 
-[Dev Extent](https://www.devextent.com)
-
-![Dev Extent](https://www.devextent.com/images/devextent.png)
+![Logo](/assets/images/logo.svg)

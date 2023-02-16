@@ -12,14 +12,12 @@ block manifestBrowserconfigFiles
   meta(content="../browserconfig.xml" name="msapplication-config")
 
 block content
-  +header("main")
 
   main
-  .barba(data-barba="wrapper")
-    .barba-container(data-barba="container" data-barba-namespace="main")
-      sections
-        section
-          .wrapper
-            h1 Главная
-
-  include ./components/footer.pug
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="main")
+        sections
+          include ./mixins/hero.pug
+          +hero('<img src="/assets/images/logo.svg" alt="logo"> Добро пожаловать в Rise!')
+          include ./components/hero.pug
+    include ./components/footer.pug

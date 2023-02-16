@@ -1,10 +1,12 @@
 module.exports = {
-  content: ['./src/views/**/*.pug', './src/assets/styles/**/*.scss'],
+  content: ['./src/assets/styles/**/*.scss'],
   theme: {
-    extend: {},
-    fontFamily: {
-      'graphik': ['Graphik LCG']
+    container: {
+      padding: {
+        DEFAULT: '1.5rem',
+      }
     },
+    extend: {},
   },
   variants: {
     extend: {},

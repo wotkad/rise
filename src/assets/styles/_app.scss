@@ -24,9 +24,13 @@
 /*
   Mixins styles
 */
-@import "./mixins/header";
+@import "./mixins/article";
 
 /*
   Components styles
 */
+@import "./components/header";
 @import "./components/footer";
+@import "./components/content";
+@import "./components/blog";
+@import "./components/error";

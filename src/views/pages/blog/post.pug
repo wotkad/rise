@@ -1,7 +1,7 @@
 extends ../../layouts/master.pug
 
 block basicSeo
-  meta(content="Это страница записи" name="description")
+  meta(content="Это страница записи в блоге" name="description")
   meta(content="Запись, страница" name="keywords")
 
 block manifestBrowserconfigFiles
@@ -9,42 +9,51 @@ block manifestBrowserconfigFiles
   meta(content="../../browserconfig.xml" name="msapplication-config")
 
 block title
-  title Rise | Запись
+  title Rise | Запись в блоге
 
 block content
-  +header("Запись")
 
   main
     .barba(data-barba="wrapper")
-      .barba-container(data-barba="container" data-barba-namespace="Запись")
+      .barba-container(data-barba="container" data-barba-namespace="Запись в блоге")
         sections
-          section
+          section.content
             .wrapper
-              h1 H1 Запись
+              h1 H1 Запись в блоге
               h2 H2
               h3 H3
               h4 H4
               p
-                strong bold text
+                strong Жирный шрифт
               p
                 em italicized text
               blockquote
-                p blockquote
+                p Цитата
               ol
-                li First item
-                li Second item
-                li Third item
+                li Первый элемент
+                li Второй элемент
+                li Третий элемент
               ul
-                li First item
-                li Second item
-                li Third item
+                li Первый элемент
+                li Второй элемент
+                li Третий элемент
+              table
+                thead
+                  tr
+                    th Заголовок 1
+                    th Заголовок 1
+                tbody
+                  tr
+                    td Пункт 1
+                    td Пункт 1
+                  tr
+                    td Пункт 2
+                    td Пункт 2
               p
-                code code
+                code Строчка кода
               hr
               p
-                kbd this is a keyboard input html element
+                a(href='https://wotkad.ru/rise/') Rise
               p
-                a(href='https://www.devextent.com') Dev Extent
-              p
-                img(src='https://www.devextent.com/images/devextent.png', alt='Dev Extent')
-      include ../../components/footer.pug
+                img(src='/assets/images/logo.svg', alt='Logo')
+    include ../../components/footer.pug
