@@ -13,6 +13,7 @@ barba.hooks.beforeLeave((data) => {
   nextItem.addClass("active");
 });
 
+
 barba.init({
   preventRunning: true,
   requestError: (trigger, action, url, response) => {

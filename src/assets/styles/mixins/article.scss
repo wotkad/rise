@@ -1,0 +1,14 @@
+.blog__article {
+  h3 {
+    @apply text-2xl font-semibold
+  }
+  span {
+    @apply mt-4 inline-block text-blue-500 border-b pb-0.5 border-transparent duration-300 transition-colors will-change-[border-color]
+  }
+  &:hover {
+    span {
+      @apply border-blue-500
+    }
+  }
+  @apply rounded-md border block border-gray-300 p-5 col-span-1 hover:border-blue-500 duration-300 transition-colors will-change-[border-color]
+}

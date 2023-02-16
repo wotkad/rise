@@ -13,3 +13,4 @@ require("./base/routing/routing");
 require("./base/smoothScroll");
 require("./base/scrollReveal");
 require("./base/checkTarget");
+require("./base/currentYear");

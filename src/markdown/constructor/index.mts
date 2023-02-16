@@ -1,7 +1,13 @@
 import fs from "fs-extra";
-import markdown from "./markdown.mjs";
 import html2pug from "html2pug";
 import meta from "markdown-it-meta";
+import MarkdownIt from "markdown-it";
+
+const markdown: any = MarkdownIt({
+  html: true,
+  breaks: true,
+  typographer: true,
+});
 
 (async function () {
   const docsPath = "./src/markdown/docs/";
@@ -28,16 +34,15 @@ block title
   title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
 block content
-  +header("${markdown.meta.name}")
 
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.name}")
         sections
-          section
+          section.content
             .wrapper`
             + '\n' + renderedPug.split('\n').map((x: any) => '              ' + x).join('\n') + '\n' 
-            + '      ' + 'include ../../components/footer.pug';
+            + '    ' + 'include ../../components/footer.pug';
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {

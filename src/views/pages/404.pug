@@ -12,14 +12,12 @@ block manifestBrowserconfigFiles
   meta(content="../browserconfig.xml" name="msapplication-config")
 
 block content
-  +header("404") 
 
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="404")
         sections
-          section
-            .wrapper
-              h1 404
-
+          include ../mixins/hero.pug
+          +hero('404')
+          include ../components/error.pug
     include ../components/footer.pug
