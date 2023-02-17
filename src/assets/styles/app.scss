@@ -1,33 +1,34 @@
-// @import "./utils/reset"; // If you use tailwind base below, then this line can be commented out
+// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /*
-  Main parameters styles
+  Шрифты и типография
 */
 @import "./base/fonts";
 @import "./base/typography";
 
 /*
-  Utils styles
+  Утилиты
 */
 @import "./utils/keyframes";
 @import "./utils/mixins";
 
 /*
-  Base styles
+  Базовые стили
 */
 @import "./base/global";
 
 /*
-  Mixins styles
+  Миксины
 */
+@import "./mixins/title";
 @import "./mixins/article";
 
 /*
-  Components styles
+  Компоненты
 */
 @import "./components/header";
 @import "./components/footer";

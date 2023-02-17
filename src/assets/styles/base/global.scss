@@ -12,9 +12,9 @@ body {
 }
 
 .barba {
-  @apply w-full pt-14
+  @apply w-full pt-6 lg:pt-14
 }
 
 main {
-  @apply flex w-full flex-col items-start justify-between min-h-[calc(100vh-57px)]
+  @apply flex w-full flex-col items-start justify-between min-h-[calc(100vh-178px)]
 }

@@ -1,12 +1,12 @@
 .content {
   h2 {
-    @apply text-3xl mt-10 font-semibold
+    @apply text-2xl lg:text-3xl mt-6 lg:mt-10 font-semibold
   }
   h3 {
-    @apply text-2xl mt-6 font-semibold
+    @apply text-xl lg:text-2xl mt-4 lg:mt-6 font-semibold
   }
   h4 {
-    @apply text-xl mt-4 font-semibold
+    @apply text-lg lg:text-xl mt-4 font-semibold
   }
   p {
     @apply mt-4
@@ -17,10 +17,10 @@
   table {
     tr {
       th {
-        @apply py-2 px-4 text-left
+        @apply py-2 px-4 text-left border-separate border border-gray-300
       }
       td {
-        @apply py-2 px-4
+        @apply py-2 px-4 border-separate border border-gray-300
       }
     }
     tbody {
@@ -30,10 +30,10 @@
         }
       }
     }
-    @apply mt-4
+    @apply mt-4 border border-gray-300
   }
   blockquote {
-    @apply italic pl-7 border-l border-gray-300
+    @apply italic pl-4 lg:pl-7 border-l border-gray-300
   }
   ol {
     li {
@@ -50,7 +50,7 @@
       }
       @apply mt-3
     }
-    @apply list-decimal ml-4 mt-5
+    @apply list-decimal ml-4 mt-4 lg:mt-5
   }
   ul {
     li {
@@ -59,10 +59,10 @@
       }
       @apply mt-2
     }
-    @apply list-disc ml-4
+    @apply list-disc ml-4 mt-4 lg:mt-5
   }
   code {
-    @apply p-1 rounded-md bg-blue-100 text-sm
+    @apply py-1 px-2 rounded-md bg-blue-100 text-sm leading-7 lg:leading-5
   }
   span {
     @apply text-sm text-gray-500 mt-1 inline-block

@@ -11,17 +11,17 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/post/</loc>
-    <lastmod>2023-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>http://localhost:8080/blog/post2/</loc>
-    <lastmod>2023-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>http://localhost:8080/404/</loc>
+    <lastmod>2023-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/blog/post</loc>
+    <lastmod>2023-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/blog/post2</loc>
     <lastmod>2023-02-17</lastmod>
     <changefreq>monthly</changefreq>
   </url>
