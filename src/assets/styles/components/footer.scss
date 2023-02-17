@@ -1,6 +1,6 @@
 .footer {
   &__wrapper {
-    @apply py-6 flex flex-col md:py-8
+    @apply py-6 flex flex-col
   }
   &__left {
     img {
@@ -15,7 +15,7 @@
       }
       @apply inline-block font-bold ml-1 transition-colors will-change-[color] duration-300 hover:text-blue-500
     }
-    @apply flex justify-end text-sm
+    @apply flex items-center justify-end text-sm
   }
   &__right {
     ul {
@@ -28,7 +28,7 @@
         }
         @apply inline-flex
       }
-      @apply flex
+      @apply flex items-center justify-end
     }
     @apply flex items-center justify-between
   }

@@ -5,7 +5,7 @@ import routingFunctions from "./routingFunctions";
 
 barba.use(barbaPrefetch);
 
-// If the header is in barba-wrapper, then the script below is not needed.
+// Если header в находится barba-wrapper, то скрипт ниже не нужен.
 barba.hooks.beforeLeave((data) => {
   const nextPath = data.next.url.path;
   const nextItem = $(`a[href="${nextPath}"]`);

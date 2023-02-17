@@ -1,9 +1,9 @@
 // #################################
 
-// POWERED BY: RISE PROJECT
-// DEVELOPER: WOTKAD
-// WEBSITE: WOTKAD.RU
-// PROJECT'S WEBSITE: WOTKAD.RU/RISE
+// Разработано на: RISE PROJECT
+// Разработчик: WOTKAD
+// Сайт: WOTKAD.RU
+// Сайт проекта: WOTKAD.RU/RISE
 
 // #################################
 

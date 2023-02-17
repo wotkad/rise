@@ -36,7 +36,7 @@ block content
 
   main
     .barba(data-barba="wrapper")
-      .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.name}")
+      .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.namespace}")
         sections
           section.content
             .wrapper` + '\n' + renderedPug.split('\n').map(x => '              ' + x).join('\n') + '\n' + '    ' + 'include ../../components/footer.pug';

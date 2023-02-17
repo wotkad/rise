@@ -17,7 +17,7 @@ block content
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="blog")
         sections
-          include ../mixins/hero.pug
-          +hero('Блог')
+          include ../mixins/title.pug
+          +title('Блог')
           include ../components/blog.pug
     include ../components/footer.pug
