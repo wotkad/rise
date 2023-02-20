@@ -1,6 +1,6 @@
 h1 {
   img {
-    @apply mr-3 min-w-[32px] w-8 lg:min-w-[48px] lg:w-12
+    @apply mr-3 w-8 min-w-[32px] lg:w-12 lg:min-w-[48px]
   }
-  @apply text-2xl md:text-3xl lg:text-5xl font-bold flex items-center
+  @apply flex items-center text-2xl font-bold md:text-3xl lg:text-5xl
 }

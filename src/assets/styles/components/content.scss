@@ -1,12 +1,12 @@
 .content {
   h2 {
-    @apply text-2xl lg:text-3xl mt-6 lg:mt-10 font-semibold
+    @apply mt-6 text-2xl font-semibold lg:mt-10 lg:text-3xl
   }
   h3 {
-    @apply text-xl lg:text-2xl mt-4 lg:mt-6 font-semibold
+    @apply mt-4 text-xl font-semibold lg:mt-6 lg:text-2xl
   }
   h4 {
-    @apply text-lg lg:text-xl mt-4 font-semibold
+    @apply mt-4 text-lg font-semibold lg:text-xl
   }
   p {
     @apply mt-4
@@ -17,15 +17,15 @@
   table {
     tr {
       th {
-        @apply py-2 px-4 text-left border-separate border border-gray-300
+        @apply border-separate border border-gray-300 py-2 px-4 text-left
       }
       td {
-        @apply py-2 px-4 border-separate border border-gray-300
+        @apply border-separate border border-gray-300 py-2 px-4
       }
     }
     tbody {
       tr {
-        &:nth-child(2n+1) {
+        &:nth-child(2n + 1) {
           @apply bg-blue-100
         }
       }
@@ -33,7 +33,7 @@
     @apply mt-4 border border-gray-300
   }
   blockquote {
-    @apply italic pl-4 lg:pl-7 border-l border-gray-300
+    @apply border-l border-gray-300 pl-4 italic lg:pl-7
   }
   ol {
     li {
@@ -46,11 +46,11 @@
         }
       }
       span {
-        @apply font-normal text-slate-900 mt-0 inline-block text-base
+        @apply mt-0 inline-block text-base font-normal text-slate-900
       }
       @apply mt-3
     }
-    @apply list-decimal ml-4 mt-4 lg:mt-5
+    @apply ml-4 mt-4 list-decimal lg:mt-5
   }
   ul {
     li {
@@ -59,16 +59,16 @@
       }
       @apply mt-2
     }
-    @apply list-disc ml-4 mt-4 lg:mt-5
+    @apply ml-4 mt-4 list-disc lg:mt-5
   }
   code {
-    @apply py-1 px-2 rounded-md bg-blue-100 text-sm leading-7 lg:leading-5
+    @apply rounded-md bg-blue-100 py-1 px-2 text-sm leading-7 lg:leading-5
   }
   span {
-    @apply text-sm text-gray-500 mt-1 inline-block
+    @apply mt-1 inline-block text-sm text-gray-500
   }
   a {
-    @apply text-blue-500 duration-300 border-b pb-0.5 border-transparent transition-colors will-change-[border-color] hover:border-blue-500
+    @apply border-b border-transparent pb-0.5 text-blue-500 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
   }
   @apply pb-10
 }
