@@ -1,19 +1,19 @@
 .footer {
   &__wrapper {
-    @apply py-6 flex flex-col
+    @apply flex flex-col py-6
   }
   &__left {
     img {
       @apply w-6
     }
-    @apply flex mb-6 items-center justify-between
+    @apply mb-6 flex items-center justify-between
   }
   &__powered {
     a {
       i {
         @apply ml-1 text-sm
       }
-      @apply inline-block font-bold ml-1 transition-colors will-change-[color] duration-300 hover:text-blue-500
+      @apply ml-1 inline-block font-bold transition-colors duration-300 will-change-[color] hover:text-blue-500
     }
     @apply flex items-center justify-end text-sm
   }
@@ -21,7 +21,7 @@
     ul {
       li {
         a {
-          @apply transition-colors will-change-[color] duration-300 hover:text-blue-500 text-xs
+          @apply text-xs transition-colors duration-300 will-change-[color] hover:text-blue-500
         }
         &:last-child {
           @apply ml-4
@@ -37,7 +37,7 @@
       &:last-child {
         @apply mr-0
       }
-      @apply inline-block mr-1 text-xs
+      @apply mr-1 inline-block text-xs
     }
     @apply inline-block
   }
