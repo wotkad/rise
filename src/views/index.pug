@@ -11,8 +11,9 @@ block content
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="main")
-        sections
-          include ./mixins/title.pug
-          +title('<img src="/assets/images/logo.svg" alt="logo"> Добро пожаловать в Rise!')
-          include ./components/hero.pug
-  include ./components/footer.pug
+        .page-container 
+          .page-wrapper
+            include ./mixins/title.pug
+            +title('<img src="/assets/images/logo.svg" alt="logo"> Добро пожаловать в Rise!')
+            include ./components/hero.pug
+          include ./components/footer.pug

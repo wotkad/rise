@@ -11,12 +11,12 @@ body {
   @apply container mx-auto
 }
 
-.barba {
+.page-wrapper {
   @apply w-full pt-6 lg:pt-14
 }
 
-main {
-  @apply flex min-h-[calc(100vh-178px)] w-full flex-col items-start justify-between
+.page-container {
+  @apply flex min-h-[calc(100vh-var(--header-height))] w-full flex-col items-start justify-between
 }
 
 @media (prefers-reduced-motion: reduce) {
