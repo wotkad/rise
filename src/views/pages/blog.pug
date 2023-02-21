@@ -11,8 +11,9 @@ block content
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="blog")
-        sections
-          include ../mixins/title.pug
-          +title('Блог')
-          include ../components/blog.pug
-    include ../components/footer.pug
+        .page-container 
+          .page-wrapper
+            include ../mixins/title.pug
+            +title('Блог')
+            include ../components/blog.pug
+          include ../components/footer.pug

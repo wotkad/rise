@@ -4,52 +4,56 @@ block basicSeo
   meta(content="Это страница записи в блоге" name="description")
   meta(content="Запись, страница" name="keywords")
 
+block manifestBrowserconfigFiles
+  link(href="../../manifest.json" rel="manifest")
+  meta(content="../../browserconfig.xml" name="msapplication-config")
+
 block title
   title Rise | Запись в блоге
 
 block content
-
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="post")
-        sections
-          section.content
-            .wrapper
-              h1 H1 Запись в блоге
-              h2 H2
-              h3 H3
-              h4 H4
-              p
-                strong Жирный шрифт
-              p
-                em Курсивный шрифт
-              blockquote
-                p Цитата
-              ol
-                li Первый элемент
-                li Второй элемент
-                li Третий элемент
-              ul
-                li Первый элемент
-                li Второй элемент
-                li Третий элемент
-              table
-                thead
-                  tr
-                    th Заголовок 1
-                    th Заголовок 1
-                tbody
-                  tr
-                    td Пункт 1
-                    td Пункт 1
-                  tr
-                    td Пункт 2
-                    td Пункт 2
-              p
-                code Строчный кода
-              hr
-              p
-                a(href='https://wotkad.ru/rise/') Rise
-              p
-                img(src='/assets/images/logo.svg', alt='Logo')
-    include ../../components/footer.pug
+        .page-container 
+          .page-wrapper
+            section.content
+              .wrapper
+                h1 H1 Запись в блоге
+                h2 H2
+                h3 H3
+                h4 H4
+                p
+                  strong Жирный шрифт
+                p
+                  em Курсивный шрифт
+                blockquote
+                  p Цитата
+                ol
+                  li Первый элемент
+                  li Второй элемент
+                  li Третий элемент
+                ul
+                  li Первый элемент
+                  li Второй элемент
+                  li Третий элемент
+                table
+                  thead
+                    tr
+                      th Заголовок 1
+                      th Заголовок 1
+                  tbody
+                    tr
+                      td Пункт 1
+                      td Пункт 1
+                    tr
+                      td Пункт 2
+                      td Пункт 2
+                p
+                  code Строчный кода
+                hr
+                p
+                  a(href='https://wotkad.ru/rise/') Rise
+                p
+                  img(src='/assets/images/logo.svg', alt='Logo')
+          include ../../components/footer.pug

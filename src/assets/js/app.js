@@ -14,3 +14,4 @@ require("./base/smoothScroll");
 require("./base/scrollReveal");
 require("./base/checkTarget");
 require("./base/currentYear");
+require("./base/getHeaderHeight");

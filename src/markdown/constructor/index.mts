@@ -26,6 +26,10 @@ block basicSeo
   meta(content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}" name="description")
   meta(content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}" name="keywords")
 
+block manifestBrowserconfigFiles
+  link(href="../../manifest.json" rel="manifest")
+  meta(content="../../browserconfig.xml" name="msapplication-config")
+
 block title
   title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
@@ -33,11 +37,12 @@ block content
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.namespace}")
-        sections
-          section.content
-            .wrapper`
-            + '\n' + renderedPug.split('\n').map((x: any) => '              ' + x).join('\n') + '\n' 
-            + '    ' + 'include ../../components/footer.pug';
+        .page-container 
+          .page-wrapper
+            section.content
+              .wrapper`
+              + '\n' + renderedPug.split('\n').map((x: any) => '                ' + x).join('\n') + '\n' 
+              + '          ' + 'include ../../components/footer.pug';
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {
