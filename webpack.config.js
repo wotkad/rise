@@ -42,10 +42,8 @@ module.exports = (env) => {
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
-      hot: true,
       static: path.join(__dirname, "/"),
       compress: true,
-      liveReload: false,
       client: {
         logging: 'error'
       },
