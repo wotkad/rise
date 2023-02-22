@@ -83,15 +83,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint-all"
     }
-  },
-  "lint-staged": {
-    "./src/assets/styles/**/*.scss": "yarn prettier-write:scss",
-    "./src/views/**/*.pug": [
-      "yarn eslint:pug",
-      "yarn prettier-write:pug"
-    ]
   },
   "dependencies": {
     "gsap": "^3.9.1",
