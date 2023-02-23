@@ -1,4 +1,4 @@
-import "styles/app.scss";
+import "./styles/app.scss";
 
 $(function () {
   require("js/app");
