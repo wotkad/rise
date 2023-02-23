@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { ContextReplacementPlugin } = require('webpack');
 
 function removeWhiteSpaces(dir, files_) {
   files_ = files_ || [];
@@ -11,7 +12,7 @@ function removeWhiteSpaces(dir, files_) {
     } else {
       files_.push(name);
       if (path.extname(name) === ".pug") {
-        const filePath = path.join(name);
+        let filePath = path.join(name);
         fs.readFile(filePath, "utf-8", (err, data) => {
           if (err) { throw err }
           let newData = data.split("\n");
@@ -22,7 +23,7 @@ function removeWhiteSpaces(dir, files_) {
               return line.replace(/\.([\w-]+)\s+$/, ".$1");
             }
           });
-          newData = newData.join("\n").replace(/[\r\n]+$/,'')
+          newData = newData.join("\n").replace(/[\r\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
           fs.writeFile(filePath, newData, err => {
             if (err) { throw err }
           });
