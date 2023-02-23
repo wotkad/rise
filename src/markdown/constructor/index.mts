@@ -18,7 +18,7 @@ const markdown: any = MarkdownIt({
       let content = fs.readFileSync(docsPath + file, "utf8");
       markdown.use(meta)
       let renderedHtml = markdown.render(content);
-      let renderedPug = html2pug(renderedHtml, { fragment: true });
+      let renderedPug = html2pug(renderedHtml, { doubleQuotes: true, fragment: true });
       let renderedFile =
         `extends ../../layouts/master.pug
 
@@ -37,7 +37,7 @@ block content
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.namespace}")
-        .page-container 
+        .page-container
           .page-wrapper
             section.content
               .wrapper`

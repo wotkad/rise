@@ -1,180 +1,182 @@
-# 🥥 Rise - A flexible template for developing websites and applications.
+# 🥥 Rise - Гибкий шаблон для разработки веб-сайтов и приложений.
 
-**Rise** is a fast, easy-to-use and customizable template with which you can implement a project of any complexity, from a landing page to a highly loaded service.
+**Rise** это быстрый, лёгкий в использовании и настройке шаблон, с помощью которого можно реализовать проект любой сложности, от лендинга до высоконагруженного сервиса.
 
-The template greatly simplifies such things as building a project, finding the necessary libraries to start a project, generating a sitemap, setting up basic SEO, setting up a project architecture, and also offers the creation of content in the `.md` format.
+Шаблон значительно упрощает такие вещи, как сборка проекта, поиск необходимых библиотек для старта проекта, генерацию карты сайта, настройку базового SEO, настройку архитектуры проекта, а также предлагает создание контента в формате `.md`.
 
-**Pattern Includes:**
-- Templates in `.pug` and `.scss`
-- Easy connection of `css` and `js` libraries
-- Convenient architecture
-- Generation of articles in `.md` format
-- Easy initial SEO setup
-- Tests
-- and much more ...
+**Шаблон включает в себя:**
+- Шаблонизацию в `.pug` и `.scss`
+- Простое подключения библиотек `css` и `js`
+- Удобную архитектуру
+- Генерацию статей в формате `.md`
+- Легкую настройку начального SEO
+- Тесты
+- и многое другое...
 
-To get started, you need to install the [main dependencies](/docs/main-dependencies/).
+Для начала работы необходимо установить [главные зависимости](/docs/main-dependencies/).
 
-## ⚙ Technology
+## ⚙ Технологии
 
-#### ⛓ Main dependencies
+#### ⛓ Главные завиcимости
 
 - **NodeJS**: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-  - To run the project on your local machine, you need to install NodeJS version 18.13.0 or higher. From the link above, you can download the executable file for your operating system and install it.
+  - Чтобы запустить проект на локальном компьютере, нужно установить NodeJS версии 19.7.0 или выше. По ссылке выше можно загрузить исполняемый файл для своей операционной системы и установить его.
 - **Yarn**: [https://yarnpkg.com](https://yarnpkg.com)
-  - Required to install various modules in your project.
+  - Необходим для установки различных модулей в проекте.
 - **Webpack**: [https://webpack.js.org](https://webpack.js.org)
-  - Module builder to manage all site dependencies (requires version 5 or higher).
+  - Сборщик модулей для управления всеми зависимостями проекта (необходима версия 5 или выше).
 
-#### 🛠 Preprocessors:
+#### 🛠 Препроцессоры:
 
 - **PUG**: [https://pugjs.org](https://pugjs.org)
-  - It's a templating engine and the fastest way to write HTML. Provides the ability to write mixins for a more modular approach to HTML, using variables, loops, conditions, and more.
-- **SCSS**: [https://sass-scss.ru](https://sass-scss.ru)
-  - This is a CSS preprocessor that is used for writing styles and greatly improves the readability and speed of writing code, and also allows you to use variables, imports, mixins and inheritance.
+  - Это механизм шаблонов и самый быстрый способ написания HTML. Предоставляет возможность писать миксины для более модульного подхода к HTML, использовать переменные, циклы, условия и многое другое.
+- **SASS**: [https://sass-scss.ru](https://sass-scss.ru)
+  - Это препроцессор CSS, который используется для написания стилей и значительно повышает читабельность и скорость написания кода, а также позволяет использовать переменные, импорты, миксины и наследование.
 
 #### 🎨 CSS
 
 - **tailwind.css**: [https://tailwindcss.com](https://tailwindcss.com)
-  - The utility-oriented CSS framework contains many classes that can be combined to create any design right in the markup. It is also possible to use directives like `@apply` and functions like `theme()`.
+  - CSS-фреймворк, ориентированный на утилиты, содержит множество классов, которые можно комбинировать для создания любого дизайна прямо в разметке. Также можно использовать такие директивы, как `@apply`, и такие функции, как `theme()`.
 
 #### 🔧 JS
 
 - **Barba.js**: [https://barba.js.org](https://barba.js.org)
-  - A small and easy-to-use library that will help you create smooth transitions between website pages, as well as configure routing in more detail.
+  - Небольшая и простая в использовании библиотека, которая поможет создавать плавные переходы между страницами веб-сайта, а также более детально настраивать роутинг.
 - **Gsap.js**: [https://greensock.com/gsap](https://greensock.com/gsap)
-  - A set of tools for the implementation of animation of any level of complexity.
+  - Набор инструментов для реализации анимации любого уровня сложности.
 - **jQuery.js**: [https://jquery.com](https://jquery.com)
-  - Fast, small and feature rich library. It greatly simplifies things like traversing and manipulating HTML documents, event handling, animation, and Ajax with an easy-to-use API that works across multiple browsers.
+  - Быстрая, небольшая и многофункциональная библиотека. Она значительно упрощает такие вещи, как обход и манипулирование документами HTML, обработку событий, анимацию и Ajax, с помощью простого в использовании API, который работает во множестве браузеров.Ajax with an easy-to-use API that works across multiple browsers.
 - **Lottie-Web.js**: [http://airbnb.io/lottie](http://airbnb.io/lottie)
-  - Library for working with animations created in Adobe After Effects and exported in `.json` format using Bodymovin. Allows you to play, stop, get individual frames of animation and much more.
+  - Библиотека для работы с анимациями созданными в Adobe After Effects и экспортированными в формате .json с помощью Bodymovin. Позволяет воспроизводить, останавливать, получать отдельные кадры анимации и многое другое.individual frames of animation and much more.
 - **ScrollReveal.js**: [https://scrollrevealjs.org](https://scrollrevealjs.org/)
-  - A library to animate elements as they scroll in the browser window.
+  - Библиотека для анимации элементов по мере их прокрутки в окне браузера.
 - **Smooth-Scroll.js**: [Smooth-Scroll.js](https://github.com/cferdinandi/smooth-scroll)
-  - Lightweight script to animate scrolling to anchor links.
+  - Легкий скрипт для анимации прокрутки к якорным ссылкам.
 
-#### 🖋 Fonts
+#### 🖋 Шрифты
+
+Возможно подключать любые шрифты, желательно в формате .woff2, т.к. он имеет лучшую оптимизацию и поддержку браузерами.
 
 - **GraphikLCG**: [GraphikLCG](https://gist.github.com/mfd/e7842774e037edf15919037594a79b2b)
-  - The main font set for the example. You can change it in the file `/assets/styles/base/_fonts.scss`
+  - Основной шрифт установленный для примера. Изменить его можно в файле `/assets/styles/base/_fonts.scss`
 
-#### 🖼 Icons
+#### 🖼 Иконки
 
 - **FontAwesome 6**: [https://fontawesome.com](https://fontawesome.com)
-  - Icon font. You can use it like this: `i.fa.fa-argle-right`, where the first `.fa` class is responsible for the style of the icon. The face can be regular, bold, thin, or 'branded', allowing for example the Twitter icon `i.fa-brands.fa-twitter`. List of all styles: `fa-brands`, `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
+  - Иконочный шрифт. Использовать его можно так: `i.fa.fa-argle-right`, где первый класс `.fa` отвечает за стиль иконки. Начертание может быть обычным, жирным, тонким или являтся ‘брендом’, что позволяет использовать, например, иконку Twitter `i.fa-brands.fa-twitter`. Список всех начертаний: `fa-brands`, `fa-solid`, `fa-regular`, `fa-light`, `fa-thin`, `fa-duotone`, `fa-brands`.
 
-## ✨ Installation and launch
+## ✨ Установка и запуск
 
-#### 🔗 Install dependencies
+#### 🔗 Установка зависимостей
 
 - **Yarn**
-  - First you need to run the command `brew install yarn` in the console or follow the special guide for the OS [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/ docs/install/).
+  - Сперва нужно выполнить в консоли команду brew install yarn или следовать специальному руководству для ОС [https://yarnpkg.com/lang/en/docs/install/](https://yarnpkg.com/lang/en/ docs/install/).
 - **Webpack** and **Webpack Dev Server**:
-  - Then you need to install `Webpack and Webpack Dev Server` using `yarn global add webpack webpack-dev-server` command.
+  - Затем необходимо установить `Webpack` и `Webpack Dev Server` с помощью команды `yarn add webpack webpack-dev-server -g` command.
 
-#### 👨‍💻 Development process
+#### 👨‍💻 Процесс разработки
 
-1. You need to clone the project with the command `git clone https://git@github.com:wotkad/rise.git` to the directory with projects and change its name to the current one.
-2. Open the `project name` directory in the code editor.
-3. Install all dependencies with the `yarn install` command.
-4. You can start the development process in the project with the `yarn dev` command. (to run the project on your local network, you should run `yarn dev-network` instead of `yarn dev`, and using the IP address of the host computer (it must be specified in the `package.json` file for the `dev-network` command ) you can access the project on other devices).
-5. Check page availability.
-6. Make any necessary modifications.
+1. Необходимо склонировать проект командой `git clone https://git@github.com:wotkad/rise.git` в директорию с проектами и изменить её название на актуальное.
+2. Открыть директорию `название проекта` в редакторе кода.
+3. Установить все зависимости командой `yarn install`.
+4. Запустить процесс разработки в проекте можно командой `yarn dev`. (для запуска проекта в своей локальной сети, следует вместо `yarn dev` запустить `yarn dev-network`, а с помощью IP-адреса хост-компьютера (его необходимо указать в файле `package.json` для команды `dev-network`) можно получить доступ к проекту на других устройствах).
+5. Проверить доступность страниц.
+6. Выполнить все необходимые модификации.
 
-#### 📄 Adding pages
+#### 📄 Добавление страниц
 
-7. To add a page, you need to create it in the `/views` directory in the right place, after that you need to restart the project by pressing `CTRL + C` to stop the development process and run the `yarn dev` command to restart it.
-8. To create any section, for example, `/products/product`, where `/products` is the parent section, in the `webpack.config.js` file, in the `plugins` object, add the line `...utils. pages(MODE, "products")`.
+7. Для добавления страницы необходимо создать её в директории `/views` в нужном месте, после этого необходимо перезапустить проект нажав `CTRL + C` чтобы остановить процесс разработки и запустить команду `yarn dev` для повторного запуска.
+8. Для создания любого раздела, например, `/products/product`, где `/products` - родительский раздел, нужно в файле `webpack.config.js`, в объект `plugins`, добавить строчку `...utils.pages(MODE, "products")`.
 
-#### 📦 Build project
+#### 📦 Сборка проекта
 
-9. To start building the project, you must press `CTRL + C` to stop the development process and run the `yarn build` command - the project will be created in the `/build` directory.
+9. Для начала сборки проекта необходимо нажать `CTRL + C` чтобы остановить процесс разработки и запустить команду `yarn build` - проект будет создан в директорию `/dist`.
 
-#### 🔬 Testing
+#### 🔬 Тестирование
 
-10. Testing is possible via `http-server`. Before starting, you need to build the project with the `yarn build` command. Next, by running `npx http-server -p 9090 ./build`, you can see the build in action at the URL `http://localhost:9090`.
-11. Broken Link Checker - Script for checking the functionality of links on the entire site (To run, you need to run the `node blc` command when the project is running).
+10. Тестирование возможно через `http-server`. Перед началом, необходимо собрать проект командой `yarn build`. Далее выполнив команду `npx http-server -p 9090 ./dist`, по URL-адресу `http://localhost:9090` можно увидеть сборку в действии.
 
-## 📂 File structure
+## 📂 Файловая структура
 
-- `build`: The assembly will be placed here and ready to be installed on the server. No changes are required here as it is automatically generated from source files.
-- `node_modules`: Contains all javascript dependencies. **Do not modify any files.**
-- `src`: All source code is contained here. Resources, `.js`, `.scss`, `.pug`, etc. **Any changes you wish to make to the website must be made here.**
-  - `assets`: Main working directory.
-    - `files`: May contain `.pdf`, `.doc` and other files.
-    - `fonts`: Fonts.
-      - `fontawesome`: Icon font library.
-    - `images`: Images.
-      - `favicons`: Contains all favicons.
-    - `js`: `.js` files. (You can create any structure).
-      - `linksChecker`: Check links.
-        - `checkInternalLinks`: Check internal links for 404 errors.
-        - `checkTarget`: Check external links and add `target="_blank"` to them.
-        - `isCurrentPage`: Check which page the user is on.
-      - `preloader`: Preloader script.
-      - `routing`: Functionality for page navigation.
-        - `routing`: Main function.
-        - `routingFunctions`: A function that contains other functions to restart them in barba.js.
-      - `scroll`: Scroll functionality.
-        - `scrollReveal`: Script for smooth appearance of elements.
-        - `smoothScroll`: Script for smooth scrolling to anchor links.
-      - `app.js`: Main script file.
-    - `styles`: `.scss` files. (You can create any structure).
-      - `base`: Base styles.
-        - `fontawesome`: Font styles for fontawesome.
-        - `_dimensions`: Basic dimensions variables.
-        - `_fonts`: Including fonts and their variables.
-        - `_global`: Global styles.
-        - `_palette`: Variable color palette.
-      - `components`: Components (files that can be reused throughout the project).
-      - `mixins`: Parts of `.scss` files that contains small pieces of code for `.pug` mixins.
-        - `_header`: Header mixin.
-      - `utils`: Utilities.
-        - `_keyframes`: Animations created with @keyframes.
-        - `_reset`: File to reset the default styles assigned by the browser.
-      - `_app`: Main script connection file.
-    - `videos`: Videos.
-  - `markdown`: Directory of `.md` files.
-    - `build`: A dynamic directory with files generated from files in the `/src/markdown/constructor` directory.
-    - `constructor`: Directory with functionality for generating `.pug` from `.md` files.
-      - `decs.d.mts`: Module declaration file.
-      - `index.mts`: File with generation of `.md` files, article template and meta content for them.
-      - `markdown.mts`: The main configuration file for markdown.
-    - `docs`: Directory with `.md` files.
-  - `scripts`: Helper scripts.
-    - `changeSitemapUrls.js`: Script to change `http://localhost:8080` addresses in the sitemap to the actual address (the actual address must be specified in the `realUrl` constant in this file).
-    - `renameJsFiles.js`: Script to rename files from `.js` to `.mjs` extension in `/src/markdown/build` directory.
-    - `replaceErrorPageBuild`: Script to create `/404.html` file in build mode - `/build`.
-  - `views`: `.pug` files. (You can create any structure).
-    - `components`: Components (files that can be reused throughout the project).
-      - `footer`: Footer component.
-    - `layouts`: Main template files. Here you can also create different themes for the site.
-      - `layout`: Main layout.
-    - `mixins`: Parts of `.pug` files that can be easily reused. Necessary in order to avoid repeating code in each file.
-      - `header`: Header mixin.
-    - `pages`: Page templates.
-      - `blog`: Dynamic directory with articles generated from `.md` files in `/src/markdown/docs` directory.
-      - `404`: Error page.
-    - `index`: Master page template.
-  - `bundle.js`: The main file that combines CSS and JS for faster website performance.
-  - `sitemap.xml`: Site map.
-- `.babelrc`: Babel configuration file.
-- `.editorconfig`: Used to set editor code configuration, such as using spaces instead of tabs, character set, files, etc.
-- `.gitignore`: Here you can specify which files/directories should not be tracked by `git`, this means that the file/directory written in this file will not be put into the repository, for example, the directory `/node_modules` and `/ build`.
-- `.nvmrc`: File with NodeJS version of this project.
-- `blc.js`: Script to check if links on the whole site are working.
-- `README.md`: Template description file.
-- `package.json`: When you run the `yarn install` command, the installed packages are those listed in this file with the version that was installed, if you need to add more packages, you can do this by running the command `yarn add packagename - -save`, then the new package will be installed in the `/node_modules` directory, and `package.json` will be updated with a new package line, it also contains all the commands to run and build the project.
-- `postcss.config.js`: PostCSS configuration file.
-- `tailwind.config.js`: `tailwind.css` library configuration file.
-- `tsconfig.json`: `TypeScript` configuration file.
-- `utils.js`: File to define development/build modes and generate paths for nested `.pug` files.
-- `webpack.config.js`: This is one of the most important files in the project because it creates the build as well as the development environment by compiling the `.scss` and `.pug` files into `.css` and `.html code ` and also minifies all files and creates a sitemap in the `/src` directory.
-- `yarn.lock`: Links to all dependencies of project.
+- `dist`: Сборка будет размещена здесь и готова к установке на сервер. Никаких изменений здесь не требуется, так как она автоматически генерируется из исходных файлов.
+- `node_modules`: Содержит все зависимости javascript. **Не следует изменять какие-либо файлы.**
+- `src`: Весь исходный код содержится здесь. Ресурсы, `.js`, `.scss`, `.pug` и т. д. **Любые изменения, которые вы хотите внести на веб-сайт, должны быть сделаны здесь.**
+  - `assets`: Основная рабочая директория.
+    - `files`: Может содержать файлы `.pdf`, `.doc` и прочие.
+    - `fonts`: Шрифты.
+      - `fontawesome`: Библиотека иконочных шрифтов.
+    - `images`: Изображения.
+      - `favicons`: Содержит все фавиконки.
+    - `js`: Файлы `.js`. (Можно создать любую структуру).
+      - `linksChecker`: Проверка ссылок.
+        - `checkInternalLinks`: Проверка внутренних ссылок на 404-ю ошибку.
+        - `checkTarget`: Проверка внешних ссылков и добавление им `target="_blank"`.
+        - `isCurrentPage`: Проверка на какой странице находится пользователь.
+      - `preloader`: Скрипт прелоадера.
+      - `routing`: Функционал для переходов по страницам.
+        - `routing`: Главная функиця.
+        - `routingFunctions`: Функция, которая содержит другие функции для их перезапуска в barba.js.
+      - `scroll`: Функционал скролла.
+        - `scrollReveal`: Скрипт для плавного появления элементов.
+        - `smoothScroll`: Скрипт для плавного скролла к якорным ссылкам.
+      - `app.js`: Основной файл со скриптами.
+    - `styles`: Файлы `.scss`. (Можно создать любую структуру).
+      - `base`: Базовые стили.
+        - `fontawesome`: Стили шрифтов fontawesome.
+        - `_dimensions`: Переменные основных размерностей.
+        - `_fonts`: Подключение шрифтов и их переменные.
+        - `_global`: Глобальные стили.
+        - `_palette`: Палетта переменных цветов.
+      - `components`: Компоненты (файлы которые можно переиспользовать по всему проекту).
+      - `mixins`: Части файлов `.scss`, которые содержат небольшие фрагменты кода для примесей `.pug`.
+        - `_header`: Миксин хедера.
+      - `utils`: Утилиты.
+        - `_keyframes`: Анимации созданные с помощью @keyframes.
+        - `_reset`: Файл для сброса стандартных стилей назначенных браузером.
+      - `_app`: Основной файл подключения скритов.
+    - `videos`: Видео.
+  - `markdown`: Директория `.md` файлов.
+    - `build`: Динамическая директория с файлами генерируемая из файлов директории `/src/markdown/constructor`.
+    - `constructor`: Директория с функционалом для генерации `.pug` из `.md` файлов.
+      - `decs.d.mts`: Файл декларирования модулей.
+      - `index.mts`: Файл с генерацией `.md` файлов, шаблона статьи и мета контента для них.
+      - `markdown.mts`: Основной конфигурационный файл markdown.
+    - `docs`: Директория с файлами `.md`.
+  - `scripts`: Вспомогательные скрипты.
+    - `changeSitemapUrls.js`: Скрипт для изменения адресов `http://localhost:8080` в карте сайта на актуальный адрес (актуальный адрес необходимо указать в этом файле в константе `realUrl`).
+    - `renameJsFiles.js`: Скрипт для переименования файлов из `.js` в `.mjs` расширения в директории `/src/markdown/build`.
+    - `replaceErrorPageDist`: Скрипт для создания файла `/404.html` в режиме сборки - `/dist`.
+  - `views`: Файлы `.pug`. (Можно создать любую структуру).
+    - `components`: Компоненты (файлы которые можно переиспользовать по всему проекту).
+      - `footer`: Компонент футера.
+    - `layouts`: Основные файлы шаблонов. Здесь также можно создать разные темы для сайта.
+      - `layout`: Главный шаблон.
+    - `mixins`: Фрагменты файлов `.pug`, которые можно легко переиспользовать. Необходимы для того, чтобы избежать повторения кода в каждом файле. 
+      - `header`: Миксин хедера.
+    - `pages`: Шаблоны страниц.
+      - `blog`: Динамическая директория со статьями генерируемая из `.md` файлов из директории `/src/markdown/docs`.
+      - `404`: Страница ошибки.
+    - `index`: Шаблон главной страницы.
+  - `bundle.js`: Основной файл объединяющий в себя CSS и JS для более быстрой работы сайта.
+  - `sitemap.xml`: Карта сайта.
+- `.babelrc`: Конфигурационный файл Babel.
+- `.editorconfig`: Используется для установки конфигурации кода редактора, например, использования пробелов вместо табуляции, набора символов, файлов и т. д.
+- `.gitignore`: Здесь можно указать, какие файлы/директории не должны отслеживаться `git`, это означает, что файл/директория, записанные в этом файле, не будут помещены в репозиторий, например, директория `/node_modules` и `/dist`.
+- `.nvmrc`: Файл с версией NodeJS данного проекта.
+- `blc.js`: Скрипт для проверки работоспособности ссылок на всём сайте.
+- `README.md`: Файл описания шаблона.
+- `package.json`: Когда вы запускаете команду `yarn install`, установленными пакетами являются те, которые перечислены в этом файле с версией, которая была установлена, если нужно добавить больше пакетов, можно сделать это, выполнив команду `yarn add название_пакета --save`, затем новый пакет будет установлен в директорию `/node_modules`, а `package.json` будет обновлен с добавлением новой строки пакета, также он содержит все команды для запуска и сборки проекта.
+- `postcss.config.js`: Конфигурационный файл PostCSS.
+- `tailwind.config.js`: Конфигурационный файл библиотеки `tailwind.css`.
+- `tsconfig.json`: Конфигурационный файл `TypeScript`.
+- `utils.js`: Файл для определения режимов разработки/сборки и генерации путей для вложенных файлов `.pug`.
+- `webpack.config.js`: Это один из самых важных файлов проекта, потому что именно он создает сборку, а также среду разработки, компилируя файлы `.scss` и `.pug` в код `.css` и `.html`, а также минимизирует все файлы и создает карту сайта в директорию `/src`.
+- `yarn.lock`: Ссылки на все зависимости проекта.
 
-#### 📑 Templates
+# 📑 Шаблоны
 
-- `/`: Home
-- `/blog`: Blog
-- `/blog/post`: Article
-- `/404`: Error page
+- `/`: Главная
+- `/blog`: Блог
+  - `/blog/post`: Статья 1
+  - `/blog/post`: Статья 2
+- `/404`: Страница ошибки

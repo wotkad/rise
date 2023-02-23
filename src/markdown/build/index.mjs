@@ -14,9 +14,28 @@ const markdown = MarkdownIt({
   fs.readdir(docsPath, (err, files) => {
     files.forEach(file => {
       let content = fs.readFileSync(docsPath + file, "utf8");
-      markdown.use(meta);
+      markdown.use(meta, function (md) {
+        md.renderer.rules.image = function (tokens, idx, options, env, self) {
+          // Get the current token
+          const token = tokens[idx];
+
+          // Get the index of the `alt` attribute
+          const altIndex = token.attrIndex('alt');
+
+          // If `alt` exists and is not first, move it to the front
+          if (altIndex !== -1 && altIndex !== 0) {
+            const altAttr = token.attrs.splice(altIndex, 1)[0];
+            token.attrs.unshift(altAttr);
+          }
+
+          // Rebuild the image HTML with the updated attributes
+          const attrs = token.attrs.map(attr => `${attr[0]}="${attr[1]}"`).join(' ');
+          return `<img ${attrs}>`;
+        };
+      });
       let renderedHtml = markdown.render(content);
       let renderedPug = html2pug(renderedHtml, {
+        doubleQuotes: true,
         fragment: true
       });
       let renderedFile = `extends ../../layouts/master.pug
@@ -36,7 +55,7 @@ block content
   main
     .barba(data-barba="wrapper")
       .barba-container(data-barba="container" data-barba-namespace="${markdown.meta.namespace}")
-        .page-container 
+        .page-container
           .page-wrapper
             section.content
               .wrapper` + '\n' + renderedPug.split('\n').map(x => '                ' + x).join('\n') + '\n' + '          ' + 'include ../../components/footer.pug';
