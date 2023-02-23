@@ -22,7 +22,7 @@
     "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && yarn develop",
     "eslint:pug": "eslint \"./src/views/**/*.pug\"",
     "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node src/scripts/removeScssSemiColons",
-    "prettier-write:pug": "node src/scripts/removePugWhiteSpaces && prettier --write './src/views/**/*.pug' && node ./src/scripts/removePugCommas",
+    "prettier-write:pug": "prettier --write './src/views/**/*.pug' && node src/scripts/removePugWhiteSpaces && node ./src/scripts/removePugCommas",
     "lint-all": "yarn eslint:pug && yarn prettier-write:scss && yarn prettier-write:pug"
   },
   "devDependencies": {
