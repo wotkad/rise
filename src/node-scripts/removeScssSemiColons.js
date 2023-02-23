@@ -24,4 +24,4 @@ function removeSemiColons(dir, files_) {
   }
   return files_;
 }
-removeSemiColons('./src/assets/styles/')
+removeSemiColons('./src/styles/')
