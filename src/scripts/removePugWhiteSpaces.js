@@ -22,7 +22,7 @@ function removeWhiteSpaces(dir, files_) {
               return line.replace(/\.([\w-]+)\s+$/, ".$1");
             }
           });
-          newData = newData.join("\n");
+          newData = newData.join("\n").replace(/[\r\n]+$/,'')
           fs.writeFile(filePath, newData, err => {
             if (err) { throw err }
           });
