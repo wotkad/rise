@@ -16,13 +16,13 @@
     "typecheck": "tsc --p .",
     "clear": "rimraf ./src/markdown/build && rimraf ./src/views/pages/blog/",
     "compile": "cross-env-shell babel src/markdown/constructor -d ./src/markdown/build --extensions '.mts'",
-    "start": "yarn clear && yarn compile && node ./src/scripts/renameJsFiles && node ./src/markdown/build/index.mjs",
+    "start": "yarn clear && yarn compile && node ./src/scripts/renameJsFiles && node ./src/markdown/build/index.mjs && node ./src/scripts/removePugCommas",
     "start-typecheck": "yarn typecheck && yarn start",
     "dev-network": "webpack serve --env mode=development --config ./webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
     "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && yarn develop",
     "eslint:pug": "eslint \"./src/views/**/*.pug\"",
-    "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node src/scripts/removeSemiColons",
-    "prettier-write:pug": "node src/scripts/removeWhiteSpaces && prettier --write './src/views/**/*.pug'",
+    "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node src/scripts/removeScssSemiColons",
+    "prettier-write:pug": "node src/scripts/removePugWhiteSpaces && prettier --write './src/views/**/*.pug' && node ./src/scripts/removePugCommas",
     "lint-all": "yarn eslint:pug && yarn prettier-write:scss && yarn prettier-write:pug"
   },
   "devDependencies": {
