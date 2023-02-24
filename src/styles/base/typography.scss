@@ -2,3 +2,81 @@ textarea:placeholder,
 input:placeholder {
   @apply font-sans font-normal
 }
+.content {
+  h2 {
+    @apply mt-6 text-2xl font-semibold lg:mt-10 lg:text-3xl
+  }
+  h3 {
+    @apply mt-4 text-xl font-semibold lg:mt-6 lg:text-2xl
+  }
+  h4 {
+    @apply mt-4 text-lg font-semibold lg:text-xl
+  }
+  p {
+    @apply mt-4
+  }
+  hr {
+    @apply mt-4
+  }
+  table {
+    tr {
+      th {
+        @apply border-separate border border-gray-300 py-2 px-4 text-left
+      }
+      td {
+        @apply border-separate border border-gray-300 py-2 px-4
+      }
+    }
+    tbody {
+      tr {
+        &:nth-child(2n + 1) {
+          @apply bg-blue-100
+        }
+      }
+    }
+    @apply mt-4 border border-gray-300
+  }
+  blockquote {
+    @apply border-l border-gray-300 pl-4 italic lg:pl-7
+  }
+  ol {
+    li {
+      &::marker {
+        @apply text-blue-500
+      }
+      &.bold {
+        span {
+          @apply font-bold
+        }
+      }
+      span {
+        @apply mt-0 inline-block text-base font-normal text-slate-900
+      }
+      @apply mt-3
+    }
+    @apply ml-4 mt-4 list-decimal lg:mt-5
+  }
+  ul {
+    li {
+      &::marker {
+        @apply text-blue-500
+      }
+      @apply mt-2
+    }
+    @apply ml-4 mt-4 list-disc lg:mt-5
+  }
+  code {
+    @apply rounded-md bg-blue-100 py-1 px-2 text-sm leading-7 lg:leading-5
+  }
+  span {
+    @apply mt-1 inline-block text-sm text-gray-500
+  }
+  a {
+    @apply border-b border-transparent pb-0.5 text-blue-500 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
+  }
+}
+section {
+  &:last-child {
+    @apply pb-10
+  }
+}
