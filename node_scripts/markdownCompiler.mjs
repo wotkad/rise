@@ -8,7 +8,7 @@ const markdown = MarkdownIt({
   typographer: true
 });
 (async function () {
-  const docsPath = "./src/markdown/docs/";
+  const docsPath = "./src/markdown/";
   const compiledPath = "./src/views/pages/blog/";
   fs.mkdir(compiledPath);
   fs.readdir(docsPath, (err, files) => {
