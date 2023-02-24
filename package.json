@@ -20,15 +20,13 @@
     "start-typecheck": "yarn typecheck && yarn start",
     "dev-network": "webpack serve --env mode=development --config ./webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
     "dev": "yarn start-typecheck && rimraf ./src/markdown/build/decs.d.mjs && yarn develop",
-    "eslint:pug": "eslint \"./src/views/**/*.pug\"",
     "prettier-write:scss": "prettier --write './src/styles/**/*.scss' && node node_scripts/clearScss",
     "prettier-write:pug": "prettier --write './src/views/**/*.pug' && node ./node_scripts/clearPug",
-    "lint-all": "yarn eslint:pug && yarn prettier-write:scss && yarn prettier-write:pug"
+    "lint-all": "yarn prettier-write:scss && yarn prettier-write:pug"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
-    "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@barba/core": "^2.9.7",
@@ -47,8 +45,6 @@
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "enhanced-resolve": "^5.12.0",
-    "eslint": "^8.34.0",
-    "eslint-plugin-pug": "^1.2.5",
     "file-loader": "^6.2.0",
     "fs-extra": "^11.1.0",
     "html-webpack-plugin": "^5.5.0",

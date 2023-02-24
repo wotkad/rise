@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { ContextReplacementPlugin } = require('webpack');
 
 function removeWhiteSpaces(dir, files_) {
   files_ = files_ || [];
