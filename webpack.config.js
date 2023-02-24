@@ -101,7 +101,13 @@ module.exports = (env) => {
           test: /\.pug$/,
           use: [
             {
-              loader: "@webdiscus/pug-loader",
+              loader: 'raw-loader',
+            },
+            {
+              loader: 'pug-plain-loader',
+              options: {
+                pretty: true,
+              },
             },
           ],
         },
