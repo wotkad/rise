@@ -32,4 +32,4 @@ function removeWhiteSpaces(dir, files_) {
   }
   return files_;
 }
-removeWhiteSpaces('./src/views/')
+removeWhiteSpaces('./src/views')
