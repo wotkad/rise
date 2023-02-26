@@ -24,4 +24,4 @@ function clearScss(dir, files_) {
   }
   return files_;
 }
-clearScss('./src/styles/')
+clearScss('./src/assets/styles')
