@@ -22,6 +22,9 @@ const markdown = MarkdownIt({
       });
       let renderedFile = `extends ../../layouts/master.pug
 
+block title
+  title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
+
 block basicSeo
   meta(content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}" name="description")
   meta(content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}" name="keywords")
@@ -29,9 +32,6 @@ block basicSeo
 block manifestBrowserconfigFiles
   link(href="../../manifest.json" rel="manifest")
   meta(content="../../browserconfig.xml" name="msapplication-config")
-
-block title
-  title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
 block content
   main

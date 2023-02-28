@@ -1,5 +1,8 @@
 extends ../../layouts/master.pug
 
+block title
+  title Rise | Запись в блоге
+
 block basicSeo
   meta(content="Это страница записи в блоге" name="description")
   meta(content="Запись, страница" name="keywords")
@@ -7,9 +10,6 @@ block basicSeo
 block manifestBrowserconfigFiles
   link(href="../../manifest.json" rel="manifest")
   meta(content="../../browserconfig.xml" name="msapplication-config")
-
-block title
-  title Rise | Запись в блоге
 
 block content
   main

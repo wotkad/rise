@@ -7,6 +7,10 @@ block basicSeo
   meta(content="Главная страница" name="description")
   meta(content="Главная, страница" name="keywords")
 
+block manifestBrowserconfigFiles
+  link(href="./manifest.json" rel="manifest" crossorigin)
+  meta(content="./browserconfig.xml" name="msapplication-config")
+
 block content
   main
     .barba(data-barba="wrapper")
