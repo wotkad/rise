@@ -1,5 +1,8 @@
 // @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.
 
+/*
+  Tailwind
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
