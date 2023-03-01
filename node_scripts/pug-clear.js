@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const excludePath = 'src/views/pages/blog';
 
 function removeWhiteSpaces(dir, files_) {
   files_ = files_ || [];
@@ -12,21 +13,23 @@ function removeWhiteSpaces(dir, files_) {
       files_.push(name);
       if (path.extname(name) === ".pug") {
         let filePath = path.join(name);
-        fs.readFile(filePath, "utf-8", (err, data) => {
-          if (err) { throw err }
-          let newData = data.split("\n");
-          newData = newData.map(line => {
-            if (/^\s*$/.test(line)) {
-              return line;
-            } else {
-              return line.replace(/[\s\uFEFF\xA0]+$/, "");
-            }
-          });
-          newData = newData.join("\n").replace(/[\r\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
-          fs.writeFile(filePath, newData, err => {
+        if (!filePath.includes(excludePath)) {
+          fs.readFile(filePath, "utf-8", (err, data) => {
             if (err) { throw err }
+            let newData = data.split("\n");
+            newData = newData.map(line => {
+              if (/^\s*$/.test(line)) {
+                return line;
+              } else {
+                return line.replace(/[\s\uFEFF\xA0]+$/, "");
+              }
+            });
+            newData = newData.join("\n").replace(/[\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
+            fs.writeFile(filePath, newData, err => {
+              if (err) { throw err }
+            });
           });
-        });
+        }
       }
     }
   }
