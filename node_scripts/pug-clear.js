@@ -29,6 +29,18 @@ function removeWhiteSpaces(dir, files_) {
               if (err) { throw err }
             });
           });
+        } else {
+          fs.readFile(filePath, "utf-8", (err, data) => {
+            if (err) { throw err }
+            let newData = data.split("\n");
+            newData = newData.map(line => {
+              return line;
+            });
+            newData = newData.join("\n").replace(/[\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
+            fs.writeFile(filePath, newData, err => {
+              if (err) { throw err }
+            });
+          });
         }
       }
     }
