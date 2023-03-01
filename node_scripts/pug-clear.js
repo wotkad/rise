@@ -19,7 +19,7 @@ function removeWhiteSpaces(dir, files_) {
             if (/^\s*$/.test(line)) {
               return line;
             } else {
-              return line.replace(/\.([\w-]+)\s+$/, ".$1");
+              return line.replace(/[\s\uFEFF\xA0]+$/, "");
             }
           });
           newData = newData.join("\n").replace(/[\r\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
