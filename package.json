@@ -17,7 +17,7 @@
     "dev-network": "webpack serve --env mode=development --config ./webpack.config.js --progress --open --host 0.0.0.0 --disable-host-check",
     "dev": "yarn compile-md && yarn develop",
     "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node node_scripts/scss-clear",
-    "prettier-write:pug": "prettier --write './src/views/**/*.pug' && node ./node_scripts/pug-clear",
+    "prettier-write:pug": "node ./node_scripts/pug-clear && prettier --write './src/views/**/*.pug' && node ./node_scripts/pug-clear",
     "lint-all": "yarn prettier-write:scss && yarn prettier-write:pug"
   },
   "devDependencies": {
