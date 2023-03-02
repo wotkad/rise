@@ -39,7 +39,7 @@ _Курсивный шрифт_
   function test(text) {
     console.log(text);
   }
-  test('test')
+  test('test');
 ```
 
 ---
