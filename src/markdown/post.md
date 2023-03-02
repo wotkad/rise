@@ -35,6 +35,13 @@ _Курсивный шрифт_
 
 `Строка кода`
 
+```js
+  function test(text) {
+    console.log(text);
+  }
+  test('test')
+```
+
 ---
 
 [Rise](https://wotkad.ru/rise/)

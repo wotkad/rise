@@ -19,41 +19,52 @@ block content
           .page-wrapper
             section.content
               .wrapper
-                h1 H1 Запись в блоге
-                h2 H2
-                h3 H3
-                h4 H4
-                p
-                  strong Жирный шрифт
-                p
-                  em Курсивный шрифт
-                blockquote
-                  p Цитата
-                ol
-                  li Первый элемент
-                  li Второй элемент
-                  li Третий элемент
-                ul
-                  li Первый элемент
-                  li Второй элемент
-                  li Третий элемент
-                table
-                  thead
-                    tr
-                      th Заголовок 1
-                      th Заголовок 1
-                  tbody
-                    tr
-                      td Пункт 1
-                      td Пункт 1
-                    tr
-                      td Пункт 2
-                      td Пункт 2
-                p
-                  code Строка кода
-                hr
-                p
-                  a(href="https://wotkad.ru/rise/") Rise
-                p
-                  img(src="/assets/images/logo.svg" alt="Logo")
+                <h1>H1 Запись в блоге</h1>
+                <h2>H2</h2>
+                <h3>H3</h3>
+                <h4>H4</h4>
+                <p><strong>Жирный шрифт</strong></p>
+                <p><em>Курсивный шрифт</em></p>
+                <blockquote>
+                <p>Цитата</p>
+                </blockquote>
+                <ol>
+                <li>Первый элемент</li>
+                <li>Второй элемент</li>
+                <li>Третий элемент</li>
+                </ol>
+                <ul>
+                <li>Первый элемент</li>
+                <li>Второй элемент</li>
+                <li>Третий элемент</li>
+                </ul>
+                <table>
+                <thead>
+                <tr>
+                <th>Заголовок 1</th>
+                <th>Заголовок 1</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Пункт 1</td>
+                <td>Пункт 1</td>
+                </tr>
+                <tr>
+                <td>Пункт 2</td>
+                <td>Пункт 2</td>
+                </tr>
+                </tbody>
+                </table>
+                <p><code>Строка кода</code></p>
+                pre.
+                  <code class="hljs"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">text</span>) {
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text);
+                  }
+                  <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;test&#x27;</span>)
+                </code>
+                <hr>
+                <p><a href="https://wotkad.ru/rise/">Rise</a></p>
+                <p><img src="/assets/images/logo.svg" alt="Logo"></p>
+                
           include ../../components/footer.pug
