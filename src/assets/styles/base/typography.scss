@@ -65,6 +65,7 @@ input:placeholder {
     }
     @apply ml-4 mt-4 list-disc lg:mt-5
   }
+  code,
   p code,
   & > code {
     @apply rounded-md bg-blue-100 py-1 px-2 text-sm leading-7 lg:leading-5
