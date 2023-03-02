@@ -1,11 +1,20 @@
 import fs from "fs-extra";
-import html2pug from "html2pug";
 import meta from "markdown-it-meta";
 import MarkdownIt from "markdown-it";
+import hljs from "highlight.js";
 const markdown = MarkdownIt({
   html: true,
   breaks: true,
-  typographer: true
+  typographer: true,
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return (
+          '<pre>' + '  ' + '<code class="hljs">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code>'
+        );
+      } catch (__) { }
+    }
+  },
 });
 (async function () {
   const docsPath = "./src/markdown/";
@@ -16,10 +25,6 @@ const markdown = MarkdownIt({
       let content = fs.readFileSync(docsPath + file, "utf8");
       markdown.use(meta);
       let renderedHtml = markdown.render(content);
-      let renderedPug = html2pug(renderedHtml, {
-        doubleQuotes: true,
-        fragment: true
-      });
       let renderedFile = `extends ../../layouts/master.pug
 
 block title
@@ -40,7 +45,7 @@ block content
         .page-container
           .page-wrapper
             section.content
-              .wrapper` + '\n' + renderedPug.split('\n').map(x => '                ' + x).join('\n') + '\n' + '          ' + 'include ../../components/footer.pug';
+              .wrapper` + '\n' + renderedHtml.split('\n').map(x => '                ' + x).join('\n') + '\n' + '          ' + 'include ../../components/footer.pug';
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {
