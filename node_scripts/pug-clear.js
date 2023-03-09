@@ -24,7 +24,12 @@ function removeWhiteSpaces(dir, files_) {
                 return line.replace(/[\s\uFEFF\xA0]+$/, "");
               }
             });
-            newData = newData.join("\n").replace(/[\n]+$/,'').replace(/img.+?,/g, match => match.replace('",', '"'));
+            newData = newData
+                        .join("\n")
+                        .replace(/[\n]+$/,'')
+                        .replace(/img.+?,/g, match => match.replace('",', '"'))
+                        .replace('<pre>', 'pre.\n' + '                ')
+                        .replace('<code class="hljs">  ', '<code class="hljs">');
             fs.writeFile(filePath, newData, err => {
               if (err) { throw err }
             });

@@ -24,6 +24,7 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.21.0",
     "@barba/core": "^2.9.7",
     "@prettier/plugin-pug": "^2.4.1",
     "@soda/friendly-errors-webpack-plugin": "^1.8.1",
