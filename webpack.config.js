@@ -101,13 +101,10 @@ module.exports = (env) => {
           test: /\.pug$/,
           use: [
             {
-              loader: 'raw-loader',
-            },
-            {
-              loader: 'pug-plain-loader',
+              loader: "pug-loader",
               options: {
-                pretty: true,
-              },
+                pretty: true
+              }
             },
           ],
         },
