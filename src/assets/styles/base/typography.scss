@@ -1,5 +1,5 @@
-textarea:placeholder,
-input:placeholder {
+textarea::placeholder,
+input::placeholder {
   @apply font-sans font-normal
 }
 .content {
