@@ -41,7 +41,5 @@ exports.pages = function (mode, folder = "") {
     pages.push(new HtmlWebpackPlugin(options));
   });
 
-
-  console.log(pages)
   return pages;
 };
