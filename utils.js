@@ -20,21 +20,28 @@ exports.pages = function (mode, folder = "") {
 
   fs.readdirSync(viewsFolder).forEach((view) => {
     if (view.split(".")[1] === undefined) return false;
+    if (view.startsWith('.')) return false;
 
     const viewName = view.split(".")[0];
     const fileName =
       folder === ""
         ? `${viewName}/index.html`
         : `${folder}/${viewName}/index.html`;
+    const layoutName = 
+      folder === ""
+        ? `${view}`
+        : `${folder}/${view}`
     const options = {
       minify: false,
       filename: fileName,
-      template: `views/${rootPagesFolderName}/${folder}/${view}`,
+      template: `views/${rootPagesFolderName}/${layoutName}`,
       inject: true,
     };
 
     pages.push(new HtmlWebpackPlugin(options));
   });
 
+
+  console.log(pages)
   return pages;
 };
