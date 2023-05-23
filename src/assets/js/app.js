@@ -7,11 +7,11 @@
 
 // #################################
 
-require("./base/preloader");
-require("./base/checkInternalLinks");
-require("./base/routing/routing");
-require("./base/smoothScroll");
-require("./base/scrollReveal");
-require("./base/checkTarget");
-require("./base/currentYear");
-require("./base/getHeaderHeight");
+import "./base/preloader";
+import "./base/checkInternalLinks";
+import "./base/routing/routing";
+import "./base/smoothScroll";
+import "./base/scrollReveal";
+import "./base/checkTarget";
+import "./base/currentYear";
+import "./base/getHeaderHeight";
