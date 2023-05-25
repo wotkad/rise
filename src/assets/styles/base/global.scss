@@ -1,3 +1,14 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+textareф,
+input,
+button {
+  @apply font-sans font-normal
+}
+
 html,
 body {
   @apply h-full font-sans text-slate-900
