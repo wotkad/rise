@@ -1,4 +1,4 @@
-extends ./layouts/master.pug
+extends ./layouts/master
 
 block title
   title Rise | Главная
@@ -17,7 +17,7 @@ block content
       .barba-container(data-barba="container" data-barba-namespace="main")
         .page-container
           .page-wrapper
-            include ./mixins/title.pug
+            include ./mixins/title
             +title('<img src="/assets/images/logo.svg" alt="logo"> Добро пожаловать в Rise!')
-            include ./components/hero.pug
-          include ./components/footer.pug
+            include ./components/hero
+          include ./components/footer
