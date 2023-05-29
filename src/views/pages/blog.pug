@@ -1,4 +1,4 @@
-extends ../layouts/master.pug
+extends ../layouts/master
 
 block title
   title Rise | Блог
@@ -17,7 +17,7 @@ block content
       .barba-container(data-barba="container" data-barba-namespace="blog")
         .page-container
           .page-wrapper
-            include ../mixins/title.pug
+            include ../mixins/title
             +title('Блог')
-            include ../components/blog.pug
-          include ../components/footer.pug
+            include ../components/blog
+          include ../components/footer
