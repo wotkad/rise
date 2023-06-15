@@ -7,7 +7,7 @@ barba.use(barbaPrefetch);
 
 // Если header в находится barba-wrapper, то скрипт ниже не нужен.
 barba.hooks.beforeLeave((data) => {
-  const nextPath = data.next.url.path;
+  const nextPath = data.next.url.href;
   const nextItem = $(`a[href="${nextPath}"]`);
   $(`.${"active"}`).removeClass("active");
   nextItem.addClass("active");
