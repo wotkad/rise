@@ -1,10 +1,11 @@
-export default function isCurrentPage() {
-  const page = window.location.pathname;
-  if (page == page) {
-    $(`a[href="${page}"]`).on("click", function (e) {
-      e.preventDefault();
-    });
-    $(`a[href="${page}"]`).addClass('active');
-  }
+export default function checkCurrentPage() {
+  const pathname = window.location.pathname;
+  const href = window.location.href;
+  
+  $(`a[href="${pathname}"], a[href="${href}"]`).on("click", function (e) {
+    e.preventDefault();
+  });
+  $(`a[href="${pathname}"], a[href="${href}"]`).addClass('active');
 }
-isCurrentPage();
+
+checkCurrentPage();
