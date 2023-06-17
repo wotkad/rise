@@ -1,5 +1,4 @@
 @mixin screen($breakpoint) {
-
   @if $breakpoint == desktop {
     @media only screen and (min-width: 1536px) {
       @content;
@@ -29,5 +28,4 @@
       @content;
     }
   }
-
 }
