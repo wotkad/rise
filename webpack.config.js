@@ -8,7 +8,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
-const ASSET_PATH = process.env.ASSET_PATH || "/";
 const utils = require("./utils");
 
 const SitemapGenerator = require('sitemap-generator');
@@ -37,7 +36,7 @@ module.exports = (env) => {
       bundle: path.join(__dirname, "./src/bundle.js"),
     },
     output: {
-      publicPath: ASSET_PATH,
+      publicPath: '/',
       path: path.join(__dirname, "./build"),
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
