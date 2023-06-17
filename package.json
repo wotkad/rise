@@ -18,7 +18,8 @@
     "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node node_scripts/scss-clear",
     "prettier-write:pug": "node ./node_scripts/pug-clear && prettier --write './src/views/**/*.pug' && node ./node_scripts/pug-clear",
     "lint-all": "yarn prettier-write:scss && yarn prettier-write:pug",
-    "linkinator": "node ./node_scripts/linkinator.mjs"
+    "linkinator": "node ./node_scripts/linkinator.mjs",
+    "archive-paths": "node ./node_scripts/archive-paths"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
