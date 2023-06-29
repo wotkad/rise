@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
+const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const utils = require("./utils");
 
 const SitemapGenerator = require('sitemap-generator');
@@ -141,6 +142,12 @@ module.exports = (env) => {
     },
 
     plugins: [
+      new RobotstxtPlugin(
+        {
+          filePath: './robots.txt',
+          sitemap: "http://localhost:8080/sitemap.xml",
+        }
+      ),
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,
       }),
