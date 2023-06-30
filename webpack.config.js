@@ -142,12 +142,7 @@ module.exports = (env) => {
     },
 
     plugins: [
-      new RobotstxtPlugin(
-        {
-          filePath: './robots.txt',
-          sitemap: "http://localhost:8080/sitemap.xml",
-        }
-      ),
+      new RobotstxtPlugin(),
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,
       }),
