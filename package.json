@@ -17,7 +17,7 @@
     "dev": "yarn compile-md && yarn develop",
     "prettier-write:scss": "prettier --write './src/assets/styles/**/*.scss' && node node_scripts/scss-clear",
     "prettier-write:pug": "node ./node_scripts/pug-clear && prettier --write './src/views/**/*.pug' && node ./node_scripts/pug-clear",
-    "lint-all": "yarn prettier-write:scss && yarn prettier-write:pug",
+    "lint-all": "node ./node_scripts/svg-clear && yarn prettier-write:scss && yarn prettier-write:pug",
     "linkinator": "node ./node_scripts/linkinator.mjs",
     "archive-paths": "node ./node_scripts/archive-paths"
   },
@@ -44,6 +44,7 @@
     "fs-extra": "^11.1.0",
     "highlight.js": "^11.7.0",
     "html-webpack-plugin": "^5.5.0",
+    "html2pug": "^4.0.0",
     "http-server": "^14.1.0",
     "linkinator": "^5.0.1",
     "markdown-it": "^13.0.1",
