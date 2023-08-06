@@ -10,6 +10,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const utils = require("./utils");
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 
 const SitemapGenerator = require('sitemap-generator');
 const generator = SitemapGenerator('http://localhost:8080', {
@@ -44,6 +46,9 @@ module.exports = (env) => {
     devServer: {
       static: path.join(__dirname, "/"),
       compress: true,
+      liveReload: false,
+      hot: true,
+      port: 8081,
       client: {
         logging: 'error'
       },
@@ -178,6 +183,20 @@ module.exports = (env) => {
         "window.$": "jquery",
         "window.jQuery": "jquery",
       }),
+
+      new BrowserSyncPlugin(
+        {
+          host: 'localhost',
+          port: 8080,
+          proxy: 'http://localhost:8081/',
+          files: ['./src/views/**/*.pug'],
+          open: false,
+          notify: false
+        },
+        { 
+          reload: false,
+        }
+      ),
     ],
   };
 };
