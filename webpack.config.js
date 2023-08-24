@@ -193,7 +193,7 @@ module.exports = (env) => {
           open: false,
           notify: false
         },
-        { 
+        {
           reload: false,
         }
       ),

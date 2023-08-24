@@ -27,7 +27,7 @@ exports.pages = function (mode, folder = "") {
       folder === ""
         ? `${viewName}/index.html`
         : `${folder}/${viewName}/index.html`;
-    const layoutName = 
+    const layoutName =
       folder === ""
         ? `${view}`
         : `${folder}/${view}`
