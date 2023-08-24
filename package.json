@@ -50,7 +50,7 @@
     "html-webpack-plugin": "^5.5.0",
     "html2pug": "^4.0.0",
     "http-server": "^14.1.0",
-    "husky": "^8.0.3",
+    "husky": "^4.3.8",
     "linkinator": "^5.0.1",
     "lint-staged": "^14.0.1",
     "markdown-it": "^13.0.1",
