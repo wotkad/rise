@@ -1,9 +1,11 @@
-.blog__article {
-  h3 {
-    @apply text-xl font-semibold lg:text-2xl
+.blog {
+  &__article {
+    h3 {
+      @apply text-xl font-semibold lg:text-2xl
+    }
+    span {
+      @apply mt-4 inline-block pb-0.5 text-blue-500
+    }
+    @apply col-span-1 block rounded-md border border-gray-300 p-5 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
   }
-  span {
-    @apply mt-4 inline-block pb-0.5 text-blue-500
-  }
-  @apply col-span-1 block rounded-md border border-gray-300 p-5 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
 }

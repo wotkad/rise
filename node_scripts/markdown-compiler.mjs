@@ -25,6 +25,11 @@ const markdown = MarkdownIt({
       let content = fs.readFileSync(docsPath + file, "utf8");
       markdown.use(meta);
       let renderedHtml = markdown.render(content);
+      const formattedHtml = renderedHtml
+        .split('\n')
+        .map(x => '                ' + x)
+        .join('\n')
+        .trimEnd(); // Убираем последний перенос строки
       let renderedFile = `extends ../../layouts/master.pug
 
 block title
@@ -45,7 +50,8 @@ block content
         .page-container
           .page-wrapper
             section.content
-              .wrapper` + '\n' + renderedHtml.split('\n').map(x => '                ' + x).join('\n') + '\n' + '          ' + 'include ../../components/footer.pug';
+              .wrapper` + '\n' + formattedHtml + `
+              include ../../components/footer.pug`;
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {

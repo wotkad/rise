@@ -53,14 +53,6 @@ module.exports = (env) => {
         logging: 'error'
       },
     },
-    resolve: {
-      extensions: ['.js', '.mjs'],
-      alias: {
-        source: path.join(__dirname, "/"),
-        images: path.join(__dirname, "assets/images"),
-        fonts: path.join(__dirname, "assets/fonts"),
-      },
-    },
     module: {
       rules: [
         {
