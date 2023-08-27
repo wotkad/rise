@@ -5,7 +5,11 @@ module.exports = {
     require('postcss-import')({}),
     require('tailwindcss')({}),
     autoprefixer({
-      overrideBrowserslist: ['> 1%', 'last 4 versions'],
+      overrideBrowserslist: [
+        "> 1%",
+        "last 4 versions",
+        "not dead"
+      ]
     }),
   ],
 };

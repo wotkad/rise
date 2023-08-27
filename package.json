@@ -101,8 +101,5 @@
     "src/**/*.*": "yarn lint:editorconfig",
     "src/**/*.pug": "yarn lint:pug",
     "src/**/*.scss": "yarn lint:scss && yarn lint:stylelint"
-  },
-  "browserslist": [
-    "defaults"
-  ]
+  }
 }
