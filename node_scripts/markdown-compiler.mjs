@@ -29,7 +29,7 @@ const markdown = MarkdownIt({
         .split('\n')
         .map(x => '                ' + x)
         .join('\n')
-        .trimEnd(); // Убираем последний перенос строки
+        .trimEnd();
       let renderedFile = `extends ../../layouts/master.pug
 
 block title
