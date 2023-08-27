@@ -51,7 +51,7 @@ block content
           .page-wrapper
             section.content
               .wrapper` + '\n' + formattedHtml + `
-              include ../../components/footer.pug`;
+          include ../../components/footer.pug`;
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {
