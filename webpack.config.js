@@ -97,7 +97,10 @@ module.exports = (env) => {
         {
           test: /\.pug$/,
           use: [
-            {
+            utils.isDevMode(MODE)
+            ? {
+              loader: "@webdiscus/pug-loader"
+            } : {
               loader: "pug-loader",
               options: {
                 pretty: true

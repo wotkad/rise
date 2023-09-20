@@ -31,6 +31,7 @@
     "@barba/core": "^2.9.7",
     "@prettier/plugin-pug": "^2.4.1",
     "@soda/friendly-errors-webpack-plugin": "^1.8.1",
+    "@webdiscus/pug-loader": "^2.10.5",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^9.1.2",
     "babel-plugin-module-resolver": "^5.0.0",
