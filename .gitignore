@@ -1,6 +1,10 @@
-node_modules
-.vscode
+node_modules/
+.vscode/
 .DS_Store
 build
 yarn-error.log
 .env
+.cache/
+dist/
+coverage/
+.idea/
