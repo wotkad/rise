@@ -51,6 +51,9 @@
           @apply font-bold
         }
       }
+      ul {
+        @apply mt-3
+      }
       @apply mt-3
     }
     @apply ml-4 mt-4 list-decimal lg:mt-5
