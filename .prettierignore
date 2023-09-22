@@ -1,1 +1,8 @@
 src/views/pages/blog
+.editorconfig
+.gitignore
+.prettierignore
+**/*.png
+**/*.jpg
+**/*.webp
+**/*.svg
