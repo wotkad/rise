@@ -33,7 +33,7 @@ module.exports = (env) => {
       maxAssetSize: 512000
     },
     target: "web",
-    devtool: "eval-source-map",
+    devtool: utils.isDevMode(MODE) ? "eval-source-map" : '',
     context: path.join(__dirname, "./src"),
     entry: {
       bundle: path.join(__dirname, "./src/bundle.js"),
@@ -44,7 +44,7 @@ module.exports = (env) => {
       filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
-      static: path.join(__dirname, "/"),
+      static: path.join(__dirname, "/src"),
       compress: true,
       liveReload: false,
       hot: true,
@@ -107,6 +107,13 @@ module.exports = (env) => {
               }
             },
           ],
+        },
+        {
+          test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+          type: "asset/resource",
+          generator: {
+            filename: "assets/videos/[name].[contenthash:7][ext]",
+          },
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
