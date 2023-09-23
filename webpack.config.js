@@ -33,7 +33,7 @@ module.exports = (env) => {
       maxAssetSize: 512000
     },
     target: "web",
-    devtool: utils.isDevMode(MODE) ? "eval-source-map" : '',
+    devtool: utils.isDevMode(MODE) ? "eval-source-map" : 'source-map',
     context: path.join(__dirname, "./src"),
     entry: {
       bundle: path.join(__dirname, "./src/bundle.js"),
