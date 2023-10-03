@@ -36,6 +36,24 @@ barba.init({
         });
       },
       enter(data) {
+        let $newPageHead = $('<head />').html(
+          $.parseHTML(
+            data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0], // <- use data argument
+            document,
+            true
+          )
+        );
+        let headTags = [
+          "meta[name='keywords']",
+          "meta[name='description']",
+          "meta[property='og:title']",
+          "meta[property='og:description']",
+          "meta[property='og:type']",
+          "meta[property='og:image']",
+          "meta[property='og:url']",
+        ].join(',');
+        $('head').find(headTags).remove();
+        $newPageHead.find(headTags).appendTo('head');
         routingFunctions();
         return gsap.from(data.next.container, .3, {
           opacity: 0
