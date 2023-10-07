@@ -11,7 +11,7 @@ const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugi
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const utils = require("./utils");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 const SitemapGenerator = require('sitemap-generator');
 const generator = SitemapGenerator('http://localhost:8080', {
@@ -122,6 +122,10 @@ module.exports = (env) => {
             filename: "assets/fonts/[name].[contenthash:7][ext]",
           },
         },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          type: "asset/resource",
+        },
       ],
     },
     experiments: {
@@ -133,7 +137,41 @@ module.exports = (env) => {
         new TerserPlugin({
           parallel: true,
         }),
-        new CssMinimizerPlugin()
+        new CssMinimizerPlugin(),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ["gifsicle", { interlaced: true }],
+                ["imagemin-mozjpeg", { progressive: true }],
+                ["imagemin-pngquant", { optimizationLevel: 5 }],
+                [
+                  "svgo",
+                  {
+                    plugins: [
+                      {
+                        name: "preset-default",
+                        params: {
+                          overrides: {
+                            removeViewBox: false,
+                            addAttributesToSVGElement: {
+                              params: {
+                                attributes: [
+                                  { xmlns: "http://www.w3.org/2000/svg" },
+                                ],
+                              },
+                            },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                ],
+              ],
+            },
+          },
+        }),
       ],
       splitChunks: {
         cacheGroups: {
