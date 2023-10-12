@@ -188,9 +188,11 @@ module.exports = (env) => {
 
     plugins: [
       new RobotstxtPlugin(),
+
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,
       }),
+
       new CopyWebpackPlugin({
         patterns: [
           { from: "../manifest.json", to: "manifest.json" },
@@ -202,6 +204,7 @@ module.exports = (env) => {
           // { from: "assets/videos", to: "assets/videos" },
         ],
       }),
+
       new MiniCssExtractPlugin({
         filename: "assets/css/[name].[chunkhash:7].bundle.css",
         chunkFilename: "[id].css",
