@@ -30,7 +30,7 @@ exports.pages = function (mode, folder = "") {
     const layoutName =
       folder === ""
         ? `${view}`
-        : `${folder}/${view}`
+        : `${folder}/${view}`;
     const options = {
       minify: false,
       filename: fileName,
