@@ -106,7 +106,7 @@
   },
   "lint-staged": {
     "*": "yarn lint:editorconfig",
-    "*.pug": "node ./node_scripts/svg-clear && yarn lint:pug",
-    "*.scss": "npm run lint:scss && npm run lint:stylelint"
+    "*.pug": "node ./node_scripts/svg-clear && yarn lint:pug --fix",
+    "*.scss": "npm run lint:scss --fix && npm run lint:stylelint --fix"
   }
 }
