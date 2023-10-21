@@ -6,8 +6,10 @@
 
 textarea,
 input,
-button {
-  @apply font-sans font-normal
+button,
+select,
+a {
+  @apply touch-manipulation rounded-none font-sans font-normal outline-none
 }
 
 html,
