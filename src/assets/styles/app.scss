@@ -8,22 +8,18 @@
 @tailwind utilities;
 
 /*
-  Утилиты
+  Базовые стили и утилиты
 */
-@import "./utils/keyframes";
+@import "./base/variables";
 @import "./utils/mixins";
+@import "./utils/keyframes";
+@import "./base/global";
 
 /*
   Шрифты и типография
 */
 @import "./base/fonts";
 @import "./base/typography";
-
-/*
-  Базовые стили
-*/
-@import "./base/variables";
-@import "./base/global";
 
 /*
   Миксины
