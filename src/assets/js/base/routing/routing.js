@@ -38,7 +38,7 @@ barba.init({
       enter(data) {
         let $newPageHead = $('<head />').html(
           $.parseHTML(
-            data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0], // <- use data argument
+            data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0],
             document,
             true
           )
