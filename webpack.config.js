@@ -195,11 +195,13 @@ module.exports = (env) => {
 
       new CopyWebpackPlugin({
         patterns: [
-          { from: "../manifest.json", to: "manifest.json" },
-          { from: "../browserconfig.xml", to: "browserconfig.xml" },
-          { from: "sitemap.xml", to: "sitemap.xml" },
+          { from: "../manifest.json" },
+          { from: "../browserconfig.xml" },
+          // { from: "../.htaccess" },
+          { from: "sitemap.xml" },
           { from: "assets/images", to: "assets/images" },
           { from: "assets/fonts", to: "assets/fonts" },
+          { from: "assets/files", to: "assets/files" }
           // { from: "assets/files", to: "assets/files" },
           // { from: "assets/videos", to: "assets/videos" },
         ],
