@@ -1,0 +1,8 @@
+ErrorDocument 404 https://yourwebsite.ru/404
+ErrorDocument 500 https://yourwebsite.ru/500
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteRule ^(\w+)$ $1.html [NC]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ http://%1/$1 [L,R=301]
