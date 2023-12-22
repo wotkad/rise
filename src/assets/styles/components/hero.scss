@@ -1,5 +1,9 @@
 .hero {
   span {
-    @apply mt-1 inline-block text-sm text-gray-500
+    margin-top: 4px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    color: $gray-500;
   }
 }

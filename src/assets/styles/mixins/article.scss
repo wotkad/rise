@@ -1,11 +1,30 @@
 .blog {
   &__article {
+    grid-column: span 1;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid $gray-300;
+    padding: 20px;
+    @include screen(laptop) {
+      transition: border-color $transition-default;
+      &:hover {
+        border-color: $blue-500;
+      }
+    }
     h3 {
-      @apply text-xl font-semibold lg:text-2xl
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 600;
+      @include screen(tablet-2x) {
+        font-size: 24px;
+        line-height: 32px;
+      }
     }
     span {
-      @apply mt-4 inline-block pb-0.5 text-blue-500
+      margin-top: 16px;
+      display: inline-block;
+      padding-bottom: 2px;
+      color: $blue-500;
     }
-    @apply col-span-1 block rounded-md border border-gray-300 p-5 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
   }
 }

@@ -9,28 +9,71 @@ input,
 button,
 select,
 a {
-  @apply touch-manipulation rounded-none font-sans font-normal outline-none
+  touch-action: manipulation;
+  border-radius: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+  outline: none;
 }
 
 html,
 body {
-  @apply h-full font-sans text-slate-900
+  height: 100%;
+  color: $slate-900;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .render {
-  @apply fixed top-0 left-0 z-[99999] h-full w-full bg-white
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  height: 100%;
+  width: 100%;
+  background-color: $white;
 }
 
 .wrapper {
-  @apply container mx-auto
+  margin: 0 auto;
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  @include screen(mobile) {
+    max-width: 640px;
+  }
+  @include screen(tablet) {
+    max-width: 768px;
+  }
+  @include screen(tablet-2x) {
+    max-width: 1024px;
+  }
+  @include screen(laptop) {
+    max-width: 1280px;
+  }
+  @include screen(desktop) {
+    max-width: 1536px;
+  }
 }
 
 .page-wrapper {
-  @apply w-full pt-[calc(var(--header-height)+24px)] lg:pt-[calc(var(--header-height)+56px)]
+  width: 100%;
+  padding-top: calc(var(--header-height) + 24px);
+  @include screen(tablet-2x) {
+    padding-top: calc(var(--header-height) + 56px);
+  }
 }
 
 .page-container {
-  @apply flex min-h-screen w-full flex-col items-start justify-between
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 @media (prefers-reduced-motion: reduce) {

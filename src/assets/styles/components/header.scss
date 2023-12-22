@@ -1,9 +1,19 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid $gray-300;
+  background-color: $white;
+  padding: 16px 0;
   &__link {
-    &.active {
-      @apply text-blue-500
+    margin-right: 16px;
+    @include screen(laptop) {
+      transition: color $transition-default;
     }
-    @apply mr-4 transition-colors duration-300 will-change-[color]
+    &.active {
+      color: $blue-500;
+    }
   }
-  @apply fixed top-0 left-0 z-50 w-full border-b border-gray-300 bg-white py-4
 }
