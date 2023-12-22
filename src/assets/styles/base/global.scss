@@ -9,22 +9,24 @@ input,
 button,
 select,
 a {
-  touch-action: manipulation;
+  outline: none;
   border-radius: 0;
+
+  font-weight: 400;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 400;
-  outline: none;
+  touch-action: manipulation;
 }
 
 html,
 body {
   height: 100%;
-  color: $slate-900;
+
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: $slate-900;
 }
 
 .render {
@@ -32,16 +34,18 @@ body {
   top: 0;
   left: 0;
   z-index: 99999;
-  height: 100%;
+
   width: 100%;
+  height: 100%;
+
   background-color: $white;
 }
 
 .wrapper {
   margin: 0 auto;
-  width: 100%;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
+  width: 100%;
   @include screen(mobile) {
     max-width: 640px;
   }
@@ -60,8 +64,8 @@ body {
 }
 
 .page-wrapper {
-  width: 100%;
   padding-top: calc(var(--header-height) + 24px);
+  width: 100%;
   @include screen(tablet-2x) {
     padding-top: calc(var(--header-height) + 56px);
   }
@@ -69,11 +73,11 @@ body {
 
 .page-container {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
 }
 
 @media (prefers-reduced-motion: reduce) {
