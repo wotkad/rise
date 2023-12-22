@@ -1,89 +1,155 @@
 .content {
   h2 {
-    @apply mt-6 text-2xl font-semibold lg:mt-10 lg:text-3xl
+    margin-top: 24px;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    @include screen(tablet-2x) {
+      margin-top: 40px;
+      font-size: 30px;
+      line-height: 36px;
+    }
   }
   h3 {
-    @apply mt-4 text-xl font-semibold lg:mt-6 lg:text-2xl
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    @include screen(tablet-2x) {
+      margin-top: 24px;
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
   h4 {
-    @apply mt-4 text-lg font-semibold lg:text-xl
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    @include screen(tablet-2x) {
+      font-size: 20px;
+      line-height: 28px;
+    }
   }
   p {
-    @apply mt-4
+    margin-top: 14px;
   }
   hr {
-    @apply mt-4
+    margin-top: 16px;
   }
   table {
+    margin-top: 16px;
+    border: 1px solid $gray-300;
     tr {
       th {
-        @apply border-separate border border-gray-300 py-2 px-4 text-left
+        border-collapse: separate;
+        border: 1px solid $gray-300;
+        padding: 8px 16px;
+        text-align: left;
       }
       td {
-        @apply border-separate border border-gray-300 py-2 px-4
+        border-collapse: separate;
+        border: 1px solid $gray-300;
+        padding: 8px 16px;
       }
     }
     tbody {
       tr {
         &:nth-child(2n + 1) {
-          @apply bg-blue-100
+          background-color: $blue-100;
         }
       }
     }
-    @apply mt-4 border border-gray-300
   }
   blockquote {
-    @apply border-l border-gray-300 pl-4 italic
+    border-left: 1px solid $gray-300;
+    margin-left: 16px;
+    font-style: italic;
   }
   & > span {
-    @apply mt-1 inline-block text-sm text-gray-500
+    margin-top: 4px;
+    display: inline-block;
+    color: $gray-500;
+    font-size: 14px;
+    line-height: 20px;
   }
   ul {
-    li {
-      &::marker {
-        @apply text-blue-500
-      }
-      @apply mt-2
+    margin-left: 16px;
+    margin-top: 16px;
+    list-style: disc;
+    @include screen(tablet-2x) {
+      margin-top: 20px;
     }
-    @apply ml-4 mt-4 list-disc lg:mt-5
+    li {
+      margin-top: 8px;
+      &::marker {
+        color: $blue-500;
+      }
+    }
   }
   ol {
+    margin-left: 16px;
+    margin-top: 16px;
+    list-style: decimal;
+    @include screen(tablet-2x) {
+      margin-top: 20px;
+    }
     li {
+      margin-top: 12px;
       &::marker {
-        @apply text-blue-500
+        color: $blue-500;
       }
       span {
-        @apply mt-0 inline-block text-base font-normal text-slate-900
+        margin-top: 0;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: $slate-900;
       }
       &.bold {
         span {
-          @apply font-bold
+          font-weight: 700;
         }
       }
       ul {
-        @apply mt-3
+        margin-top: 12px;
       }
-      @apply mt-3
     }
-    @apply ml-4 mt-4 list-decimal lg:mt-5
   }
   code,
   & > code,
   p code {
-    @apply rounded-md bg-blue-100 py-1 px-2 text-sm leading-7 lg:leading-5
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: $blue-100;
+    font-size: 14px;
+    line-height: 28px;
+    @include screen(tablet-2x) {
+      line-height: 20px;
+    }
   }
   pre {
+    margin-top: 16px;
     code {
-      @apply rounded-md bg-slate-800
+      border-radius: 6px;
+      background-color: $slate-800;
     }
-    @apply mt-4
   }
   a {
-    @apply border-b border-transparent pb-0.5 text-blue-500 transition-colors duration-300 will-change-[border-color] hover:border-blue-500
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    color: $blue-500;
+    @include screen(tablet-2x) {
+      transition: border-color $transition-default;
+      &:hover {
+        border-color: $blue-500;
+      }
+    }
   }
 }
 section {
   &:last-child {
-    @apply pb-10
+    padding-bottom: 40px;
   }
 }

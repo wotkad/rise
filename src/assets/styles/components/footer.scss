@@ -1,45 +1,79 @@
 .footer {
+  width: 100%;
+  border-top: 1px solid $gray-300;
   &__wrapper {
-    @apply flex flex-col py-6
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
   }
   &__left {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     img {
-      @apply w-6
+      width: 24px;
     }
-    @apply mb-6 flex items-center justify-between
   }
   &__powered {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 14px;
+    line-height: 20px;
     a {
-      i {
-        @apply ml-1 text-sm
+      margin-left: 4px;
+      display: inline-block;
+      font-weight: 700;
+      @include screen(laptop) {
+        transition: color $transition-default;
+        &:hover {
+          color: $blue-500;
+        }
       }
-      @apply ml-1 inline-block font-bold transition-colors duration-300 will-change-[color] hover:text-blue-500
+      i {
+        margin-left: 4px;
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
-    @apply flex items-center justify-end text-sm
   }
   &__right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       li {
+        display: inline-flex;
         a {
-          @apply text-xs transition-colors duration-300 will-change-[color] hover:text-blue-500
+          font-size: 12px;
+          line-height: 16px;
+          @include screen(laptop) {
+            transition: color $transition-default;
+            &:hover {
+              color: $blue-500;
+            }
+          }
         }
         &:last-child {
-          @apply ml-4
+          margin-left: 16px;
         }
-        @apply inline-flex
       }
-      @apply flex items-center justify-end
     }
-    @apply flex items-center justify-between
   }
   &__copy {
+    display: inline-block;
     span {
+      margin-right: 4px;
+      display: inline-block;
+      font-size: 12px;
+      line-height: 16px;
       &:last-child {
-        @apply mr-0
+        margin-right: 0;
       }
-      @apply mr-1 inline-block text-xs
     }
-    @apply inline-block
   }
-  @apply w-full border-t border-gray-300
 }
