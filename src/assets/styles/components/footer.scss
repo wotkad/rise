@@ -1,5 +1,6 @@
 .footer {
   width: 100%;
+
   border-top: 1px solid $gray-300;
   &__wrapper {
     display: flex;
@@ -7,45 +8,48 @@
     padding: 24px 0;
   }
   &__left {
-    margin-bottom: 24px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
     img {
       width: 24px;
     }
   }
   &__powered {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
+
     font-size: 14px;
     line-height: 20px;
     a {
-      margin-left: 4px;
       display: inline-block;
+      margin-left: 4px;
+
       font-weight: 700;
+      i {
+        margin-left: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+      }
       @include screen(laptop) {
         transition: color $transition-default;
         &:hover {
           color: $blue-500;
         }
       }
-      i {
-        margin-left: 4px;
-        font-size: 14px;
-        line-height: 20px;
-      }
     }
   }
   &__right {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     ul {
       display: flex;
-      align-items: center;
       justify-content: flex-end;
+      align-items: center;
       li {
         display: inline-flex;
         a {
@@ -67,8 +71,9 @@
   &__copy {
     display: inline-block;
     span {
-      margin-right: 4px;
       display: inline-block;
+      margin-right: 4px;
+
       font-size: 12px;
       line-height: 16px;
       &:last-child {

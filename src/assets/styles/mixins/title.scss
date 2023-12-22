@@ -1,17 +1,10 @@
 h1 {
   display: flex;
   align-items: center;
+
+  font-weight: 700;
   font-size: 24px;
   line-height: 32px;
-  font-weight: 700;
-  @include screen(tablet) {
-    font-size: 30px;
-    line-height: 36px;
-  }
-  @include screen(tablet-2x) {
-    font-size: 48px;
-    line-height: 1;
-  }
   img {
     margin-right: 12px;
     width: 32px;
@@ -20,5 +13,13 @@ h1 {
       width: 48px;
       min-width: 48px;
     }
+  }
+  @include screen(tablet) {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  @include screen(tablet-2x) {
+    font-size: 48px;
+    line-height: 1;
   }
 }
