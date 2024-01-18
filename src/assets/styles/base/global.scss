@@ -63,6 +63,24 @@ body {
   }
 }
 
+.wrapper {
+  margin: 0 auto;
+  padding: 0 #{$container-padding};
+  max-width: calc(#{$mobile-wrapper} + #{$container-padding * 2});
+  @include screen(tablet) {
+    max-width: calc(#{$screen-tablet} + #{$container-padding * 2});
+  }
+  @include screen(tablet-2x) {
+    max-width: calc(#{$screen-tablet-2x} + #{$container-padding * 2});
+  }
+  @include screen(laptop) {
+    max-width: calc(#{$screen-laptop} + #{$container-padding * 2});
+  }
+  @include screen(desktop) {
+    max-width: calc(#{$screen-desktop} + #{$container-padding * 2});
+  }
+}
+
 .page-wrapper {
   padding-top: calc(var(--header-height) + 24px);
   width: 100%;
