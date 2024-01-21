@@ -43,28 +43,6 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
-  width: 100%;
-  @include screen(mobile) {
-    max-width: 640px;
-  }
-  @include screen(tablet) {
-    max-width: 768px;
-  }
-  @include screen(tablet-2x) {
-    max-width: 1024px;
-  }
-  @include screen(laptop) {
-    max-width: 1280px;
-  }
-  @include screen(desktop) {
-    max-width: 1536px;
-  }
-}
-
-.wrapper {
-  margin: 0 auto;
   padding: 0 #{$container-padding};
   max-width: calc(#{$mobile-wrapper} + #{$container-padding * 2});
   @include screen(tablet) {
