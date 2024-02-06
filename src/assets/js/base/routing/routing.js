@@ -24,16 +24,16 @@ barba.init({
   transitions: [
     {
       name: "opacity-transition",
-      leave(data) {
-        return gsap.to(data.current.container, .3, {
+      sync: true,
+      beforeLeave(data) {
+        return gsap.to(data.current.container, {
           opacity: 0,
+          duration: .3
         });
       },
-      afterLeave(data) {
+      leave(data) {
         $('body,html').animate({scrollTop: 0}, 0);
-        return gsap.to(data.current.container, 0, {
-          display: 'none',
-        });
+        $(data.current.container).hide();
       },
       enter(data) {
         let $newPageHead = $('<head />').html(
@@ -55,8 +55,9 @@ barba.init({
         $('head').find(headTags).remove();
         $newPageHead.find(headTags).appendTo('head');
         routingFunctions();
-        return gsap.from(data.next.container, .3, {
-          opacity: 0
+        return gsap.from(data.next.container, {
+          opacity: 0,
+          duration: .3
         });
       },
     },
