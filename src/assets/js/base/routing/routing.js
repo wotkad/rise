@@ -26,14 +26,12 @@ barba.init({
       name: "opacity-transition",
       sync: true,
       beforeLeave(data) {
-        return gsap.to(data.current.container, {
-          opacity: 0,
-          duration: .3
-        });
-      },
-      leave(data) {
         $('body,html').animate({scrollTop: 0}, 0);
         $(data.current.container).hide();
+        gsap.to(data.current.container, {
+          opacity: 0,
+          duration: .4
+        });
       },
       enter(data) {
         let $newPageHead = $('<head />').html(
@@ -57,7 +55,7 @@ barba.init({
         routingFunctions();
         return gsap.from(data.next.container, {
           opacity: 0,
-          duration: .3
+          duration: .4
         });
       },
     },
