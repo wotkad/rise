@@ -41,7 +41,7 @@ module.exports = (env) => {
     output: {
       publicPath: '/',
       path: path.join(__dirname, "./build"),
-      filename: "assets/js/bundle.js",
+      filename: "assets/js/[name].[contenthash:7].bundle.js",
     },
     devServer: {
       static: path.join(__dirname, "/src"),
@@ -112,14 +112,14 @@ module.exports = (env) => {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
           type: "asset/resource",
           generator: {
-            filename: "assets/videos/[name][ext]",
+            filename: "assets/videos/[name].[contenthash:7][ext]",
           },
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           type: "asset/resource",
           generator: {
-            filename: "assets/fonts/[name][ext]",
+            filename: "assets/fonts/[name].[contenthash:7][ext]",
           },
         },
         {
@@ -178,7 +178,7 @@ module.exports = (env) => {
           default: false,
           vendors: false,
           vendor: {
-            filename: "assets/js/vendor.js",
+            filename: "assets/js/vendor.[chunkhash:7].bundle.js",
             chunks: "all",
             test: /node_modules/,
           },
@@ -207,7 +207,8 @@ module.exports = (env) => {
       }),
 
       new MiniCssExtractPlugin({
-        filename: "assets/css/bundle.css",
+        filename: "assets/css/[name].[chunkhash:7].bundle.css",
+        chunkFilename: "[id].css",
       }),
 
       new HtmlWebpackPlugin({
