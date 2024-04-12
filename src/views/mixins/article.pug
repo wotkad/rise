@@ -1,5 +1,5 @@
-mixin article(title, link_href)
+mixin article(data)
   article
-    a.blog__article(href="" + link_href)
-      h3= title
+    a.blog__article(href="" + data.href)
+      h3= data.title
       span Перейти
