@@ -1,5 +1,5 @@
 module.exports = {
-  "tailwindConfig": './tailwind.config.js',
+  "tailwindConfig": "./tailwind.config.js",
   "pugAttributeSeparator": "none",
   "pugCommentPreserveSpaces": "trim-all",
   "pugSortAttributes": "asc",
