@@ -7,7 +7,6 @@ const tailwindConfigPath = path.join(__dirname, '..', 'tailwind.config.js');
 const fontawesomePath = path.join(__dirname, '..', 'src', 'assets', 'fonts', 'fontawesome');
 const checksPath = path.join(__dirname, '..', 'src', 'assets', 'js', 'base', 'checks');
 const appJsPath = path.join(__dirname, '..', 'src', 'assets', 'js', 'app.js');
-const htaccessPath = path.join(__dirname, '..', '.htaccess');
 const pagesPath = path.join(__dirname, '..', 'src', 'views', 'pages');
 const webpackConfigPath = path.join(__dirname, '..', 'webpack.config.js');
 const packagePath = path.join(__dirname, '..', 'package.json');
@@ -266,6 +265,14 @@ if (createLanding) {
       return;
     }
     console.log('Папка "/pages/" успешно удалена.');
+  });
+
+  fs.remove(tailwindConfigPath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "tailwind.config.js" успешно удален.');
   });
 
   // Чтение содержимого .stylelintrc.json
