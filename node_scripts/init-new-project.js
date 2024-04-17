@@ -40,15 +40,6 @@ const prettierConfigLines = [
   '"prettier-plugin-tailwindcss"'
 ];
 
-const appcssLines = [
-  '/*',
-  '  Tailwind',
-  '*/',
-  '@tailwind base;',
-  '@tailwind components;',
-  '@tailwind utilities;'
-];
-
 const packageMarkdownLines = [
   '"markdown-it": "^13.0.1",',
   '"markdown-it-meta": "^0.0.1",',
