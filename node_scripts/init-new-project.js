@@ -57,10 +57,9 @@ const bundleLines = [
 // Получение аргументов командной строки
 const args = process.argv.slice(2);
 
-const updWebpack = args.includes('-upd-webpack');
-const rmLinters = args.includes('-rm-lint');
-const clearPug = args.includes('-clear-pug');
-const clearScss = args.includes('-clear-scss');
+// const rmLinters = args.includes('-rm-lint');
+// const clearPug = args.includes('-clear-pug');
+// const clearScss = args.includes('-clear-scss');
 
 const createLanding = args.includes('-landing');
 const createCorporate = args.includes('-corporate');
