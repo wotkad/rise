@@ -57,7 +57,6 @@ const bundleLines = [
 // Получение аргументов командной строки
 const args = process.argv.slice(2);
 
-// const rmLinters = args.includes('-rm-lint');
 // const clearPug = args.includes('-clear-pug');
 // const clearScss = args.includes('-clear-scss');
 
