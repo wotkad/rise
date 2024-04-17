@@ -36,10 +36,6 @@ const appJsLines = [
   'import "./base/checks/check-target";'
 ];
 
-const postcssConfigLines = [
-  "require('tailwindcss')({}),",
-];
-
 const prettierConfigLines = [
   '"tailwindConfig": "./tailwind.config.js",',
   '"prettier-plugin-tailwindcss"'
@@ -301,11 +297,9 @@ if (createLanding) {
       return;
     }
     
-    // Удаление строк из postcss.config.js
-    postcssConfigLines.forEach((line) => {
-      const regex = new RegExp(`\\s*${line}\\s*`, 'g');
-      data = data.replace(regex, '\n    ');
-    });
+    data = data.replace(
+      "require('tailwindcss')({}),", 
+      "");
 
     // Запись изменений обратно в postcss.config.js
     fs.writeFile(postcssConfigPath, data, 'utf8', (err) => {
