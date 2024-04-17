@@ -226,6 +226,8 @@ if (createLanding) {
     }
     console.log('Папка "/checks/" успешно удалена.');
   });
+  
+  let removeEmptyLineAfter = false;
 
   // Чтение содержимого webpack.config.js
   fs.readFile(webpackConfigPath, 'utf8', (err, data) => {
@@ -234,14 +236,28 @@ if (createLanding) {
       return;
     }
 
-    // Удаление строк из webpack.config.js
-    webpackPagesLines.forEach((line) => {
-      const regex = new RegExp(`\\s*${line}\\s*`, 'g');
-      data = data.replace(regex, '\n  \n      ');
-    });
+    // Split the file content into an array of lines
+    const lines = data.split('\n');
+
+    const filteredLines = lines.filter(line => {
+      if (removeEmptyLineAfter && line.trim() === '') {
+          removeEmptyLineAfter = false;
+          return false;
+      }
+
+      if (webpackPagesLines.includes(line.trim())) {
+          removeEmptyLineAfter = true;
+      }
+
+      return !webpackPagesLines.includes(line.trim());
+  });
+
+    // Join the filtered lines back into a single string
+    const updatedContent = filteredLines.join('\n');
+
 
     // Запись изменений обратно в webpack.config.js
-    fs.writeFile(webpackConfigPath, data, 'utf8', (err) => {
+    fs.writeFile(webpackConfigPath, updatedContent, 'utf8', (err) => {
       if (err) {
         console.error('Ошибка при записи в webpack.config.js:', err);
         return;
