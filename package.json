@@ -21,7 +21,9 @@
     "lint:all": "yarn lint:editorconfig && node ./node_scripts/svg-clear && yarn lint:scss && yarn lint:pug && yarn lint:stylelint",
     "linkinator": "node ./node_scripts/linkinator.mjs",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
-    "archive-paths": "node ./node_scripts/archive-paths"
+    "archive-paths": "node ./node_scripts/archive-paths",
+    "landing": "node ./node_scripts/init-project -landing",
+    "corporate": "node ./node_scripts/init-project -corporate"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
