@@ -686,565 +686,565 @@ if (createCorporate) {
   //   console.log('Папка ".git" успешно удалена.');
   // });
 
-  // fs.readFile(packagePath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении package.json:', err);
-  //     return;
-  //   }
+  fs.readFile(packagePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении package.json:', err);
+      return;
+    }
 
-  //   data = data.replace(
-  //     '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",', 
-  //     '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",');
+    data = data.replace(
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",', 
+      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",');
     
-  //   data = data.replace(
-  //     '"dev": "yarn compile-md && yarn develop",', 
-  //     '"dev": "yarn develop",');
+    data = data.replace(
+      '"dev": "yarn compile-md && yarn develop",', 
+      '"dev": "yarn develop",');
 
-  //   data = data.replace(
-  //     '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",', 
-  //     '');
+    data = data.replace(
+      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",', 
+      '');
 
-  //   packageMarkdownLines.forEach((line) => {
-  //     data = data.replace(line, '');
-  //   });
+    packageMarkdownLines.forEach((line) => {
+      data = data.replace(line, '');
+    });
 
-  //   packageTailwindLines.forEach((line) => {
-  //     data = data.replace(line, '');
-  //   });
+    packageTailwindLines.forEach((line) => {
+      data = data.replace(line, '');
+    });
 
-  //   data = data.replace(/^\s*[\r\n]/gm, '');
+    data = data.replace(/^\s*[\r\n]/gm, '');
 
-  //   fs.writeFile(packagePath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в package.json:', err);
-  //       return;
-  //     }
-  //     console.log('Файл package.json успешно обновлён.');
-  //   });
-  // });
+    fs.writeFile(packagePath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в package.json:', err);
+        return;
+      }
+      console.log('Файл package.json успешно обновлён.');
+    });
+  });
 
-  // fs.remove(markdownCompilerPath, (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "markdown-compiler.mjs" успешно удален.');
-  // });
+  fs.remove(markdownCompilerPath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "markdown-compiler.mjs" успешно удален.');
+  });
 
-  // fs.remove(markdownPagesPath, (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении папки:', err);
-  //     return;
-  //   }
-  //   console.log('Папка "/markdown/" успешно удалена.');
-  // });
+  fs.remove(markdownPagesPath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении папки:', err);
+      return;
+    }
+    console.log('Папка "/markdown/" успешно удалена.');
+  });
 
-  // fs.readFile(bundlePath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении bundle.js:', err);
-  //     return;
-  //   }
+  fs.readFile(bundlePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении bundle.js:', err);
+      return;
+    }
 
-  //   // Удаление строк из bundle.js
-  //   const regex = new RegExp(`\\s*${'import "highlight.js/scss/atom-one-dark.scss";'}\\s*`, 'g');
-  //   data = data.replace(regex, '\n\n');
+    // Удаление строк из bundle.js
+    const regex = new RegExp(`\\s*${'import "highlight.js/scss/atom-one-dark.scss";'}\\s*`, 'g');
+    data = data.replace(regex, '\n\n');
 
-  //   // Запись изменений обратно в bundle.js
-  //   fs.writeFile(bundlePath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в bundle.js:', err);
-  //       return;
-  //     }
-  //     console.log('Файл bundle.js успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в bundle.js
+    fs.writeFile(bundlePath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в bundle.js:', err);
+        return;
+      }
+      console.log('Файл bundle.js успешно обновлён.');
+    });
+  });
 
-  // fs.remove(yarnlockPath, (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл yarn.lock успешно удален.');
-  // });
+  fs.remove(yarnlockPath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл yarn.lock успешно удален.');
+  });
 
-  // fs.remove(fontawesomePath, (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении папки:', err);
-  //     return;
-  //   }
-  //   console.log('Папка "/fontawesome/" успешно удалена.');
-  // });
+  fs.remove(fontawesomePath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении папки:', err);
+      return;
+    }
+    console.log('Папка "/fontawesome/" успешно удалена.');
+  });
 
-  // fs.readFile(readmePath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении README.md:', err);
-  //     return;
-  //   }
+  fs.readFile(readmePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении README.md:', err);
+      return;
+    }
 
-  //   // Удаление содержимого README.md
-  //   fs.writeFile(readmePath, '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке README.md:', err);
-  //       return;
-  //     }
-  //     console.log('Файл README.md успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого README.md
+    fs.writeFile(readmePath, '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке README.md:', err);
+        return;
+      }
+      console.log('Файл README.md успешно очищен.');
+    });
+  });
   
-  // let removeEmptyLineAfter = false;
+  let removeEmptyLineAfter = false;
 
-  // // Чтение содержимого webpack.config.js
-  // fs.readFile(webpackConfigPath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении webpack.config.js:', err);
-  //     return;
-  //   }
+  // Чтение содержимого webpack.config.js
+  fs.readFile(webpackConfigPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении webpack.config.js:', err);
+      return;
+    }
 
-  //   // Split the file content into an array of lines
-  //   const lines = data.split('\n');
+    // Split the file content into an array of lines
+    const lines = data.split('\n');
 
-  //   const filteredLines = lines.filter(line => {
-  //     if (removeEmptyLineAfter && line.trim() === '') {
-  //         removeEmptyLineAfter = false;
-  //         return false;
-  //     }
+    const filteredLines = lines.filter(line => {
+      if (removeEmptyLineAfter && line.trim() === '') {
+          removeEmptyLineAfter = false;
+          return false;
+      }
 
-  //     if (webpackPagesLinesCorporate.includes(line.trim())) {
-  //         removeEmptyLineAfter = true;
-  //     }
+      if (webpackPagesLinesCorporate.includes(line.trim())) {
+          removeEmptyLineAfter = true;
+      }
 
-  //     return !webpackPagesLinesCorporate.includes(line.trim());
-  // });
+      return !webpackPagesLinesCorporate.includes(line.trim());
+  });
 
-  //   // Join the filtered lines back into a single string
-  //   let updatedContent = filteredLines.join('\n');
+    // Join the filtered lines back into a single string
+    let updatedContent = filteredLines.join('\n');
 
-  //   updatedContent = updatedContent.replace('...utils.pages(MODE),', '...utils.pages(MODE),\n');
+    updatedContent = updatedContent.replace('...utils.pages(MODE),', '...utils.pages(MODE),\n');
 
-  //   // Запись изменений обратно в webpack.config.js
-  //   fs.writeFile(webpackConfigPath, updatedContent, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в webpack.config.js:', err);
-  //       return;
-  //     }
-  //     console.log('Файл webpack.config.js успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в webpack.config.js
+    fs.writeFile(webpackConfigPath, updatedContent, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в webpack.config.js:', err);
+        return;
+      }
+      console.log('Файл webpack.config.js успешно обновлён.');
+    });
+  });
 
-  // fs.remove(tailwindConfigPath, (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "tailwind.config.js" успешно удален.');
-  // });
+  fs.remove(tailwindConfigPath, (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "tailwind.config.js" успешно удален.');
+  });
 
-  // // Чтение содержимого .stylelintrc.json
-  // fs.readFile(stylelintrcPath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении package.json:', err);
-  //     return;
-  //   }
+  // Чтение содержимого .stylelintrc.json
+  fs.readFile(stylelintrcPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении package.json:', err);
+      return;
+    }
 
-  //   // Удаление строк из stylelintrcPath.json
-  //   data = data.replace(
-  //     '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]', 
-  //     '  "extends": ["stylelint-config-recommended-scss", "stylelint-scss"]');
+    // Удаление строк из stylelintrcPath.json
+    data = data.replace(
+      '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]', 
+      '  "extends": ["stylelint-config-recommended-scss", "stylelint-scss"]');
 
-  //   // Запись изменений обратно в .stylelintrc.json
-  //   fs.writeFile(stylelintrcPath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в .stylelintrc.json:', err);
-  //       return;
-  //     }
-  //     console.log('Файл .stylelintrc.json успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в .stylelintrc.json
+    fs.writeFile(stylelintrcPath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в .stylelintrc.json:', err);
+        return;
+      }
+      console.log('Файл .stylelintrc.json успешно обновлён.');
+    });
+  });
 
-  // // Чтение содержимого postcss.config.js
-  // fs.readFile(postcssConfigPath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении postcss.config.js:', err);
-  //     return;
-  //   }
+  // Чтение содержимого postcss.config.js
+  fs.readFile(postcssConfigPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении postcss.config.js:', err);
+      return;
+    }
     
-  //   data = data.replace(
-  //     "require('tailwindcss')({}),", 
-  //     "");
+    data = data.replace(
+      "require('tailwindcss')({}),", 
+      "");
 
-  //   // Запись изменений обратно в postcss.config.js
-  //   fs.writeFile(postcssConfigPath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в postcss.config.js:', err);
-  //       return;
-  //     }
-  //     console.log('Файл postcss.config.js успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в postcss.config.js
+    fs.writeFile(postcssConfigPath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в postcss.config.js:', err);
+        return;
+      }
+      console.log('Файл postcss.config.js успешно обновлён.');
+    });
+  });
 
-  // // Чтение содержимого prettier.config.js
-  // fs.readFile(prettierConfigPath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении prettier.config.js:', err);
-  //     return;
-  //   }
+  // Чтение содержимого prettier.config.js
+  fs.readFile(prettierConfigPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении prettier.config.js:', err);
+      return;
+    }
     
-  //   // Удаление строк из prettier.config.js
-  //   prettierConfigLines.forEach((line) => {
-  //     const regex = new RegExp(`\\s*${line}\\s*`, 'g');
-  //     data = data.replace(regex, '\n  ');
-  //   });
+    // Удаление строк из prettier.config.js
+    prettierConfigLines.forEach((line) => {
+      const regex = new RegExp(`\\s*${line}\\s*`, 'g');
+      data = data.replace(regex, '\n  ');
+    });
 
-  //   // Запись изменений обратно в prettier.config.js
-  //   fs.writeFile(prettierConfigPath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в prettier.config.js:', err);
-  //       return;
-  //     }
-  //     console.log('Файл prettier.config.js успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в prettier.config.js
+    fs.writeFile(prettierConfigPath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в prettier.config.js:', err);
+        return;
+      }
+      console.log('Файл prettier.config.js успешно обновлён.');
+    });
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/blog.scss'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "blog.scss" успешно удален.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/blog.scss'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "blog.scss" успешно удален.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "hero.scss" успешно удален.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "hero.scss" успешно удален.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/assets/styles/mixins'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении папки:', err);
-  //     return;
-  //   }
-  //   console.log('Папка "mixins" успешно удалена.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/assets/styles/mixins'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении папки:', err);
+      return;
+    }
+    console.log('Папка "mixins" успешно удалена.');
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/typography.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении typography.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/typography.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении typography.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого typography.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/typography.scss'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке typography.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл typography.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого typography.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/typography.scss'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке typography.scss:', err);
+        return;
+      }
+      console.log('Файл typography.scss успешно очищен.');
+    });
+  });
 
-  //  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении not-found.scss:', err);
-  //     return;
-  //   }
+   fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении not-found.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого not-found.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке not-found.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл not-found.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого not-found.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке not-found.scss:', err);
+        return;
+      }
+      console.log('Файл not-found.scss успешно очищен.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении fonts.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении fonts.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого fonts.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке fonts.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл fonts.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого fonts.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке fonts.scss:', err);
+        return;
+      }
+      console.log('Файл fonts.scss успешно очищен.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/header.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении header.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/header.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении header.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого header.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/header.scss'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке header.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл header.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого header.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/header.scss'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке header.scss:', err);
+        return;
+      }
+      console.log('Файл header.scss успешно очищен.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/footer.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении footer.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/footer.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении footer.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого footer.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/footer.scss'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке footer.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл footer.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого footer.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/footer.scss'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке footer.scss:', err);
+        return;
+      }
+      console.log('Файл footer.scss успешно очищен.');
+    });
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/views/mixins'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении папки:', err);
-  //     return;
-  //   }
-  //   console.log('Папка "mixins" успешно удалена.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/views/mixins'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении папки:', err);
+      return;
+    }
+    console.log('Папка "mixins" успешно удалена.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/views/pages/blog'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении папки:', err);
-  //     return;
-  //   }
-  //   console.log('Папка "blog" успешно удалена.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/views/pages/blog'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении папки:', err);
+      return;
+    }
+    console.log('Папка "blog" успешно удалена.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/views/pages/blog.pug'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "blog.pug" успешно удален.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/views/pages/blog.pug'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "blog.pug" успешно удален.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/views/components/blog.pug'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "blog.pug" успешно удален.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/views/components/blog.pug'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "blog.pug" успешно удален.');
+  });
 
-  // fs.remove(path.join(__dirname, '..', '/src/views/components/hero.pug'), (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при удалении файла:', err);
-  //     return;
-  //   }
-  //   console.log('Файл "hero.pug" успешно удален.');
-  // });
+  fs.remove(path.join(__dirname, '..', '/src/views/components/hero.pug'), (err) => {
+    if (err) {
+      console.error('Ошибка при удалении файла:', err);
+      return;
+    }
+    console.log('Файл "hero.pug" успешно удален.');
+  });
 
-  // // Удаление содержимого header.pug
-  // fs.writeFile(path.join(__dirname, '..', 'src/views/components/header.pug'), '', 'utf8', (err) => {
-  //   if (err) {
-  //     console.error('Ошибка при очистке header.pug:', err);
-  //     return;
-  //   }
-  //   console.log('Файл header.pug успешно очищен.');
-  // });
+  // Удаление содержимого header.pug
+  fs.writeFile(path.join(__dirname, '..', 'src/views/components/header.pug'), '', 'utf8', (err) => {
+    if (err) {
+      console.error('Ошибка при очистке header.pug:', err);
+      return;
+    }
+    console.log('Файл header.pug успешно очищен.');
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/views/components/footer.pug'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении footer.pug:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/views/components/footer.pug'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении footer.pug:', err);
+      return;
+    }
 
-  //   // Удаление содержимого footer.pug
-  //   fs.writeFile(path.join(__dirname, '..', '/src/views/components/footer.pug'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке footer.pug:', err);
-  //       return;
-  //     }
-  //     console.log('Файл footer.pug успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого footer.pug
+    fs.writeFile(path.join(__dirname, '..', '/src/views/components/footer.pug'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке footer.pug:', err);
+        return;
+      }
+      console.log('Файл footer.pug успешно очищен.');
+    });
+  });
 
-  // fs.readFile(appcssPath, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении app.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(appcssPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении app.scss:', err);
+      return;
+    }
 
-  //   data = data.replace('// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.', '@import "./utils/reset";');
+    data = data.replace('// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.', '@import "./utils/reset";');
     
-  //   // Удаление строк с комментарием Tailwind и строк с tailwind directives
-  //   const regexTailwindComment = /\/\*\s*Tailwind\s*\*\//g;
-  //   const regexTailwindDirectives = /\s*@tailwind\s+(base|components|utilities);*/g;
-  //   data = data.replace(regexTailwindComment, ' ');
-  //   data = data.replace(regexTailwindDirectives, ' ');
+    // Удаление строк с комментарием Tailwind и строк с tailwind directives
+    const regexTailwindComment = /\/\*\s*Tailwind\s*\*\//g;
+    const regexTailwindDirectives = /\s*@tailwind\s+(base|components|utilities);*/g;
+    data = data.replace(regexTailwindComment, ' ');
+    data = data.replace(regexTailwindDirectives, ' ');
 
-  //   // Удаление строк с комментарием Mixins и строк с mixins
-  //   const regexMixinsComment = /\/\*\s*Миксины\s*\*\//g;
-  //   const regexMixinsDirectives = /\s*@import\s+"\.\/(mixins\/(?:title|article))";*/g
-  //   data = data.replace(regexMixinsComment, ' ');
-  //   data = data.replace(regexMixinsDirectives, ' ');
+    // Удаление строк с комментарием Mixins и строк с mixins
+    const regexMixinsComment = /\/\*\s*Миксины\s*\*\//g;
+    const regexMixinsDirectives = /\s*@import\s+"\.\/(mixins\/(?:title|article))";*/g
+    data = data.replace(regexMixinsComment, ' ');
+    data = data.replace(regexMixinsDirectives, ' ');
 
-  //   // Удаление строк с комментарием Mixins и строк с mixins
-  //   const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:hero|blog|not-found))";*/g
-  //   data = data.replace(regexComponentsDirectives, ' ');
+    // Удаление строк с комментарием Mixins и строк с mixins
+    const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:hero|blog|not-found))";*/g
+    data = data.replace(regexComponentsDirectives, ' ');
 
-  //   // Запись изменений обратно в app.scss
-  //   fs.writeFile(appcssPath, data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в app.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл app.scss успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в app.scss
+    fs.writeFile(appcssPath, data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в app.scss:', err);
+        return;
+      }
+      console.log('Файл app.scss успешно обновлён.');
+    });
+  });
 
-  // // Чтение содержимого master.pug
-  // fs.readFile(path.join(__dirname, '..', '/src/views/layouts/master.pug'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении master.pug:', err);
-  //     return;
-  //   }
+  // Чтение содержимого master.pug
+  fs.readFile(path.join(__dirname, '..', '/src/views/layouts/master.pug'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении master.pug:', err);
+      return;
+    }
     
-  //   data = data.replace(/block content/g, 'block content\n\n    include ../components/footer');
-  //   // Находим отступ перед строкой "include ../components/header"
-  //   const indentMatch = data.match(/^(\s*)include \.\.\/components\/header/m);
-  //   const indent = indentMatch ? indentMatch[1] : ''; // Если есть отступ, сохраняем его
+    data = data.replace(/block content/g, 'block content\n\n    include ../components/footer');
+    // Находим отступ перед строкой "include ../components/header"
+    const indentMatch = data.match(/^(\s*)include \.\.\/components\/header/m);
+    const indent = indentMatch ? indentMatch[1] : ''; // Если есть отступ, сохраняем его
 
-  //   // Замена строк и удаление лишних пробелов
-  //   data = data.replace(/include \.\.\/mixins\/(?:title|article)\n*/g, '');
+    // Замена строк и удаление лишних пробелов
+    data = data.replace(/include \.\.\/mixins\/(?:title|article)\n*/g, '');
 
-  //   // Удаляем пустую строку перед "include ../components/header" и убираем пробелы с начала строки
-  //   data = data.replace(/\n\s*(\s*)include \.\.\/components\/header/g, '\n$1\n    include ../components/header');
+    // Удаляем пустую строку перед "include ../components/header" и убираем пробелы с начала строки
+    data = data.replace(/\n\s*(\s*)include \.\.\/components\/header/g, '\n$1\n    include ../components/header');
 
-  //   // Запись изменений обратно в master.pug
-  //   fs.writeFile(path.join(__dirname, '..', '/src/views/layouts/master.pug'), data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в master.pug:', err);
-  //       return;
-  //     }
-  //     console.log('Файл master.pug успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в master.pug
+    fs.writeFile(path.join(__dirname, '..', '/src/views/layouts/master.pug'), data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в master.pug:', err);
+        return;
+      }
+      console.log('Файл master.pug успешно обновлён.');
+    });
+  });
 
-  // // Чтение содержимого 404.pug
-  // fs.readFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении 404.pug:', err);
-  //     return;
-  //   }
+  // Чтение содержимого 404.pug
+  fs.readFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении 404.pug:', err);
+      return;
+    }
     
-  //   // Удаление указанного блока кода
-  //   data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\.\/components\/footer[\s\S]*?$/, '');
+    // Удаление указанного блока кода
+    data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\.\/components\/footer[\s\S]*?$/, '');
 
-  //   // Удаление последней пустой строки
-  //   data = data.replace(/\s*$/, '');
+    // Удаление последней пустой строки
+    data = data.replace(/\s*$/, '');
 
-  //   // Запись изменений обратно в 404.pug
-  //   fs.writeFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в 404.pug:', err);
-  //       return;
-  //     }
-  //     console.log('Удаление выполнено успешно.');
-  //   });
-  // });
+    // Запись изменений обратно в 404.pug
+    fs.writeFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в 404.pug:', err);
+        return;
+      }
+      console.log('Удаление выполнено успешно.');
+    });
+  });
   
-  // // Чтение содержимого index.pug
-  // fs.readFile(path.join(__dirname, '..', '/src/views/index.pug'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении index.pug:', err);
-  //     return;
-  //   }
+  // Чтение содержимого index.pug
+  fs.readFile(path.join(__dirname, '..', '/src/views/index.pug'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении index.pug:', err);
+      return;
+    }
     
-  //   // Удаление указанного блока кода
-  //   data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
+    // Удаление указанного блока кода
+    data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
 
-  //   // Удаление последней пустой строки
-  //   data = data.replace(/\s*$/, '');
+    // Удаление последней пустой строки
+    data = data.replace(/\s*$/, '');
 
-  //   // Запись изменений обратно в index.pug
-  //   fs.writeFile(path.join(__dirname, '..', '/src/views/index.pug'), data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в index.pug:', err);
-  //       return;
-  //     }
-  //     console.log('Удаление выполнено успешно.');
-  //   });
-  // });
+    // Запись изменений обратно в index.pug
+    fs.writeFile(path.join(__dirname, '..', '/src/views/index.pug'), data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в index.pug:', err);
+        return;
+      }
+      console.log('Удаление выполнено успешно.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/views/components/not-found.pug'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении not-found.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/views/components/not-found.pug'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении not-found.scss:', err);
+      return;
+    }
 
-  //   // Удаление содержимого not-found.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/views/components/not-found.pug'), '', 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при очистке not-found.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл not-found.scss успешно очищен.');
-  //   });
-  // });
+    // Удаление содержимого not-found.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/views/components/not-found.pug'), '', 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при очистке not-found.scss:', err);
+        return;
+      }
+      console.log('Файл not-found.scss успешно очищен.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //       console.error('Ошибка чтения файла:', err);
-  //       return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), 'utf8', (err, data) => {
+    if (err) {
+        console.error('Ошибка чтения файла:', err);
+        return;
+    }
 
-  //   // Найти индекс строки, начиная с которой идет код, который вы хотите удалить
-  //   const startIndex = data.indexOf('black: #000000;') + 'black: #000000;'.length;
-  //   if (startIndex === -1) {
-  //       console.log('Не найдена строка для удаления кода.');
-  //       return;
-  //   }
+    // Найти индекс строки, начиная с которой идет код, который вы хотите удалить
+    const startIndex = data.indexOf('black: #000000;') + 'black: #000000;'.length;
+    if (startIndex === -1) {
+        console.log('Не найдена строка для удаления кода.');
+        return;
+    }
 
-  //   // Обрезать код, начиная с найденной строки
-  //   const newData = data.substring(0, startIndex);
+    // Обрезать код, начиная с найденной строки
+    const newData = data.substring(0, startIndex);
 
-  //   // Записать изменения обратно в файл
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), newData, 'utf8', (err) => {
-  //       if (err) {
-  //           console.error('Ошибка записи файла:', err);
-  //           return;
-  //       }
-  //       console.log('Код после строки "$black: #000000;" удален успешно.');
-  //   });
-  // });
+    // Записать изменения обратно в файл
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), newData, 'utf8', (err) => {
+        if (err) {
+            console.error('Ошибка записи файла:', err);
+            return;
+        }
+        console.log('Код после строки "$black: #000000;" удален успешно.');
+    });
+  });
 
-  // fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/global.scss'), 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error('Ошибка при чтении app.scss:', err);
-  //     return;
-  //   }
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/global.scss'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Ошибка при чтении app.scss:', err);
+      return;
+    }
 
-  //   const regex = /\.page-wrapper \{[\s\S]*?\}[\s\S]*?\.page-container \{[\s\S]*?\}/;
-  //   data = data.replace(regex, '');
+    const regex = /\.page-wrapper \{[\s\S]*?\}[\s\S]*?\.page-container \{[\s\S]*?\}/;
+    data = data.replace(regex, '');
 
-  //   // Удаление пустых строк перед @media
-  //   data = data.replace(/\s*(?=@media \(prefers-reduced-motion: reduce\))/, '\n\n');
+    // Удаление пустых строк перед @media
+    data = data.replace(/\s*(?=@media \(prefers-reduced-motion: reduce\))/, '\n\n');
 
-  //   data = data.replace(/  color: \$slate-900;[\n\r]*/, '');
+    data = data.replace(/  color: \$slate-900;[\n\r]*/, '');
 
-  //   // Запись изменений обратно в app.scss
-  //   fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/global.scss'), data, 'utf8', (err) => {
-  //     if (err) {
-  //       console.error('Ошибка при записи в app.scss:', err);
-  //       return;
-  //     }
-  //     console.log('Файл app.scss успешно обновлён.');
-  //   });
-  // });
+    // Запись изменений обратно в app.scss
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/global.scss'), data, 'utf8', (err) => {
+      if (err) {
+        console.error('Ошибка при записи в app.scss:', err);
+        return;
+      }
+      console.log('Файл app.scss успешно обновлён.');
+    });
+  });
 }
