@@ -557,6 +557,15 @@ if (createLanding) {
   //   }
     
   //   data = data.replace(/block content/g, 'block content\n\n    include ../components/footer');
+  //   // Находим отступ перед строкой "include ../components/header"
+  //   const indentMatch = data.match(/^(\s*)include \.\.\/components\/header/m);
+  //   const indent = indentMatch ? indentMatch[1] : ''; // Если есть отступ, сохраняем его
+
+  //   // Замена строк и удаление лишних пробелов
+  //   data = data.replace(/include \.\.\/mixins\/(?:title|article)\n*/g, '');
+
+  //   // Удаляем пустую строку перед "include ../components/header" и убираем пробелы с начала строки
+  //   data = data.replace(/\n\s*(\s*)include \.\.\/components\/header/g, '\n$1\n    include ../components/header');
 
   //   // Запись изменений обратно в master.pug
   //   fs.writeFile(path.join(__dirname, '..', '/src/views/layouts/master.pug'), data, 'utf8', (err) => {
