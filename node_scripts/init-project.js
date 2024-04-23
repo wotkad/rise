@@ -857,36 +857,6 @@ if (createMultiPage) {
     });
   });
 
-  fs.readFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), 'utf8', (err, data) => {
-    if (err) {
-      return;
-    }
-    
-    data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\.\/components\/footer[\s\S]*?$/, '');
-    data = data.replace(/\s*$/, '');
-
-    fs.writeFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), data, 'utf8', (err) => {
-      if (err) {
-        return;
-      }
-    });
-  });
-  
-  fs.readFile(path.join(__dirname, '..', '/src/views/index.pug'), 'utf8', (err, data) => {
-    if (err) {
-      return;
-    }
-    
-    data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
-    data = data.replace(/\s*$/, '');
-
-    fs.writeFile(path.join(__dirname, '..', '/src/views/index.pug'), data, 'utf8', (err) => {
-      if (err) {
-        return;
-      }
-    });
-  });
-
   fs.readFile(path.join(__dirname, '..', '/src/views/components/not-found.pug'), 'utf8', (err, data) => {
     if (err) {
       return;
