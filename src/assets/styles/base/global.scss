@@ -43,6 +43,7 @@ body {
 
 .wrapper {
   margin: 0 auto;
+  width: 100%;
   padding: 0 #{$container-padding};
   max-width: calc(#{$mobile-wrapper} + #{$container-padding * 2});
   @include screen(tablet) {
