@@ -1,31 +1,96 @@
 @mixin screen($breakpoint) {
   @if $breakpoint == desktop {
-    @media only screen and (min-width: 1536px) {
+    @media only screen and (min-width: $screen-desktop) {
       @content;
     }
   }
 
   @if $breakpoint == laptop {
-    @media only screen and (min-width: 1280px) {
+    @media only screen and (min-width: $screen-laptop) {
       @content;
     }
   }
 
   @if $breakpoint == tablet-2x {
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: $screen-tablet-2x) {
       @content;
     }
   }
 
   @if $breakpoint == tablet {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $screen-tablet) {
       @content;
     }
   }
 
   @if $breakpoint == mobile {
-    @media only screen and (min-width: 640px) {
+    @media only screen and (min-width: $screen-mobile) {
       @content;
     }
   }
+}
+
+@mixin font-xs {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin font-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin font-base {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font-lg {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin font-xl {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin font-2xl {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@mixin font-3xl {
+  font-size: 30px;
+  line-height: 36px;
+}
+
+@mixin font-4xl {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+@mixin font-5xl {
+  font-size: 48px;
+  line-height: 1;
+}
+
+@mixin font-6xl {
+  font-size: 60px;
+  line-height: 1;
+}
+
+@mixin font-7xl {
+  font-size: 72px;
+  line-height: 1;
+}
+
+@mixin font-8xl {
+  font-size: 96px;
+  line-height: 1;
+}
+
+@mixin font-9xl {
+  font-size: 128px;
+  line-height: 1;
 }
