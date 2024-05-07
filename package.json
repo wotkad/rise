@@ -22,8 +22,8 @@
     "linkinator": "node ./node_scripts/linkinator.mjs",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
     "archive-paths": "node ./node_scripts/archive-paths",
-    "one-page": "node ./node_scripts/init-project -one-page",
-    "multi-page": "node ./node_scripts/init-project -multi-page"
+    "one-page": "yarn && node ./node_scripts/init-project -one-page",
+    "multi-page": "yarn && node ./node_scripts/init-project -multi-page"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
