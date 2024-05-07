@@ -3,41 +3,35 @@
     margin-top: 24px;
 
     font-weight: 600;
-    font-size: 24px;
-    line-height: 32px;
+    @include font-xl;
     @include screen(tablet-2x) {
       margin-top: 40px;
 
-      font-size: 30px;
-      line-height: 36px;
+      @include font-3xl;
     }
   }
   h3 {
     margin-top: 16px;
 
     font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
+    @include font-xl;
     @include screen(tablet-2x) {
       margin-top: 24px;
 
-      font-size: 24px;
-      line-height: 32px;
+      @include font-2xl;
     }
   }
   h4 {
     margin-top: 14px;
 
     font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
+    @include font-lg;
     @include screen(tablet-2x) {
-      font-size: 20px;
-      line-height: 28px;
+      @include font-xl;
     }
   }
   p {
-    margin-top: 14px;
+    margin-top: 16px;
   }
   hr {
     margin-top: 16px;
@@ -72,8 +66,9 @@
   }
   blockquote {
     margin-left: 16px;
+    padding-left: 16px;
 
-    border-left: 1px solid $gray-300;
+    border-left: 4px solid $blue-500;
 
     font-style: italic;
   }
@@ -81,9 +76,9 @@
     display: inline-block;
     margin-top: 4px;
 
-    font-size: 14px;
-    line-height: 20px;
     color: $gray-500;
+
+    @include font-sm;
   }
   ul {
     margin-top: 16px;
@@ -94,6 +89,10 @@
       &::marker {
         color: $blue-500;
       }
+      @include font-sm;
+      @include screen(tablet) {
+        @include font-base;
+      }
     }
     @include screen(tablet-2x) {
       margin-top: 20px;
@@ -101,20 +100,18 @@
   }
   ol {
     margin-top: 16px;
-    margin-left: 16px;
+    margin-left: 18px;
     list-style: decimal;
     li {
       margin-top: 12px;
       &::marker {
+        font-weight: 500;
         color: $blue-500;
       }
       span {
         display: inline-block;
         margin-top: 0;
 
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
         color: $slate-900;
       }
       &.bold {
@@ -125,6 +122,10 @@
       ul {
         margin-top: 12px;
       }
+      @include font-sm;
+      @include screen(tablet) {
+        @include font-base;
+      }
     }
     @include screen(tablet-2x) {
       margin-top: 20px;
@@ -133,15 +134,14 @@
   code,
   & > code,
   p code {
-    padding: 4px 8px;
+    padding: 2px 6px;
 
-    border-radius: 6px;
+    border-radius: 4px;
     background-color: $blue-100;
-
-    font-size: 14px;
-    line-height: 28px;
+    @include font-xs;
     @include screen(tablet-2x) {
-      line-height: 20px;
+      padding: 4px 8px;
+      @include font-sm;
     }
   }
   pre {
@@ -157,7 +157,7 @@
     border-bottom: 1px solid transparent;
 
     color: $blue-500;
-    @include screen(tablet-2x) {
+    @include screen(laptop) {
       transition: border-color $transition-default;
       &:hover {
         border-color: $blue-500;

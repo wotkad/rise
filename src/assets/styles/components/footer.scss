@@ -20,9 +20,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    font-size: 14px;
-    line-height: 20px;
     a {
       display: inline-block;
       margin-left: 4px;
@@ -31,8 +28,7 @@
       i {
         margin-left: 4px;
 
-        font-size: 14px;
-        line-height: 20px;
+        @include font-sm;
       }
       @include screen(laptop) {
         transition: color $transition-default;
@@ -41,6 +37,8 @@
         }
       }
     }
+
+    @include font-sm;
   }
   &__right {
     display: flex;
@@ -53,8 +51,7 @@
       li {
         display: inline-flex;
         a {
-          font-size: 12px;
-          line-height: 16px;
+          @include font-xs;
           @include screen(laptop) {
             transition: color $transition-default;
             &:hover {
@@ -73,12 +70,11 @@
     span {
       display: inline-block;
       margin-right: 4px;
-
-      font-size: 12px;
-      line-height: 16px;
       &:last-child {
         margin-right: 0;
       }
+
+      @include font-xs;
     }
   }
 }

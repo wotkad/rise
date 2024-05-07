@@ -27,6 +27,7 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: $slate-900;
+  @include font-base;
 }
 
 .render {
@@ -43,8 +44,8 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  width: 100%;
   padding: 0 #{$container-padding};
+  width: 100%;
   max-width: calc(#{$mobile-wrapper} + #{$container-padding * 2});
   @include screen(tablet) {
     max-width: calc(#{$screen-tablet} + #{$container-padding * 2});

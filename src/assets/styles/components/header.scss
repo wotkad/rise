@@ -16,6 +16,9 @@
     }
     @include screen(laptop) {
       transition: color $transition-default;
+      &:hover {
+        color: $blue-500;
+      }
     }
   }
 }

@@ -67,19 +67,19 @@ if (createOnePage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",', 
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",',
       '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",');
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",', 
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",',
       '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",');
-    
+
     data = data.replace(
-      '"dev": "yarn compile-md && yarn develop",', 
+      '"dev": "yarn compile-md && yarn develop",',
       '"dev": "yarn develop",');
 
     data = data.replace(
-      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",', 
+      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",',
       '');
 
     packageMarkdownLines.forEach((line) => {
@@ -182,7 +182,7 @@ if (createOnePage) {
       return;
     }
   });
-  
+
   let removeEmptyLineAfter = false;
 
   fs.readFile(webpackConfigPath, 'utf8', (err, data) => {
@@ -232,7 +232,7 @@ if (createOnePage) {
     }
 
     data = data.replace(
-      '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]', 
+      '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]',
       '  "extends": ["stylelint-config-recommended-scss", "stylelint-scss"]');
 
     fs.writeFile(stylelintrcPath, data, 'utf8', (err) => {
@@ -246,9 +246,9 @@ if (createOnePage) {
     if (err) {
       return;
     }
-    
+
     data = data.replace(
-      "require('tailwindcss')({}),", 
+      "require('tailwindcss')({}),",
       "");
 
     fs.writeFile(postcssConfigPath, data, 'utf8', (err) => {
@@ -262,7 +262,7 @@ if (createOnePage) {
     if (err) {
       return;
     }
-    
+
     prettierConfigLines.forEach((line) => {
       const regex = new RegExp(`\\s*${line}\\s*`, 'g');
       data = data.replace(regex, '\n  ');
@@ -413,7 +413,7 @@ if (createOnePage) {
     }
 
     data = data.replace('// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.', '@import "./utils/reset";');
-    
+
     const regexTailwindComment = /\/\*\s*Tailwind\s*\*\//g;
     const regexTailwindDirectives = /\s*@tailwind\s+(base|components|utilities);*/g;
     data = data.replace(regexTailwindComment, ' ');
@@ -438,7 +438,7 @@ if (createOnePage) {
     if (err) {
       return;
     }
-    
+
     data = data.replace(/block content/g, 'block content\n\n    include ../components/footer');
     data = data.replace(/include \.\.\/mixins\/(?:title|article)\n*/g, '');
     data = data.replace(/\n\s*(\s*)include \.\.\/components\/header/g, '\n$1\n    include ../components/header');
@@ -454,7 +454,7 @@ if (createOnePage) {
     if (err) {
       return;
     }
-    
+
     data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\.\/components\/footer[\s\S]*?$/, '');
     data = data.replace(/\s*$/, '');
 
@@ -464,12 +464,12 @@ if (createOnePage) {
       }
     });
   });
-  
+
   fs.readFile(path.join(__dirname, '..', '/src/views/index.pug'), 'utf8', (err, data) => {
     if (err) {
       return;
     }
-    
+
     data = data.replace(/\.barba\(data-barba="wrapper"\)[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
     data = data.replace(/\s*$/, '');
 
@@ -522,15 +522,15 @@ if (createMultiPage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",', 
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",',
       '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",');
-    
+
     data = data.replace(
-      '"dev": "yarn compile-md && yarn develop",', 
+      '"dev": "yarn compile-md && yarn develop",',
       '"dev": "yarn develop",');
 
     data = data.replace(
-      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",', 
+      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",',
       '');
 
     packageMarkdownLines.forEach((line) => {
@@ -600,7 +600,7 @@ if (createMultiPage) {
       }
     });
   });
-  
+
   let removeEmptyLineAfter = false;
 
   fs.readFile(webpackConfigPath, 'utf8', (err, data) => {
@@ -646,7 +646,7 @@ if (createMultiPage) {
     }
 
     data = data.replace(
-      '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]', 
+      '  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]',
       '  "extends": ["stylelint-config-recommended-scss", "stylelint-scss"]');
 
     fs.writeFile(stylelintrcPath, data, 'utf8', (err) => {
@@ -660,9 +660,9 @@ if (createMultiPage) {
     if (err) {
       return;
     }
-    
+
     data = data.replace(
-      "require('tailwindcss')({}),", 
+      "require('tailwindcss')({}),",
       "");
 
     fs.writeFile(postcssConfigPath, data, 'utf8', (err) => {
@@ -676,7 +676,7 @@ if (createMultiPage) {
     if (err) {
       return;
     }
-    
+
     prettierConfigLines.forEach((line) => {
       const regex = new RegExp(`\\s*${line}\\s*`, 'g');
       data = data.replace(regex, '\n  ');
@@ -719,7 +719,7 @@ if (createMultiPage) {
     });
   });
 
-   fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), 'utf8', (err, data) => {
     if (err) {
       return;
     }
@@ -821,7 +821,7 @@ if (createMultiPage) {
     }
 
     data = data.replace('// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.', '@import "./utils/reset";');
-    
+
     const regexTailwindComment = /\/\*\s*Tailwind\s*\*\//g;
     const regexTailwindDirectives = /\s*@tailwind\s+(base|components|utilities);*/g;
     data = data.replace(regexTailwindComment, ' ');
@@ -845,7 +845,7 @@ if (createMultiPage) {
     if (err) {
       return;
     }
-    
+
     data = data.replace(/block content/g, 'block content\n\n    include ../components/footer');
     data = data.replace(/include \.\.\/mixins\/(?:title|article)\n*/g, '');
     data = data.replace(/\n\s*(\s*)include \.\.\/components\/header/g, '\n$1\n    include ../components/header');

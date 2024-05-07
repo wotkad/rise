@@ -3,23 +3,24 @@ h1 {
   align-items: center;
 
   font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
   img {
     margin-right: 12px;
-    width: 32px;
-    min-width: 32px;
+    width: 24px;
+    min-width: 24px;
+    @include screen(tablet) {
+      width: 32px;
+      min-width: 32px;
+    }
     @include screen(tablet-2x) {
       width: 48px;
       min-width: 48px;
     }
   }
+  @include font-2xl;
   @include screen(tablet) {
-    font-size: 30px;
-    line-height: 36px;
+    @include font-3xl;
   }
   @include screen(tablet-2x) {
-    font-size: 48px;
-    line-height: 1;
+    @include font-5xl;
   }
 }
