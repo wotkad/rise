@@ -59,6 +59,7 @@ const args = process.argv.slice(2);
 
 const createOnePage = args.includes('-one-page');
 const createMultiPage = args.includes('-multi-page');
+const testdelete = args.includes('-test-delete');
 
 if (createOnePage) {
   fs.readFile(packagePath, 'utf8', (err, data) => {
@@ -695,12 +696,6 @@ if (createMultiPage) {
     }
   });
 
-  fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), (err) => {
-    if (err) {
-      return;
-    }
-  });
-
   fs.remove(path.join(__dirname, '..', '/src/assets/styles/mixins'), (err) => {
     if (err) {
       return;
@@ -725,6 +720,18 @@ if (createMultiPage) {
     }
 
     fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/not-found.scss'), '', 'utf8', (err) => {
+      if (err) {
+        return;
+      }
+    });
+  });
+
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), 'utf8', (err, data) => {
+    if (err) {
+      return;
+    }
+
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), '', 'utf8', (err) => {
       if (err) {
         return;
       }
@@ -773,6 +780,48 @@ if (createMultiPage) {
     }
   });
 
+  fs.readFile(path.join(__dirname, '..', '/src/views/components/hero.pug'), 'utf8', (err, data) => {
+    if (err) {
+      return;
+    }
+
+    fs.writeFile(path.join(__dirname, '..', '/src/views/components/hero.pug'), '', 'utf8', (err) => {
+      if (err) {
+        return;
+      }
+    });
+  });
+
+  fs.readFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), 'utf8', (err, data) => {
+    if (err) {
+      return;
+    }
+
+    data = data.replace(/\.page-container[\s\S]*?include \.\.\/components\/footer[\s\S]*?$/, '');
+    data = data.replace(/\s*$/, '\n        include ../components/not-found');
+
+    fs.writeFile(path.join(__dirname, '..', '/src/views/pages/404.pug'), data, 'utf8', (err) => {
+      if (err) {
+        return;
+      }
+    });
+  });
+
+  fs.readFile(path.join(__dirname, '..', '/src/views/index.pug'), 'utf8', (err, data) => {
+    if (err) {
+      return;
+    }
+
+    data = data.replace(/\.page-container[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
+    data = data.replace(/\s*$/, '\n        include ./components/hero');
+
+    fs.writeFile(path.join(__dirname, '..', '/src/views/index.pug'), data, 'utf8', (err) => {
+      if (err) {
+        return;
+      }
+    });
+  });
+
   fs.remove(path.join(__dirname, '..', '/src/views/pages/blog'), (err) => {
     if (err) {
       return;
@@ -786,12 +835,6 @@ if (createMultiPage) {
   });
 
   fs.remove(path.join(__dirname, '..', '/src/views/components/blog.pug'), (err) => {
-    if (err) {
-      return;
-    }
-  });
-
-  fs.remove(path.join(__dirname, '..', '/src/views/components/hero.pug'), (err) => {
     if (err) {
       return;
     }
@@ -831,7 +874,7 @@ if (createMultiPage) {
     const regexMixinsDirectives = /\s*@import\s+"\.\/(mixins\/(?:title|article))";*/g
     data = data.replace(regexMixinsComment, ' ');
     data = data.replace(regexMixinsDirectives, ' ');
-    const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:hero|blog|not-found))";*/g
+    const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:blog))";*/g
     data = data.replace(regexComponentsDirectives, ' ');
 
     fs.writeFile(appcssPath, data, 'utf8', (err) => {
