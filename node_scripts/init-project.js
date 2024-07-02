@@ -61,10 +61,10 @@ const createOnePage = args.includes('-one-page');
 const createMultiPage = args.includes('-multi-page');
 
 if (createOnePage) {
-  fs.remove('.git', (err) => {
-    if (err) {
-      return;
-    }
+  // fs.remove('.git', (err) => {
+  //   if (err) {
+  //     return;
+  //   }
   });
 
   fs.readFile(packagePath, 'utf8', (err, data) => {
@@ -522,11 +522,11 @@ if (createOnePage) {
   });
 }
 if (createMultiPage) {
-  fs.remove('.git', (err) => {
-    if (err) {
-      return;
-    }
-  });
+  // fs.remove('.git', (err) => {
+  //   if (err) {
+  //     return;
+  //   }
+  // });
   
   fs.readFile(packagePath, 'utf8', (err, data) => {
     if (err) {
