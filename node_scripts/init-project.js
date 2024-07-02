@@ -65,7 +65,7 @@ if (createOnePage) {
   //   if (err) {
   //     return;
   //   }
-  });
+  // });
 
   fs.readFile(packagePath, 'utf8', (err, data) => {
     if (err) {
