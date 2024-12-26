@@ -21,6 +21,7 @@
     "lint:all": "yarn lint:editorconfig && node ./node_scripts/svg-clear && yarn lint:scss && yarn lint:pug && yarn lint:stylelint",
     "linkinator": "node ./node_scripts/linkinator.mjs",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
+    "lint:tailwind": "node ./node_scripts/semicolon-tailwind",
     "archive-paths": "node ./node_scripts/archive-paths",
     "one-page": "yarn && node ./node_scripts/init-project -one-page",
     "multi-page": "yarn && node ./node_scripts/init-project -multi-page"
