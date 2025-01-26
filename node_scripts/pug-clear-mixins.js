@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const JSON5 = require('json5');
 
 // Папка с файлами .pug
 const VIEWS_DIR = path.resolve('./src/views');
@@ -23,23 +24,44 @@ function findPugFiles(dir) {
     return results;
 }
 
+// Рекурсивная функция для форматирования объектов и массивов
+function formatValue(value, indent) {
+    if (Array.isArray(value)) {
+        // Форматируем массив
+        const items = value
+            .map((item) => `${indent}  ${formatValue(item, `${indent}  `)},`)
+            .join('\n');
+        return `[
+${items}
+${indent}]`;
+    } else if (typeof value === 'object' && value !== null) {
+        // Форматируем объект
+        const entries = Object.keys(value)
+            .sort()
+            .map((key) => `${indent}  ${key}: ${formatValue(value[key], `${indent}  `)},`)
+            .join('\n');
+        return `{
+${entries}
+${indent}}`;
+    } else if (typeof value === 'string') {
+        return `'${value.replace(/'/g, "\\'")}'`; // Экранируем одиночные кавычки
+    } else {
+        return String(value); // Для чисел и других примитивов
+    }
+}
+
 // Функция для форматирования вызова миксинов
 function formatMixinCalls(content) {
-    return content.replace(/^(\s*)\+(\w+)\((\{[\s\S]*?\})\)/gm, (match, indent, mixinName, attributes) => {
+    return content.replace(/^([ \t]*)\+(\w+)\((\{[\s\S]*?\})\)/gm, (match, indent, mixinName, attributes) => {
         try {
-            // Преобразуем атрибуты в объект
-            const attrObject = eval(`(${attributes})`);
+            // Парсим атрибуты с помощью JSON5
+            const attrObject = JSON5.parse(attributes);
 
-            // Сортируем ключи по алфавиту
-            const sortedAttributes = Object.keys(attrObject)
-                .sort()
-                .map(
-                    (key) => `${indent}  ${key}: '${attrObject[key]}',`
-                )
-                .join('\n');
+            // Рекурсивно форматируем объект атрибутов
+            const formattedAttributes = formatValue(attrObject, indent);
 
             // Формируем отформатированную строку с сохранением отступа
-            return `${indent}+${mixinName}({\n${sortedAttributes}\n${indent}})`;
+            return `${indent}+${mixinName}(${formattedAttributes})`;
         } catch (err) {
             console.error('Ошибка при обработке миксина:', match, err);
             return match; // Возвращаем исходную строку в случае ошибки
