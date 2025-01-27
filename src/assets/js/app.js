@@ -10,6 +10,7 @@
 import "./base/routing/routing";
 
 import "./base/common/preloader";
+import "./base/common/load-images";
 import "./base/common/smooth-scroll";
 import "./base/common/scroll-reveal";
 

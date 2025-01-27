@@ -30,6 +30,15 @@ body {
   @include font-base;
 }
 
+img {
+  transition: 0.3s;
+}
+
+.blur {
+  pointer-events: none;
+  filter: blur(10px);
+}
+
 .render {
   position: fixed;
   top: 0;
