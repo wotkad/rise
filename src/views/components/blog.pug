@@ -2,10 +2,14 @@ section.blog
   .wrapper
     .blog__wrapper
       +article({
-        href: '/blog/post',
-        title: 'Запись в блоге',
+        link: {
+          href: '/blog/post',
+          title: 'Запись в блоге',
+        },
       })
       +article({
-        href: '/blog/post2',
-        title: 'Запись в блоге 2',
+        link: {
+          href: '/blog/post2',
+          title: 'Запись в блоге 2',
+        },
       })
