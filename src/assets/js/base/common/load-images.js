@@ -1,17 +1,24 @@
-export default function loadImages() {
-  let images = $('img');
-  images.addClass('blur');
-  
-  $('img').each(function() {
-    let img = $(this);
+export default function checkImages() {
+  let $images = $('img.blur, .blur img')
 
-    img.on('load', function() {
-      img.removeClass('blur');
+  // Проверяем каждое изображение
+  $images.each(function() {
+
+    let $img = $(this);
+
+    // Когда изображение загружено, убираем класс с блюром
+    $img.on('load', function() {
+      setTimeout(function() {
+        $img.removeClass('blur');
+      }, 300);
     });
 
-    if (img[0].complete) {
-      img.removeClass('blur');
+    // Если изображение уже загружено (например, кешированное), убираем блюр сразу
+    if ($img[0].complete) {
+      setTimeout(function() {
+        $img.removeClass('blur');
+      }, 300);
     }
   });
 }
-loadImages();
+checkImages();
