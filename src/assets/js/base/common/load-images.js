@@ -1,23 +1,28 @@
-export default function loadImages() {
-  let $images = $('img.blur')
+function loadImages() {
+  let $images = $('img.blured')
+  $images.addClass('blur')
 
-  // Проверяем каждое изображение
   $images.each(function() {
-
     let $img = $(this);
 
-    // Когда изображение загружено, убираем класс с блюром
     $img.on('load', function() {
       setTimeout(function() {
+        $img.css('transition', 'filter 0.3s');
         $img.removeClass('blur');
-      }, 300);
+        $img.removeClass('blured');
+      }, 300, function() {
+        $img.removeAttr('style');
+      });
     });
 
-    // Если изображение уже загружено (например, кешированное), убираем блюр сразу
     if ($img[0].complete) {
       setTimeout(function() {
+        $img.css('transition', 'filter 0.3s');
         $img.removeClass('blur');
-      }, 300);
+        $img.removeClass('blured');
+      }, 300, function() {
+        $img.removeAttr('style');
+      });
     }
   });
 }
