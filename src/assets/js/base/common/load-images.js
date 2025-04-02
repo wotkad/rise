@@ -1,5 +1,5 @@
-export default function checkImages() {
-  let $images = $('img.blur, .blur img')
+export default function loadImages() {
+  let $images = $('img.blur')
 
   // Проверяем каждое изображение
   $images.each(function() {
@@ -21,4 +21,4 @@ export default function checkImages() {
     }
   });
 }
-checkImages();
+loadImages();
