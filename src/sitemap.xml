@@ -2,27 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:8080/</loc>
-    <lastmod>2023-06-30</lastmod>
+    <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/</loc>
-    <lastmod>2023-06-30</lastmod>
+    <loc>http://localhost:8080/agency/</loc>
+    <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/404/</loc>
-    <lastmod>2023-06-30</lastmod>
+    <loc>http://localhost:8080/cases/</loc>
+    <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/post</loc>
-    <lastmod>2023-06-30</lastmod>
+    <loc>http://localhost:8080/services/</loc>
+    <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:8080/blog/post2</loc>
-    <lastmod>2023-06-30</lastmod>
+    <loc>http://localhost:8080/brief/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/cases/tttg/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/cases/svoboda-fitness/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/vacancies/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/privacy-policy/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/agreement/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/vacancies/developer/</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://localhost:8080/vacancies/designer/</loc>
+    <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

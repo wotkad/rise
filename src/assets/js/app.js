@@ -13,6 +13,7 @@ import "./base/common/preloader";
 import "./base/common/load-images";
 import "./base/common/smooth-scroll";
 import "./base/common/scroll-reveal";
+import "./base/common/set-nbsp";
 
 import "./base/checks/check-internal-links";
 import "./base/checks/check-target";
