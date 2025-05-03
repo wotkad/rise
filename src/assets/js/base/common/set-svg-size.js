@@ -1,4 +1,4 @@
-function setSvgSize() {
+export default function setSvgSize() {
   $('svg > use').each(function () {
     const $useElement = $(this);
     const href = $useElement.attr('xlink:href') || $useElement.attr('href');
