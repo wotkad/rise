@@ -18,3 +18,4 @@ import "./base/checks/check-internal-links";
 import "./base/checks/check-target";
 import "./base/common/get-current-year";
 import "./base/common/get-header-height";
+import "./base/common/set-svg-size";
