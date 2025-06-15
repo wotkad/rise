@@ -196,7 +196,6 @@ module.exports = (env) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: "../manifest.json" },
-          { from: "../browserconfig.xml" },
           { from: "../.htaccess" },
           { from: "sitemap.xml" },
           { from: "assets/images", to: "assets/images" },
