@@ -102,6 +102,12 @@
     margin-top: 16px;
     margin-left: 18px;
     list-style: decimal;
+    & > span {
+      @include font-sm;
+      @include screen(tablet) {
+        @include font-base;
+      }
+    }
     li {
       margin-top: 12px;
       &::marker {
