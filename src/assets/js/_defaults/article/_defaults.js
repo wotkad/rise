@@ -10,7 +10,7 @@ module.exports = {
     return {
       href: data.link !== undefined ? data.link.href : defaults.link.href,
       target: data.link !== undefined ? data.link.target : defaults.link.target,
-      title: data.link !== undefined ? data.link.title : defaults.link.title,
+      title: data.link !== undefined ? data.link.title : defaults.link.title
     }
   },
 };
