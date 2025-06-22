@@ -4,7 +4,7 @@ module.exports = {
   },
   mergeConfig(data, defaults) {
     return {
-      title: data.title !== undefined ? data.title : defaults.title,
+      title: data.title !== undefined ? data.title : defaults.title
     }
   },
 };
