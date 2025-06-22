@@ -1,6 +1,6 @@
 import ScrollReveal from "scrollreveal";
 
-function scrollInit() {
+export default function scrollReveal() {
   const options = {
     distance: "20%",
     origin: "bottom",
@@ -9,4 +9,4 @@ function scrollInit() {
   };
   ScrollReveal().reveal(".reveal", options);
 }
-scrollInit();
+scrollReveal();
