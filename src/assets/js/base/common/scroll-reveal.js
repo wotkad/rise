@@ -1,12 +1,21 @@
 import ScrollReveal from "scrollreveal";
 
-export default function scrollReveal() {
+let scrollRevealInstance = null;
+
+export default function scrollInit() {
+  if (scrollRevealInstance) {
+    scrollRevealInstance.sync();
+    return;
+  }
+  
   const options = {
-    distance: "20%",
-    origin: "bottom",
     opacity: 0,
     mobile: false,
+    delay: 150,
+    reset: false
   };
-  ScrollReveal().reveal(".reveal", options);
+  
+  scrollRevealInstance = ScrollReveal();
+  scrollRevealInstance.reveal(".reveal", options);
 }
-scrollReveal();
+scrollInit();
