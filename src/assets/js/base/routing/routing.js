@@ -14,6 +14,7 @@ barba.hooks.beforeLeave((data) => {
 });
 
 barba.init({
+  timeout: 1000000,
   preventRunning: true,
   requestError: (trigger, action, url, response) => {
     if (action === "click" && response.status && response.status === 404) {
