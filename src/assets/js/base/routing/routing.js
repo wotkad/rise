@@ -29,22 +29,14 @@ async function initBarba() {
     },
     transitions: [
       {
-        name: "opacity-transition",
-        leave(data) {
-          return gsap.to(data.current.container, .3, {
-            opacity: 0,
-          });
+        name: "fade",
+        leave({ current }) {
+          return gsap.to(current.container, { opacity: 0, duration: 0.3 });
         },
-        afterLeave(data) {
-          $('body,html').animate({scrollTop: 0}, 0);
-          return gsap.to(data.current.container, 0, {
-            display: 'none',
-          });
-        },
-        enter(data) {
+        enter({ next }) {
           let $newPageHead = $('<head />').html(
             $.parseHTML(
-              data.next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0],
+              next.html.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0],
               document,
               true
             )
@@ -61,9 +53,12 @@ async function initBarba() {
           $('head').find(headTags).remove();
           $newPageHead.find(headTags).appendTo('head');
           routingFunctions();
-          return gsap.from(data.next.container, .3, {
-              opacity: 0,
-          });
+          gsap.set(next.container, { opacity: 0 });
+          return gsap.to(next.container, { opacity: 1, duration: 0.3 });
+        },
+        afterLeave({ current }) {
+          $('body,html').animate({scrollTop: 0}, 0);
+          current.container.remove();
         },
       },
     ],
