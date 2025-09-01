@@ -11,10 +11,10 @@
 
     "order/order": [
       "declarations",
-      "rules",
-      "custom-properties",
       "at-rules",
-      "dollar-variables"
+      "dollar-variables",
+      "rules",
+      "custom-properties"
     ],
     "order/properties-order": [
       {
