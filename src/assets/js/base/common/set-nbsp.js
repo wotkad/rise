@@ -19,7 +19,7 @@ export default function setNbsp() {
       }
     } 
     else if (node.nodeType === Node.ELEMENT_NODE && 
-             !['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'PRE'].includes(node.tagName)) {
+            !['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'PRE'].includes(node.tagName)) {
       Array.from(node.childNodes).forEach(processNode);
     }
   }
