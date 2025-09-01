@@ -493,25 +493,6 @@ if (createOnePage) {
     });
   });
 
-  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), 'utf8', (err, data) => {
-    if (err) {
-        return;
-    }
-
-    const startIndex = data.indexOf('black: #000000;') + 'black: #000000;'.length;
-    if (startIndex === -1) {
-        return;
-    }
-
-    const newData = data.substring(0, startIndex);
-
-    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), newData, 'utf8', (err) => {
-        if (err) {
-            return;
-        }
-    });
-  });
-
   fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/global.scss'), 'utf8', (err, data) => {
     if (err) {
       return;
@@ -933,25 +914,6 @@ if (createMultiPage) {
       if (err) {
         return;
       }
-    });
-  });
-
-  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), 'utf8', (err, data) => {
-    if (err) {
-        return;
-    }
-
-    const startIndex = data.indexOf('black: #000000;') + 'black: #000000;'.length;
-    if (startIndex === -1) {
-        return;
-    }
-
-    const newData = data.substring(0, startIndex);
-
-    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/variables.scss'), newData, 'utf8', (err) => {
-        if (err) {
-            return;
-        }
     });
   });
 
