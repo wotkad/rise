@@ -20,25 +20,25 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @include font-sm;
     a {
       display: inline-block;
       margin-left: 4px;
 
       font-weight: 700;
-      i {
-        margin-left: 4px;
-
-        @include font-sm;
-      }
       @include screen(laptop) {
         transition: color $transition-default;
         &:hover {
           color: $blue-500;
         }
       }
-    }
+      i {
+        margin-left: 4px;
 
-    @include font-sm;
+        @include font-sm;
+      }
+    }
   }
   &__right {
     display: flex;
@@ -70,11 +70,11 @@
     span {
       display: inline-block;
       margin-right: 4px;
+
+      @include font-xs;
       &:last-child {
         margin-right: 0;
       }
-
-      @include font-xs;
     }
   }
 }
