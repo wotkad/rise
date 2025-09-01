@@ -4,7 +4,6 @@ const path = require('path');
 const yarnlockPath = path.join(__dirname, '..', 'yarn.lock');
 const readmePath = path.join(__dirname, '..', 'README.md');
 const tailwindConfigPath = path.join(__dirname, '..', 'tailwind.config.js');
-const fontawesomePath = path.join(__dirname, '..', 'src', 'assets', 'fonts', 'fontawesome');
 const checksPath = path.join(__dirname, '..', 'src', 'assets', 'js', 'base', 'checks');
 const defaultsPath = path.join(__dirname, '..', 'src', 'assets', 'js', '_defaults');
 const appJsPath = path.join(__dirname, '..', 'src', 'assets', 'js', 'app.js');
@@ -144,12 +143,6 @@ if (createOnePage) {
   });
 
   fs.remove(yarnlockPath, (err) => {
-    if (err) {
-      return;
-    }
-  });
-
-  fs.remove(fontawesomePath, (err) => {
     if (err) {
       return;
     }
@@ -318,18 +311,6 @@ if (createOnePage) {
     }
 
     fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/typography.scss'), '', 'utf8', (err) => {
-      if (err) {
-        return;
-      }
-    });
-  });
-
-  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), 'utf8', (err, data) => {
-    if (err) {
-      return;
-    }
-
-    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), '', 'utf8', (err) => {
       if (err) {
         return;
       }
@@ -583,12 +564,6 @@ if (createMultiPage) {
     }
   });
 
-  fs.remove(fontawesomePath, (err) => {
-    if (err) {
-      return;
-    }
-  });
-
   fs.remove(defaultsPath, (err) => {
     if (err) {
       return;
@@ -737,18 +712,6 @@ if (createMultiPage) {
     }
 
     fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), '', 'utf8', (err) => {
-      if (err) {
-        return;
-      }
-    });
-  });
-
-  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), 'utf8', (err, data) => {
-    if (err) {
-      return;
-    }
-
-    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/base/fonts.scss'), '', 'utf8', (err) => {
       if (err) {
         return;
       }
