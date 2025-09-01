@@ -84,24 +84,27 @@
     margin-top: 16px;
     margin-left: 16px;
     list-style: disc;
+    @include screen(tablet-2x) {
+      margin-top: 20px;
+    }
     li {
       margin-top: 8px;
-      &::marker {
-        color: $blue-500;
-      }
       @include font-sm;
       @include screen(tablet) {
         @include font-base;
       }
-    }
-    @include screen(tablet-2x) {
-      margin-top: 20px;
+      &::marker {
+        color: $blue-500;
+      }
     }
   }
   ol {
     margin-top: 16px;
     margin-left: 18px;
     list-style: decimal;
+    @include screen(tablet-2x) {
+      margin-top: 20px;
+    }
     & > span {
       @include font-sm;
       @include screen(tablet) {
@@ -110,6 +113,10 @@
     }
     li {
       margin-top: 12px;
+      @include font-sm;
+      @include screen(tablet) {
+        @include font-base;
+      }
       &::marker {
         font-weight: 500;
         color: $blue-500;
@@ -128,13 +135,6 @@
       ul {
         margin-top: 12px;
       }
-      @include font-sm;
-      @include screen(tablet) {
-        @include font-base;
-      }
-    }
-    @include screen(tablet-2x) {
-      margin-top: 20px;
     }
   }
   code,

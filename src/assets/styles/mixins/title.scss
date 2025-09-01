@@ -3,6 +3,13 @@ h1 {
   align-items: center;
 
   font-weight: 700;
+  @include font-2xl;
+  @include screen(tablet) {
+    @include font-3xl;
+  }
+  @include screen(tablet-2x) {
+    @include font-5xl;
+  }
   img {
     margin-right: 12px;
     width: 24px;
@@ -15,12 +22,5 @@ h1 {
       width: 48px;
       min-width: 48px;
     }
-  }
-  @include font-2xl;
-  @include screen(tablet) {
-    @include font-3xl;
-  }
-  @include screen(tablet-2x) {
-    @include font-5xl;
   }
 }
