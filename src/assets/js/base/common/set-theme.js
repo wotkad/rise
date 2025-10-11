@@ -66,7 +66,6 @@ export function initTheme() {
 
   setTheme(themeToSet);
 
-  // Назначаем клик только один раз
   if (!button.data('theme-initialized')) {
     button.on('click', () => {
       const newTheme = body.hasClass('dark') ? 'light' : 'dark';
@@ -75,7 +74,6 @@ export function initTheme() {
     button.data('theme-initialized', true);
   }
 
-  // Отслеживание системной темы, если пользователь вручную не выбирал
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
       setTheme(e.matches ? 'dark' : 'light');
