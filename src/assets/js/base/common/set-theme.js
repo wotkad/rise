@@ -38,10 +38,8 @@ export function setTheme(theme) {
   const button = $('.header__theme');
   const bodyEl = $('body');
 
-  // Добавляем класс, чтобы временно отключить transition у ссылок
   bodyEl.addClass('theme-changing');
 
-  // Переключаем тему
   body.toggleClass('dark', theme === 'dark');
   button.toggleClass('active', theme === 'dark');
   $('meta[name="theme-color"]').attr(
@@ -53,10 +51,9 @@ export function setTheme(theme) {
   applyHljsTheme(theme);
   updateMetaImages(theme);
 
-  // Убираем временный класс после завершения transition
   setTimeout(() => {
     bodyEl.removeClass('theme-changing');
-  }, 300); // 0.3s — столько же, сколько transition в SCSS
+  }, 300);
 }
 
 export function initTheme() {
