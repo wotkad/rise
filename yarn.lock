@@ -988,11 +988,6 @@
     is-promise "^4.0.0"
     path-to-regexp "^6.2.2"
 
-"@barba/prefetch@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@barba/prefetch/-/prefetch-2.2.0.tgz#d6fa92a9a3b28456f08ef76666af59dcc045961b"
-  integrity sha512-ql56K043GNsKhs9jCzr7et3f1MZpOkpbUN9rtVpSXJqH96Zr+l6JuGrXUgB2TvebtrFycaOOaBZys0oZenTCcg==
-
 "@csstools/cascade-layer-name-parser@^1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@csstools/cascade-layer-name-parser/-/cascade-layer-name-parser-1.0.1.tgz#5957adeb71be8159e543d37a9c48e124dcd6c32e"
