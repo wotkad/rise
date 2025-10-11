@@ -287,7 +287,7 @@ if (createOnePage) {
     }
   });
 
-  fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), (err) => {
+  fs.remove(path.join(__dirname, '..', '/src/assets/styles/components/intro.scss'), (err) => {
     if (err) {
       return;
     }
@@ -365,7 +365,7 @@ if (createOnePage) {
     }
   });
 
-  fs.remove(path.join(__dirname, '..', '/src/views/components/hero.pug'), (err) => {
+  fs.remove(path.join(__dirname, '..', '/src/views/components/intro.pug'), (err) => {
     if (err) {
       return;
     }
@@ -418,7 +418,7 @@ if (createOnePage) {
     data = data.replace(regexMixinsComment, ' ');
     data = data.replace(regexMixinsDirectives, ' ');
 
-    const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:hero|blog|not-found))";*/g
+    const regexComponentsDirectives = /\s*@import\s+"\.\/(components\/(?:intro|blog|not-found))";*/g
     data = data.replace(regexComponentsDirectives, ' ');
 
     fs.writeFile(appcssPath, data, 'utf8', (err) => {
@@ -706,12 +706,12 @@ if (createMultiPage) {
     });
   });
 
-  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '..', '/src/assets/styles/components/intro.scss'), 'utf8', (err, data) => {
     if (err) {
       return;
     }
 
-    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/hero.scss'), '', 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname, '..', '/src/assets/styles/components/intro.scss'), '', 'utf8', (err) => {
       if (err) {
         return;
       }
@@ -748,12 +748,12 @@ if (createMultiPage) {
     }
   });
 
-  fs.readFile(path.join(__dirname, '..', '/src/views/components/hero.pug'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '..', '/src/views/components/intro.pug'), 'utf8', (err, data) => {
     if (err) {
       return;
     }
 
-    fs.writeFile(path.join(__dirname, '..', '/src/views/components/hero.pug'), '', 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname, '..', '/src/views/components/intro.pug'), '', 'utf8', (err) => {
       if (err) {
         return;
       }
@@ -781,7 +781,7 @@ if (createMultiPage) {
     }
 
     data = data.replace(/\.page-container[\s\S]*?include \.\/components\/footer[\s\S]*?$/, '');
-    data = data.replace(/\s*$/, '\n        include ./components/hero');
+    data = data.replace(/\s*$/, '\n        include ./components/intro');
 
     fs.writeFile(path.join(__dirname, '..', '/src/views/index.pug'), data, 'utf8', (err) => {
       if (err) {

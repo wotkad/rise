@@ -2,7 +2,6 @@ mixin title(data = {})
   - const { defaults, mergeConfig } = require("/assets/js/_defaults/title/_defaults");
   - const modefied = mergeConfig(data, defaults);
 
-  section
-    .hero
-      .wrapper
-        h1 !{ modefied.title }
+  section.title
+    .wrapper
+      h1 !{ modefied.title }

@@ -2,7 +2,6 @@ mixin article(data = {})
   - const { defaults, mergeConfig } = require("/assets/js/_defaults/article/_defaults");
   - const modefied = mergeConfig(data, defaults);
 
-  article
-    a.blog__article(href=modefied.href target=modefied.target)
-      h3= modefied.title
-      span Перейти
+  a.article(href=modefied.href target=modefied.target)
+    h3= modefied.title
+    span Перейти

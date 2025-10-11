@@ -2,6 +2,11 @@
   width: 100%;
 
   border-top: 1px solid $gray-300;
+
+  transition: border-color $transition-default;
+  body.dark & {
+    border-color: $gray-700;
+  }
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -48,33 +53,28 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      gap: 16px;
+      margin: 0;
       li {
         display: inline-flex;
+        margin: 0;
         a {
+          transition: color $transition-default;
           @include font-xs;
           @include screen(laptop) {
-            transition: color $transition-default;
             &:hover {
               color: $blue-500;
             }
           }
         }
-        &:last-child {
-          margin-left: 16px;
-        }
       }
     }
   }
   &__copy {
-    display: inline-block;
+    display: flex;
+    gap: 4px;
     span {
-      display: inline-block;
-      margin-right: 4px;
-
       @include font-xs;
-      &:last-child {
-        margin-right: 0;
-      }
     }
   }
 }

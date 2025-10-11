@@ -27,7 +27,16 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: $slate-900;
+
+  transition: background-color $transition-default, color $transition-default;
+
   @include font-base;
+  
+  &.dark {
+    background-color: $slate-900;
+
+    color: $white;
+  }
 }
 
 .loading {
@@ -95,10 +104,11 @@ body {
 }
 
 .page-wrapper {
-  padding-top: calc(var(--header-height) + 24px);
+  padding-top: calc(var(--header-height));
+  padding-bottom: 24px;
   width: 100%;
   @include screen(tablet-2x) {
-    padding-top: calc(var(--header-height) + 56px);
+    padding-top: calc(var(--header-height));
   }
 }
 

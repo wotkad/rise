@@ -1,6 +1,14 @@
 header.header
   .wrapper
-    nav.header__menu
-      a.header__link(href="/") Главная
-      a.header__link(href="/blog/") Блог
-      a.header__link(href="/404/") 404
+    .header__wrapper
+      nav.header__menu
+        a.header__link(href="/") Главная
+        a.header__link(href="/blog/") Блог
+        a.header__link(href="/404/") 404
+      button.header__theme(
+          type="button"
+          aria-label="Переключить цветовую тему"
+          aria-pressed="false"
+        )
+          .header__theme-light
+          .header__theme-dark

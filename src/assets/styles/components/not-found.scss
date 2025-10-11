@@ -2,6 +2,15 @@
   a {
     display: inline-block;
     margin-top: 8px;
-    padding-bottom: 0;
+
+    border-bottom: 1px solid transparent;
+
+    color: $blue-500;
+    @include screen(laptop) {
+      transition: border-color $transition-default;
+      &:hover {
+        border-color: $blue-500;
+      }
+    }
   }
 }

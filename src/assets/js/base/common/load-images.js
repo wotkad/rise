@@ -1,29 +1,43 @@
-function loadImages() {
-  let $images = $('img.blured')
-  $images.addClass('blur')
+import { imageCache } from '../../cache/image-cache';
+
+function completeImageLoading($img, $parent, immediate = false) {
+  if (immediate) {
+    $parent.removeClass('loading');
+  } else {
+    setTimeout(() => {
+      $parent.removeClass('loading');
+    }, 300);
+  }
+}
+
+export default function loadImages() {
+  const $images = $('.loading img');
 
   $images.each(function() {
-    let $img = $(this);
+    const $img = $(this);
+    const src = $img.attr('src');
+    if (!src) return;
 
-    $img.on('load', function() {
-      setTimeout(function() {
-        $img.css('transition', 'filter 0.3s');
-        $img.removeClass('blur');
-        $img.removeClass('blured');
-      }, 300, function() {
-        $img.removeAttr('style');
-      });
-    });
+    const $parent = $img.parent();
+
+    if (imageCache.has(src) && $img[0].complete) {
+      completeImageLoading($img, $parent, true);
+      return;
+    }
+
+    const handleLoad = () => {
+      completeImageLoading($img, $parent);
+      imageCache.add(src);
+      $img.off('load', handleLoad);
+    };
 
     if ($img[0].complete) {
-      setTimeout(function() {
-        $img.css('transition', 'filter 0.3s');
-        $img.removeClass('blur');
-        $img.removeClass('blured');
-      }, 300, function() {
-        $img.removeAttr('style');
-      });
+      handleLoad();
+    } else {
+      $img.on('load', handleLoad);
     }
   });
 }
+
+// Вызов отдельно — только если нужно
 loadImages();
