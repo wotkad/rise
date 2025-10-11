@@ -36,9 +36,6 @@ function applyHljsTheme(theme) {
 export function setTheme(theme) {
   const body = $('html, body');
   const button = $('.header__theme');
-  const bodyEl = $('body');
-
-  bodyEl.addClass('theme-changing');
 
   body.toggleClass('dark', theme === 'dark');
   button.toggleClass('active', theme === 'dark');
@@ -50,10 +47,6 @@ export function setTheme(theme) {
   localStorage.setItem('theme', theme);
   applyHljsTheme(theme);
   updateMetaImages(theme);
-
-  setTimeout(() => {
-    bodyEl.removeClass('theme-changing');
-  }, 300);
 }
 
 export function initTheme() {

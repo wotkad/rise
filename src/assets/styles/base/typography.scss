@@ -259,11 +259,13 @@ code {
 }
 p > code,
 li > code {
-  background-color: $blue-500;
+  background-color: $blue-100;
 
-  color: $white;
+  color: $slate-900;
   body.dark & {
     background-color: $slate-800;
+
+    color: $white;
   }
 }
 

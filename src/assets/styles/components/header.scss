@@ -18,11 +18,16 @@
   &__link {
     margin-right: 16px;
 
+    color: $slate-900;
+
     transition: color $transition-default;
     @include screen(laptop) {
       &:hover {
         color: $blue-500;
       }
+    }
+    body.dark & {
+      color: $white;
     }
     &.active {
       color: $blue-500;
