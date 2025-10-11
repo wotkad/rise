@@ -39,6 +39,10 @@ body {
   }
 }
 
+body.theme-changing a {
+  transition: none !important;
+}
+
 .loading {
   position: relative;
 

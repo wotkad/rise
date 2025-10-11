@@ -26,7 +26,9 @@ function applyHljsTheme(theme) {
     href: `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${hlTheme}.min.css`,
     'data-hljs-theme': true
   }).appendTo('head').on('load', () => {
-    $('pre code').each(function () { delete this.dataset.highlighted; });
+    $('pre code').each(function () {
+      delete this.dataset.highlighted;
+    });
     hljs.highlightAll();
   });
 }
@@ -34,14 +36,27 @@ function applyHljsTheme(theme) {
 export function setTheme(theme) {
   const body = $('html, body');
   const button = $('.header__theme');
+  const bodyEl = $('body');
 
+  // Добавляем класс, чтобы временно отключить transition у ссылок
+  bodyEl.addClass('theme-changing');
+
+  // Переключаем тему
   body.toggleClass('dark', theme === 'dark');
   button.toggleClass('active', theme === 'dark');
-  $('meta[name="theme-color"]').attr('content', theme === 'dark' ? '#111928' : '#ffffff');
+  $('meta[name="theme-color"]').attr(
+    'content',
+    theme === 'dark' ? '#111928' : '#ffffff'
+  );
 
   localStorage.setItem('theme', theme);
   applyHljsTheme(theme);
   updateMetaImages(theme);
+
+  // Убираем временный класс после завершения transition
+  setTimeout(() => {
+    bodyEl.removeClass('theme-changing');
+  }, 300); // 0.3s — столько же, сколько transition в SCSS
 }
 
 export function initTheme() {
@@ -70,4 +85,5 @@ export function initTheme() {
     }
   });
 }
+
 initTheme();
