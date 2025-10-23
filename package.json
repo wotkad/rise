@@ -11,7 +11,7 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",
+    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404 && node ./node_scripts/reports/sizes.js",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
     "compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",
     "dev": "yarn compile-md && yarn develop",
@@ -24,7 +24,8 @@
     "lint:tailwind": "node ./node_scripts/semicolon-tailwind",
     "archive-paths": "node ./node_scripts/archive-paths",
     "one-page": "yarn && node ./node_scripts/init-project -one-page",
-    "multi-page": "yarn && node ./node_scripts/init-project -multi-page"
+    "multi-page": "yarn && node ./node_scripts/init-project -multi-page",
+    "analyze:sizes": "node ./node_scripts/reports/sizes.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
