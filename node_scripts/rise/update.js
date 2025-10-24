@@ -28,7 +28,7 @@ function copyFiles(src, dest) {
 
 function updateTemplate() {
   try {
-    execSync(`git clone ${repoUrl} ${tempDir}`, { stdio: 'inherit' });
+    execSync(`git clone ${repoUrl} ${tempDir}`);
 
     copyFiles(tempDir, projectDir);
 
