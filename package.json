@@ -10,6 +10,9 @@
   "main": "src/bundle.js",
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
+  "bin": {
+    "rise": "./node_scripts/rise/update.js"
+  },
   "scripts": {
     "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404 && yarn analyze:sizes && yarn analyze:lighthouse",
     "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
