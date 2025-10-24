@@ -25,8 +25,8 @@
     "archive-paths": "node ./node_scripts/archive-paths",
     "one-page": "yarn && node ./node_scripts/init-project -one-page",
     "multi-page": "yarn && node ./node_scripts/init-project -multi-page",
-    "analyze:sizes": "node ./node_scripts/reports/sizes.js",
-    "analyze:lighthouse": "node ./node_scripts/reports/lighthouse.js"
+    "report:sizes": "node ./node_scripts/reports/sizes.js",
+    "report:lighthouse": "node ./node_scripts/reports/lighthouse.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
