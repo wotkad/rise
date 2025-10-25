@@ -3,14 +3,14 @@ module.exports = {
     link: {
       href: '#',
       target: '',
-      title: '',
+      title: 'Перейти',
     },
   },
   mergeConfig(data, defaults) {
     return {
-      href: data.href !== undefined ? data.href : defaults.href,
-      target: data.target !== undefined ? data.target : defaults.target,
-      title: data.title !== undefined ? data.title : defaults.title,
+      href: data.link !== undefined ? data.link.href : defaults.link.href,
+      target: data.link !== undefined ? data.link.target : defaults.link.target,
+      title: data.link !== undefined ? data.link.title : defaults.link.title,
     }
   },
 };

@@ -226,6 +226,7 @@ code {
   padding: 2px 6px;
 
   border-radius: 4px;
+  background-color: $blue-100 !important;
 
   transition: $transition-default;
   @include font-xs;
@@ -235,6 +236,10 @@ code {
   }
   span {
     transition: $transition-default;
+  }
+
+  body.dark & {
+    background-color: $slate-800 !important;
   }
 }
 
@@ -278,17 +283,6 @@ pre {
   overflow-x: auto;
 
   border-radius: 8px;
-
-  color: $white;
-  code {
-    border-radius: 6px;
-    background-color: $blue-100 !important;
-
-    color: inherit;
-    body.dark & {
-      background-color: $slate-800 !important;
-    }
-  }
 }
 
 strong {

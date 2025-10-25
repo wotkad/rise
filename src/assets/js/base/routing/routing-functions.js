@@ -16,6 +16,6 @@ export default function routingFunctions() {
   setSvgSize();
   scrollReveal();
   loadImages();
-  // textareaAutoheight();
-  // translator();
+  textareaAutoheight();
+  translator();
 }
