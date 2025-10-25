@@ -56,13 +56,24 @@ export default function loadImages() {
       if (!entry.isIntersecting) return;
 
       const $img = $(entry.target);
-      const src = $img.attr('src');
       const $parent = $img.parent();
 
-      obs.unobserve(entry.target);
+      // Проверяем родителя <figure>
+      if (!$parent.is('figure')) return;
+
+      const src = $img.attr('src');
       if (!src) return;
 
+      obs.unobserve(entry.target);
+
       if (!$parent.hasClass('loading')) $parent.addClass('loading');
+
+      // Сразу проверяем кэш, чтобы не запускать лишние вычисления
+      if (imageCache.has(src) && $img[0].complete) {
+        completeImageLoading($img, $parent, true);
+        $parent.css('filter', 'none');
+        return;
+      }
 
       extractDominantColor(src, color => {
         $parent.css({
@@ -70,12 +81,6 @@ export default function loadImages() {
           filter: 'blur(10px)',
           transition: 'filter 0.3s ease'
         });
-
-        if (imageCache.has(src) && $img[0].complete) {
-          completeImageLoading($img, $parent, true);
-          $parent.css('filter', 'none');
-          return;
-        }
 
         const handleLoad = () => {
           completeImageLoading($img, $parent);
