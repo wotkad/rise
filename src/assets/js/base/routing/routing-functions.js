@@ -6,6 +6,7 @@ import setSvgSize from "../common/set-svg-size";
 import loadImages from '../common/load-images';
 import { setTheme } from "../common/set-theme";
 import checkOffline from "../checks/check-offline";
+import textareaAutoheight from "../common/textarea-autoheight";
 
 export default function routingFunctions() {
   setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -16,4 +17,5 @@ export default function routingFunctions() {
   scrollReveal();
   loadImages();
   checkOffline();
+  textareaAutoheight();
 }

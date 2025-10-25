@@ -1,9 +1,8 @@
 export default function checkOffline() {
   const $banner = $('<div class="offline-banner">Вы офлайн</div>').hide().appendTo('body');
   const CACHE_KEY = 'offlineCacheData';
-  const $dataContainer = $('main'); // контейнер с контентом, который нужно кешировать
+  const $dataContainer = $('main');
 
-  // --- Стили баннера ---
   const style = `
     <style>
       .offline-banner {
@@ -23,7 +22,6 @@ export default function checkOffline() {
   `;
   $('head').append(style);
 
-  // --- Функции ---
   function updateOnlineStatus() {
     if (navigator.onLine) {
       hideOfflineBanner();
@@ -58,10 +56,8 @@ export default function checkOffline() {
     }
   }
 
-  // --- Инициализация ---
   updateOnlineStatus();
 
-  // Отслеживание событий сети
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
 }

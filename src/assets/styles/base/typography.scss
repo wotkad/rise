@@ -96,14 +96,26 @@ hr {
 }
 
 figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
   margin-top: 24px;
+
+  border-radius: 8px;
 
   text-align: center;
 
   transition: $transition-default;
+  aspect-ratio: 16 / 9;
+  img {
+    aspect-ratio: 16 / 9;
 
+    width: 100%;
+    object-fit: cover;
+  }
   figcaption {
-    margin-top: 8px;
+    margin-top: auto;
 
     color: $gray-500;
     @include font-sm;

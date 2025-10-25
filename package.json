@@ -26,7 +26,8 @@
     "one-page": "yarn && node ./node_scripts/init-project -one-page",
     "multi-page": "yarn && node ./node_scripts/init-project -multi-page",
     "report:sizes": "node ./node_scripts/reports/sizes.js",
-    "report:lighthouse": "node ./node_scripts/reports/lighthouse.js"
+    "report:lighthouse": "node ./node_scripts/reports/lighthouse.js",
+    "build:meta": "node ./node_scripts/inject-build-meta.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
