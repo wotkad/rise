@@ -35,7 +35,8 @@
     "rise:one-page": "node ./node_scripts/rise/init -one-page",
     "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
     "reports:sizes": "node ./node_scripts/reports/sizes",
-    "reports:lighthouse": "node ./node_scripts/reports/lighthouse"
+    "reports:lighthouse": "node ./node_scripts/reports/lighthouse",
+    "reports:a11y": "node ./node_scripts/reports/a11y"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -61,6 +62,7 @@
     "enhanced-resolve": "^5.12.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^11.1.0",
+    "glob": "^11.0.3",
     "highlight.js": "^11.7.0",
     "html-webpack-plugin": "5.0.0",
     "html2pug": "^4.0.0",
@@ -76,6 +78,7 @@
     "markdown-it": "^13.0.1",
     "markdown-it-meta": "^0.0.1",
     "mini-css-extract-plugin": "^2.7.2",
+    "pa11y": "^9.0.1",
     "postcss": "^8.4.12",
     "postcss-cli": "^10.1.0",
     "postcss-import": "15.1.0",
@@ -86,6 +89,7 @@
     "prettier-plugin-tailwindcss": "^0.2.4",
     "pug": "3.0.2",
     "pug-loader": "^2.4.0",
+    "puppeteer": "^24.26.1",
     "rimraf": "^4.1.3",
     "robotstxt-webpack-plugin": "^8.0.0",
     "sass": "^1.93.2",

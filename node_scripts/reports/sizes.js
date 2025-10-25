@@ -252,8 +252,6 @@ function appendLog(buildData, srcData, deleted) {
 // ---------- MAIN ----------
 
 function main() {
-  const divider = "------------------------------------------------------------------------";
-  console.log(divider);
   console.log("📊 Анализ размера сборки...");
 
   const cache = loadCache();
@@ -278,9 +276,7 @@ function main() {
   saveCache(newCache);
   appendLog(buildData, srcData, deleted);
 
-  console.log(`📁 Отчёт сохранён в: ${REPORT_FILE}`);
-  console.log(`🗒️  Лог сохранён в: ${LOG_FILE}`);
-  console.log(divider);
+  console.log(`📁 Готово: отчёт сохранён в /reports/sizes/sizes`);
 }
 
 main();
