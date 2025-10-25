@@ -16,9 +16,12 @@
     "build:archive-paths": "node ./node_scripts/build/archive-paths",
     "build:sitemap-update": "node ./node_scripts/build/sitemap-update",
     "build:not-found-page-update": "node ./node_scripts/build/not-found-page-update",
+
     "minor:compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/minor/markdown-compiler.mjs && yarn lint:pug-files",
     "minor:linkinator": "node ./node_scripts/minor/linkinator.mjs",
+
     "dev": "yarn minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
+
     "lint:scss": "prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn lint:scss-files && yarn lint:stylelint",
     "lint:pug": "yarn lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn lint:pug-files && yarn lint:pug-mixins && yarn lint:js-defaults",
     "lint:all": "yarn lint:svg && yarn lint:scss && yarn lint:pug",
@@ -29,8 +32,10 @@
     "lint:pug-files": "node ./node_scripts/lint/pug-files",
     "lint:pug-mixins": "node ./node_scripts/lint/pug-mixins",
     "lint:js-defaults": "node ./node_scripts/lint/js-defaults",
+
     "rise:one-page": "node ./node_scripts/rise/init -one-page",
     "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
+    
     "report:sizes": "node ./node_scripts/reports/sizes",
     "report:lighthouse": "node ./node_scripts/reports/lighthouse"
   },
