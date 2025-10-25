@@ -7,6 +7,7 @@ import loadImages from '../common/load-images';
 import { setTheme } from "../common/set-theme";
 import checkOffline from "../checks/check-offline";
 import textareaAutoheight from "../common/textarea-autoheight";
+import translator from "../common/translator";
 
 export default function routingFunctions() {
   setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -18,4 +19,5 @@ export default function routingFunctions() {
   loadImages();
   checkOffline();
   textareaAutoheight();
+  translator();
 }
