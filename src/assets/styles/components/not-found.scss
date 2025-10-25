@@ -1,8 +1,16 @@
 .not-found {
-  padding: 0;
-  max-width: 100%;
   a {
     display: inline-block;
     margin-top: 8px;
+
+    border-bottom: 1px solid transparent;
+
+    color: $blue-500;
+    @include screen(laptop) {
+      transition: border-color $transition-default;
+      &:hover {
+        border-color: $blue-500;
+      }
+    }
   }
 }

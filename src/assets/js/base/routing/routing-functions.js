@@ -5,6 +5,7 @@ import setNbsp from "../common/set-nbsp";
 import setSvgSize from "../common/set-svg-size";
 import loadImages from '../common/load-images';
 import { setTheme } from "../common/set-theme";
+import checkOffline from "../checks/check-offline";
 
 export default function routingFunctions() {
   setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -14,4 +15,5 @@ export default function routingFunctions() {
   setSvgSize();
   scrollReveal();
   loadImages();
+  checkOffline();
 }
