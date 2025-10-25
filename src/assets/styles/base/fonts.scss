@@ -1,14 +1,14 @@
 /*
   Font Awesome 6
 */
-@import "../../fonts/fontawesome/styles/brands";
-// @import "../../fonts/fontawesome/styles/duotone";
-@import "../../fonts/fontawesome/styles/fontawesome";
-// @import "../../fonts/fontawesome/styles/light";
-@import "../../fonts/fontawesome/styles/regular";
-// @import "../../fonts/fontawesome/styles/solid";
-// @import "../../fonts/fontawesome/styles/thin";
-// @import "../../fonts/fontawesome/styles/v4-shims";
+@use "../../fonts/fontawesome/styles/brands";
+// @use "../../fonts/fontawesome/styles/duotone";
+@use "../../fonts/fontawesome/styles/fontawesome";
+// @use "../../fonts/fontawesome/styles/light";
+@use "../../fonts/fontawesome/styles/regular";
+// @use "../../fonts/fontawesome/styles/solid";
+// @use "../../fonts/fontawesome/styles/thin";
+// @use "../../fonts/fontawesome/styles/v4-shims";
 
 @font-face {
   font-weight: normal;

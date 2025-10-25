@@ -1,37 +1,38 @@
-// @import "./utils/reset"; // Если "@tailwind base" подключён ниже, то этот импорт не нужен.
+@use "./utils/reset"; // Если вы используете Tailwind, то этот импорт не нужен.
+// @use "~highlight.js/scss/atom-one-dark.scss";
 
 /*
   Tailwind
 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 
 /*
   Базовые стили и утилиты
 */
-@import "./base/variables";
-@import "./utils/mixins";
-@import "./utils/keyframes";
-@import "./base/global";
+@use "./base/variables";
+@use "./utils/mixins";
+@use "./utils/keyframes";
+@use "./base/global";
 
 /*
   Шрифты и типография
 */
-@import "./base/fonts";
-@import "./base/typography";
+@use "./base/fonts";
+@use "./base/typography";
 
 /*
   Миксины
 */
-@import "./mixins/title";
-@import "./mixins/article";
+@use "./mixins/title";
+@use "./mixins/article";
 
 /*
   Компоненты
 */
-@import "./components/header";
-@import "./components/footer";
-@import "./components/intro";
-@import "./components/blog";
-@import "./components/not-found";
+@use "./components/header";
+@use "./components/footer";
+@use "./components/intro";
+@use "./components/blog";
+@use "./components/not-found";

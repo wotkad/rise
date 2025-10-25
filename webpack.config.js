@@ -91,7 +91,14 @@ module.exports = (env) => {
               options: { importLoaders: 1, sourceMap: true },
             },
             "postcss-loader",
-            "sass-loader",
+            {
+              loader: "sass-loader",
+              options: {
+                api: "modern",
+                implementation: require('sass'),
+                sourceMap: true,
+              }
+            },
           ],
         },
         {

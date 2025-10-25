@@ -10,18 +10,18 @@
   "main": "src/bundle.js",
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
+  "bin": {
+    "rise": "./node_scripts/rise/cli.js"
+  },
   "scripts": {
-    "build": "yarn minor:compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn build:sitemap-update && yarn build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
+    "build": "yarn minor:compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn build:sitemap-update && yarn build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn reports:sizes && yarn reports:lighthouse",
     "build:inject-build-metatag": "node ./node_scripts/build/inject-build-metatag",
     "build:archive-paths": "node ./node_scripts/build/archive-paths",
     "build:sitemap-update": "node ./node_scripts/build/sitemap-update",
     "build:not-found-page-update": "node ./node_scripts/build/not-found-page-update",
-
     "minor:compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/minor/markdown-compiler.mjs && yarn lint:pug-files",
     "minor:linkinator": "node ./node_scripts/minor/linkinator.mjs",
-
     "dev": "yarn minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
-
     "lint:scss": "prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn lint:scss-files && yarn lint:stylelint",
     "lint:pug": "yarn lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn lint:pug-files && yarn lint:pug-mixins && yarn lint:js-defaults",
     "lint:all": "yarn lint:svg && yarn lint:scss && yarn lint:pug",
@@ -32,12 +32,10 @@
     "lint:pug-files": "node ./node_scripts/lint/pug-files",
     "lint:pug-mixins": "node ./node_scripts/lint/pug-mixins",
     "lint:js-defaults": "node ./node_scripts/lint/js-defaults",
-
     "rise:one-page": "node ./node_scripts/rise/init -one-page",
     "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
-
-    "report:sizes": "node ./node_scripts/reports/sizes",
-    "report:lighthouse": "node ./node_scripts/reports/lighthouse"
+    "reports:sizes": "node ./node_scripts/reports/sizes",
+    "reports:lighthouse": "node ./node_scripts/reports/lighthouse"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -73,11 +71,11 @@
     "imagemin-pngquant": "^9.0.2",
     "imagemin-svgo": "^10.0.1",
     "imagemin-webpack-plugin": "^2.4.2",
+    "lighthouse": "^13.0.1",
     "linkinator": "^5.0.1",
     "markdown-it": "^13.0.1",
     "markdown-it-meta": "^0.0.1",
     "mini-css-extract-plugin": "^2.7.2",
-    "node-sass": "^8.0.0",
     "postcss": "^8.4.12",
     "postcss-cli": "^10.1.0",
     "postcss-import": "15.1.0",
@@ -90,6 +88,7 @@
     "pug-loader": "^2.4.0",
     "rimraf": "^4.1.3",
     "robotstxt-webpack-plugin": "^8.0.0",
+    "sass": "^1.93.2",
     "sass-loader": "^13.2.0",
     "sitemap-generator": "^8.5.1",
     "style-loader": "^3.3.1",
