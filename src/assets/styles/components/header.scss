@@ -15,9 +15,12 @@
     border-color: $gray-700;
     background-color: $slate-900;
   }
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
   &__link {
-    margin-right: 16px;
-
     color: $slate-900;
 
     transition: color $transition-default;
