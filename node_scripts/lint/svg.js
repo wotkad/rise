@@ -61,5 +61,5 @@ function processDirectory(directoryPath) {
     });
 }
 
-const targetDirectory = path.join(__dirname, '../src/views');
+const targetDirectory = path.join(__dirname, '../../', 'src/views');
 processDirectory(targetDirectory);

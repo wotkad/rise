@@ -21,37 +21,56 @@
       width: 24px;
     }
   }
+  &__project {
+    display: inline-block;
+    margin-left: 4px;
+
+    font-weight: 700;
+    color: $slate-900;
+
+    transition: color $transition-default;
+    @include screen(laptop) {
+      &:hover {
+        color: $blue-500;
+      }
+    }
+    body.dark & {
+      color: $white;
+      @include screen(laptop) {
+        &:hover {
+          color: $blue-500;
+        }
+      }
+    }
+    i {
+      margin-left: 4px;
+
+      @include font-sm;
+    }
+  }
   &__powered {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
     @include font-sm;
-    a {
-      display: inline-block;
-      margin-left: 4px;
+  }
+  &__external {
+    color: $slate-900;
 
-      font-weight: 700;
-      color: $slate-900;
-
-      transition: color $transition-default;
+    transition: color $transition-default;
+    @include font-xs;
+    @include screen(laptop) {
+      &:hover {
+        color: $blue-500;
+      }
+    }
+    body.dark & {
+      color: $white;
       @include screen(laptop) {
         &:hover {
           color: $blue-500;
         }
-      }
-      body.dark & {
-        color: $white;
-        @include screen(laptop) {
-          &:hover {
-            color: $blue-500;
-          }
-        }
-      }
-      i {
-        margin-left: 4px;
-
-        @include font-sm;
       }
     }
   }
@@ -68,25 +87,6 @@
       li {
         display: inline-flex;
         margin: 0;
-        a {
-          color: $slate-900;
-
-          transition: color $transition-default;
-          @include font-xs;
-          @include screen(laptop) {
-            &:hover {
-              color: $blue-500;
-            }
-          }
-          body.dark & {
-            color: $white;
-            @include screen(laptop) {
-              &:hover {
-                color: $blue-500;
-              }
-            }
-          }
-        }
       }
     }
   }

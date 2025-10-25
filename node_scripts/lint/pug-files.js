@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const excludePath = 'src/views/pages/blog';
+const excludePath = '../src/views/pages/blog';
 
 function removeWhiteSpaces(dir, files_) {
   files_ = files_ || [];
@@ -57,4 +57,4 @@ function removeWhiteSpaces(dir, files_) {
   }
   return files_;
 }
-removeWhiteSpaces('./src/views')
+removeWhiteSpaces(path.join(__dirname, '../../src/views'));

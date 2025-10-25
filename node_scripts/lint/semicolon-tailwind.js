@@ -54,5 +54,5 @@ function addSemicolonsToScss(dir) {
 }
 
 // Replace './scss-directory' with the path to your SCSS files directory
-const directoryToProcess = './src/assets/styles';
+const directoryToProcess = path.join(__dirname, '../../src/assets/styles');
 addSemicolonsToScss(directoryToProcess);

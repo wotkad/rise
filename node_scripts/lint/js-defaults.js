@@ -3,7 +3,7 @@ const path = require('path');
 const JSON5 = require('json5');
 
 // Путь к папке
-const targetDirectory = './src/assets/js/_defaults';
+const targetDirectory = '../src/assets/js/_defaults';
 
 /**
  * Рекурсивно обходит папки и возвращает список всех JS файлов

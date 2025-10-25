@@ -11,33 +11,26 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && yarn build:sitemap-update && build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
+    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn build:sitemap-update && yarn build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
     "build:inject-build-metatag": "node ./node_scripts/build/inject-build-metatag",
     "build:archive-paths": "node ./node_scripts/build/archive-paths",
     "build:sitemap-update": "node ./node_scripts/build/sitemap-update",
     "build:not-found-page-update": "node ./node_scripts/build/not-found-page-update",
-
-    "minor:compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/minor/markdown-compiler.mjs && node ./node_scripts/lint/pug",
+    "minor:compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/minor/markdown-compiler.mjs && yarn lint:pug-files",
     "minor:linkinator": "node ./node_scripts/minor/linkinator.mjs",
-
-    "dev": "yarn minor:compile-md && webpack serve --env mode=development --config ./webpack.config.js --progress",
-
-    "lint:editorconfig": "yarn editorconfig-checker -disable-trim-trailing-whitespace -disable-insert-final-newline",
-    "lint:scss": "prettier --write --loglevel silent './src/assets/styles/**/*.scss' && yarn lint:scss-files && yarn lint:stylelint",
-    "lint:pug": "yarn lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn lint:pug-files && yarn lint:pug-mixins && yarn lint:js-defaults",
-    "lint:all": "yarn lint:editorconfig && yarn lint:svg && yarn lint:scss && yarn lint:pug",
+    "dev": "yarn minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
+    "lint:scss": "prettier --write  --log-level silent './src/assets/styles/**/*.scss' && yarn lint:scss-files && yarn lint:stylelint",
+    "lint:pug": "yarn lint:pug-files && prettier --write './src/views/**/*.pug' && yarn lint:pug-files && yarn lint:pug-mixins && yarn lint:js-defaults",
+    "lint:all": "yarn lint:svg && yarn lint:scss && yarn lint:pug",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
-
     "lint:semicolon-tailwind": "node ./node_scripts/semicolon-tailwind",
     "lint:svg": "node ./node_scripts/lint/svg",
     "lint:scss-files": "node ./node_scripts/lint/scss-files",
     "lint:pug-files": "node ./node_scripts/lint/pug-files",
     "lint:pug-mixins": "node ./node_scripts/lint/pug-mixins",
     "lint:js-defaults": "node ./node_scripts/lint/js-defaults",
-    
     "rise:one-page": "node ./node_scripts/rise/init -one-page",
     "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
-
     "report:sizes": "node ./node_scripts/reports/sizes",
     "report:lighthouse": "node ./node_scripts/reports/lighthouse"
   },
@@ -62,7 +55,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
-    "editorconfig-checker": "^5.1.1",
     "enhanced-resolve": "^5.12.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^11.1.0",

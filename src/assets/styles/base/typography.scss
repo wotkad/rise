@@ -1,3 +1,9 @@
+img {
+  width: 100%;
+
+  border-radius: 8px;
+}
+
 h1 {
   display: flex;
   align-items: center;
@@ -71,12 +77,6 @@ h4 {
   &:first-child {
     margin-top: 0;
   }
-}
-
-img {
-  width: 100%;
-
-  border-radius: 8px;
 }
 
 p {
@@ -184,7 +184,7 @@ blockquote {
 
   transition: background-color $transition-default;
   body.dark & {
-    background-color: $slate-800
+    background-color: $slate-800;
   }
 
   p {
@@ -216,6 +216,22 @@ ul {
     &::marker {
       color: $blue-500;
     }
+  }
+}
+
+code {
+  padding: 2px 6px;
+
+  border-radius: 4px;
+
+  transition: $transition-default;
+  @include font-xs;
+  @include screen(tablet-2x) {
+    padding: 4px 8px;
+    @include font-sm;
+  }
+  span {
+    transition: $transition-default;
   }
 }
 
@@ -251,33 +267,6 @@ ol {
     ul {
       margin-top: 12px;
     }
-  }
-}
-
-code {
-  padding: 2px 6px;
-
-  border-radius: 4px;
-
-  transition: $transition-default;
-  @include font-xs;
-  @include screen(tablet-2x) {
-    padding: 4px 8px;
-    @include font-sm;
-  }
-  span {
-    transition: $transition-default;
-  }
-}
-p > code,
-li > code {
-  background-color: $blue-100;
-
-  color: $slate-900;
-  body.dark & {
-    background-color: $slate-800;
-
-    color: $white;
   }
 }
 

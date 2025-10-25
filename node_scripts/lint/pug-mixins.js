@@ -3,7 +3,7 @@ const path = require('path');
 const JSON5 = require('json5');
 
 // Папка с файлами .pug
-const VIEWS_DIR = path.resolve('./src/views');
+const VIEWS_DIR = path.join(__dirname, '../../src/views');
 
 // Функция для рекурсивного поиска файлов .pug
 function findPugFiles(dir) {
