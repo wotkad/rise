@@ -11,23 +11,35 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404 && yarn analyze:sizes && yarn analyze:lighthouse",
-    "develop": "webpack serve --env mode=development --config ./webpack.config.js --progress",
-    "compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",
-    "dev": "yarn compile-md && yarn develop",
+    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && yarn build:sitemap-update && build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
+    "build:inject-build-metatag": "node ./node_scripts/build/inject-build-metatag",
+    "build:archive-paths": "node ./node_scripts/build/archive-paths",
+    "build:sitemap-update": "node ./node_scripts/build/sitemap-update",
+    "build:not-found-page-update": "node ./node_scripts/build/not-found-page-update",
+
+    "minor:compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/minor/markdown-compiler.mjs && node ./node_scripts/lint/pug",
+    "minor:linkinator": "node ./node_scripts/minor/linkinator.mjs",
+
+    "dev": "yarn minor:compile-md && webpack serve --env mode=development --config ./webpack.config.js --progress",
+
     "lint:editorconfig": "yarn editorconfig-checker -disable-trim-trailing-whitespace -disable-insert-final-newline",
-    "lint:scss": "prettier --write --loglevel silent './src/assets/styles/**/*.scss' && node node_scripts/scss-clear && yarn lint:stylelint",
-    "lint:pug": "node ./node_scripts/pug-clear && prettier --write --loglevel silent './src/views/**/*.pug' && node ./node_scripts/pug-clear && node ./node_scripts/pug-clear-mixins && node ./node_scripts/js-clear-defaults",
-    "lint:all": "yarn lint:editorconfig && node ./node_scripts/svg-clear && yarn lint:scss && yarn lint:pug",
-    "linkinator": "node ./node_scripts/linkinator.mjs",
+    "lint:scss": "prettier --write --loglevel silent './src/assets/styles/**/*.scss' && yarn lint:scss-files && yarn lint:stylelint",
+    "lint:pug": "yarn lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn lint:pug-files && yarn lint:pug-mixins && yarn lint:js-defaults",
+    "lint:all": "yarn lint:editorconfig && yarn lint:svg && yarn lint:scss && yarn lint:pug",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
-    "lint:tailwind": "node ./node_scripts/semicolon-tailwind",
-    "archive-paths": "node ./node_scripts/archive-paths",
-    "one-page": "yarn && node ./node_scripts/init-project -one-page",
-    "multi-page": "yarn && node ./node_scripts/init-project -multi-page",
-    "report:sizes": "node ./node_scripts/reports/sizes.js",
-    "report:lighthouse": "node ./node_scripts/reports/lighthouse.js",
-    "build:meta": "node ./node_scripts/inject-build-metatag.js"
+
+    "lint:semicolon-tailwind": "node ./node_scripts/semicolon-tailwind",
+    "lint:svg": "node ./node_scripts/lint/svg",
+    "lint:scss-files": "node ./node_scripts/lint/scss-files",
+    "lint:pug-files": "node ./node_scripts/lint/pug-files",
+    "lint:pug-mixins": "node ./node_scripts/lint/pug-mixins",
+    "lint:js-defaults": "node ./node_scripts/lint/js-defaults",
+    
+    "rise:one-page": "node ./node_scripts/rise/init -one-page",
+    "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
+
+    "report:sizes": "node ./node_scripts/reports/sizes",
+    "report:lighthouse": "node ./node_scripts/reports/lighthouse"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
