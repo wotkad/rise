@@ -8,7 +8,6 @@
     "no-empty-source": null,
     "scss/operator-no-unspaced": null,
     "scss/at-import-no-partial-leading-underscore": null,
-
     "order/order": [
       "declarations",
       "at-rules",
@@ -24,7 +23,6 @@
           "content"
         ]
       },
-
       {
         "groupName": "positioning",
         "emptyLineBefore": "always",
@@ -45,7 +43,6 @@
           "z-index"
         ]
       },
-
       {
         "groupName": "box model",
         "emptyLineBefore": "always",
@@ -129,7 +126,6 @@
           "overflow-y"
         ]
       },
-
       {
         "groupName": "visual",
         "emptyLineBefore": "always",
@@ -218,7 +214,6 @@
           "fill-rule"
         ]
       },
-
       {
         "groupName": "typography",
         "emptyLineBefore": "always",
@@ -259,7 +254,6 @@
           "color"
         ]
       },
-
       {
         "groupName": "animation",
         "emptyLineBefore": "always",
@@ -282,5 +276,9 @@
       }
     ]
   },
-  "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss", "stylelint-scss"]
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-tailwindcss",
+    "stylelint-scss"
+  ]
 }
