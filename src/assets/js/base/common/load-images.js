@@ -32,20 +32,18 @@ function extractDominantColor(imgSrc, callback) {
       callback(`rgb(${r}, ${g}, ${b})`);
     } catch {
       callback('#ccc');
-    } finally {
-      callback(``);
     }
   };
 
   img.onerror = () => callback('#ccc');
 }
 
-function completeImageLoading($img, $parent, immediate = false) {
-  if (immediate) {
-    $parent.removeClass('loading');
-  } else {
-    setTimeout(() => $parent.removeClass('loading'), 300);
-  }
+function completeImageLoading($img, $parent) {
+  $parent.removeClass('loading');
+  $parent.css({
+    filter: 'none',
+    backgroundColor: '' // убираем доминантный цвет
+  });
 }
 
 export default function loadImages() {
@@ -58,7 +56,7 @@ export default function loadImages() {
       const $img = $(entry.target);
       const $parent = $img.parent();
 
-      // Проверяем родителя <figure>
+      // Работаем только с <figure>
       if (!$parent.is('figure')) return;
 
       const src = $img.attr('src');
@@ -68,13 +66,13 @@ export default function loadImages() {
 
       if (!$parent.hasClass('loading')) $parent.addClass('loading');
 
-      // Сразу проверяем кэш, чтобы не запускать лишние вычисления
+      // Если изображение уже кэшировано и загружено, показываем сразу
       if (imageCache.has(src) && $img[0].complete) {
-        completeImageLoading($img, $parent, true);
-        $parent.css('filter', 'none');
+        completeImageLoading($img, $parent);
         return;
       }
 
+      // Сначала берём доминантный цвет
       extractDominantColor(src, color => {
         $parent.css({
           backgroundColor: color,
@@ -84,7 +82,6 @@ export default function loadImages() {
 
         const handleLoad = () => {
           completeImageLoading($img, $parent);
-          $parent.css('filter', 'none');
           imageCache.add(src);
           $img.off('load', handleLoad);
         };
