@@ -11,6 +11,7 @@ import "./base/routing/routing";
 
 import "./base/checks/check-internal-links";
 import "./base/checks/check-target";
+import "./base/checks/check-offline";
 
 import "./base/common/preloader";
 import "./base/common/load-images";

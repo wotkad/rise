@@ -5,5 +5,5 @@
 // V4 shims compile (Web Fonts-based)
 // -------------------------
 
-@import 'variables';
-@import 'shims';
+@use 'variables' as *;
+@use 'shims' as *;
