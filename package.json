@@ -27,7 +27,7 @@
     "multi-page": "yarn && node ./node_scripts/init-project -multi-page",
     "report:sizes": "node ./node_scripts/reports/sizes.js",
     "report:lighthouse": "node ./node_scripts/reports/lighthouse.js",
-    "build:meta": "node ./node_scripts/inject-build-meta.js"
+    "build:meta": "node ./node_scripts/inject-build-metatag.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
