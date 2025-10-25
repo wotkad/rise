@@ -11,7 +11,7 @@
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn build:sitemap-update && yarn build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
+    "build": "yarn minor:compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn build:sitemap-update && yarn build:not-found-page-update && rimraf ./build/404 && yarn build:inject-build-metatag && yarn analyze:sizes && yarn analyze:lighthouse",
     "build:inject-build-metatag": "node ./node_scripts/build/inject-build-metatag",
     "build:archive-paths": "node ./node_scripts/build/archive-paths",
     "build:sitemap-update": "node ./node_scripts/build/sitemap-update",
@@ -35,7 +35,7 @@
 
     "rise:one-page": "node ./node_scripts/rise/init -one-page",
     "rise:multi-page": "node ./node_scripts/rise/init -multi-page",
-    
+
     "report:sizes": "node ./node_scripts/reports/sizes",
     "report:lighthouse": "node ./node_scripts/reports/lighthouse"
   },
