@@ -10,8 +10,7 @@
   border-bottom: 1px solid $gray-300;
   background-color: $white;
 
-  transition:
-    background-color $transition-default,
+  transition: background-color $transition-default,
     border-color $transition-default;
   body.dark & {
     border-color: $gray-700;
@@ -60,9 +59,7 @@
 
       background-repeat: no-repeat;
 
-      transition:
-        opacity $transition-default,
-        visibility $transition-default,
+      transition: opacity $transition-default, visibility $transition-default,
         z-index $transition-default;
     }
     &-light {

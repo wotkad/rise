@@ -3,7 +3,7 @@ const path = require('path');
 const JSON5 = require('json5');
 
 // Путь к папке
-const targetDirectory = '../src/assets/js/_defaults';
+const targetDirectory = path.join(__dirname, '../../src/assets/js/_defaults');
 
 /**
  * Рекурсивно обходит папки и возвращает список всех JS файлов
@@ -26,7 +26,7 @@ function getJsFiles(dir) {
 }
 
 /**
- * Сортирует свойства объекта по алфавиту, сохраняя вложенную структуру
+ * Сортирует свойства объекта по алфавиту
  * @param {string} content - Содержимое файла
  * @returns {string} - Обновленное содержимое файла
  */
@@ -36,92 +36,16 @@ function sortObjectProperties(content) {
 
   if (match) {
     const returnBody = match[2];
-    
-    // Разбираем возвращаемый объект на свойства
-    const properties = [];
-    let currentProp = '';
-    let braceLevel = 0;
-    let inString = false;
-    
-    for (const char of returnBody) {
-      if (char === "'" || char === '"') inString = !inString;
-      if (!inString) {
-        if (char === '{') braceLevel++;
-        if (char === '}') braceLevel--;
-        
-        if (char === ',' && braceLevel === 0) {
-          const trimmedProp = currentProp.trim();
-          if (trimmedProp) properties.push(trimmedProp);
-          currentProp = '';
-          continue;
-        }
-      }
-      currentProp += char;
-    }
-    
-    const trimmedProp = currentProp.trim();
-    if (trimmedProp) properties.push(trimmedProp);
+    const properties = returnBody.split(',').map((prop) => prop.trim()).filter(Boolean);
 
-    // Обрабатываем каждое свойство
-    const processedProps = [];
-    
-    for (const prop of properties) {
-      // Проверяем, является ли свойство вложенным объектом
-      const nestedMatch = prop.match(/^([\w]+)\s*:\s*\{([\s\S]*)\}\s*$/);
-      
-      if (nestedMatch) {
-        const propName = nestedMatch[1];
-        const nestedContent = nestedMatch[2];
-        
-        // Разбираем вложенные свойства
-        const nestedProps = [];
-        let nestedCurrent = '';
-        let nestedBraceLevel = 0;
-        let nestedInString = false;
-        
-        for (const char of nestedContent) {
-          if (char === "'" || char === '"') nestedInString = !nestedInString;
-          if (!nestedInString) {
-            if (char === '{') nestedBraceLevel++;
-            if (char === '}') nestedBraceLevel--;
-            
-            if (char === ',' && nestedBraceLevel === 0) {
-              const trimmedNested = nestedCurrent.trim();
-              if (trimmedNested) nestedProps.push(trimmedNested);
-              nestedCurrent = '';
-              continue;
-            }
-          }
-          nestedCurrent += char;
-        }
-        
-        const trimmedNested = nestedCurrent.trim();
-        if (trimmedNested) nestedProps.push(trimmedNested);
-        
-        // Сортируем вложенные свойства
-        nestedProps.sort((a, b) => {
-          const keyA = a.split(':')[0].trim();
-          const keyB = b.split(':')[0].trim();
-          return keyA.localeCompare(keyB);
-        });
-        
-        // Собираем вложенный объект
-        processedProps.push(`${propName}: {\n      ${nestedProps.join(',\n      ')}\n    }`);
-      } else {
-        // Простое свойство (не объект)
-        processedProps.push(prop);
-      }
-    }
-
-    // Сортируем верхнеуровневые свойства
-    processedProps.sort((a, b) => {
+    const sortedProperties = properties.sort((a, b) => {
       const keyA = a.split(':')[0].trim();
       const keyB = b.split(':')[0].trim();
       return keyA.localeCompare(keyB);
     });
 
-    const sortedReturnBody = processedProps.join(',\n      ');
-    return content.replace(returnBody, `\n      ${sortedReturnBody}\n    `);
+    const sortedReturnBody = sortedProperties.join(',\n      ');
+    return content.replace(returnBody, `\n      ${sortedReturnBody},\n    `);
   }
 
   return content;
