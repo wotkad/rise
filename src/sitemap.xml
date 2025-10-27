@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:8080/</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>http://localhost:8080/blog/</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>http://localhost:8080/404/</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>http://localhost:8080/blog/post</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>http://localhost:8080/blog/post2</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>http://localhost:8080/blog/post3</loc>
-    <lastmod>2025-10-26</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>
