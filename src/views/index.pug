@@ -17,7 +17,7 @@ block content
         .page-container
           .page-wrapper
             +title({
-              title: '<img src="/assets/images/logo.svg" alt="logo"> Добро пожаловать в Rise!',
+              title: '<img src="@/logo.svg" alt="logo"> Добро пожаловать в Rise!',
             })
-            include ./components/intro
-          include ./components/footer
+            include @p-components/intro
+          include @p-components/footer

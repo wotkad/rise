@@ -1,4 +1,4 @@
-@use "./utils/reset"; // Если вы используете Tailwind, то этот импорт не нужен.
+@use "@s-utils/reset"; // Если вы используете Tailwind, то этот импорт не нужен.
 
 /*
   Tailwind
@@ -10,28 +10,28 @@
 /*
   Базовые стили и утилиты
 */
-@use "./base/variables";
-@use "./utils/mixins";
-@use "./utils/keyframes";
-@use "./base/global";
+@use "@s-base/variables";
+@use "@s-utils/mixins";
+@use "@s-utils/keyframes";
+@use "@s-base/global";
 
 /*
   Шрифты и типография
 */
-@use "./base/fonts";
-@use "./base/typography";
+@use "@s-base/fonts";
+@use "@s-base/typography";
 
 /*
   Миксины
 */
-@use "./mixins/title";
-@use "./mixins/article";
+@use "@s-mixins/title";
+@use "@s-mixins/article";
 
 /*
   Компоненты
 */
-@use "./components/header";
-@use "./components/footer";
-@use "./components/intro";
-@use "./components/blog";
-@use "./components/not-found";
+@use "@s-components/header";
+@use "@s-components/footer";
+@use "@s-components/intro";
+@use "@s-components/blog";
+@use "@s-components/not-found";

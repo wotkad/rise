@@ -130,8 +130,8 @@ async function runAudit() {
 
   fs.mkdirSync(REPORT_DIR, { recursive: true });
   fs.writeFileSync(REPORT_FILE, reportHtml);
-  console.log(`📁 Готово: отчёт сохранён в /reports/a11y`);
-  console.log(`📁 Готово: скриншоты сохранены в /reports/a11y/screenshots`);
+  console.log(`✅ Готово: отчёт сохранён в /reports/a11y`);
+  console.log(`✅ Готово: скриншоты сохранены в /reports/a11y/screenshots`);
 }
 
 runAudit().catch(err => console.error(err));

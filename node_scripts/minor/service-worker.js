@@ -27,7 +27,6 @@ const files = getAllFiles(BUILD_DIR);
 
 // ===== 0. Проверяем offline.html =====
 if (!fs.existsSync(OFFLINE_FILE)) {
-  console.log('⚠️  Файл offline.html не найден — создаю умный шаблон на Tailwind...');
 
   const cachedPagesRows = files
     .filter(f => f.endsWith('.html'))
@@ -72,7 +71,7 @@ if (!fs.existsSync(OFFLINE_FILE)) {
 </html>`
   );
 
-  console.log('✅ Умный offline.html на Tailwind создан');
+  console.log('✅ offline.html создан');
 }
 
 // ===== 2. Создаём хэш версии на основе содержимого файлов =====
@@ -82,9 +81,9 @@ const hash = crypto
   .digest('hex')
   .substring(0, 12);
 
-const CACHE_NAME = `rise-cache-${hash}`;
+const CACHE_NAME = `${hash}`;
 
-console.log(`🧩 Создание service worker (version: ${CACHE_NAME})`);
+console.log(`🧩 Создание service worker (${CACHE_NAME})`);
 console.log(`📦 Файлов добавлено в кеш: ${files.length}`);
 
 // ===== 3. Генерируем содержимое SW =====
@@ -110,7 +109,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) => 
       Promise.all(
         keys
-          .filter((key) => key.startsWith('rise-cache-') && key !== CACHE_NAME)
+          .filter((key) => key !== CACHE_NAME)
           .map((key) => {
             console.log('[ServiceWorker] Старый кеш удалён', key);
             return caches.delete(key);

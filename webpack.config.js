@@ -13,6 +13,41 @@ const utils = require("./utils");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
+function generateAliases() {
+  const srcPath = path.resolve(__dirname, 'src');
+  const jsBase = path.resolve(srcPath, 'assets/js/base');
+  const scssBase = path.resolve(srcPath, 'assets/styles');
+  const images = path.resolve(srcPath, 'assets/images');
+  const fonts = path.resolve(srcPath, 'assets/fonts');
+  const views = path.resolve(srcPath, 'views');
+  const components = path.resolve(views, 'components');
+  const mixins = path.resolve(views, 'mixins');
+  const layouts = path.resolve(views, 'layouts');
+
+  return {
+    '@': srcPath,
+    '@js': path.resolve(srcPath, 'assets/js'),
+    '@defaults': path.resolve(srcPath, 'assets/js/_defaults'),
+    '@common': path.resolve(jsBase, 'common'),
+    '@checks': path.resolve(jsBase, 'checks'),
+    '@routing': path.resolve(jsBase, 'routing'),
+    '@cache': path.resolve(srcPath, 'assets/js/cache'),
+
+    '@styles': scssBase,
+    '@s-utils': path.resolve(scssBase, 'utils'),
+    '@s-mixins': path.resolve(scssBase, 'mixins'),
+    '@s-components': path.resolve(scssBase, 'components'),
+    '@s-base': path.resolve(scssBase, 'base'),
+
+    '@images': images,
+    '@fonts': fonts,
+
+    '@p-mixins': path.resolve(mixins),
+    '@p-components': path.resolve(components),
+    '@p-layouts': path.resolve(layouts),
+  };
+}
+
 const SitemapGenerator = require('sitemap-generator');
 const generator = SitemapGenerator('http://localhost:8080', {
   stripQuerystring: false,
@@ -52,6 +87,9 @@ module.exports = (env) => {
       client: {
         logging: 'error'
       },
+    },
+    resolve: {
+      alias: generateAliases(),
     },
     module: {
       rules: [
@@ -95,9 +133,47 @@ module.exports = (env) => {
               loader: "sass-loader",
               options: {
                 api: "modern",
-                implementation: require('sass'),
                 sourceMap: true,
-              }
+                implementation: require("sass"),
+                sassOptions: {
+                  includePaths: [
+                    path.resolve(__dirname, "src/assets/styles"),
+                  ],
+                  importers: [
+                    {
+                      findFileUrl(url) {
+                        const aliasMap = {
+                          "@s-base": path.resolve(__dirname, "src/assets/styles/base"),
+                          "@s-components": path.resolve(__dirname, "src/assets/styles/components"),
+                          "@s-mixins": path.resolve(__dirname, "src/assets/styles/mixins"),
+                          "@s-utils": path.resolve(__dirname, "src/assets/styles/utils"),
+                          "@fonts": path.resolve(__dirname, "src/assets/fonts"),
+                          "@images": path.resolve(__dirname, "src/assets/images"),
+                        };
+                        for (const [alias, aliasPath] of Object.entries(aliasMap)) {
+                          if (url.startsWith(alias)) {
+                            const fullPath = path.resolve(
+                              aliasPath,
+                              url.replace(alias, "").replace(/^\/+/, "")
+                            );
+
+                            // Поддержка .scss и .css
+                            const extensions = [".scss", ".sass", ".css"];
+                            for (const ext of extensions) {
+                              const filePath = `${fullPath}${ext}`;
+                              if (require("fs").existsSync(filePath)) {
+                                return new URL(`file://${filePath}`);
+                              }
+                            }
+                          }
+                        }
+
+                        return null;
+                      },
+                    },
+                  ],
+                },
+              },
             },
           ],
         },

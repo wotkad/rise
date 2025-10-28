@@ -25,32 +25,32 @@ html(lang="ru")
     meta(content="" property="og:image")
 
     link(
-      href="/assets/images/favicons/apple-touch-icon.png"
+      href="@images/favicons/apple-touch-icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
     )
     link(
-      href="/assets/images/favicons/android-chrome-192x192.png"
+      href="@images/favicons/android-chrome-192x192.png"
       rel="icon"
       sizes="192x192"
       type="image/png"
     )
     link(
-      href="/assets/images/favicons/favicon-32x32.png"
+      href="@images/favicons/favicon-32x32.png"
       rel="icon"
       sizes="32x32"
       type="image/png"
     )
     link(
-      href="/assets/images/favicons/favicon-16x16.png"
+      href="@images/favicons/favicon-16x16.png"
       rel="icon"
       sizes="16x16"
       type="image/png"
     )
-    link(href="/assets/images/favicons/favicon.ico" rel="shortcut icon")
+    link(href="@images/favicons/favicon.ico" rel="shortcut icon")
     link(
       color="#5bbad5"
-      href="/assets/images/favicons/safari-pinned-tab.svg"
+      href="@images/favicons/safari-pinned-tab.svg"
       rel="mask-icon"
     )
 
@@ -70,10 +70,10 @@ html(lang="ru")
   body
     .render
 
-    include ../mixins/title
-    include ../mixins/article
+    include @p-mixins/title
+    include @p-mixins/article
 
-    include ../components/header
+    include @p-components/header
 
     block content
 

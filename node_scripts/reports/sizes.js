@@ -276,7 +276,7 @@ function main() {
   saveCache(newCache);
   appendLog(buildData, srcData, deleted);
 
-  console.log(`📁 Готово: отчёт сохранён в /reports/sizes/sizes`);
+  console.log(`✅ Готово: отчёт сохранён в /reports/sizes/sizes`);
 }
 
 main();

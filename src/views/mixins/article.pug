@@ -1,5 +1,5 @@
 mixin article(data = {})
-  - const { defaults, mergeConfig } = require("/assets/js/_defaults/article/_defaults");
+  - const { defaults, mergeConfig } = require("@defaults/article/_defaults");
   - const modefied = mergeConfig(data, defaults);
 
   a.article(href=modefied.href target=modefied.target)

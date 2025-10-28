@@ -1,4 +1,4 @@
-@use "../base/variables" as *;
+@use "@s-base/variables" as *;
 
 @mixin screen($breakpoint) {
   @if $breakpoint == desktop {

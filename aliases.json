@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "moduleResolution": "node",
+    "target": "es2015",
+    "module": "es2015"
+  },
+  "exclude": ["node_modules", "build"]
+}

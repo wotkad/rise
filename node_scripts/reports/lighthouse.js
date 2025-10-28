@@ -57,10 +57,10 @@ for (const { name, flags } of configs) {
 
   try {
     execSync(command, { stdio: "inherit" });
-    console.log(`✅ ${name}-отчёт сохранён: ${reportFile}`);
+    console.log(`✅ ${name}-отчёт сохранён: /reports/lighthouse-report-${name}-${timestamp}.html`);
   } catch (err) {
     console.error(`❌ Ошибка при запуске Lighthouse (${name}):`, err.message);
   }
 }
 
-console.log("📁 Готово: отчёты сохранены в /reports/lighthouse");
+console.log("✅ Готово: отчёты сохранены в /reports/lighthouse");

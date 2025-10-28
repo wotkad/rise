@@ -1,4 +1,4 @@
-import { imageCache } from '../../cache/image-cache';
+import { imageCache } from '@cache/image-cache';
 
 function extractDominantColor(imgSrc, callback) {
   const img = new Image();

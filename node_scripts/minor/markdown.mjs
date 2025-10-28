@@ -30,7 +30,7 @@ const markdown = MarkdownIt({
         .map(x => '                ' + x)
         .join('\n')
         .trimEnd();
-      let renderedFile = `extends ../../layouts/master.pug
+      let renderedFile = `extends @p-layouts/master.pug
 
 block title
   title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
@@ -50,7 +50,7 @@ block content
           .page-wrapper
             section.content
               .wrapper` + '\n' + formattedHtml + `
-          include ../../components/footer.pug`;
+          include @p-components/footer.pug`;
       let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {

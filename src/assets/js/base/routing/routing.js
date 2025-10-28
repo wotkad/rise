@@ -1,7 +1,7 @@
 import barba from "@barba/core";
 import barbaPrefetch from "@barba/core";
 import gsap from "gsap";
-import routingFunctions from "./routing-functions";
+import routingFunctions from "@routing/routing-functions";
 
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
