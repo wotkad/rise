@@ -1,6 +1,6 @@
 require("./postcss.config");
 
-const path = require("path");
+const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -12,6 +12,35 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const utils = require("./utils");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+
+class GenerateManifestPlugin {
+  apply(compiler) {
+    compiler.hooks.emit.tapAsync('GenerateManifestPlugin', (compilation, callback) => {
+      const icons = [36,48,72,96,144,192,256,384,512].map(size => ({
+        src: `/assets/images/favicons/android-chrome-${size}x${size}.png`,
+        sizes: `${size}x${size}`,
+        type: 'image/png'
+      }));
+
+      const manifest = {
+        name: 'Rise',
+        short_name: 'Rise',
+        icons,
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone'
+      };
+
+      const json = JSON.stringify(manifest, null, 2);
+      compilation.assets['manifest.json'] = {
+        source: () => json,
+        size: () => json.length
+      };
+
+      callback();
+    });
+  }
+}
 
 function generateAliases() {
   const srcPath = path.resolve(__dirname, 'src');
@@ -274,13 +303,14 @@ module.exports = (env) => {
     plugins: [
       new RobotstxtPlugin(),
 
+      new GenerateManifestPlugin(),
+
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,
       }),
 
       new CopyWebpackPlugin({
         patterns: [
-          { from: "../manifest.json" },
           { from: "../.htaccess" },
           { from: "sitemap.xml" },
           { from: "assets/images", to: "assets/images" },
