@@ -1,4 +1,4 @@
-extends ../layouts/master
+extends @p-layouts/master
 
 block title
   title Rise | 404
@@ -6,9 +6,6 @@ block title
 block basicSeo
   meta(content="Это странца 404" name="description")
   meta(content="Страница, 404" name="keywords")
-
-block manifest
-  link(href="../manifest.json" rel="manifest" crossorigin)
 
 block content
   main

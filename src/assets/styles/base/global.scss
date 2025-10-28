@@ -39,6 +39,23 @@ body {
     background-color: $slate-900;
 
     color: $white;
+
+    .header {
+      &__theme {
+        &-light {
+          opacity: 0;
+
+          z-index: -1;
+          visibility: hidden;
+        }
+        &-dark {
+          opacity: 1;
+
+          z-index: 1;
+          visibility: visible;
+        }
+      }
+    }
   }
 }
 
@@ -101,6 +118,9 @@ body {
   height: 100%;
 
   background-color: $white;
+  body.dark & {
+    background-color: $slate-900;
+  }
 }
 
 .wrapper {

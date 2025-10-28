@@ -39,9 +39,6 @@ block basicSeo
   meta(content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}" name="description")
   meta(content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}" name="keywords")
 
-block manifest
-  link(href="../../manifest.json" rel="manifest")
-
 block content
   main
     .barba(data-barba="wrapper")

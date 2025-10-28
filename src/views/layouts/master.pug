@@ -25,47 +25,39 @@ html(lang="ru")
     meta(content="" property="og:image")
 
     link(
-      href="@images/favicons/apple-touch-icon.png"
+      href=require("@images/favicons/apple-touch-icon.png")
       rel="apple-touch-icon"
       sizes="180x180"
     )
     link(
-      href="@images/favicons/android-chrome-192x192.png"
+      href=require("@images/favicons/android-chrome-192x192.png")
       rel="icon"
       sizes="192x192"
       type="image/png"
     )
     link(
-      href="@images/favicons/favicon-32x32.png"
+      href=require("@images/favicons/favicon-32x32.png")
       rel="icon"
       sizes="32x32"
       type="image/png"
     )
     link(
-      href="@images/favicons/favicon-16x16.png"
+      href=require("@images/favicons/favicon-16x16.png")
       rel="icon"
       sizes="16x16"
       type="image/png"
     )
-    link(href="@images/favicons/favicon.ico" rel="shortcut icon")
+    link(href=require("@images/favicons/favicon.ico") rel="shortcut icon")
     link(
       color="#5bbad5"
-      href="@images/favicons/safari-pinned-tab.svg"
+      href=require("@images/favicons/safari-pinned-tab.svg")
       rel="mask-icon"
     )
 
     block title
       title Rise | Страница без названия
 
-    block manifest
-      link(href="./manifest.json" rel="manifest" crossorigin)
-
-    script.
-      function autorun() {}
-      if (window.addEventListener) window.addEventListener("load", autorun, false);
-      else window.onload = autorun;
-    noscript.
-      Похоже у вас отключён Javascript, поэтому вы видете это сообщение.
+    link(href=manifestPath rel="manifest" crossorigin)
 
   body
     .render

@@ -1,4 +1,4 @@
-import "./assets/styles/app.scss";
+import "@styles/app.scss";
 import "highlight.js/scss/atom-one-dark.scss";
 
 if (module.hot) {

@@ -1,4 +1,4 @@
-extends ../layouts/master
+extends @p-layouts/master
 
 block title
   title Rise | Блог
@@ -6,9 +6,6 @@ block title
 block basicSeo
   meta(content="Это страница блога" name="description")
   meta(content="Страница, блог" name="keywords")
-
-block manifest
-  link(href="../manifest.json" rel="manifest" crossorigin)
 
 block content
   main

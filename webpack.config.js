@@ -25,6 +25,7 @@ function generateAliases() {
   const layouts = path.resolve(views, 'layouts');
 
   return {
+    '@root': path.resolve('./'),
     '@': srcPath,
     '@js': path.resolve(srcPath, 'assets/js'),
     '@defaults': path.resolve(srcPath, 'assets/js/_defaults'),
@@ -42,6 +43,7 @@ function generateAliases() {
     '@images': images,
     '@fonts': fonts,
 
+    '@pug': views,
     '@p-mixins': path.resolve(mixins),
     '@p-components': path.resolve(components),
     '@p-layouts': path.resolve(layouts),
@@ -206,7 +208,7 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(jpe?g|png|gif|svg)$/i,
+          test: /\.(jpe?g|png|gif|svg|ico)$/i,
           type: "asset/resource",
         },
       ],
@@ -298,6 +300,9 @@ module.exports = (env) => {
         filename: "index.html",
         template: "views/index.pug",
         inject: "body",
+        templateParameters: {
+          manifestPath: "/manifest.json"
+        }
       }),
 
       ...utils.pages(MODE),
