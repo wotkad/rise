@@ -11,13 +11,17 @@
   width: 100%;
 
   border-bottom: 1px solid $gray-300;
-  background-color: $white;
 
   transition: background-color $transition-default,
     border-color $transition-default;
+  &.scrolled {
+    background-color: $white;
+    body.dark & {
+      background-color: $slate-900;
+    }
+  }
   body.dark & {
     border-color: $gray-700;
-    background-color: $slate-900;
   }
   &__menu {
     display: flex;

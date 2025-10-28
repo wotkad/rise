@@ -13,6 +13,7 @@ import "@checks/check-internal-links";
 import "@checks/check-target";
 import "@checks/check-offline";
 
+import "@common/set-header-bg";
 import "@common/preloader";
 import "@common/load-images";
 import "@common/smooth-scroll";
