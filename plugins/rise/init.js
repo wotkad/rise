@@ -17,7 +17,7 @@ const postcssConfigPath = path.join(__dirname, '..', 'postcss.config.js');
 const prettierConfigPath = path.join(__dirname, '..', 'prettier.config.js');
 const appcssPath = path.join(__dirname, '..', 'src', 'assets', 'styles', 'app.scss');
 const bundlePath = path.join(__dirname, '..', 'src', 'bundle.js');
-const notFoundPageUpdatePath = path.join(__dirname, '..', 'plugins', 'not-found-page-update.js');
+const notFoundPageUpdatePath = path.join(__dirname, '..', 'plugins', '404.js');
 
 const webpackPagesLines = [
   '...utils.pages(MODE),',
@@ -73,7 +73,7 @@ if (createOnePage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",',
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/404 && rimraf ./build/404",',
       '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update",');
 
     data = data.replace(
@@ -503,8 +503,8 @@ if (createMultiPage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",',
-      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",');
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/404 && rimraf ./build/404",',
+      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/404 && rimraf ./build/404",');
 
     data = data.replace(
       '"dev": "yarn compile-md && yarn develop",',
