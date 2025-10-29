@@ -1,6 +1,6 @@
 const { RawSource } = require('webpack').sources;
 
-class GenerateManifestPlugin {
+class ManifestGenerator {
   apply(compiler) {
     compiler.hooks.thisCompilation.tap('GenerateManifestPlugin', (compilation) => {
       compilation.hooks.processAssets.tap(
@@ -34,4 +34,4 @@ class GenerateManifestPlugin {
   }
 }
 
-module.exports = GenerateManifestPlugin;
+module.exports = ManifestGenerator;

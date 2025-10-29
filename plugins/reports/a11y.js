@@ -57,6 +57,8 @@ async function auditPage(filePath, browser) {
   return { results, screenshotFile };
 }
 
+console.log(`🚀 Запуск анализа доступности...`);
+
 async function runAudit() {
   const files = glob.sync(HTML_PATTERN);
   if (!files.length) {
@@ -80,7 +82,7 @@ async function runAudit() {
 
   for (const file of files) {
     const relativePath = path.relative(BUILD_DIR, file);
-    console.log(`🔍 Проверка: ${relativePath}`);
+    // console.log(`🔍 Проверка: ${relativePath}`);
 
     try {
       const { results, screenshotFile } = await auditPage(file, browser);
@@ -130,8 +132,8 @@ async function runAudit() {
 
   fs.mkdirSync(REPORT_DIR, { recursive: true });
   fs.writeFileSync(REPORT_FILE, reportHtml);
-  console.log(`✅ Готово: отчёт сохранён в /reports/a11y`);
-  console.log(`✅ Готово: скриншоты сохранены в /reports/a11y/screenshots`);
+  console.log(`✅ Готово: отчёт о доступности сохранён в (/reports/a11y)`);
+  console.log(`✅ Готово: скриншоты анализа доступности сохранены в (/reports/a11y/screenshots)`);
 }
 
 runAudit().catch(err => console.error(err));

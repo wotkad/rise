@@ -1,7 +1,10 @@
 const path = require('path');
 
-function generateAliases() {
-  const srcPath = path.resolve(process.cwd(), 'src');
+function AliasesGenerator() {
+  // Fix: используем правильный базовый путь до проекта
+  const rootPath = path.resolve(__dirname, '../../');
+  const srcPath = path.resolve(rootPath, 'src');
+  
   const jsBase = path.resolve(srcPath, 'assets/js/base');
   const scssBase = path.resolve(srcPath, 'assets/styles');
   const images = path.resolve(srcPath, 'assets/images');
@@ -12,7 +15,7 @@ function generateAliases() {
   const layouts = path.resolve(views, 'layouts');
 
   return {
-    '@root': path.resolve('./'),
+    '@root': rootPath,
     '@': srcPath,
     '@js': path.resolve(srcPath, 'assets/js'),
     '@defaults': path.resolve(srcPath, 'assets/js/_defaults'),
@@ -31,10 +34,10 @@ function generateAliases() {
     '@fonts': fonts,
 
     '@pug': views,
-    '@p-mixins': path.resolve(mixins),
-    '@p-components': path.resolve(components),
-    '@p-layouts': path.resolve(layouts),
+    '@p-mixins': mixins,
+    '@p-components': components,
+    '@p-layouts': layouts,
   };
 }
 
-module.exports = generateAliases;
+module.exports = AliasesGenerator;

@@ -12,17 +12,9 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const utils = require("./utils");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const GenerateManifestPlugin = require('./plugins/minor/manifest');
-const SitemapGenerator = require('sitemap-generator');
-const generateAliases = require('./plugins/minor/aliases');
-
-const generator = SitemapGenerator('http://localhost:8080', {
-  stripQuerystring: false,
-  filepath: './src/sitemap.xml',
-  lastMod: new Date().toISOString(),
-  changeFreq: 'monthly',
-});
-generator.start();
+const SitemapGenerator = require('./plugins/minor/sitemap');
+const ManifestGenerator = require('./plugins/minor/manifest');
+const AliasesGenerator = require('./plugins/minor/aliases');
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
@@ -55,8 +47,33 @@ module.exports = (env) => {
         logging: 'error'
       },
     },
+    cache: {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+    },
+    watchOptions: {
+      ignored: /node_modules/,
+      aggregateTimeout: 200,
+      poll: false,
+    },
     resolve: {
-      alias: generateAliases(),
+      alias: {
+        ...AliasesGenerator(),
+        '@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
+        './@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
+        '@p-components': path.resolve(__dirname, 'src/views/components'),
+        './@p-components': path.resolve(__dirname, 'src/views/components'),
+        '@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
+        './@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
+      },
+      extensions: ['.js', '.pug', '.scss'],
+      modules: [
+        'node_modules',
+        path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'src/views'),
+      ]
     },
     module: {
       rules: [
@@ -123,8 +140,6 @@ module.exports = (env) => {
                               aliasPath,
                               url.replace(alias, "").replace(/^\/+/, "")
                             );
-
-                            // Поддержка .scss и .css
                             const extensions = [".scss", ".sass", ".css"];
                             for (const ext of extensions) {
                               const filePath = `${fullPath}${ext}`;
@@ -134,7 +149,6 @@ module.exports = (env) => {
                             }
                           }
                         }
-
                         return null;
                       },
                     },
@@ -149,11 +163,25 @@ module.exports = (env) => {
           use: [
             utils.isDevMode(MODE)
             ? {
-              loader: "@webdiscus/pug-loader"
+              loader: '@webdiscus/pug-loader',
+              options: {
+                method: 'render',
+                root: path.resolve(__dirname, 'src/views'),
+                basedir: path.resolve(__dirname, 'src/views'),
+                watchFiles: true,
+                resolve: {
+                  alias: {
+                    '@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
+                    './@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
+                  }
+                }
+              }
             } : {
               loader: "pug-loader",
               options: {
-                pretty: true
+                pretty: true,
+                root: path.resolve(__dirname, 'src/views'),
+                basedir: path.resolve(__dirname, 'src/views')
               }
             },
           ],
@@ -175,6 +203,9 @@ module.exports = (env) => {
         {
           test: /\.(jpe?g|png|gif|svg|ico)$/i,
           type: "asset/resource",
+          generator: {
+            filename: 'assets/images/[name][ext]'
+          }
         },
       ],
     },
@@ -239,7 +270,15 @@ module.exports = (env) => {
     plugins: [
       new RobotstxtPlugin(),
 
-      new GenerateManifestPlugin(),
+      new SitemapGenerator({
+        baseUrl: utils.isDevMode(MODE)
+          ? 'http://localhost:8080'
+          : 'https://yourwebsite.ru',
+        viewsDir: path.resolve(__dirname, 'src/views'),
+        output: path.resolve(__dirname, 'build/sitemap.xml'),
+      }),
+
+      new ManifestGenerator(),
 
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,

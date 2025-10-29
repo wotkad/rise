@@ -252,7 +252,7 @@ function appendLog(buildData, srcData, deleted) {
 // ---------- MAIN ----------
 
 function main() {
-  console.log("📊 Анализ размера сборки...");
+  // console.log("📊 Анализ размера сборки...");
 
   const cache = loadCache();
 
@@ -276,7 +276,7 @@ function main() {
   saveCache(newCache);
   appendLog(buildData, srcData, deleted);
 
-  console.log(`✅ Готово: отчёт сохранён в /reports/sizes/sizes`);
+  console.log(`✅ Готово: отчёт о размерах файлов сохранён в (/reports/sizes)`);
 }
 
 main();

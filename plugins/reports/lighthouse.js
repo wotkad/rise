@@ -15,7 +15,7 @@ fs.readdirSync(REPORTS_DIR)
   .filter(file => file.startsWith("lighthouse-report"))
   .forEach(file => fs.unlinkSync(path.join(REPORTS_DIR, file)));
 
-console.log("🧹 Старые отчёты удалены.");
+// console.log("🧹 Старые отчёты удалены.");
 
 // ---------- Форматирование даты ----------
 function formatDate(d) {
@@ -38,6 +38,7 @@ const configs = [
   { name: "desktop", flags: "--preset=desktop" }
 ];
 
+console.log(`🚀 Запуск Lighthouse...`);
 // ---------- Запуск Lighthouse для каждого режима ----------
 for (const { name, flags } of configs) {
   const reportFile = path.join(REPORTS_DIR, `lighthouse-report-${name}-${timestamp}.html`);
@@ -53,14 +54,12 @@ for (const { name, flags } of configs) {
     flags
   ].join(" ");
 
-  console.log(`🚀 Запуск Lighthouse для ${name} версии...`);
-
   try {
     execSync(command, { stdio: "inherit" });
-    console.log(`✅ ${name}-отчёт сохранён: /reports/lighthouse-report-${name}-${timestamp}.html`);
+    // console.log(`✅ ${name}-отчёт сохранён: /reports/lighthouse-report-${name}-${timestamp}.html`);
   } catch (err) {
     console.error(`❌ Ошибка при запуске Lighthouse (${name}):`, err.message);
   }
 }
 
-console.log("✅ Готово: отчёты сохранены в /reports/lighthouse");
+console.log(`✅ Готово: отчёты о производительности сохранены в (/reports/lighthouse)`);

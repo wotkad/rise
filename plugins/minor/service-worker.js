@@ -13,9 +13,16 @@ function getAllFiles(dir, prefix = '/') {
   list.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
+
     if (stat && stat.isDirectory()) {
       results = results.concat(getAllFiles(filePath, path.join(prefix, file)));
-    } else if (!filePath.endsWith('service-worker.js')) {
+    } else {
+      // исключаем служебные файлы
+      if (
+        file === '.DS_Store' ||
+        filePath.endsWith('service-worker.js')
+      ) return;
+
       results.push(path.join(prefix, file));
     }
   });
@@ -71,7 +78,7 @@ if (!fs.existsSync(OFFLINE_FILE)) {
 </html>`
   );
 
-  console.log('✅ offline.html создан');
+  // console.log('✅ offline.html создан');
 }
 
 // ===== 2. Создаём хэш версии на основе содержимого файлов =====
@@ -83,8 +90,8 @@ const hash = crypto
 
 const CACHE_NAME = `${hash}`;
 
-console.log(`🧩 Создание service worker (${CACHE_NAME})`);
-console.log(`📦 Файлов добавлено в кеш: ${files.length}`);
+// console.log(`🧩 Создание service worker (${CACHE_NAME})`);
+// console.log(`📦 Файлов добавлено в кеш: ${files.length}`);
 
 // ===== 3. Генерируем содержимое SW =====
 const swContent = `
@@ -219,4 +226,4 @@ async function handleDatoCMSRequest(event) {
 
 // ===== 4. Записываем файл =====
 fs.writeFileSync(SW_FILE, swContent);
-console.log(`✅ Service Worker создан`);
+console.log(`✅ Готово: service worker создан (файлов в кеше: ${files.length})`);
