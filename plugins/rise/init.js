@@ -11,13 +11,13 @@ const pagesPath = path.join(__dirname, '..', 'src', 'views', 'pages');
 const webpackConfigPath = path.join(__dirname, '..', 'webpack.config.js');
 const packagePath = path.join(__dirname, '..', 'package.json');
 const stylelintrcPath = path.join(__dirname, '..', '.stylelintrc.json');
-const markdownCompilerPath = path.join(__dirname, '..', 'node_scripts', 'markdown-compiler.mjs');
+const markdownCompilerPath = path.join(__dirname, '..', 'plugins', 'markdown-compiler.mjs');
 const markdownPagesPath = path.join(__dirname, '..', 'src', 'markdown');
 const postcssConfigPath = path.join(__dirname, '..', 'postcss.config.js');
 const prettierConfigPath = path.join(__dirname, '..', 'prettier.config.js');
 const appcssPath = path.join(__dirname, '..', 'src', 'assets', 'styles', 'app.scss');
 const bundlePath = path.join(__dirname, '..', 'src', 'bundle.js');
-const notFoundPageUpdatePath = path.join(__dirname, '..', 'node_scripts', 'not-found-page-update.js');
+const notFoundPageUpdatePath = path.join(__dirname, '..', 'plugins', 'not-found-page-update.js');
 
 const webpackPagesLines = [
   '...utils.pages(MODE),',
@@ -73,19 +73,19 @@ if (createOnePage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",',
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",');
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",',
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update",');
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",',
-      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update",');
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update",',
+      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update",');
 
     data = data.replace(
       '"dev": "yarn compile-md && yarn develop",',
       '"dev": "yarn develop",');
 
     data = data.replace(
-      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",',
+      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./plugins/markdown-compiler.mjs && node ./plugins/pug-clear",',
       '');
 
     packageMarkdownLines.forEach((line) => {
@@ -503,15 +503,15 @@ if (createMultiPage) {
     }
 
     data = data.replace(
-      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",',
-      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./node_scripts/sitemap-update && node ./node_scripts/not-found-page-update && rimraf ./build/404",');
+      '"build": "yarn compile-md && rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",',
+      '"build": "rimraf build && webpack --env mode=production --config ./webpack.config.js --progress && node ./plugins/sitemap-update && node ./plugins/not-found-page-update && rimraf ./build/404",');
 
     data = data.replace(
       '"dev": "yarn compile-md && yarn develop",',
       '"dev": "yarn develop",');
 
     data = data.replace(
-      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./node_scripts/markdown-compiler.mjs && node ./node_scripts/pug-clear",',
+      '"compile-md": "yarn rimraf ./src/views/pages/blog/ && node ./plugins/markdown-compiler.mjs && node ./plugins/pug-clear",',
       '');
 
     packageMarkdownLines.forEach((line) => {
