@@ -76,7 +76,7 @@ async function runAudit() {
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 p-8">
-  <h1 class="text-3xl font-bold mb-6 text-center">Отчёт по доступности</h1>
+  <h1 class="text-3xl font-bold mb-6">Отчёт по доступности</h1>
 `;
 
   for (const file of files) {
@@ -97,7 +97,7 @@ async function runAudit() {
 `;
 
       if (issueCount === 0) {
-        reportHtml += `<p class="text-green-600 font-medium">✔ Нет ошибок доступности</p>`;
+        reportHtml += `<p class="text-green-600 font-medium">✅ Нет ошибок доступности</p>`;
       } else {
         reportHtml += `
 <div class="overflow-x-auto rounded-lg border border-gray-300 mt-3">
@@ -157,7 +157,7 @@ async function runAudit() {
   await browser.close();
 
   reportHtml += `
-  <footer class="mt-12 text-center text-sm text-gray-500">
+  <footer class="mt-10 text-center text-sm text-gray-500">
     Сгенерировано автоматически ${new Date().toLocaleString('ru-RU')}
   </footer>
 </body>
@@ -166,7 +166,7 @@ async function runAudit() {
 
   fs.mkdirSync(REPORT_DIR, { recursive: true });
   fs.writeFileSync(REPORT_FILE, reportHtml);
-  console.log(`✅ Готово: отчёт сохранён в /reports/a11y/report.html`);
+  console.log(`✅ Готово: отчёт сохранён в /reports/a11y`);
   console.log(`✅ Скриншоты сохранены в /reports/a11y/screenshots`);
 }
 

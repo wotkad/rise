@@ -31,46 +31,61 @@ function findFiles(pattern) {
 // ====== Проверка title/description ======
 function checkTitlesDescriptions() {
   const report = [];
-  const pugFiles = findFiles(`${SRC_DIRS.pages}/**/*.pug`);
+  const pugFiles = [
+    ...findFiles(`${SRC_DIRS.pug}/index.pug`),
+    ...findFiles(`${SRC_DIRS.pages}/**/*.pug`)
+  ];
 
   function checkContent(file, content, type = 'pug') {
     let title = null;
     let description = null;
 
-    const blockTitleMatch = content.match(/block\s+title\s*([\s\S]*?)(?=\nblock|\nendblock|$)/i);
-    if (blockTitleMatch) {
-      const inner = blockTitleMatch[1].replace(/\n/g, ' ').trim();
-      const titleMatch = inner.match(/title\s+(.+)/i);
-      title = titleMatch ? titleMatch[1].trim() : inner.trim();
-    }
-
-    // ====== block basicSeo ======
-    const blockSeoMatch = content.match(/block\s+basicSeo\s*([\s\S]*?)(?=\nblock|\nendblock|$)/i);
-    if (blockSeoMatch) {
-      const inner = blockSeoMatch[1].replace(/\n/g, ' ').trim();
-      const metaDescMatch = inner.match(/meta\s*\(([^)]*?)\)/i);
-      if (metaDescMatch) {
-        const attrs = metaDescMatch[1];
-        const contentMatch = attrs.match(/content=['"](.+?)['"]/i);
-        const nameMatch = attrs.match(/name=['"]description['"]/i);
-        if (contentMatch && nameMatch) {
-          description = contentMatch[1].trim();
-        }
+    // === Ищем блок title ===
+    const titleBlock = content.match(/block\s+title([\s\S]*?)(?=block\s+|$)/i);
+    if (titleBlock) {
+      // Вытаскиваем строку с `title ...`
+      const titleLine = titleBlock[1].match(/^\s*title\s+(.+)$/m);
+      if (titleLine) {
+        title = titleLine[1].trim();
       }
     }
 
-    if (!title) report.push({ file, type, issue: 'missing_title' });
-    if (!description) report.push({ file, type, issue: 'missing_description' });
+    // === Ищем блок basicSeo и description ===
+    const seoBlock = content.match(/block\s+basicSeo([\s\S]*?)(?=block\s+|$)/i);
+    if (seoBlock) {
+      const descriptionMatch = seoBlock[1].match(/content\s*=\s*["']([^"']+)["'][^>]*name\s*=\s*["']description["']/);
+      if (descriptionMatch) {
+        description = descriptionMatch[1].trim();
+      }
+    }
 
-    if (title && title.length > TITLE_MAX_LENGTH)
-      report.push({ file, type, issue: 'title_too_long', length: title.length });
+    // === Проверки и добавление в отчёт ===
+    if (!title) {
+      report.push({ file, type, issue: 'missing_title' });
+    } else if (title.length > TITLE_MAX_LENGTH) {
+      report.push({
+        file,
+        type,
+        issue: 'title_too_long',
+        length: title.length,
+        title
+      });
+    }
 
-    if (description && description.length > DESCRIPTION_MAX_LENGTH)
-      report.push({ file, type, issue: 'description_too_long', length: description.length });
+    if (!description) {
+      report.push({ file, type, issue: 'missing_description' });
+    } else if (description.length > DESCRIPTION_MAX_LENGTH) {
+      report.push({
+        file,
+        type,
+        issue: 'description_too_long',
+        length: description.length,
+        description
+      });
+    }
   }
 
   pugFiles.forEach(f => checkContent(f, readFile(f), 'pug'));
-
   return report;
 }
 
@@ -99,16 +114,15 @@ function checkImageAlts() {
   pugFiles.forEach(file => {
     const content = readFile(file);
 
-    // ищем img Pug и HTML внутри строк
-    const imgRegex = /(img\s*\(.*?\))|(<img\s+[^>]*>)/gi;
+    // ищем img() и HTML <img> с учётом вложенных конструкций
+    const imgRegex = /img\s*\((?:[^()"'']+|["'][^"']*["']|\([^()]*\))*\)|<img\s+[^>]*>/gi;
     let match;
     while ((match = imgRegex.exec(content)) !== null) {
       const tag = match[0];
 
-      // проверяем наличие alt
-      if (!/alt\s*=/i.test(tag)) {
-        // вытаскиваем полностью всё после src, включая ${require(...)}
-        const srcMatch = tag.match(/src\s*[:=]?\s*([\s\S]+)/i);
+      // проверяем наличие alt=
+      if (!/alt\s*=\s*["'][^"']*["']/.test(tag)) {
+        const srcMatch = tag.match(/src\s*[:=]?\s*([^,)>\s]+)/i);
         report.push({ file, image: srcMatch ? srcMatch[1].trim() : '[unknown]' });
       }
     }
@@ -121,7 +135,7 @@ function checkImageAlts() {
 function generateHtmlReport(data) {
   const renderTable = (items) => {
     if (!items || items.length === 0) {
-      return '<p class="text-green-600">✔ Нет проблем</p>';
+      return '<p class="text-green-600">✅ Нет проблем</p>';
     }
 
     const headers = Object.keys(items[0]);
@@ -165,7 +179,7 @@ function generateHtmlReport(data) {
     </section>
   `).join('')}
 
-  <footer class="mt-12 text-sm text-gray-500 text-center">
+  <footer class="mt-10 text-sm text-gray-500 text-center">
     Сгенерировано автоматически ${new Date().toLocaleString('ru-RU')}
   </footer>
 </body>
@@ -187,7 +201,7 @@ async function run() {
 
   const htmlPath = path.join(REPORT_DIR, 'report.html');
   fs.writeFileSync(htmlPath, generateHtmlReport(reportData));
-  console.log(`✅ Отчёт о контенте сохранён в ${htmlPath}`);
+  console.log(`✅ Отчёт о контенте сохранён в /reports/content`);
 }
 
 run();
