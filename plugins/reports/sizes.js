@@ -6,9 +6,9 @@ const BUILD_DIR = path.resolve(__dirname, "../../build");
 const SRC_ASSETS_DIR = path.resolve(__dirname, "../../src/assets");
 const SRC_VIEWS_DIR = path.resolve(__dirname, "../../src/views");
 const REPORTS_DIR = path.resolve(__dirname, "../../reports/sizes");
-const REPORT_FILE = path.join(REPORTS_DIR, "sizes.txt");
-const CACHE_FILE = path.join(REPORTS_DIR, "cache.json");
-const LOG_FILE = path.join(REPORTS_DIR, "log.txt");
+const REPORT_FILE = path.join(REPORTS_DIR, "report.txt");
+const CACHE_FILE = path.join(REPORTS_DIR, "report-cache.json");
+const LOG_FILE = path.join(REPORTS_DIR, "report-log.txt");
 
 function getFilesRecursive(dir, exts) {
   let results = [];
