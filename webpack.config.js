@@ -90,9 +90,9 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            utils.isDevMode(MODE)
-              ? "style-loader"
-              : MiniCssExtractPlugin.loader,
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
             {
               loader: "css-loader",
               options: {
@@ -100,14 +100,15 @@ module.exports = (env) => {
                 sourceMap: true,
               },
             },
+            "postcss-loader",
           ],
         },
         {
           test: /\.scss$/,
           use: [
-            utils.isDevMode(MODE)
-              ? "style-loader"
-              : MiniCssExtractPlugin.loader,
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
             {
               loader: "css-loader",
               options: { importLoaders: 1, sourceMap: true },
