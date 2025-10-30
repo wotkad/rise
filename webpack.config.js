@@ -169,7 +169,6 @@ module.exports = (env) => {
                 method: 'render',
                 root: path.resolve(__dirname, 'src/views'),
                 basedir: path.resolve(__dirname, 'src/views'),
-                watchFiles: true,
                 resolve: {
                   alias: {
                     '@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
@@ -330,7 +329,7 @@ module.exports = (env) => {
             {
               match: [
                 './src/views/**/*.pug',
-                './src/assets/styles/**/*.scss',
+                './src/assets/**/*.js',
                 './src/assets/images/**/*.{webp,jpg,jpeg,png,gif,svg}' // добавляем изображения
               ],
               options: {
