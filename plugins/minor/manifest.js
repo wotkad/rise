@@ -26,7 +26,6 @@ class ManifestGenerator {
 
           const json = JSON.stringify(manifest, null, 2);
 
-          // Новый API Webpack для добавления ассета
           compilation.emitAsset('manifest.json', new RawSource(json));
         }
       );

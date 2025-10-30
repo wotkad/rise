@@ -10,7 +10,6 @@ const REPORT_DIR = path.resolve(__dirname, '../../reports/a11y');
 const REPORT_FILE = path.join(REPORT_DIR, 'report.html');
 const SCREENSHOT_DIR = path.join(REPORT_DIR, 'screenshots');
 
-// --- Очищаем папку скриншотов перед запуском ---
 if (fs.existsSync(SCREENSHOT_DIR)) {
   fs.readdirSync(SCREENSHOT_DIR).forEach(file => {
     fs.unlinkSync(path.join(SCREENSHOT_DIR, file));
@@ -28,7 +27,6 @@ async function auditPage(filePath, browser) {
     standard: 'WCAG2AA',
   });
 
-  // подсветка проблемных элементов
   for (const issue of results.issues) {
     if (issue.selector) {
       await page.evaluate((selector) => {
@@ -38,8 +36,7 @@ async function auditPage(filePath, browser) {
     }
   }
 
-  // формируем имя скриншота
-  const relativePath = path.relative(BUILD_DIR, filePath); // e.g. blog/post/index.html
+  const relativePath = path.relative(BUILD_DIR, filePath);
   let screenshotName;
 
   if (path.basename(filePath) === 'index.html') {
@@ -82,7 +79,6 @@ async function runAudit() {
 
   for (const file of files) {
     const relativePath = path.relative(BUILD_DIR, file);
-    // console.log(`🔍 Проверка: ${relativePath}`);
 
     try {
       const { results, screenshotFile } = await auditPage(file, browser);

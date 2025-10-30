@@ -2,8 +2,6 @@
 const fs = require("fs");
 const path = require("path");
 
-// ---------- НАСТРОЙКИ ----------
-
 const BUILD_DIR = path.resolve(__dirname, "../../build");
 const SRC_ASSETS_DIR = path.resolve(__dirname, "../../src/assets");
 const SRC_VIEWS_DIR = path.resolve(__dirname, "../../src/views");
@@ -11,8 +9,6 @@ const REPORTS_DIR = path.resolve(__dirname, "../../reports/sizes");
 const REPORT_FILE = path.join(REPORTS_DIR, "sizes.txt");
 const CACHE_FILE = path.join(REPORTS_DIR, "cache.json");
 const LOG_FILE = path.join(REPORTS_DIR, "log.txt");
-
-// ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 
 function getFilesRecursive(dir, exts) {
   let results = [];
@@ -41,8 +37,6 @@ function formatDate() {
   return `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 }
 
-// ---------- ПОДСЧЁТ РАЗМЕРОВ ----------
-
 function calculateSizes(dir, exts) {
   const files = getFilesRecursive(dir, exts);
 
@@ -60,8 +54,6 @@ function calculateSizes(dir, exts) {
   return { files, ...totals, total: totalAll };
 }
 
-// ---------- КЭШ ----------
-
 function loadCache() {
   if (!fs.existsSync(CACHE_FILE)) return {};
   try {
@@ -76,11 +68,8 @@ function saveCache(cacheData) {
   fs.writeFileSync(CACHE_FILE, JSON.stringify(cacheData, null, 2), "utf8");
 }
 
-// ---------- ОТЧЁТ ----------
-
 function makeReportSection(title, data, cacheSection, baseDir, isBuild = false) {
   if (!data.files || data.files.length === 0) {
-    // Обработка пустой сборки
     const summary = [
       title,
       `JS: ${formatSize(data.js)} КБ | CSS/SCSS: ${formatSize(data.css)} КБ | PUG: ${formatSize(data.pug)} КБ | IMG: ${formatSize(data.img)} КБ | Прочие: ${formatSize(data.other)} КБ`,
@@ -93,13 +82,11 @@ function makeReportSection(title, data, cacheSection, baseDir, isBuild = false) 
       ""
     ].join("\n");
 
-    // В кэше оставляем специальную запись для build
     const cacheSectionNew = isBuild ? { "⚠️ Сборка не найдена.": 0 } : {};
 
     return { summary, deleted: [], cacheSectionNew };
   }
 
-  // === Здесь идёт обычная обработка файлов ===
   const rows = data.files
     .sort((a, b) => b.size - a.size)
     .map(f => {
@@ -184,14 +171,13 @@ function writeReport(buildData, srcData, cache) {
     buildData,
     cache.build || {},
     BUILD_DIR,
-    true // isBuild = true
+    true
   );
   const srcSection = makeReportSection("🧩 Исходные файлы (src)", srcData, cache.src || {}, SRC_ASSETS_DIR + "|" + SRC_VIEWS_DIR);
 
   const footer = "\n\n";
   const output = `${header}\n${buildSection.summary}\n${srcSection.summary}${footer}`;
 
-  // новый отчёт — в начало файла
   let oldContent = "";
   if (fs.existsSync(REPORT_FILE)) oldContent = fs.readFileSync(REPORT_FILE, "utf8");
   fs.writeFileSync(REPORT_FILE, output + oldContent, "utf8");
@@ -202,7 +188,6 @@ function writeReport(buildData, srcData, cache) {
   };
 }
 
-// ---------- ЛОГ ----------
 
 function appendLog(buildData, srcData, deleted) {
   const dateStr = formatDate();
@@ -210,10 +195,9 @@ function appendLog(buildData, srcData, deleted) {
 
   const lines = [`[${dateStr}] Общий размер (build + src): ${totalKB} КБ`];
 
-  // Build
   lines.push("📦 Build:");
   if (!buildData.files || buildData.files.length === 0) {
-    lines.push("  ⚠️ Сборка не найдена.");
+    lines.push(" ⚠️ Сборка не найдена.");
   } else {
     buildData.files.forEach(f => {
       const rel = path.relative(BUILD_DIR, f.path).replace(/\\/g, "/");
@@ -221,10 +205,9 @@ function appendLog(buildData, srcData, deleted) {
     });
   }
 
-  // Src
   lines.push("🧩 Src:");
   if (!srcData.files || srcData.files.length === 0) {
-    lines.push("  ⚠️ Исходные файлы не найдены.");
+    lines.push(" ⚠️ Исходные файлы не найдены.");
   } else {
     srcData.files.forEach(f => {
       let rel;
@@ -235,7 +218,6 @@ function appendLog(buildData, srcData, deleted) {
     });
   }
 
-  // Удалённые файлы
   if (deleted.length) {
     lines.push("❌ Удалённые файлы:");
     deleted.forEach(f => lines.push(`  - ${f}`));
@@ -249,11 +231,7 @@ function appendLog(buildData, srcData, deleted) {
   fs.writeFileSync(LOG_FILE, lines.join("\n") + oldLog, "utf8");
 }
 
-// ---------- MAIN ----------
-
 function main() {
-  // console.log("📊 Анализ размера сборки...");
-
   const cache = loadCache();
 
   const buildExists = fs.existsSync(BUILD_DIR);

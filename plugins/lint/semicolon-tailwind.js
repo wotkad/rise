@@ -1,11 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-/**
- * Recursively searches for all .scss files in a directory.
- * @param {string} dir - The directory to search in.
- * @returns {string[]} - Array of .scss file paths.
- */
 function findScssFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
@@ -24,10 +19,6 @@ function findScssFiles(dir) {
     return results;
 }
 
-/**
- * Adds a semicolon at the end of lines starting with @apply if not already present.
- * @param {string} filePath - Path to the .scss file.
- */
 function processScssFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf-8');
     const updatedContent = content.split('\n').map(line => {
@@ -41,10 +32,6 @@ function processScssFile(filePath) {
     console.log(`Processed: ${filePath}`);
 }
 
-/**
- * Main function to process all .scss files in a directory.
- * @param {string} dir - Directory containing .scss files.
- */
 function addSemicolonsToScss(dir) {
     const scssFiles = findScssFiles(dir);
 
@@ -53,6 +40,5 @@ function addSemicolonsToScss(dir) {
     });
 }
 
-// Replace './scss-directory' with the path to your SCSS files directory
 const directoryToProcess = path.join(__dirname, '../../src/assets/styles');
 addSemicolonsToScss(directoryToProcess);

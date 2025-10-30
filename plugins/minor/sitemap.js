@@ -32,7 +32,6 @@ class SitemapGenerator {
   }
 
   apply(compiler) {
-    // 🛠️ Игнорируем sitemap.xml в watch
     compiler.hooks.afterEnvironment.tap('SitemapPlugin', () => {
       if (!compiler.options.watchOptions) compiler.options.watchOptions = {};
       const ignored = compiler.options.watchOptions.ignored || [];
@@ -42,7 +41,6 @@ class SitemapGenerator {
     });
 
     compiler.hooks.done.tapPromise('SitemapPlugin', async () => {
-      // ⚙️ Генерируем только при первом запуске или при ручной пересборке
       if (this.generated && compiler.options.watch) return;
       this.generated = true;
 
@@ -75,7 +73,6 @@ class SitemapGenerator {
         .replace(/(<url>)/g, '  $1')
         .replace(/(<\/url>)/g, '  $1');
 
-      // ✅ Создаём директорию перед записью sitemap.xml
       const dir = path.dirname(output);
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });

@@ -1,7 +1,6 @@
 const path = require('path');
 
 function AliasesGenerator() {
-  // Fix: используем правильный базовый путь до проекта
   const rootPath = path.resolve(__dirname, '../../');
   const srcPath = path.resolve(rootPath, 'src');
   

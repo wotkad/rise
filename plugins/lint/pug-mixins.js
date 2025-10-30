@@ -2,10 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const JSON5 = require('json5');
 
-// Папка с файлами .pug
 const VIEWS_DIR = path.join(__dirname, '../../src/views');
 
-// Функция для рекурсивного поиска файлов .pug
 function findPugFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
@@ -24,10 +22,8 @@ function findPugFiles(dir) {
     return results;
 }
 
-// Рекурсивная функция для форматирования объектов и массивов
 function formatValue(value, indent) {
     if (Array.isArray(value)) {
-        // Форматируем массив
         const items = value
             .map((item) => `${indent}  ${formatValue(item, `${indent}  `)},`)
             .join('\n');
@@ -35,7 +31,6 @@ function formatValue(value, indent) {
 ${items}
 ${indent}]`;
     } else if (typeof value === 'object' && value !== null) {
-        // Форматируем объект
         const entries = Object.keys(value)
             .sort()
             .map((key) => `${indent}  ${key}: ${formatValue(value[key], `${indent}  `)},`)
@@ -44,45 +39,32 @@ ${indent}]`;
 ${entries}
 ${indent}}`;
     } else if (typeof value === 'string') {
-        return `'${value.replace(/'/g, "\\'")}'`; // Экранируем одиночные кавычки
+        return `'${value.replace(/'/g, "\\'")}'`;
     } else {
-        return String(value); // Для чисел и других примитивов
+        return String(value);
     }
 }
 
-// Функция для форматирования вызова миксинов
 function formatMixinCalls(content) {
     return content.replace(/^([ \t]*)\+(\w+)\((\{[\s\S]*?\})\)/gm, (match, indent, mixinName, attributes) => {
         try {
-            // Парсим атрибуты с помощью JSON5
             const attrObject = JSON5.parse(attributes);
-
-            // Рекурсивно форматируем объект атрибутов
             const formattedAttributes = formatValue(attrObject, indent);
-
-            // Формируем отформатированную строку с сохранением отступа
             return `${indent}+${mixinName}(${formattedAttributes})`;
         } catch (err) {
             console.error('Ошибка при обработке миксина:', match, err);
-            return match; // Возвращаем исходную строку в случае ошибки
+            return match;
         }
     });
 }
 
-// Функция для обработки всех файлов
 function processPugFiles() {
     const files = findPugFiles(VIEWS_DIR);
 
     files.forEach((file) => {
         console.log(`Обрабатываем файл: ${file}`);
-
-        // Читаем содержимое файла
         const content = fs.readFileSync(file, 'utf8');
-
-        // Форматируем содержимое
         const formattedContent = formatMixinCalls(content);
-
-        // Записываем обратно в файл
         fs.writeFileSync(file, formattedContent, 'utf8');
     });
 

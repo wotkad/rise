@@ -4,20 +4,15 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-// ---------- Папка для отчётов ----------
 const REPORTS_DIR = path.resolve(__dirname, "../../reports/lighthouse");
 if (!fs.existsSync(REPORTS_DIR)) {
   fs.mkdirSync(REPORTS_DIR, { recursive: true });
 }
 
-// ---------- Очистка старых отчётов ----------
 fs.readdirSync(REPORTS_DIR)
   .filter(file => file.startsWith("lighthouse-report"))
   .forEach(file => fs.unlinkSync(path.join(REPORTS_DIR, file)));
 
-// console.log("🧹 Старые отчёты удалены.");
-
-// ---------- Форматирование даты ----------
 function formatDate(d) {
   const pad = (n) => String(n).padStart(2, "0");
   const day = pad(d.getDate());
@@ -32,14 +27,12 @@ function formatDate(d) {
 const timestamp = formatDate(new Date());
 const url = "http://localhost:8080";
 
-// ---------- Конфигурации для двух режимов ----------
 const configs = [
   { name: "mobile", flags: "" },
   { name: "desktop", flags: "--preset=desktop" }
 ];
 
 console.log(`🚀 Запуск Lighthouse...`);
-// ---------- Запуск Lighthouse для каждого режима ----------
 for (const { name, flags } of configs) {
   const reportFile = path.join(REPORTS_DIR, `lighthouse-report-${name}-${timestamp}.html`);
 
@@ -56,7 +49,6 @@ for (const { name, flags } of configs) {
 
   try {
     execSync(command, { stdio: "inherit" });
-    // console.log(`✅ ${name}-отчёт сохранён: /reports/lighthouse-report-${name}-${timestamp}.html`);
   } catch (err) {
     console.error(`❌ Ошибка при запуске Lighthouse (${name}):`, err.message);
   }
