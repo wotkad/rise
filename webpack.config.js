@@ -326,7 +326,18 @@ module.exports = (env) => {
           host: 'localhost',
           port: 8080,
           proxy: 'http://localhost:8081/',
-          files: ['./src/views/**/*.pug', './src/assets/**/*.js', './src/assets/**/*.webp'],
+          files: [
+            {
+              match: [
+                './src/views/**/*.pug',
+                './src/assets/styles/**/*.scss',
+                './src/assets/images/**/*.{webp,jpg,jpeg,png,gif,svg}' // добавляем изображения
+              ],
+              options: {
+                ignored: ['**/*.preview.*', '**/._*']
+              }
+            }
+          ],
           open: false,
           notify: false
         },

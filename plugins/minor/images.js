@@ -2,18 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const chokidar = require('chokidar');
-const browserSync = require('browser-sync').create();
 
 const IMAGES_SRC = path.resolve(__dirname, '../../src/assets/images');
 const MAX_WIDTH = 1920;
 const PREVIEW_WIDTH = 400;
-
-browserSync.init({
-  proxy: 'http://localhost:8081/',
-  open: false,
-  notify: false,
-  files: [],
-});
 
 async function optimizeImage(filePath) {
   const ext = path.extname(filePath).toLowerCase();
@@ -35,13 +27,11 @@ async function optimizeImage(filePath) {
       .toFile(path.join(dir, baseName + '_preview.webp'));
 
     fs.unlinkSync(filePath);
-
-    browserSync.reload();
   } catch (err) {
     console.error('[Watcher] Ошибка обработки изображения:', filePath, err);
   }
 }
 
 chokidar.watch(IMAGES_SRC, { ignoreInitial: true })
-  .on('add', file => setTimeout(() => optimizeImage(file), 100))   // небольшая задержка
+  .on('add', file => setTimeout(() => optimizeImage(file), 100))
   .on('change', file => setTimeout(() => optimizeImage(file), 100));

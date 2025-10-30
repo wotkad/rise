@@ -194,7 +194,7 @@ async function run() {
   const imagesReport = checkImageAlts();
 
   const reportData = {
-    SEO: titlesReport,
+    Заголовки: titlesReport,
     SCSS: scssReport,
     Images: imagesReport
   };
