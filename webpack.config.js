@@ -201,7 +201,7 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(jpe?g|png|gif|svg|ico)$/i,
+          test: /\.(jpe?g|png|gif|svg|ico|webp)$/i,
           type: "asset/resource",
           generator: {
             filename: 'assets/images/[name][ext]'
@@ -325,7 +325,7 @@ module.exports = (env) => {
           host: 'localhost',
           port: 8080,
           proxy: 'http://localhost:8081/',
-          files: ['./src/views/**/*.pug', './src/assets/**/*.js'],
+          files: ['./src/views/**/*.pug', './src/assets/**/*.js', './src/assets/**/*.webp'],
           open: false,
           notify: false
         },
