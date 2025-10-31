@@ -18,6 +18,7 @@ function getAllFiles(dir, prefix = '/') {
     } else {
       if (
         file === '.DS_Store' ||
+        file === '.htaccess' ||
         filePath.endsWith('service-worker.js')
       ) return;
 
@@ -89,15 +90,60 @@ const STATIC_ASSETS = ${JSON.stringify(files, null, 2)};
 const DATO_ENDPOINT = 'https://graphql.datocms.com/';
 const TTL = 10 * 60 * 1000; // 10 минут
 
+// ============ Вспомогательные проверки ============
+
+function isHttpUrl(url) {
+  try {
+    if (url.startsWith('/')) return true; // относительные пути от origin
+    const u = new URL(url);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch (e) {
+    return false;
+  }
+}
+
+function isCacheableRequest(request) {
+  return isHttpUrl(request.url);
+}
+
+function isCacheableResponse(request, response) {
+  try {
+    if (!response || !response.ok) return false;
+    if (!isHttpUrl(response.url)) return false;
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// ============ Установка и кеширование статических файлов ============
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(CACHE_NAME).then(async (cache) => {
       console.log('[ServiceWorker] Caching', STATIC_ASSETS.length, 'files');
-      return cache.addAll(STATIC_ASSETS);
+      for (const url of STATIC_ASSETS) {
+        if (!isHttpUrl(url)) {
+          console.warn('[SW] Пропущен (не http):', url);
+          continue;
+        }
+        try {
+          const response = await fetch(url);
+          if (isCacheableResponse({ url }, response)) {
+            await cache.put(url, response.clone());
+          } else {
+            console.warn('[SW] Пропущен (', response && response.status, '):', url);
+          }
+        } catch (err) {
+          console.warn('[SW] Ошибка при загрузке:', url, err);
+        }
+      }
     })
   );
   self.skipWaiting();
 });
+
+// ============ Активация и очистка старого кеша ============
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
@@ -115,10 +161,15 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// ============ Fetch-обработчик ============
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  const requestUrl = new URL(event.request.url);
+  const reqUrl = event.request.url;
+  if (!isHttpUrl(reqUrl)) return; // игнорируем chrome-extension:, devtools:, blob:, data:
+
+  const requestUrl = new URL(reqUrl);
 
   if (requestUrl.searchParams.has('barba') || requestUrl.pathname.startsWith('/api/')) {
     return;
@@ -137,32 +188,50 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(cacheFirst(event.request));
 });
 
+// ============ Стратегии кеширования ============
+
 async function cacheFirst(request) {
+  if (!isCacheableRequest(request)) return fetch(request);
+
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request);
   if (cached) return cached;
 
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (isCacheableResponse(request, response)) {
+      try {
+        await cache.put(request, response.clone());
+      } catch (err) {
+        console.warn('[SW] cache.put failed for', request.url, err);
+      }
+    } else {
+      console.warn('[SW] Не кешируем ответ (not ok or unsupported):', request.url, response && response.status);
+    }
     return response;
   } catch (err) {
-    console.warn('[SW] Cache-first failed', err);
+    console.warn('[SW] Cache-first failed', request.url, err);
     return cached;
   }
 }
 
 async function networkFirst(request) {
+  if (!isCacheableRequest(request)) return fetch(request);
+
   const cache = await caches.open(CACHE_NAME);
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (isCacheableResponse(request, response)) {
+      await cache.put(request, response.clone());
+    }
     return response;
   } catch (err) {
     const cached = await cache.match(request);
     return cached || caches.match('/offline.html');
   }
 }
+
+// ============ DatoCMS (GraphQL TTL Cache) ============
 
 async function handleDatoCMSRequest(event) {
   const cloned = event.request.clone();

@@ -22,3 +22,4 @@ import "@common/set-nbsp";
 import "@common/get-current-year";
 import "@common/get-header-height";
 import "@common/set-svg-size";
+import "@common/service-worker";
