@@ -16,6 +16,7 @@ const SitemapGenerator = require('./plugins/minor/sitemap');
 const ManifestGenerator = require('./plugins/minor/manifest');
 const AliasesGenerator = require('./plugins/minor/aliases');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
+const CSSPurgePlugin = require("./plugins/production/css-purge");
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
@@ -326,6 +327,8 @@ module.exports = (env) => {
         "window.$": "jquery",
         "window.jQuery": "jquery",
       }),
+
+      ...(utils.isDevMode(MODE) ? [] : [CSSPurgePlugin(__dirname)]),
 
       new BrowserSyncPlugin(
         {

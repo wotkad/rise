@@ -9,7 +9,6 @@ class RelativeAssetsPlugin {
 
   apply(compiler) {
     compiler.hooks.done.tap('RelativeAssetsPlugin', () => {
-      console.log('🔧 Updating relative asset paths...');
       this.processFiles(this.baseDir, 1);
     });
   }
@@ -30,7 +29,6 @@ class RelativeAssetsPlugin {
         );
         if (replaced !== content) {
           fs.writeFileSync(filePath, replaced, 'utf8');
-          console.log(`✅ Updated ${filePath}`);
         }
       }
     }
