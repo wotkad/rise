@@ -328,7 +328,7 @@ module.exports = (env) => {
         "window.jQuery": "jquery",
       }),
 
-      ...(utils.isDevMode(MODE) ? [] : [CSSPurgePlugin(__dirname)]),
+      ...(utils.isDevMode(MODE) ? [] : [new CSSPurgePlugin(__dirname)]),
 
       new BrowserSyncPlugin(
         {
