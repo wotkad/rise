@@ -23,10 +23,15 @@ exports.pages = function (mode, folder = "") {
     if (view.startsWith('.')) return false;
 
     const viewName = view.split(".")[0];
-    const fileName =
-      folder === ""
-        ? `${viewName}/index.html`
-        : `${folder}/${viewName}/index.html`;
+    let fileName;
+    if (viewName === "404") {
+      fileName = "404.html"; // сразу в корень build/
+    } else {
+      fileName =
+        folder === ""
+          ? `${viewName}/index.html`
+          : `${folder}/${viewName}/index.html`;
+    }
     const layoutName =
       folder === ""
         ? `${view}`

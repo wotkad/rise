@@ -15,6 +15,7 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const SitemapGenerator = require('./plugins/minor/sitemap');
 const ManifestGenerator = require('./plugins/minor/manifest');
 const AliasesGenerator = require('./plugins/minor/aliases');
+const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
@@ -279,6 +280,11 @@ module.exports = (env) => {
       }),
 
       new ManifestGenerator(),
+
+      new RelativeAssetsPlugin({
+        baseDir: path.resolve(__dirname, 'build'),
+        targetDir: '/assets'
+      }),
 
       new FriendlyErrorsWebpackPlugin({
         clearConsole: true,
