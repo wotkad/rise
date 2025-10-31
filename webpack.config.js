@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
-const utils = require("./utils");
+const pager = require("./pager");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const SitemapGenerator = require('./plugins/minor/sitemap');
@@ -29,7 +29,7 @@ module.exports = (env) => {
       maxAssetSize: 512000
     },
     target: "web",
-    devtool: utils.isDevMode(MODE) ? "eval-source-map" : 'source-map',
+    devtool: pager.isDevMode(MODE) ? "eval-source-map" : 'source-map',
     context: path.join(__dirname, "./src"),
     entry: {
       bundle: path.join(__dirname, "./src/bundle.js"),
@@ -164,7 +164,7 @@ module.exports = (env) => {
         {
           test: /\.pug$/,
           use: [
-            utils.isDevMode(MODE)
+            pager.isDevMode(MODE)
             ? {
               loader: '@webdiscus/pug-loader',
               options: {
@@ -273,7 +273,7 @@ module.exports = (env) => {
       new RobotstxtPlugin(),
 
       new SitemapGenerator({
-        baseUrl: utils.isDevMode(MODE)
+        baseUrl: pager.isDevMode(MODE)
           ? 'http://localhost:8080'
           : 'https://yourwebsite.ru',
         viewsDir: path.resolve(__dirname, 'src/views'),
@@ -318,8 +318,8 @@ module.exports = (env) => {
         }
       }),
 
-      ...utils.pages(MODE),
-      ...utils.pages(MODE, "blog"),
+      ...pager.pages(MODE),
+      ...pager.pages(MODE, "blog"),
 
       new webpack.ProvidePlugin({
         $: "jquery",
@@ -328,7 +328,7 @@ module.exports = (env) => {
         "window.jQuery": "jquery",
       }),
 
-      ...(utils.isDevMode(MODE) ? [] : [new CSSPurgePlugin(__dirname)]),
+      ...(pager.isDevMode(MODE) ? [] : [new CSSPurgePlugin(__dirname)]),
 
       new BrowserSyncPlugin(
         {

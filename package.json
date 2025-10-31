@@ -16,7 +16,7 @@
   "scripts": {
     "build": "yarn --silent production",
     "production": "yarn --silent production:sequence",
-    "production:sequence": "yarn --silent minor:compile-md && rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn --silent production:metatag && yarn --silent reports:sizes && yarn --silent reports:lighthouse && yarn --silent reports:a11y && yarn --silent minor:service-worker",
+    "production:sequence": "rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn --silent production:metatag && yarn --silent reports:sizes && yarn --silent reports:lighthouse && yarn --silent reports:a11y && yarn --silent minor:service-worker",
     "production:metatag": "node ./plugins/production/metatag",
     "production:archive-paths": "node ./plugins/production/archive-paths",
     "production:404": "node ./plugins/production/404",
@@ -39,7 +39,7 @@
     "rise:one-page": "node ./plugins/rise/init -one-page",
     "rise:multi-page": "node ./plugins/rise/init -multi-page",
     "reports:sizes": "node ./plugins/reports/sizes",
-    "reports:lighthouse": "node ./plugins/reports/lighthouse",
+    "reports:lighthouse": "NODE_NO_WARNINGS=1 && node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",
     "reports:content": "node ./plugins/reports/content"
   },
@@ -106,7 +106,6 @@
     "sass-loader": "^13.2.0",
     "sharp": "^0.34.4",
     "sitemap": "^8.0.2",
-    "sitemap-generator": "^8.5.1",
     "style-loader": "^3.3.1",
     "stylelint": "^15.10.3",
     "stylelint-config-recommended-scss": "^12.0.0",

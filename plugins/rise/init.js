@@ -20,12 +20,12 @@ const bundlePath = path.join(__dirname, '..', 'src', 'bundle.js');
 const notFoundPageUpdatePath = path.join(__dirname, '..', 'plugins', '404.js');
 
 const webpackPagesLines = [
-  '...utils.pages(MODE),',
-  '...utils.pages(MODE, "blog"),'
+  '...pager.pages(MODE),',
+  '...pager.pages(MODE, "blog"),'
 ];
 
 const webpackPagesLinesCorporate = [
-  '...utils.pages(MODE, "blog"),'
+  '...pager.pages(MODE, "blog"),'
 ];
 
 const packageTailwindLines = [
@@ -606,7 +606,7 @@ if (createMultiPage) {
 
     let updatedContent = filteredLines.join('\n');
 
-    updatedContent = updatedContent.replace('...utils.pages(MODE),', '...utils.pages(MODE),\n');
+    updatedContent = updatedContent.replace('...pager.pages(MODE),', '...pager.pages(MODE),\n');
 
     fs.writeFile(webpackConfigPath, updatedContent, 'utf8', (err) => {
       if (err) {
