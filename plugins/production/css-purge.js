@@ -27,14 +27,12 @@ class CSSPurgePlugin {
         return;
       }
 
+      console.log('\n🚀 Cоздания отчёта о CSS...');
+
       const purgeTargets = globAll.sync([
         path.join(BUILD_DIR, "**/*.html"),
         path.join(SRC_DIR, "**/*.js"),
       ]);
-
-      console.log(
-        `\n🔍 PurgeCSS анализирует ${purgeTargets.length} файлов...`
-      );
 
       const beforeSize = fs.statSync(cssPath).size;
 
@@ -67,18 +65,6 @@ class CSSPurgePlugin {
       fs.writeFileSync(cssPath, result.css);
       const afterSize = fs.statSync(cssPath).size;
 
-      // 📊 Консольный лог результата
-      if (removed.length > 0) {
-        setTimeout(function() {
-          console.log(
-            `\n✅ Готово: bundle.css оптимизирован (${(beforeSize / 1024).toFixed(
-              1
-            )} KB → ${(afterSize / 1024).toFixed(1)} KB)`
-          );
-        }, 100);
-      }
-
-      // 🧾 HTML отчёт
       let reportHtml = `
 <!DOCTYPE html>
 <html lang="ru">
@@ -136,7 +122,14 @@ class CSSPurgePlugin {
 
       fs.mkdirSync(REPORT_DIR, { recursive: true });
       fs.writeFileSync(REPORT_FILE, reportHtml);
-      console.log(`✅ Готово: metatag добавлен в (/reports/css-purge)`);
+
+      if (removed.length > 0) {
+        console.log(
+          `✅ Готово: отчёт о CSS добавлен в (/reports/css-purge), bundle.css оптимизирован (${(beforeSize / 1024).toFixed(
+            1
+          )} KB → ${(afterSize / 1024).toFixed(1)} KB)`
+        );
+      }
     });
   }
 }

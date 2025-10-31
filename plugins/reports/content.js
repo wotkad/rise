@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
-// ====== Конфиг ======
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const REPORT_DIR = path.join(PROJECT_ROOT, 'reports/content');
 fs.mkdirSync(REPORT_DIR, { recursive: true });
@@ -19,7 +18,6 @@ const SRC_DIRS = {
 const TITLE_MAX_LENGTH = 60;
 const DESCRIPTION_MAX_LENGTH = 160;
 
-// ====== Утилиты ======
 function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf-8');
 }
@@ -28,7 +26,6 @@ function findFiles(pattern) {
   return glob.sync(pattern, { nodir: true });
 }
 
-// ====== Проверка title/description ======
 function checkTitlesDescriptions() {
   const report = [];
   const pugFiles = [
@@ -40,17 +37,14 @@ function checkTitlesDescriptions() {
     let title = null;
     let description = null;
 
-    // === Ищем блок title ===
     const titleBlock = content.match(/block\s+title([\s\S]*?)(?=block\s+|$)/i);
     if (titleBlock) {
-      // Вытаскиваем строку с `title ...`
       const titleLine = titleBlock[1].match(/^\s*title\s+(.+)$/m);
       if (titleLine) {
         title = titleLine[1].trim();
       }
     }
 
-    // === Ищем блок basicSeo и description ===
     const seoBlock = content.match(/block\s+basicSeo([\s\S]*?)(?=block\s+|$)/i);
     if (seoBlock) {
       const descriptionMatch = seoBlock[1].match(/content\s*=\s*["']([^"']+)["'][^>]*name\s*=\s*["']description["']/);
@@ -59,7 +53,6 @@ function checkTitlesDescriptions() {
       }
     }
 
-    // === Проверки и добавление в отчёт ===
     if (!title) {
       report.push({ file, type, issue: 'missing_title' });
     } else if (title.length > TITLE_MAX_LENGTH) {
@@ -89,7 +82,6 @@ function checkTitlesDescriptions() {
   return report;
 }
 
-// ====== Проверка SCSS ======
 function checkScss() {
   const report = [];
 
@@ -97,7 +89,6 @@ function checkScss() {
   const variables = readFile(variablesFile).match(/\$[\w-]+/g) || [];
   const scssFiles = findFiles(`${SRC_DIRS.scss}/**/*.scss`).filter(f => !f.endsWith('variables.scss'));
 
-  // unused variables
   variables.forEach(v => {
     const used = scssFiles.some(f => readFile(f).includes(v));
     if (!used) report.push({ type: 'unusedVariable', variable: v });
@@ -106,7 +97,6 @@ function checkScss() {
   return report;
 }
 
-// ====== Проверка alt у изображений ======
 function checkImageAlts() {
   const report = [];
   const pugFiles = findFiles(`${SRC_DIRS.pug}/**/*.pug`);
@@ -114,13 +104,11 @@ function checkImageAlts() {
   pugFiles.forEach(file => {
     const content = readFile(file);
 
-    // ищем img() и HTML <img> с учётом вложенных конструкций
     const imgRegex = /img\s*\((?:[^()"'']+|["'][^"']*["']|\([^()]*\))*\)|<img\s+[^>]*>/gi;
     let match;
     while ((match = imgRegex.exec(content)) !== null) {
       const tag = match[0];
 
-      // проверяем наличие alt=
       if (!/alt\s*=\s*["'][^"']*["']/.test(tag)) {
         const srcMatch = tag.match(/src\s*[:=]?\s*([^,)>\s]+)/i);
         report.push({ file, image: srcMatch ? srcMatch[1].trim() : '[unknown]' });
@@ -131,7 +119,8 @@ function checkImageAlts() {
   return report;
 }
 
-// ====== Генерация HTML отчёта ======
+console.log('🚀 Создание отчёта о контенте...');
+
 function generateHtmlReport(data) {
   const renderTable = (items) => {
     if (!items || items.length === 0) {
@@ -187,7 +176,6 @@ function generateHtmlReport(data) {
   `;
 }
 
-// ====== Главная функция ======
 async function run() {
   const titlesReport = checkTitlesDescriptions();
   const scssReport = checkScss();

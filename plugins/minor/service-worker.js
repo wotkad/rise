@@ -28,6 +28,8 @@ function getAllFiles(dir, prefix = '/') {
   return results;
 }
 
+console.log('🚀 Cоздания service worker...');
+
 const files = getAllFiles(BUILD_DIR);
 
 if (!fs.existsSync(OFFLINE_FILE)) {

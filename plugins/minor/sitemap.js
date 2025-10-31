@@ -45,7 +45,7 @@ class SitemapGenerator {
       this.generated = true;
 
       const { baseUrl, viewsDir, output } = this.options;
-      console.log('\x1b[36m%s\x1b[0m', '→ Генерация sitemap.xml...');
+      console.log('\n🚀 Cоздания карты сайта...');
 
       const pugFiles = getPugFiles(viewsDir, viewsDir);
 
@@ -80,8 +80,7 @@ class SitemapGenerator {
 
       fs.writeFileSync(output, pretty);
       console.log(
-        '\x1b[32m%s\x1b[0m',
-        `✓ sitemap.xml создан (${links.length} страниц)`
+        `✅ Готово: карта сайта создана (${links.length} страниц)`
       );
     });
   }

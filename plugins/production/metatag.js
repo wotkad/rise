@@ -53,13 +53,11 @@ function processDir(dir, buildInfo) {
 
 function injectBuildMetaAll(buildDir) {
   if (!fs.existsSync(buildDir)) {
-    console.error(`❌ Директория не найдена: ${buildDir}`);
     process.exit(1);
   }
 
   const buildInfo = getBuildInfo();
   processDir(buildDir, buildInfo);
-  console.log(`✅ Готово: metatag добавлен в (/build)`);
 }
 
 const targetDir = 'build';

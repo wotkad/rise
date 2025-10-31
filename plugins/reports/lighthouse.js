@@ -32,7 +32,8 @@ const configs = [
   { name: "desktop", flags: "--preset=desktop" }
 ];
 
-console.log(`🚀 Запуск Lighthouse...`);
+console.log('🚀 Создание отчёта Lighthouse...');
+
 for (const { name, flags } of configs) {
   const reportFile = path.join(REPORTS_DIR, `lighthouse-report-${name}-${timestamp}.html`);
 

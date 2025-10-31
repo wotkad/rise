@@ -37,6 +37,8 @@ function formatDate() {
   return `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 }
 
+console.log('🚀 Создание отчёта о размерах файлов...');
+
 function calculateSizes(dir, exts) {
   const files = getFilesRecursive(dir, exts);
 
