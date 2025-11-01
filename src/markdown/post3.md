@@ -80,7 +80,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Donec sodales sagittis magna.
 
-There's a video about [trying out Flowbite on YouTube](https://wotkad.ru/rise/) that you can check out if you want to see an experienced developer working with the library.
+Lorem ipsum dolor sit amet, consectetur [adipiscing elit](https://wotkad.ru/rise/). Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Donec sodales sagittis magna.
 
 ---
 
@@ -89,4 +89,4 @@ There's a video about [trying out Flowbite on YouTube](https://wotkad.ru/rise/) 
   <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit</figcaption>
 </figure>
 
-You'll also find more examples on <mark>layout design</mark>, <em>color theory</em>, and <del>deprecated techniques</del> in other sections of this demo content.
+Lorem ipsum dolor sit amet, consectetur [adipiscing elit](https://wotkad.ru/rise/). Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Donec sodales sagittis magna.
