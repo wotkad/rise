@@ -15,8 +15,7 @@
   },
   "lint-staged": {
     "src/**/*.scss": ["yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint"],
-    "src/**/*.pug": ["yarn --silent lint:svg && yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins"],
-    "src/**/*.js": ["yarn --silent lint:js-defaults"]
+    "src/**/*.pug": ["yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins && yarn --silent lint:js-defaults"]
   },
   "scripts": {
     "build": "yarn --silent production",
