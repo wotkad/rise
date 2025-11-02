@@ -57,7 +57,8 @@
     "reports:a11y": "node ./plugins/reports/a11y",
     "reports:content": "node ./plugins/reports/content",
     "prepare": "husky",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "create:component": "node ./plugins/constructor/constructor"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
