@@ -13,6 +13,11 @@
   "bin": {
     "rise": "./plugins/rise/cli.js"
   },
+  "lint-staged": {
+    "src/**/*.pug": ["yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins"],
+    "src/**/*.js": ["yarn --silent lint:js-defaults"],
+    "src/**/*.scss": ["yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint"]
+  },
   "scripts": {
     "build": "yarn --silent production",
     "production": "yarn --silent production:sequence",
@@ -26,7 +31,7 @@
     "dev": "yarn --silent development",
     "development": "concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/minor/images.js\"",
     "development:sequence": "yarn --silent reports:content && yarn --silent minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
-    "lint:scss": "prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint",
+    "lint:scss": "yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint",
     "lint:pug": "yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins && yarn --silent lint:js-defaults",
     "lint:all": "yarn --silent lint:svg && yarn --silent lint:scss && yarn --silent lint:pug",
     "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
@@ -41,7 +46,9 @@
     "reports:sizes": "node ./plugins/reports/sizes",
     "reports:lighthouse": "NODE_NO_WARNINGS=1 && node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",
-    "reports:content": "node ./plugins/reports/content"
+    "reports:content": "node ./plugins/reports/content",
+    "prepare": "husky",
+    "lint:staged": "lint-staged"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -76,6 +83,7 @@
     "html-webpack-plugin": "5.0.0",
     "html2pug": "^4.0.0",
     "http-server": "^14.1.0",
+    "husky": "^9.1.7",
     "image-minimizer-webpack-plugin": "^3.8.3",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^10.0.0",
@@ -84,6 +92,7 @@
     "imagemin-webpack-plugin": "^2.4.2",
     "lighthouse": "^13.0.1",
     "linkinator": "^5.0.1",
+    "lint-staged": "^16.2.6",
     "markdown-it": "^13.0.1",
     "markdown-it-meta": "^0.0.1",
     "mini-css-extract-plugin": "^2.7.2",
