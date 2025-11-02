@@ -13,7 +13,9 @@ block content
       .barba-container(data-barba="container" data-barba-namespace="main")
         .page-container
           .page-wrapper
-            +title({ title: `<img src="${require('@images/logo.svg')}" alt="logo"> Добро пожаловать в Rise!`, })
+            +title({
+              title: `<img src="${require('@images/logo.svg')}" alt="logo"> Добро пожаловать в Rise!`,
+            })
             include @p-components/intro
           include @p-components/footer
           
