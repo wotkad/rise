@@ -14,9 +14,9 @@
     "rise": "./plugins/rise/cli.js"
   },
   "lint-staged": {
-    "src/**/*.pug": ["yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins"],
-    "src/**/*.js": ["yarn --silent lint:js-defaults"],
-    "src/**/*.scss": ["yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint"]
+    "src/**/*.scss": ["yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint"],
+    "src/**/*.pug": ["yarn --silent lint:svg && yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins"],
+    "src/**/*.js": ["yarn --silent lint:js-defaults"]
   },
   "scripts": {
     "build": "yarn --silent production",
