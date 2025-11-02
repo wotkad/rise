@@ -107,6 +107,16 @@ function removeTargetDirs() {
   console.log(`🧹 Импорты для ${name} удалены из app.scss и app.js (если были).`);
 }
 
+// === Функция удаления папок компонента ===
+function rewrireTargetDirs() {
+  for (const key in targetDirs) {
+    if (fs.existsSync(targetDirs[key])) {
+      fs.rmSync(targetDirs[key], { recursive: true, force: true });
+      console.log(`🗑️ Удалена папка: ${targetDirs[key]}`);
+    }
+  }
+}
+
 // === Флаг --remove ===
 if (flags.includes("--remove")) {
   removeTargetDirs();
@@ -136,7 +146,7 @@ for (const key in targetDirs) {
 if (alreadyExists && flags.includes("--rewrite")) {
   console.log(`♻️ Перезаписываю компонент ${name}...`);
   // удалить старые папки и импорты
-  removeTargetDirs();
+  rewrireTargetDirs();
   alreadyExists = false;
 }
 
