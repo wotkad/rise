@@ -5,7 +5,7 @@ const path = require("path");
 
 const args = process.argv.slice(2);
 
-
+// === Проверка аргументов ===
 if (args.length < 1) {
   console.error("❌ Использование: rise constructor <component-v1> [--rewrite|--remove]");
   process.exit(0);
@@ -47,6 +47,7 @@ const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 const importScssLine = `@use "@s-components/${name}/${name}";`;
 const importJsLine = `import "@s-components/${name}/${name}";`;
 
+// === Утилиты ===
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
 
@@ -73,24 +74,36 @@ function appendImportLine(filePath, line) {
   }
 }
 
+function removeEmptyParent(dir) {
+  if (!fs.existsSync(dir)) return;
+  const files = fs.readdirSync(dir);
+  if (files.length === 0) {
+    fs.rmdirSync(dir);
+  }
+}
+
 function removeTargetDirs() {
   for (const key in targetDirs) {
-    if (fs.existsSync(targetDirs[key])) {
-      fs.rmSync(targetDirs[key], { recursive: true, force: true });
+    const dir = targetDirs[key];
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
+      removeEmptyParent(path.dirname(dir)); // удаляем родителя, если пустой
     }
   }
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 }
 
-function rewrireTargetDirs() {
+function rewriteTargetDirs() {
   for (const key in targetDirs) {
-    if (fs.existsSync(targetDirs[key])) {
-      fs.rmSync(targetDirs[key], { recursive: true, force: true });
+    const dir = targetDirs[key];
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
     }
   }
 }
 
+// === Проверяем, существует ли компонент ===
 let alreadyExists = false;
 for (const key in targetDirs) {
   if (fs.existsSync(targetDirs[key])) {
@@ -102,81 +115,68 @@ for (const key in targetDirs) {
   }
 }
 
+// === Перезапись ===
 if (flags.includes("--rewrite")) {
   if (!alreadyExists) {
     console.log(`🚫 Компонент ${name} не существует.`);
     process.exit(0);
   } else {
     console.log(`♻️ Компонент ${name} перезаписан.`);
-    rewrireTargetDirs();
-
-    for (const key in targetDirs) {
-      fs.mkdirSync(targetDirs[key], { recursive: true });
-    }
-    const files = fs.readdirSync(sourceDir);
-    for (const file of files) {
-      const ext = path.extname(file);
-      const srcFile = path.join(sourceDir, file);
-
-      if (ext === ".js") {
-        fs.copyFileSync(srcFile, path.join(targetDirs.js, file));
-      } else if (ext === ".scss" || ext === ".sass") {
-        fs.copyFileSync(srcFile, path.join(targetDirs.styles, file));
-      } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-        fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
-      }
-    }
-
-    removeImportLines(appScssPath, name);
-    removeImportLines(appJsPath, name);
-
-    appendImportLine(appScssPath, importScssLine);
-    appendImportLine(appJsPath, importJsLine);
-
+    rewriteTargetDirs();
+    createComponent();
     process.exit(0);
   }
 }
 
+// === Удаление ===
 if (flags.includes("--remove")) {
   if (!alreadyExists) {
     console.log(`🚫 Компонент ${name} не существует.`);
     process.exit(0);
   } else {
     removeTargetDirs();
-    alreadyExists = false;
     console.log(`🗑️ Компонент ${name} удалён.`);
     process.exit(0);
   }
 }
 
+// === Создание нового компонента ===
 if (alreadyExists) {
   console.log(`🚫 Компонент ${name} не создан, так как уже существует (используйте --rewrite для перезаписи)`);
   process.exit(0);
 }
 
-for (const key in targetDirs) {
-  fs.mkdirSync(targetDirs[key], { recursive: true });
-}
+createComponent();
 
-const files = fs.readdirSync(sourceDir);
-
-for (const file of files) {
-  const ext = path.extname(file);
-  const srcFile = path.join(sourceDir, file);
-
-  if (ext === ".js") {
-    fs.copyFileSync(srcFile, path.join(targetDirs.js, file));
-  } else if (ext === ".scss" || ext === ".sass") {
-    fs.copyFileSync(srcFile, path.join(targetDirs.styles, file));
-  } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-    fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+// === Функция создания компонента ===
+function createComponent() {
+  for (const key in targetDirs) {
+    const dir = targetDirs[key];
+    const parent = path.dirname(dir);
+    if (!fs.existsSync(parent)) fs.mkdirSync(parent, { recursive: true });
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   }
+
+  const files = fs.readdirSync(sourceDir);
+
+  for (const file of files) {
+    const ext = path.extname(file);
+    const srcFile = path.join(sourceDir, file);
+
+    if (ext === ".js") {
+      fs.copyFileSync(srcFile, path.join(targetDirs.js, file));
+    } else if (ext === ".scss" || ext === ".sass") {
+      fs.copyFileSync(srcFile, path.join(targetDirs.styles, file));
+    } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
+      fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+    }
+  }
+
+  removeImportLines(appScssPath, name);
+  removeImportLines(appJsPath, name);
+
+  appendImportLine(appScssPath, importScssLine);
+  appendImportLine(appJsPath, importJsLine);
+
+  console.log(`✅ Компонент ${name} успешно создан и подключён!`);
 }
-
-removeImportLines(appScssPath, name);
-removeImportLines(appJsPath, name);
-
-appendImportLine(appScssPath, importScssLine);
-appendImportLine(appJsPath, importJsLine);
-
-console.log(`✅ Компонент ${name} успешно создан и подключён!`);
