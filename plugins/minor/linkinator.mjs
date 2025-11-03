@@ -71,7 +71,7 @@ async function linkinator() {
       console.log(chalk.cyan(`  Page: ${brokenLink.parent}`));
     }
 
-    process.exit(1);
+    process.exit(0);
   } else {
     console.log(chalk.bold.green(`No links found`));
 

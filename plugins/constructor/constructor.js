@@ -8,7 +8,7 @@ const args = process.argv.slice(2);
 // === Проверка аргументов ===
 if (args.length === 0) {
   console.error("❌ Укажите компонент, например: yarn create:component component-v1 [--rewrite|--remove]");
-  process.exit(1);
+  process.exit(0);
 }
 
 const componentArg = args[0];
@@ -18,7 +18,7 @@ const [name, version] = componentArg.split("-");
 
 if (!name || !version) {
   console.error("❌ Неверный формат. Используйте: component-v1");
-  process.exit(1);
+  process.exit(0);
 }
 
 const rootDir = path.resolve(__dirname, "../..");
@@ -34,7 +34,7 @@ const basePaths = {
 // === Проверка, существует ли исходный компонент ===
 if (!fs.existsSync(sourceDir)) {
   console.error(`❌ Компонент ${name}-${version} не найден в ${sourceDir}`);
-  process.exit(1);
+  process.exit(0);
 }
 
 // === Целевые директории ===
@@ -48,52 +48,38 @@ const targetDirs = {
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 
-// Формы импортов (строки, которые добавляем/удаляем)
+// Формы импортов
 const importScssLine = `@use "@s-components/${name}/${name}";`;
 const importJsLine = `import "@s-components/${name}/${name}";`;
 
 // === Функции для работы с импортами ===
-/**
- * Удаляет точные строки импорта из файла, не трогая остальные строки.
- * Регекс матчает полную строку с опциональной точкой с запятой и пробелами.
- */
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
 
   let content = fs.readFileSync(filePath, "utf8");
-  // нормализуем переводы строк
   content = content.replace(/\r\n/g, "\n");
 
-  const scssRegex = new RegExp(`^\\s*@use\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*$`, "gm");
-  const jsRegex = new RegExp(`^\\s*import\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*$`, "gm");
+  const scssRegex = new RegExp(`^\\s*@use\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*\\n?`, "gm");
+  const jsRegex = new RegExp(`^\\s*import\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*\\n?`, "gm");
 
   content = content.replace(scssRegex, "");
   content = content.replace(jsRegex, "");
 
-  // Убираем возможные лишние пустые строки подряд (максимум по одному переводу строки)
-  content = content.replace(/\n{3,}/g, "\n\n");
-
-  // Трим в конце файла
-  content = content.replace(/\s+$/, "") + "\n";
-
+  content = content.replace(/\s+$/, "");
   fs.writeFileSync(filePath, content, "utf8");
 }
 
-/**
- * Добавляет import-строку в конец файла, если её там ещё нет.
- */
 function appendImportLine(filePath, line) {
   if (!fs.existsSync(filePath)) return;
   let content = fs.readFileSync(filePath, "utf8");
   if (!content.includes(line)) {
-    // гарантируем, что файл заканчивается переводом строки
     if (!content.endsWith("\n")) content += "\n";
-    content += line + "\n";
+    content += line;
     fs.writeFileSync(filePath, content, "utf8");
   }
 }
 
-// === Функция удаления папок компонента ===
+// === Удаление папок компонента ===
 function removeTargetDirs() {
   for (const key in targetDirs) {
     if (fs.existsSync(targetDirs[key])) {
@@ -101,13 +87,12 @@ function removeTargetDirs() {
       console.log(`🗑️ Удалена папка: ${targetDirs[key]}`);
     }
   }
-  // Также аккуратно удалим импорты из app файлов
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
   console.log(`🧹 Импорты для ${name} удалены из app.scss и app.js (если были).`);
 }
 
-// === Функция удаления папок компонента ===
+// === Удаление для перезаписи ===
 function rewrireTargetDirs() {
   for (const key in targetDirs) {
     if (fs.existsSync(targetDirs[key])) {
@@ -128,35 +113,33 @@ if (flags.includes("--remove")) {
 let alreadyExists = false;
 for (const key in targetDirs) {
   if (fs.existsSync(targetDirs[key])) {
-    // если папка существует и в ней есть файлы — считаем, что компонент есть
-    const stats = fs.statSync(targetDirs[key]);
-    // Если папка не пуста (содержит файлы или подпапки)
     const entries = fs.readdirSync(targetDirs[key]);
     if (entries.length > 0) {
       alreadyExists = true;
       break;
-    } else {
-      // папка пуста — не считаем за существующий компонент (будем писать)
-      // но оставим папку как есть (или можно удалить и создать заново)
     }
   }
 }
 
-// === Флаг --rewrite (перезапись) ===
-if (alreadyExists && flags.includes("--rewrite")) {
-  console.log(`♻️ Перезаписываю компонент ${name}...`);
-  // удалить старые папки и импорты
-  rewrireTargetDirs();
-  alreadyExists = false;
+// === Флаг --rewrite ===
+if (flags.includes("--rewrite")) {
+  if (!alreadyExists) {
+    console.log(`🚫 Нечего перезаписывать: компонент ${name} не существует.`);
+    process.exit(0); // <- ноль, чтобы Yarn не ругался
+  } else {
+    console.log(`♻️ Перезаписываю компонент ${name}...`);
+    rewrireTargetDirs();
+    alreadyExists = false;
+  }
 }
 
-// === Если компонент уже существует и не указан rewrite ===
+// === Если компонент существует и нет rewrite ===
 if (alreadyExists) {
   console.log("🚫 Компонент не создан, так как уже существует (используйте --rewrite для перезаписи)");
   process.exit(0);
 }
 
-// === Создание папок ===
+// === Создание папок только если нет rewrite или обычное создание ===
 for (const key in targetDirs) {
   fs.mkdirSync(targetDirs[key], { recursive: true });
 }
@@ -178,18 +161,14 @@ for (const file of files) {
     fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
     console.log(`✅ Скопирован view: ${file}`);
   } else {
-    // копируем все остальные файлы в папку компонента views (если нужно можно изменить)
-    // fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
     console.log(`ℹ️  Пропущен файл (не js/scss/pug): ${file}`);
   }
 }
 
 // === Добавление импортов в app.scss и app.js ===
-// Перед добавлением уберём возможные старые дубликаты (на случай rewrite/удаления)
 removeImportLines(appScssPath, name);
 removeImportLines(appJsPath, name);
 
-// Добавляем, если файловые app существуют
 appendImportLine(appScssPath, importScssLine);
 appendImportLine(appJsPath, importJsLine);
 

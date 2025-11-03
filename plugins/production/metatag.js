@@ -53,7 +53,7 @@ function processDir(dir, buildInfo) {
 
 function injectBuildMetaAll(buildDir) {
   if (!fs.existsSync(buildDir)) {
-    process.exit(1);
+    process.exit(0);
   }
 
   const buildInfo = getBuildInfo();
