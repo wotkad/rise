@@ -49,12 +49,7 @@ module.exports = (env) => {
         logging: 'error'
       },
     },
-    cache: {
-      type: 'filesystem',
-      buildDependencies: {
-        config: [__filename],
-      },
-    },
+    cache: pager.isDevMode(MODE) ? { type: 'filesystem', buildDependencies: { config: [__filename] } } : false,
     watchOptions: {
       ignored: /node_modules/,
       aggregateTimeout: 200,
@@ -294,7 +289,6 @@ module.exports = (env) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: "../.htaccess" },
-          { from: "sitemap.xml" },
           { from: "assets/images", to: "assets/images" },
           { from: "assets/fonts", to: "assets/fonts" },
         ],

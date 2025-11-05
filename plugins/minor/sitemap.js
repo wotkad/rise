@@ -1,7 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { Readable } = require('stream');
 
 function getPugFiles(dir, rootDir) {
   const files = [];
@@ -12,13 +10,9 @@ function getPugFiles(dir, rootDir) {
 
     if (entry.isDirectory()) {
       files.push(...getPugFiles(fullPath, rootDir));
-    } else if (
-      entry.isFile() &&
-      entry.name.endsWith('.pug') &&
-      !entry.name.startsWith('_')
-    ) {
+    } else if (entry.isFile() && entry.name.endsWith('.pug')) {
       const relPath = path.relative(rootDir, fullPath).replace(/\\/g, '/');
-      files.push(relPath);
+      files.push({ relPath, fullPath });
     }
   }
 
@@ -32,56 +26,55 @@ class SitemapGenerator {
   }
 
   apply(compiler) {
-    compiler.hooks.afterEnvironment.tap('SitemapPlugin', () => {
-      if (!compiler.options.watchOptions) compiler.options.watchOptions = {};
-      const ignored = compiler.options.watchOptions.ignored || [];
-      compiler.options.watchOptions.ignored = Array.isArray(ignored)
-        ? [...ignored, '**/sitemap.xml']
-        : ['**/sitemap.xml'];
-    });
-
     compiler.hooks.done.tapPromise('SitemapPlugin', async () => {
       if (this.generated && compiler.options.watch) return;
       this.generated = true;
 
       const { baseUrl, viewsDir, output } = this.options;
-      console.log('\n🚀 Cоздания карты сайта...');
+      console.log('\n🚀 Создание карты сайта...');
 
       const pugFiles = getPugFiles(viewsDir, viewsDir);
 
-      const filtered = pugFiles.filter(file => {
+      // фильтруем только реальные страницы
+      const filtered = pugFiles.filter(fileObj => {
+        const { relPath } = fileObj;
         return !(
-          file.includes('layouts/') ||
-          file.includes('mixins/') ||
-          file.includes('components/') ||
-          file.includes('404')
+          relPath.startsWith('components/') ||
+          relPath.startsWith('layouts/') ||
+          relPath.startsWith('mixins/')
         );
       });
 
-      const links = filtered.map(file => {
-        const noExt = file.replace(/\.pug$/, '');
-        const url = noExt === 'index' ? '/' : `/${noExt}.html`;
-        return { url, changefreq: 'monthly', priority: 0.8 };
+      const links = filtered.map(fileObj => {
+        let url = fileObj.relPath.replace(/\.pug$/, '');
+        if (url.startsWith('pages/')) url = url.replace(/^pages\//, ''); // убираем pages/
+        if (url === 'index') url = '/';
+        else url = `/${url.replace(/index$/, '')}`; // /blog/index -> /blog/
+        const lastmod = fs.statSync(fileObj.fullPath).mtime.toISOString().split('T')[0];
+        return { url, lastmod };
       });
 
-      const stream = new SitemapStream({ hostname: baseUrl });
-      const xml = await streamToPromise(Readable.from(links).pipe(stream));
+      // формируем XML
+      const xml = [
+        '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+      ];
 
-      const pretty = xml
-        .toString()
-        .replace(/></g, '>\n<')
-        .replace(/(<url>)/g, '  $1')
-        .replace(/(<\/url>)/g, '  $1');
-
-      const dir = path.dirname(output);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
+      for (const link of links) {
+        xml.push('  <url>');
+        xml.push(`    <loc>${baseUrl}${link.url}</loc>`);
+        xml.push(`    <lastmod>${link.lastmod}</lastmod>`);
+        xml.push('    <changefreq>monthly</changefreq>');
+        xml.push('  </url>');
       }
 
-      fs.writeFileSync(output, pretty);
-      console.log(
-        `✅ Готово: карта сайта создана (${links.length} страниц)`
-      );
+      xml.push('</urlset>');
+
+      const dir = path.dirname(output);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+      fs.writeFileSync(output, xml.join('\n'), 'utf8');
+      console.log(`✅ Готово: карта сайта создана (${links.length} страниц)`);
     });
   }
 }
