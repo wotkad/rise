@@ -13,46 +13,45 @@
   "lint-staged": {
     "src/**/*.scss": [
       "prettier --write",
-      "yarn lint:scss-files",
-      "yarn lint:stylelint"
+      "yarn prettify:scss-files",
+      "yarn prettify:stylelint"
     ],
     "src/**/*.pug": [
-      "yarn lint:pug-files",
+      "yarn prettify:pug-files",
       "prettier --write",
-      "yarn lint:pug-files",
-      "yarn lint:pug-mixins",
-      "yarn lint:js-defaults"
+      "yarn prettify:pug-files",
+      "yarn prettify:pug-mixins",
+      "yarn prettify:js-defaults"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:staged"
+      "pre-commit": "yarn prettify:staged"
     }
   },
   "scripts": {
     "build": "yarn --silent production",
     "production": "NODE_NO_WARNINGS=1 yarn --silent production:sequence",
-    "production:sequence": "rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn --silent production:metatag && yarn --silent reports:sizes && yarn --silent reports:lighthouse && yarn --silent reports:a11y && yarn --silent minor:service-worker",
+    "production:sequence": "rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn --silent production:metatag && yarn --silent reports:sizes && yarn --silent reports:lighthouse && yarn --silent reports:a11y && yarn --silent optimization:service-worker",
     "production:metatag": "node ./plugins/production/metatag",
     "production:archive-paths": "node ./plugins/production/archive-paths",
     "production:404": "node ./plugins/production/404",
-    "minor:compile-md": "yarn --silent rimraf ./src/views/pages/blog/ && node ./plugins/minor/markdown.mjs && yarn --silent lint:pug-files",
-    "minor:linkinator": "node ./plugins/minor/linkinator.mjs",
-    "minor:service-worker": "node ./plugins/minor/service-worker",
+    "optimization:compile-md": "yarn --silent rimraf ./src/views/pages/blog/ && node ./plugins/optimization/markdown.mjs && yarn --silent prettify:pug-files",
+    "optimization:linkinator": "node ./plugins/optimization/linkinator.mjs",
+    "optimization:service-worker": "node ./plugins/optimization/service-worker",
     "dev": "yarn --silent development",
-    "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/minor/images.js\"",
-    "development:sequence": "yarn --silent reports:content && yarn --silent minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
-    "lint:scss": "yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint",
-    "lint:pug": "yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins && yarn --silent lint:js-defaults",
-    "lint:all": "yarn --silent lint:svg && yarn --silent lint:scss && yarn --silent lint:pug",
-    "lint:stylelint": "stylelint src/assets/styles/**/*.scss",
-    "lint:semicolon-tailwind": "node ./plugins/semicolon-tailwind",
-    "lint:svg": "node ./plugins/lint/svg",
-    "lint:scss-files": "node ./plugins/lint/scss-files",
-    "lint:pug-files": "node ./plugins/lint/pug-files",
-    "lint:pug-mixins": "node ./plugins/lint/pug-mixins",
-    "lint:js-defaults": "node ./plugins/lint/js-defaults",
-    "lint:staged": "lint-staged",
+    "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/optimization/images.js\"",
+    "development:sequence": "yarn --silent reports:content && yarn --silent optimization:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
+    "prettify:scss": "yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent prettify:scss-files && yarn --silent prettify:stylelint",
+    "prettify:pug": "yarn --silent prettify:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent prettify:pug-files && yarn --silent prettify:pug-mixins && yarn --silent prettify:js-defaults",
+    "prettify:all": "yarn --silent prettify:svg && yarn --silent prettify:scss && yarn --silent prettify:pug",
+    "prettify:stylelint": "stylelint src/assets/styles/**/*.scss",
+    "prettify:svg": "node ./plugins/prettify/svg",
+    "prettify:scss-files": "node ./plugins/prettify/scss-files",
+    "prettify:pug-files": "node ./plugins/prettify/pug-files",
+    "prettify:pug-mixins": "node ./plugins/prettify/pug-mixins",
+    "prettify:js-defaults": "node ./plugins/prettify/js-defaults",
+    "prettify:staged": "lint-staged",
     "reports:sizes": "node ./plugins/reports/sizes",
     "reports:lighthouse": "node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",

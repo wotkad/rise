@@ -12,9 +12,9 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const pager = require("./pager");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const SitemapGenerator = require('./plugins/minor/sitemap');
-const ManifestGenerator = require('./plugins/minor/manifest');
-const AliasesGenerator = require('./plugins/minor/aliases');
+const SitemapGenerator = require('./plugins/optimization/sitemap');
+const ManifestGenerator = require('./plugins/optimization/manifest');
+const AliasesGenerator = require('./plugins/optimization/aliases');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 const CSSPurgePlugin = require("./plugins/production/css-purge");
 
