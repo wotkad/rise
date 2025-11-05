@@ -10,9 +10,6 @@
   "main": "src/bundle.js",
   "repository": "git@github.com:wotkad/rise.git",
   "license": "MIT",
-  "bin": {
-    "rise": "./plugins/rise/cli.js"
-  },
   "lint-staged": {
     "src/**/*.scss": [
       "prettier --write",
@@ -29,7 +26,7 @@
   },
   "scripts": {
     "build": "yarn --silent production",
-    "production": "yarn --silent production:sequence",
+    "production": "NODE_NO_WARNINGS=1 yarn --silent production:sequence",
     "production:sequence": "rimraf build && webpack --env mode=production --config ./webpack.config --progress && yarn --silent production:metatag && yarn --silent reports:sizes && yarn --silent reports:lighthouse && yarn --silent reports:a11y && yarn --silent minor:service-worker",
     "production:metatag": "node ./plugins/production/metatag",
     "production:archive-paths": "node ./plugins/production/archive-paths",
@@ -38,7 +35,7 @@
     "minor:linkinator": "node ./plugins/minor/linkinator.mjs",
     "minor:service-worker": "node ./plugins/minor/service-worker",
     "dev": "yarn --silent development",
-    "development": "concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/minor/images.js\"",
+    "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/minor/images.js\"",
     "development:sequence": "yarn --silent reports:content && yarn --silent minor:compile-md && webpack serve --env mode=development --config ./webpack.config --progress",
     "lint:scss": "yarn --silent prettier --write  --loglevel silent './src/assets/styles/**/*.scss' && yarn --silent lint:scss-files && yarn --silent lint:stylelint",
     "lint:pug": "yarn --silent lint:pug-files && prettier --write --loglevel silent './src/views/**/*.pug' && yarn --silent lint:pug-files && yarn --silent lint:pug-mixins && yarn --silent lint:js-defaults",
@@ -50,10 +47,8 @@
     "lint:pug-files": "node ./plugins/lint/pug-files",
     "lint:pug-mixins": "node ./plugins/lint/pug-mixins",
     "lint:js-defaults": "node ./plugins/lint/js-defaults",
-    "rise:one-page": "node ./plugins/rise/init -one-page",
-    "rise:multi-page": "node ./plugins/rise/init -multi-page",
     "reports:sizes": "node ./plugins/reports/sizes",
-    "reports:lighthouse": "NODE_NO_WARNINGS=1 && node ./plugins/reports/lighthouse",
+    "reports:lighthouse": "node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",
     "reports:content": "node ./plugins/reports/content",
     "prepare": "husky",
