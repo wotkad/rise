@@ -13,15 +13,15 @@
   "lint-staged": {
     "src/**/*.scss": [
       "prettier --write",
-      "yarn --silent lint:scss-files",
-      "yarn --silent lint:stylelint"
+      "yarn lint:scss-files",
+      "yarn lint:stylelint"
     ],
     "src/**/*.pug": [
-      "yarn --silent lint:pug-files",
+      "yarn lint:pug-files",
       "prettier --write",
-      "yarn --silent lint:pug-files",
-      "yarn --silent lint:pug-mixins",
-      "yarn --silent lint:js-defaults"
+      "yarn lint:pug-files",
+      "yarn lint:pug-mixins",
+      "yarn lint:js-defaults"
     ]
   },
   "scripts": {
@@ -47,12 +47,12 @@
     "lint:pug-files": "node ./plugins/lint/pug-files",
     "lint:pug-mixins": "node ./plugins/lint/pug-mixins",
     "lint:js-defaults": "node ./plugins/lint/js-defaults",
+    "lint:staged": "lint-staged",
     "reports:sizes": "node ./plugins/reports/sizes",
     "reports:lighthouse": "node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",
     "reports:content": "node ./plugins/reports/content",
     "prepare": "husky",
-    "lint:staged": "lint-staged",
     "constructor": "node ./plugins/constructor/constructor"
   },
   "devDependencies": {

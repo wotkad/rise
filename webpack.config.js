@@ -297,9 +297,6 @@ module.exports = (env) => {
           { from: "sitemap.xml" },
           { from: "assets/images", to: "assets/images" },
           { from: "assets/fonts", to: "assets/fonts" },
-          { from: "assets/lang", to: "assets/lang" },
-          // { from: "assets/files", to: "assets/files" }
-          // { from: "assets/videos", to: "assets/videos" },
         ],
       }),
 
@@ -340,7 +337,7 @@ module.exports = (env) => {
               match: [
                 './src/views/**/*.pug',
                 './src/assets/**/*.js',
-                './src/assets/images/**/*.{webp,jpg,jpeg,png,gif,svg}' // добавляем изображения
+                './src/assets/images/**/*.{webp,jpg,jpeg,png,gif,svg}'
               ],
               options: {
                 ignored: ['**/*.preview.*', '**/._*']
