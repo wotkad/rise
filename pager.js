@@ -24,18 +24,18 @@ exports.pages = function (mode, folder = "") {
 
     const viewName = view.split(".")[0];
     let fileName;
+
     if (viewName === "404") {
-      fileName = "404.html"; // сразу в корень build/
+      fileName = isDevMode(mode)
+        ? (folder === "" ? `404/index.html` : `${folder}/404/index.html`) // dev
+        : "404.html"; // production
     } else {
-      fileName =
-        folder === ""
-          ? `${viewName}/index.html`
-          : `${folder}/${viewName}/index.html`;
+      fileName = folder === ""
+        ? `${viewName}/index.html`
+        : `${folder}/${viewName}/index.html`;
     }
-    const layoutName =
-      folder === ""
-        ? `${view}`
-        : `${folder}/${view}`;
+
+    const layoutName = folder === "" ? `${view}` : `${folder}/${view}`;
     const options = {
       minify: false,
       filename: fileName,
