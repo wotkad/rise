@@ -24,6 +24,11 @@
       "yarn lint:js-defaults"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:staged"
+    }
+  },
   "scripts": {
     "build": "yarn --silent production",
     "production": "NODE_NO_WARNINGS=1 yarn --silent production:sequence",
