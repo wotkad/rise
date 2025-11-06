@@ -5,7 +5,7 @@ const path = require("path");
 const BUILD_DIR = path.resolve(__dirname, "../../build");
 const SRC_ASSETS_DIR = path.resolve(__dirname, "../../src/assets");
 const SRC_VIEWS_DIR = path.resolve(__dirname, "../../src/views");
-const REPORTS_DIR = path.resolve(__dirname, "../../reports/sizes");
+const REPORTS_DIR = path.resolve(__dirname, "../../reports/performance");
 const REPORT_FILE = path.join(REPORTS_DIR, "report.txt");
 const CACHE_FILE = path.join(REPORTS_DIR, "report-cache.json");
 const LOG_FILE = path.join(REPORTS_DIR, "report-log.txt");
@@ -256,7 +256,7 @@ function main() {
   saveCache(newCache);
   appendLog(buildData, srcData, deleted);
 
-  console.log(`✅ Готово: отчёт о размерах файлов сохранён в (/reports/sizes)`);
+  console.log(`✅ Готово: отчёт о размерах файлов сохранён в (/reports/performance)`);
 }
 
 main();
