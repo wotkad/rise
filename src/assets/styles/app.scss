@@ -4,7 +4,6 @@
   Базовые стили и утилиты
 */
 @use "@s-base/variables";
-@use "@s-utils/mixins";
 @use "@s-utils/keyframes";
 @use "@s-base/global";
 
@@ -17,6 +16,7 @@
 /*
   Миксины
 */
+@use "@s-mixins/mixins";
 @use "@s-mixins/title";
 @use "@s-mixins/article";
 
