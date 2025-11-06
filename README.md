@@ -451,13 +451,13 @@ yarn build
 
 ```js
 plugins: [
-new SitemapGenerator({
-  baseUrl: pager.isDevMode(MODE)
-    ? 'http://localhost:8080'
-    : 'https://yourwebsite.ru', // <- здесь нужно заменить на реальный домен
-  viewsDir: path.resolve(__dirname, 'src/views'),
-  output: path.resolve(__dirname, 'build/sitemap.xml'),
-}),
+  new SitemapGenerator({
+    baseUrl: pager.isDevMode(MODE)
+      ? 'http://localhost:8080'
+      : 'https://yourwebsite.ru', // <- здесь нужно заменить на реальный домен
+    viewsDir: path.resolve(__dirname, 'src/views'),
+    output: path.resolve(__dirname, 'build/sitemap.xml'),
+  }),
 ]
 ```
 
@@ -653,7 +653,7 @@ module.exports = (env) => {
 ### Этапы сборки
 
 #### 1. Очистка прошлой сборки
-```json
+```bash
 rimraf build
 ```
 
