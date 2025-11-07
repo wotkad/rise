@@ -7,4 +7,5 @@ module.exports = {
     },
   ],
   sitemap: "http://localhost:8080/sitemap.xml",
+  host: "http://localhost:8080/"
 };

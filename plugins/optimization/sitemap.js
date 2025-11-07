@@ -35,7 +35,6 @@ class SitemapGenerator {
 
       const pugFiles = getPugFiles(viewsDir, viewsDir);
 
-      // фильтруем только реальные страницы
       const filtered = pugFiles.filter(fileObj => {
         const { relPath } = fileObj;
         return !(
@@ -47,14 +46,13 @@ class SitemapGenerator {
 
       const links = filtered.map(fileObj => {
         let url = fileObj.relPath.replace(/\.pug$/, '');
-        if (url.startsWith('pages/')) url = url.replace(/^pages\//, ''); // убираем pages/
+        if (url.startsWith('pages/')) url = url.replace(/^pages\//, '');
         if (url === 'index') url = '/';
-        else url = `/${url.replace(/index$/, '')}`; // /blog/index -> /blog/
+        else url = `/${url.replace(/index$/, '')}`;
         const lastmod = fs.statSync(fileObj.fullPath).mtime.toISOString().split('T')[0];
         return { url, lastmod };
       });
 
-      // формируем XML
       const xml = [
         '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'

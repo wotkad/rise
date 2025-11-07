@@ -42,7 +42,7 @@ function completeImageLoading($img, $parent) {
   $parent.removeClass('loading');
   $parent.css({
     filter: 'none',
-    backgroundColor: '' // убираем доминантный цвет
+    backgroundColor: ''
   });
 }
 
@@ -56,7 +56,6 @@ export default function loadImages() {
       const $img = $(entry.target);
       const $parent = $img.parent();
 
-      // Работаем только с <figure>
       if (!$parent.is('figure')) return;
 
       const src = $img.attr('src');
@@ -66,13 +65,11 @@ export default function loadImages() {
 
       if (!$parent.hasClass('loading')) $parent.addClass('loading');
 
-      // Если изображение уже кэшировано и загружено, показываем сразу
       if (imageCache.has(src) && $img[0].complete) {
         completeImageLoading($img, $parent);
         return;
       }
 
-      // Сначала берём доминантный цвет
       extractDominantColor(src, color => {
         $parent.css({
           backgroundColor: color,

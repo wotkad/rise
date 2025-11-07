@@ -46,12 +46,12 @@ if (!fs.existsSync(OFFLINE_FILE)) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вы офлайн</title>
+<title>Вы офлайн. Проверьте подключение к интернету.</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white text-center p-4">
   <main class="max-w-xl w-full">
-    <h1 class="text-3xl font-bold mb-4">Вы офлайн</h1>
+    <h1 class="text-3xl font-bold mb-4">Вы офлайн. Проверьте подключение к интернету.</h1>
     <p class="mb-4 text-gray-400">Проверьте соединение и попробуйте снова.</p>
     <button 
       onclick="window.location.reload()" 
@@ -90,13 +90,11 @@ const swContent = `
 const CACHE_NAME = '${CACHE_NAME}';
 const STATIC_ASSETS = ${JSON.stringify(files, null, 2)};
 const DATO_ENDPOINT = 'https://graphql.datocms.com/';
-const TTL = 10 * 60 * 1000; // 10 минут
-
-// ============ Вспомогательные проверки ============
+const TTL = 10 * 60 * 1000;
 
 function isHttpUrl(url) {
   try {
-    if (url.startsWith('/')) return true; // относительные пути от origin
+    if (url.startsWith('/')) return true;
     const u = new URL(url);
     return u.protocol === 'http:' || u.protocol === 'https:';
   } catch (e) {
@@ -117,8 +115,6 @@ function isCacheableResponse(request, response) {
     return false;
   }
 }
-
-// ============ Установка и кеширование статических файлов ============
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -145,8 +141,6 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// ============ Активация и очистка старого кеша ============
-
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => 
@@ -163,13 +157,11 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// ============ Fetch-обработчик ============
-
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const reqUrl = event.request.url;
-  if (!isHttpUrl(reqUrl)) return; // игнорируем chrome-extension:, devtools:, blob:, data:
+  if (!isHttpUrl(reqUrl)) return;
 
   const requestUrl = new URL(reqUrl);
 
@@ -189,8 +181,6 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(cacheFirst(event.request));
 });
-
-// ============ Стратегии кеширования ============
 
 async function cacheFirst(request) {
   if (!isCacheableRequest(request)) return fetch(request);
@@ -232,8 +222,6 @@ async function networkFirst(request) {
     return cached || caches.match('/offline.html');
   }
 }
-
-// ============ DatoCMS (GraphQL TTL Cache) ============
 
 async function handleDatoCMSRequest(event) {
   const cloned = event.request.clone();

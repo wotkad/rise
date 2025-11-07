@@ -10,8 +10,7 @@ export default function setNbsp() {
     if (node.nodeType === Node.TEXT_NODE) {
       const text = node.nodeValue;
       const newText = text.replace(regex, (match, p1, p2, p3) => {
-        // Заменяем только пробелы на &nbsp;, сохраняя остальное
-        return p1 + p2 + '\xA0'; // \xA0 — это символ неразрывного пробела
+        return p1 + p2 + '\xA0';
       });
 
       if (newText !== text) {
@@ -39,6 +38,6 @@ export default function setNbsp() {
     subtree: true
   });
 
-  return observer; // Для возможности отключения observer.disconnect()
+  return observer;
 }
 setNbsp();

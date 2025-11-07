@@ -22,9 +22,7 @@ function findPugFiles(dir) {
   return results;
 }
 
-// 🔧 Добавлено: защита для template literals
 function safeParseJSON5(str) {
-  // Временно заменяем template literals на специальные маркеры
   const templates = [];
   const replaced = str.replace(/`([^`\\]*(\\.[^`\\]*)*)`/g, (match) => {
     const key = `__TEMPLATE_LITERAL_${templates.length}__`;
@@ -34,7 +32,6 @@ function safeParseJSON5(str) {
 
   const obj = JSON5.parse(replaced);
 
-  // Восстанавливаем template literals
   function restoreTemplates(value) {
     if (typeof value === 'string') {
       const match = value.match(/^__TEMPLATE_LITERAL_(\d+)__$/);
@@ -71,11 +68,9 @@ ${indent}]`;
 ${entries}
 ${indent}}`;
   } else if (typeof value === 'string') {
-    // Если это template literal (обратные кавычки), оставляем как есть
     if (value.startsWith('`') && value.endsWith('`')) {
       return value;
     }
-    // Иначе — экранируем одиночные кавычки
     return `'${value.replace(/'/g, "\\'")}'`;
   } else {
     return String(value);

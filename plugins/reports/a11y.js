@@ -12,7 +12,6 @@ const REPORT_DIR = path.resolve(__dirname, '../../reports/a11y');
 const REPORT_FILE = path.join(REPORT_DIR, 'report.html');
 const SCREENSHOT_DIR = path.join(REPORT_DIR, 'screenshots');
 
-// Очистка старых скриншотов
 if (fs.existsSync(SCREENSHOT_DIR)) {
   fs.readdirSync(SCREENSHOT_DIR).forEach(file => {
     fs.unlinkSync(path.join(SCREENSHOT_DIR, file));

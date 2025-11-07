@@ -25,7 +25,6 @@ class ManifestGenerator {
           };
 
           const json = JSON.stringify(manifest, null, 2);
-
           compilation.emitAsset('manifest.json', new RawSource(json));
         }
       );

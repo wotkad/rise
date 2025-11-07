@@ -5,7 +5,6 @@ const path = require("path");
 
 const args = process.argv.slice(2);
 
-// === Проверка аргументов ===
 if (args.length < 1) {
   console.error("❌ Использование: rise constructor <component-v1> [--rewrite|--remove]");
   process.exit(0);
@@ -47,7 +46,6 @@ const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 const importScssLine = `@use "@s-components/${name}/${name}";`;
 const importJsLine = `import "@s-components/${name}/${name}";`;
 
-// === Утилиты ===
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
 
@@ -87,7 +85,7 @@ function removeTargetDirs() {
     const dir = targetDirs[key];
     if (fs.existsSync(dir)) {
       fs.rmSync(dir, { recursive: true, force: true });
-      removeEmptyParent(path.dirname(dir)); // удаляем родителя, если пустой
+      removeEmptyParent(path.dirname(dir));
     }
   }
   removeImportLines(appScssPath, name);
@@ -103,7 +101,6 @@ function rewriteTargetDirs() {
   }
 }
 
-// === Проверяем, существует ли компонент ===
 let alreadyExists = false;
 for (const key in targetDirs) {
   if (fs.existsSync(targetDirs[key])) {
@@ -115,7 +112,6 @@ for (const key in targetDirs) {
   }
 }
 
-// === Перезапись ===
 if (flags.includes("--rewrite")) {
   if (!alreadyExists) {
     console.log(`🚫 Компонент ${name} не существует.`);
@@ -128,7 +124,6 @@ if (flags.includes("--rewrite")) {
   }
 }
 
-// === Удаление ===
 if (flags.includes("--remove")) {
   if (!alreadyExists) {
     console.log(`🚫 Компонент ${name} не существует.`);
@@ -140,7 +135,6 @@ if (flags.includes("--remove")) {
   }
 }
 
-// === Создание нового компонента ===
 if (alreadyExists) {
   console.log(`🚫 Компонент ${name} не создан, так как уже существует (используйте --rewrite для перезаписи)`);
   process.exit(0);
@@ -148,7 +142,6 @@ if (alreadyExists) {
 
 createComponent();
 
-// === Функция создания компонента ===
 function createComponent() {
   for (const key in targetDirs) {
     const dir = targetDirs[key];

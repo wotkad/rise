@@ -30,34 +30,27 @@ function escapeHtml(str) {
 function applyHljsTheme(theme) {
   const hlTheme = theme === 'dark' ? 'atom-one-dark' : 'github';
 
-  // Удаляем старую тему
   $('link[data-hljs-theme]').remove();
 
-  // Подключаем новую тему
   $('<link>', {
     rel: 'stylesheet',
     href: `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${hlTheme}.min.css`,
     'data-hljs-theme': true
   }).appendTo('head').on('load', () => {
     
-    // Обрабатываем все <pre><code>
     $('pre code').each(function () {
       const $code = $(this);
 
-      // Если код уже подсвечен, сбрасываем HTML к исходному тексту
       if ($code.data('highlighted')) {
         $code.text($code.text());
         $code.removeData('highlighted');
       }
 
-      // Экранируем HTML внутри кода (если есть)
       const rawCode = $code.text();
       $code.html(escapeHtml(rawCode));
 
-      // Подсветка
       hljs.highlightElement(this);
 
-      // Отмечаем, что элемент подсвечен
       $code.data('highlighted', true);
     });
   });
