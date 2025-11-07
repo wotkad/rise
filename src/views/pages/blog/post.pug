@@ -1,11 +1,11 @@
 extends @p-layouts/master.pug
-
 block title
   title Rise | Запись в блоге
 
 block basicSeo
   meta(content="Это страница записи в блоге" name="description")
   meta(content="Запись, страница" name="keywords")
+  link(rel="canonical" href="/blog/post/")
 
 block content
   main

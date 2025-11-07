@@ -22,6 +22,8 @@ const markdown = MarkdownIt({
   fs.mkdir(compiledPath);
   fs.readdir(docsPath, (err, files) => {
     files.forEach(file => {
+      let newFileName = file.replace('.md', '.pug');
+      let linkFileName = file.replace('.md', '');
       let content = fs.readFileSync(docsPath + file, "utf8");
       markdown.use(meta);
       let renderedHtml = markdown.render(content);
@@ -31,13 +33,13 @@ const markdown = MarkdownIt({
         .join('\n')
         .trimEnd();
       let renderedFile = `extends @p-layouts/master.pug
-
 block title
   title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
 block basicSeo
   meta(content="${markdown.meta.description ? markdown.meta.description : "Это страница записи"}" name="description")
   meta(content="${markdown.meta.keywords ? markdown.meta.keywords : "Страница, запись"}" name="keywords")
+  link(rel="canonical" href="/blog/${linkFileName}/")
 
 block content
   main
@@ -48,7 +50,6 @@ block content
             section.content
               .wrapper` + '\n' + formattedHtml + `
           include @p-components/footer.pug`;
-      let newFileName = file.replace('.md', '.pug');
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
       return {
         document: renderedHtml,
