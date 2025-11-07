@@ -9,9 +9,9 @@
 
 import "@routing/routing";
 
-import "@checks/check-internal-links";
-import "@checks/check-target";
-import "@checks/check-offline";
+import "@validation/validation-internal-links";
+import "@validation/validation-target";
+import "@validation/validation-offline";
 
 import "@common/set-header-bg";
 import "@common/preloader";

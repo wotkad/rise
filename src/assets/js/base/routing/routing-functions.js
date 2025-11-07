@@ -1,4 +1,4 @@
-import checkCurrentPage from "@checks/check-current-page";
+import validationCurrentPage from "@validation/validation-current-page";
 import currentYear from "@common/get-current-year";
 import scrollReveal from "@common/scroll-reveal";
 import setNbsp from "@common/set-nbsp";
@@ -9,7 +9,7 @@ import textareaAutoheight from "@common/textarea-autoheight";
 
 export default function routingFunctions() {
   setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-  checkCurrentPage();
+  validationCurrentPage();
   currentYear();
   setNbsp();
   setSvgSize();

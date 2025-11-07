@@ -1,4 +1,4 @@
-export default function checkOffline() {
+export default function validationOffline() {
   const $banner = $('<div class="offline-banner">Вы офлайн</div>').hide().appendTo('body');
   let hideTimeout = null;
 
@@ -24,4 +24,4 @@ export default function checkOffline() {
   window.addEventListener('offline', updateOnlineStatus);
 }
 
-checkOffline();
+validationOffline();

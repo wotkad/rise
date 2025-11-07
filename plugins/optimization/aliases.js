@@ -19,7 +19,7 @@ function AliasesGenerator() {
     '@js': path.resolve(srcPath, 'assets/js'),
     '@defaults': path.resolve(srcPath, 'assets/js/_defaults'),
     '@common': path.resolve(jsBase, 'common'),
-    '@checks': path.resolve(jsBase, 'checks'),
+    '@validation': path.resolve(jsBase, 'validation'),
     '@routing': path.resolve(jsBase, 'routing'),
     '@cache': path.resolve(srcPath, 'assets/js/cache'),
 

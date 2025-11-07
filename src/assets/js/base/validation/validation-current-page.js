@@ -1,4 +1,4 @@
-export default function checkCurrentPage() {
+export default function validationCurrentPage() {
   const pathname = window.location.pathname;
   const href = window.location.href;
   $(`a[href="${pathname}"], a[href="${href}"]`).on("click", function (e) {
@@ -6,4 +6,4 @@ export default function checkCurrentPage() {
   });
   $(`a[href="${pathname}"], a[href="${href}"]`).addClass('active');
 }
-checkCurrentPage();
+validationCurrentPage();
