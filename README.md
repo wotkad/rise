@@ -220,7 +220,7 @@ module.exports = {
       text: data.text !== undefined ? data.text : defaults.text,
       type: data.type !== undefined ? data.type : defaults.type,
     }
-  ,
+  },
 };
 ```
 Миксины PUG принимают объект с опциями:

@@ -10,7 +10,7 @@ const markdown = MarkdownIt({
     if (lang && hljs.getLanguage(lang)) {
       try {
         return (
-          '<pre>' + '  ' + '<code class="hljs">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code>'
+          '<pre><code class="hljs">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code></pre>'
         );
       } catch (__) { }
     }
