@@ -154,6 +154,7 @@ import initSlider from '@p-components/slider/slider';
 ## 4.1 Создание нового компонента вручную
 
 1. Создай папку в `src/views/custom_components/my-component/`
+
 Например:
 
 ```bash
