@@ -79,7 +79,7 @@ plugins/       # вспомогательные скрипты (конструк
 reports/       # отчеты (Performance, Lighthouse, Accessibility, Content)
 ```
 
-Более детально изучисть структуру вы можете в разделе [файловая структура](https://github.com/wotkad/rise/?tab=readme-ov-file#-13-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B0%D1%8F-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0).
+Более детально изучисть структуру вы можете в разделе [файловая структура](https://github.com/wotkad/rise/?tab=readme-ov-file#-12-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B0%D1%8F-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0).
 
 ## 3.2 Структура страниц
 
