@@ -41,17 +41,17 @@ function applyHljsTheme(theme) {
     $('pre code').each(function () {
       const $code = $(this);
 
-      if ($code.data('highlighted')) {
-        $code.text($code.text());
-        $code.removeData('highlighted');
-      }
+      // Удаляем атрибут, чтобы highlight.js не ругался
+      this.removeAttribute('data-highlighted');
 
+      // Сбрасываем HTML до исходного текста
       const rawCode = $code.text();
+
+      // Экранируем и вставляем обратно
       $code.html(escapeHtml(rawCode));
 
+      // Подсвечиваем
       hljs.highlightElement(this);
-
-      $code.data('highlighted', true);
     });
   });
 }
