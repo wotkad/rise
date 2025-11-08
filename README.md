@@ -53,10 +53,8 @@
 
 1. [Создаём](https://github.com/new?template_name=rise&template_owner=wotkad) проект на основе шаблона.
 2. Клонируем созданный проект и открываем в редакторе кода.
-3. Устанавливаем зависимости командой
-`yarn`.
-4. Запускаем проект в режиме разработки
-`yarn dev`.
+3. Устанавливаем зависимости командой `yarn`.
+4. Запускаем проект в режиме разработки `yarn dev`.
 5. Приступаем к разработке.
 
 После запуска проект будет доступен по адресу [http://localhost:8080](http://localhost:8080).
@@ -67,7 +65,7 @@
 
 ## 3.1 Основная структура
 
-```
+```text
 src/           # исходный код
 ├── assets/    # шрифты, изображения, видео
 ├── js/        # модули и скрипты
@@ -108,8 +106,8 @@ reports/       # отчеты (Performance, Lighthouse, Accessibility, Content)
 
 * Для создания новой страницы необходимо добавить файл в директорию `/views/pages`. После этого перезапустите проект - страница станет доступна.
 * Чтобы создать раздел, например `/products/product`, где `/products` - родительский, а `/product` - дочерний, нужно в файле `webpack.config.js`, в объекте `plugins`, добавить код `...pager.pages(MODE, "products")`.
-```js
 
+```js
 module.exports = (env) => {
   return {
     plugins: [
@@ -157,20 +155,27 @@ import initSlider from '@p-components/slider/slider';
 
 1. Создай папку в `src/views/custom_components/my-component/`
 Например:
-```
+
+```text
 src/views/custom_components/button/
 ```
+
 2. Создай файлы:
-```
+
+```text
 src/views/custom_components/button/button.pug
 src/assets/styles/custom_components/button/button.scss
 src/assets/js/custom_components/button/button.js
 ```
+
 3. Пример `button.pug`:
+
 ```pug
 button.button Кнопка
 ```
+
 4. Пример `button.scss`:
+
 ```scss
 .button {
   padding: 10px 20px;
@@ -179,7 +184,9 @@ button.button Кнопка
   &.secondary { background: #6c757d; color: #fff; }
 }
 ```
+
 5. Пример `button.js`:
+
 ```js
 export default function initButton() {
   document.querySelectorAll('.button').forEach(btn => {
@@ -195,7 +202,7 @@ export default function initButton() {
 
 ### Структура компонента
 
-```
+```text
 component/v1/
 ├── component.pug       # шаблон
 ├── component.scss      # стили
@@ -209,6 +216,7 @@ component/v1/
 `_defaults` обеспечивает базовые значения для миксинов.
 
 Пример `_defaults.js`:
+
 ```js
 module.exports = {
   defaults: {
@@ -223,9 +231,11 @@ module.exports = {
   },
 };
 ```
+
 Миксины PUG принимают объект с опциями:
 
 Пример `button.pug`:
+
 ```pug
 mixin button(data)
   - const { defaults, mergeConfig } = require("@defaults/button/_defaults");
@@ -242,11 +252,13 @@ mixin button(data)
 ## 4.4 Подключение PUG на страницы
 
 PUG компонент:
+
 ```pug
 include @p-components/button/button.pug
 ```
 
 PUG миксин:
+
 ```pug
 include @p-mixins/button/button.pug
 +button({ text: "Отправить", type: "secondary" })
@@ -306,6 +318,7 @@ Tailwind CSS - это утилитарный CSS-фреймворк, котор�
   color: #fff;
 }
 ```
+
 в HTML пишем:
 
 ```html
@@ -492,7 +505,7 @@ if ('scrollRestoration' in history) {
 ```js
 async function initBarba() {
   barba.use(barbaPrefetch);
-````
+```
 
 Подключается prefetch - он будет подгружать страницы при наведении на ссылку, ускоряя навигацию.
 
@@ -602,6 +615,7 @@ Lazy Load - это одна из технологий оптимизации п�
 ### Механика работы
 
 1. Подключение модуля
+
 ```js
 import { loadImages } from '@common/load-images';
 loadImages();
@@ -933,6 +947,7 @@ module.exports = (env) => {
 ## 7.1 Этапы сборки
 
 ### 7.1.1 Очистка прошлой сборки
+
 ```bash
 rimraf build
 ```
@@ -941,9 +956,11 @@ rimraf build
 `rimraf` - это кроссплатформенная альтернатива `rm -rf`.
 
 ### 7.1.2. Компиляция проекта через Webpack
+
 ```bash
 webpack --env mode=production --config ./webpack.config --progress
 ```
+
 Основной этап, где происходит:
 * Компиляция `.pug` → `.html` (через pug-loader).
 * Компиляция `.scss` → `.css` (через sass-loader и Dart Sass).
@@ -993,6 +1010,7 @@ yarn reports:performance
 ```bash
 yarn reports:lighthouse
 ```
+
 Запускает Lighthouse в headless-режиме (без браузера).
 
 Lighthouse проверяет:
@@ -1010,6 +1028,7 @@ Lighthouse проверяет:
 ```bash
 yarn reports:a11y
 ```
+
 Автоматическая проверка доступности с помощью pa11y или axe-core.
 
 Сканируются все .pug-страницы на наличие:
@@ -1502,6 +1521,7 @@ Cохраняет отчёты в `/reports/content`.
 * Очищает неиспользуемый CSS из Tailwind/SCSS.
 
 Настройка в `webpack.config.js`:
+
 ```js
 purge: ['**/*.html', '**/*.js']
 ```
