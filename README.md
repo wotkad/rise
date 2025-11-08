@@ -842,18 +842,6 @@ Rise автоматически генерирует offline.html во врем�
 ```js
 export default function textareaAutoheight() {
   const $textareas = $('textarea.auto-height');
-
-  const style = `
-    <style>
-      textarea.auto-height {
-        overflow-y: hidden;
-        resize: none;
-        transition: height 0.15s ease;
-      }
-    </style>
-  `;
-  $('head').append(style);
-
   function adjustHeight($el) {
     $el.css('height', 'auto');
     $el.css('height', $el[0].scrollHeight + 'px');
@@ -873,7 +861,6 @@ export default function textareaAutoheight() {
     });
   });
 }
-
 textareaAutoheight();
 ```
 
