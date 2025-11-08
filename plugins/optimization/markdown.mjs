@@ -10,7 +10,7 @@ const markdown = MarkdownIt({
     if (lang && hljs.getLanguage(lang)) {
       try {
         return (
-          '<pre><code class="hljs">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code></pre>'
+          '<pre>' + '  ' + '<code class="hljs">' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code></pre>'
         );
       } catch (__) { }
     }
@@ -29,7 +29,7 @@ const markdown = MarkdownIt({
       let renderedHtml = markdown.render(content);
       const formattedHtml = renderedHtml
         .split('\n')
-        .map(x => '                ' + x)
+        .map(x => '                | ' + x)
         .join('\n')
         .trimEnd();
       let renderedFile = `extends @p-layouts/master.pug
@@ -51,10 +51,6 @@ block content
               .wrapper` + '\n' + formattedHtml + `
           include @p-components/footer.pug`;
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
-      return {
-        document: renderedHtml,
-        meta: markdown.meta
-      };
     });
   });
 })();
