@@ -10,7 +10,7 @@
         border-bottom: 1px solid transparent;
 
         color: $blue-500;
-        @include screen(laptop) {
+        @include screen(xl) {
           transition: border-color $transition-default;
           &:hover {
             border-color: $blue-500;

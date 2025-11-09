@@ -1,32 +1,32 @@
 @use "@s-base/variables" as *;
 
 @mixin screen($breakpoint) {
-  @if $breakpoint == desktop {
-    @media only screen and (min-width: $screen-desktop) {
+  @if $breakpoint == 2xl {
+    @media only screen and (min-width: $screen-2xl) {
       @content;
     }
   }
 
-  @if $breakpoint == laptop {
-    @media only screen and (min-width: $screen-laptop) {
+  @if $breakpoint == xl {
+    @media only screen and (min-width: $screen-xl) {
       @content;
     }
   }
 
-  @if $breakpoint == tablet-2x {
-    @media only screen and (min-width: $screen-tablet-2x) {
+  @if $breakpoint == lg {
+    @media only screen and (min-width: $screen-lg) {
       @content;
     }
   }
 
-  @if $breakpoint == tablet {
-    @media only screen and (min-width: $screen-tablet) {
+  @if $breakpoint == md {
+    @media only screen and (min-width: $screen-md) {
       @content;
     }
   }
 
-  @if $breakpoint == mobile {
-    @media only screen and (min-width: $screen-mobile) {
+  @if $breakpoint == sm {
+    @media only screen and (min-width: $screen-sm) {
       @content;
     }
   }

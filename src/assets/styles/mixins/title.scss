@@ -2,7 +2,7 @@
 
 .title {
   padding-top: 24px;
-  @include screen(laptop) {
+  @include screen(xl) {
     padding-top: 56px;
   }
 }

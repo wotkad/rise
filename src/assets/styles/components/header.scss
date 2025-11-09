@@ -17,7 +17,7 @@
   &.scrolled {
     background-color: $white;
     body.dark & {
-      background-color: $slate-900;
+      background-color: $gray-900;
     }
   }
   body.dark & {
@@ -29,10 +29,10 @@
     gap: 24px;
   }
   &__link {
-    color: $slate-900;
+    color: $gray-900;
 
     transition: color $transition-default;
-    @include screen(laptop) {
+    @include screen(xl) {
       &:hover {
         color: $blue-500;
       }

@@ -29,17 +29,17 @@
     margin-left: 4px;
 
     font-weight: 700;
-    color: $slate-900;
+    color: $gray-900;
 
     transition: color $transition-default;
-    @include screen(laptop) {
+    @include screen(xl) {
       &:hover {
         color: $blue-500;
       }
     }
     body.dark & {
       color: $white;
-      @include screen(laptop) {
+      @include screen(xl) {
         &:hover {
           color: $blue-500;
         }
@@ -59,18 +59,18 @@
     @include font-sm;
   }
   &__external {
-    color: $slate-900;
+    color: $gray-900;
 
     transition: color $transition-default;
     @include font-xs;
-    @include screen(laptop) {
+    @include screen(xl) {
       &:hover {
         color: $blue-500;
       }
     }
     body.dark & {
       color: $white;
-      @include screen(laptop) {
+      @include screen(xl) {
         &:hover {
           color: $blue-500;
         }

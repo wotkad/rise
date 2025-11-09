@@ -14,21 +14,21 @@ h1 {
 
   font-weight: 700;
   @include font-2xl;
-  @include screen(tablet) {
+  @include screen(md) {
     @include font-3xl;
   }
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     @include font-5xl;
   }
   img {
     margin-right: 12px;
     width: 24px;
     min-width: 24px;
-    @include screen(tablet) {
+    @include screen(md) {
       width: 32px;
       min-width: 32px;
     }
-    @include screen(tablet-2x) {
+    @include screen(lg) {
       width: 48px;
       min-width: 48px;
     }
@@ -44,7 +44,7 @@ h2 {
 
   font-weight: 600;
   @include font-xl;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     margin-top: 40px;
 
     @include font-3xl;
@@ -59,7 +59,7 @@ h3 {
 
   font-weight: 600;
   @include font-xl;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     margin-top: 24px;
 
     @include font-2xl;
@@ -74,7 +74,7 @@ h4 {
 
   font-weight: 600;
   @include font-lg;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     @include font-xl;
   }
   &:first-child {
@@ -167,7 +167,7 @@ table {
       &:nth-child(2n + 1) {
         background-color: $blue-100;
         body.dark & {
-          background-color: $slate-800;
+          background-color: $gray-800;
         }
       }
     }
@@ -187,7 +187,7 @@ blockquote {
 
   transition: background-color $transition-default;
   body.dark & {
-    background-color: $slate-800;
+    background-color: $gray-800;
   }
 
   p {
@@ -207,13 +207,13 @@ ul {
   margin-top: 16px;
   margin-left: 16px;
   list-style: disc;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     margin-top: 20px;
   }
   li {
     margin-top: 8px;
     @include font-sm;
-    @include screen(tablet) {
+    @include screen(md) {
       @include font-base;
     }
     &::marker {
@@ -230,7 +230,7 @@ code {
 
   transition: $transition-default;
   @include font-xs;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     padding: 4px 8px;
     @include font-sm;
   }
@@ -239,7 +239,7 @@ code {
   }
 
   body.dark & {
-    background-color: $slate-800 !important;
+    background-color: $gray-800 !important;
   }
 }
 
@@ -247,19 +247,19 @@ ol {
   margin-top: 16px;
   margin-left: 18px;
   list-style: decimal;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     margin-top: 20px;
   }
   & > span {
     @include font-sm;
-    @include screen(tablet) {
+    @include screen(md) {
       @include font-base;
     }
   }
   li {
     margin-top: 12px;
     @include font-sm;
-    @include screen(tablet) {
+    @include screen(md) {
       @include font-base;
     }
     &::marker {
@@ -303,7 +303,7 @@ mark {
 
   transition: background-color $transition-default;
   @include font-xs;
-  @include screen(tablet-2x) {
+  @include screen(lg) {
     padding: 4px 8px;
     @include font-sm;
   }
@@ -325,7 +325,7 @@ del {
     border-bottom: 1px solid transparent;
 
     color: $blue-500;
-    @include screen(laptop) {
+    @include screen(xl) {
       transition: border-color $transition-default;
       &:hover {
         border-color: $blue-500;

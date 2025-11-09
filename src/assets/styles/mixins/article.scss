@@ -10,14 +10,14 @@
   border-radius: 6px;
 
   transition: border-color $transition-default;
-  @include screen(laptop) {
+  @include screen(xl) {
     &:hover {
       border-color: $blue-500;
     }
   }
   body.dark & {
     border-color: $gray-700;
-    @include screen(laptop) {
+    @include screen(xl) {
       &:hover {
         border-color: $blue-500;
       }
