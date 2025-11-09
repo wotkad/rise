@@ -792,7 +792,7 @@ window.addEventListener('online', handleOnline);
 Offline Detector тесно интегрирован с автоматически генерируемым service-worker.js, который создаётся командой:
 
 ```bash
-yarn optimization:service-worker
+yarn production:service-worker
 ```
 
 Service Worker реализует стратегию cache-first, а Offline Detector обеспечивает уведомление пользователя и обновление интерфейса.
@@ -1032,7 +1032,7 @@ yarn reports:a11y
 ### 7.1.7. Service Worker и Offline Cache
 
 ```bash
-yarn optimization:service-worker
+yarn production:service-worker
 ```
 
 * Генерирует `service-worker.js` и `offline.html`.
@@ -1064,14 +1064,14 @@ yarn reports:content             # Content Report (title, description, alt, SCSS
 ## 8.3 Сервисные команды
 
 ```bash
-yarn optimization:compile-md     # компилятор .md в .pug
-yarn optimization:linkinator     # проверка всех ссылок проекта
-yarn optimization:service-worker # генерация service-worker и offline.html
+yarn production:markdown         # компилятор .md в .pug
+yarn production:service-worker   # генерация service-worker и offline.html
 
 yarn prettify:scss               # линтинг SCSS
 yarn prettify:pug                # линтинг PUG
 yarn prettify:svg                # линтинг SVG
 yarn prettify:staged             # precommit скрипт
+yarn prettify:linkinator         # проверка всех ссылок проекта
 ```
 
 ## 8.4 Автоматическая генерация компонентов
@@ -1544,22 +1544,22 @@ Cache-first стратегия и offline fallback.
     - `constructor.js`: Скрипт подключения секций.
   - `optimization`: Скрипты для оптимизации проекта.
     - `aliases.js`: Алиасы для проекта. Можно настроить под себя.
+    - `css-purge.js`: Скрипт очистки и оптимизации CSS при сборке проекта.
     - `images.js`: Скрипт оптимизации изображений в формат `.webp`.
-    - `linkinator.js`: Скрипт для проверки доступности всех ссылок проекта.
-    - `manifest.js`: Скрипт добавляет файл manifest.json при сборке проекта.
-    - `markdown.mjs`: Скрипт с генерацией `.md` файлов и созданием мета контента для них.
-    - `service-worker.js`: Скрипт генерации `service-worker`.
-    - `sitemap.js`: Скрипт генерации карты сайта.
   - `prettify`: Скрипты для линтинга.
     - `js-defaults.js`: Скрипт для форматирования и сортировки дефолтных свойств миксинов.
+    - `linkinator.js`: Скрипт для проверки доступности всех ссылок проекта.
     - `pug-files.js`: Небольшой линтер для `.pug` файлов.
     - `pug-mixins.js`: Скрипт для форматирования `.pug` миксинов.
     - `scss-files.js`: Небольшой линтер для `.scss` файлов.
     - `svg.js`: Небольшой линтер для инлайновых тэгов `<svg>` в `.pug` файлах.
   - `production`: Скрипты для оптимизации билда.
-    - `css-purge.js`: Скрипт очистки и оптимизации CSS при сборке проекта.
+    - `manifest.js`: Скрипт добавляет файл manifest.json при сборке проекта.
+    - `markdown.mjs`: Скрипт с генерацией `.md` файлов и созданием мета контента для них.
     - `metatag.js`: Скрипт добавляет метатег с информацией о текущем билде.
     - `relative-paths.js`: Скрипт для перезаписывания ссылок в проекте и их актуализация если проект необходимо просмотреть без запуска сервера.
+    - `service-worker.js`: Скрипт генерации `service-worker`.
+    - `sitemap.js`: Скрипт генерации карты сайта.
   - `reports`: Скрипты для создания отчётов.
     - `a11y`: Генератор отчёта о доступности.
     - `content`: Генератор отчёта о контенте.

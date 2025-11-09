@@ -12,11 +12,11 @@ const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const pager = require("./pager");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const SitemapGenerator = require('./plugins/optimization/sitemap');
-const ManifestGenerator = require('./plugins/optimization/manifest');
+const SitemapGenerator = require('./plugins/production/sitemap');
+const ManifestGenerator = require('./plugins/production/manifest');
 const AliasesGenerator = require('./plugins/optimization/aliases');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
-const CSSPurgePlugin = require("./plugins/production/css-purge");
+const CSSPurgePlugin = require("./plugins/optimization/css-purge");
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
