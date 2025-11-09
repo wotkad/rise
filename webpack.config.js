@@ -176,7 +176,6 @@ module.exports = (env) => {
             } : {
               loader: "pug-loader",
               options: {
-                pretty: true,
                 root: path.resolve(__dirname, 'src/views'),
                 basedir: path.resolve(__dirname, 'src/views')
               }
