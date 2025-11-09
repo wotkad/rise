@@ -13,20 +13,20 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    padding: 24px 0;
+    padding: $spacing-24 0;
   }
   &__left {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: $spacing-24;
     img {
       width: 24px;
     }
   }
   &__project {
     display: inline-block;
-    margin-left: 4px;
+    margin-left: $spacing-4;
 
     font-weight: 700;
     color: $gray-900;
@@ -46,7 +46,7 @@
       }
     }
     i {
-      margin-left: 4px;
+      margin-left: $spacing-4;
 
       @include font-sm;
     }
@@ -85,7 +85,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 16px;
+      gap: $spacing-16;
       margin: 0;
       li {
         display: inline-flex;
@@ -95,7 +95,7 @@
   }
   &__copy {
     display: flex;
-    gap: 4px;
+    gap: $spacing-4;
     span {
       @include font-xs;
     }

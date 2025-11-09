@@ -1,8 +1,9 @@
+@use "@s-base/variables" as *;
 @use "@s-mixins/mixins" as *;
 
 .title {
-  padding-top: 24px;
+  padding-top: $spacing-24;
   @include screen(xl) {
-    padding-top: 56px;
+    padding-top: $spacing-56;
   }
 }

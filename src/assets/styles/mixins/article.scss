@@ -4,10 +4,10 @@
 .article {
   display: block;
   grid-column: span 1;
-  padding: 20px;
+  padding: $spacing-20;
 
   border: 1px solid $gray-300;
-  border-radius: 6px;
+  border-radius: $rounded-6;
 
   transition: border-color $transition-default;
   @include screen(xl) {
@@ -25,8 +25,8 @@
   }
   span {
     display: inline-block;
-    margin-top: 16px;
-    padding-bottom: 2px;
+    margin-top: $spacing-16;
+    padding-bottom: $spacing-2;
 
     color: $blue-500;
   }

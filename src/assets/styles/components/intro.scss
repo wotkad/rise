@@ -4,7 +4,7 @@
 .intro {
   &__content {
     max-width: 660px;
-    margin-top: 40px;
+    margin-top: $spacing-40;
     li {
       a {
         border-bottom: 1px solid transparent;

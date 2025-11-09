@@ -4,7 +4,7 @@
 img {
   width: 100%;
 
-  border-radius: 8px;
+  border-radius: $rounded-8;
 }
 
 h1 {
@@ -105,7 +105,7 @@ figure {
   gap: 8px;
   margin-top: 24px;
 
-  border-radius: 8px;
+  border-radius: $rounded-8;
 
   text-align: center;
 
@@ -179,7 +179,7 @@ blockquote {
   padding: 16px 20px;
 
   border-left: 4px solid $blue-500;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 $rounded-6 $rounded-6 0;
 
   background-color: $blue-050;
 
@@ -225,7 +225,7 @@ ul {
 code {
   padding: 2px 6px;
 
-  border-radius: 4px;
+  border-radius: $rounded-4;
   background-color: $blue-100 !important;
 
   transition: $transition-default;
@@ -282,7 +282,7 @@ pre {
   margin-top: 16px;
   overflow-x: auto;
 
-  border-radius: 8px;
+  border-radius: $rounded-8;
 }
 
 strong {
@@ -296,7 +296,7 @@ em {
 mark {
   padding: 2px 6px;
 
-  border-radius: 4px;
+  border-radius: $rounded-4;
   background-color: $orange-400;
 
   color: $white;
