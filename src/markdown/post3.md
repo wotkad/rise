@@ -51,20 +51,20 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed 
 Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae:
 
 ```html
-  <dl class="grid max-w-screen-md grid-cols-2 gap-8 text-gray-900 sm:grid-cols-3 dark:text-white">
-    <div class="flex flex-col items-center justify-center">
-        <dt class="mb-2 text-3xl font-extrabold">73M+</dt>
-        <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">developers</dd>
-    </div>
-    <div class="flex flex-col items-center justify-center">
-        <dt class="mb-2 text-3xl font-extrabold">1B+</dt>
-        <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">contributors</dd>
-    </div>
-    <div class="flex flex-col items-center justify-center">
-        <dt class="mb-2 text-3xl font-extrabold">4M+</dt>
-        <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">organizations</dd>
-    </div>
-  </dl>
+<dl class="grid max-w-screen-md grid-cols-2 gap-8 text-gray-900 sm:grid-cols-3 dark:text-white">
+  <div class="flex flex-col items-center justify-center">
+      <dt class="mb-2 text-3xl font-extrabold">73M+</dt>
+      <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">developers</dd>
+  </div>
+  <div class="flex flex-col items-center justify-center">
+      <dt class="mb-2 text-3xl font-extrabold">1B+</dt>
+      <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">contributors</dd>
+  </div>
+  <div class="flex flex-col items-center justify-center">
+      <dt class="mb-2 text-3xl font-extrabold">4M+</dt>
+      <dd class="text-lg font-normal text-gray-500 dark:text-gray-400">organizations</dd>
+  </div>
+</dl>
 ```
 
 ### Table example
