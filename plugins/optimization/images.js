@@ -4,6 +4,7 @@ const sharp = require('sharp');
 const chokidar = require('chokidar');
 
 const IMAGES_SRC = path.resolve(__dirname, '../../src/assets/images');
+const CONSTRUCTOR_SRC = path.resolve(__dirname, '../../plugins/constructor');
 const MAX_WIDTH = 1920;
 const PREVIEW_WIDTH = 400;
 
@@ -31,7 +32,7 @@ async function optimizeImage(filePath) {
     console.error('[Watcher] Ошибка обработки изображения:', filePath, err);
   }
 }
-
-chokidar.watch(IMAGES_SRC, { ignoreInitial: true })
+chokidar
+  .watch([IMAGES_SRC, CONSTRUCTOR_SRC], { ignoreInitial: true })
   .on('add', file => setTimeout(() => optimizeImage(file), 100))
   .on('change', file => setTimeout(() => optimizeImage(file), 100));
