@@ -196,6 +196,12 @@ export default function initButton() {
 }
 ```
 
+6. Пример добавления изображения в компонент:
+
+```pug
+img(src=require("@images/logo.svg") alt="logo")
+```
+
 ## 4.2 Автоматическая генерация
 
 * Для добавления в проект выполните команду `yarn constructor my-component`. Компонент будет добавлен в проект, если он существует.
@@ -205,12 +211,14 @@ export default function initButton() {
 
 ```bash
 component/v1/
+├── /images/.           # директория изображений
 ├── component.pug       # шаблон
 ├── component.scss      # стили
 └── component.js        # логика
 ```
 
 * Компоненты могут быть разных версий/вариантов (v1/v2...).
+* Компоненты могут содержать другие компоненты.
 
 ## 4.3 Работа с миксинами и параметрами (_defaults)
 
