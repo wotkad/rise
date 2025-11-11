@@ -27,6 +27,7 @@ const basePaths = {
   js: path.join(rootDir, "src/assets/js/components"),
   styles: path.join(rootDir, "src/assets/styles/components"),
   views: path.join(rootDir, "src/views/components"),
+  images: path.join(rootDir, "src/assets/images/components"), // ✅ добавлено
 };
 
 if (!fs.existsSync(sourceDir)) {
@@ -38,6 +39,7 @@ const targetDirs = {
   js: path.join(basePaths.js, name),
   styles: path.join(basePaths.styles, name),
   views: path.join(basePaths.views, name),
+  images: path.join(basePaths.images, name), // ✅ добавлено
 };
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
@@ -88,6 +90,14 @@ function removeTargetDirs() {
       removeEmptyParent(path.dirname(dir));
     }
   }
+
+  // ✅ удаляем изображения компонента
+  const componentImagesDir = targetDirs.images;
+  if (fs.existsSync(componentImagesDir)) {
+    fs.rmSync(componentImagesDir, { recursive: true, force: true });
+    removeEmptyParent(path.dirname(componentImagesDir));
+  }
+
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 }
@@ -162,6 +172,19 @@ function createComponent() {
       fs.copyFileSync(srcFile, path.join(targetDirs.styles, file));
     } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
       fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+    }
+  }
+
+  // ✅ копируем изображения, если есть
+  const imagesDir = path.join(sourceDir, "images");
+  if (fs.existsSync(imagesDir)) {
+    const targetImagesDir = targetDirs.images;
+    if (!fs.existsSync(targetImagesDir)) fs.mkdirSync(targetImagesDir, { recursive: true });
+    const imageFiles = fs.readdirSync(imagesDir);
+    for (const img of imageFiles) {
+      const srcImg = path.join(imagesDir, img);
+      const destImg = path.join(targetImagesDir, img);
+      fs.copyFileSync(srcImg, destImg);
     }
   }
 
