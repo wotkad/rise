@@ -22,6 +22,7 @@ function AliasesGenerator() {
     '@validation': path.resolve(jsBase, 'validation'),
     '@routing': path.resolve(jsBase, 'routing'),
     '@cache': path.resolve(srcPath, 'assets/js/cache'),
+    '@components': path.resolve(srcPath, 'assets/js/components'),
 
     '@styles': scssBase,
     '@s-utils': path.resolve(scssBase, 'utils'),

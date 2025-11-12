@@ -35,18 +35,21 @@ if (!fs.existsSync(sourceDir)) {
   process.exit(0);
 }
 
+const componentFolderName = `${name}-${version}`;
+const fileBaseName = `${name}-${version}`;
+
 const targetDirs = {
-  js: path.join(basePaths.js, name),
-  styles: path.join(basePaths.styles, name),
-  views: path.join(basePaths.views, name),
-  images: path.join(basePaths.images, name), // ✅ добавлено
+  js: path.join(basePaths.js, componentFolderName),
+  styles: path.join(basePaths.styles, componentFolderName),
+  views: path.join(basePaths.views, componentFolderName),
+  images: path.join(basePaths.images, componentFolderName),
 };
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 
-const importScssLine = `@use "@s-components/${name}/${name}";`;
-const importJsLine = `import "@s-components/${name}/${name}";`;
+const importScssLine = `@use "@components/${componentFolderName}/${fileBaseName}";`;
+const importJsLine = `import "@components/${componentFolderName}/${fileBaseName}";`;
 
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
@@ -54,8 +57,15 @@ function removeImportLines(filePath, name) {
   let content = fs.readFileSync(filePath, "utf8");
   content = content.replace(/\r\n/g, "\n");
 
-  const scssRegex = new RegExp(`^\\s*@use\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*\\n?`, "gm");
-  const jsRegex = new RegExp(`^\\s*import\\s+["']@s-components\\/${name}\\/${name}["'];?\\s*\\n?`, "gm");
+  const scssRegex = new RegExp(
+    `^\\s*@use\\s+["']@components\\/${name}-v\\d+\\/${name}-v\\d+["'];?\\s*\\n?`,
+    "gm"
+  );
+
+  const jsRegex = new RegExp(
+    `^\\s*import\\s+["']@components\\/${name}-v\\d+\\/${name}-v\\d+["'];?\\s*\\n?`,
+    "gm"
+  );
 
   content = content.replace(scssRegex, "");
   content = content.replace(jsRegex, "");
@@ -167,15 +177,14 @@ function createComponent() {
     const srcFile = path.join(sourceDir, file);
 
     if (ext === ".js") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.js, file));
+      fs.copyFileSync(srcFile, path.join(targetDirs.js, `${fileBaseName}${ext}`));
     } else if (ext === ".scss" || ext === ".sass") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.styles, file));
+      fs.copyFileSync(srcFile, path.join(targetDirs.styles, `${fileBaseName}${ext}`));
     } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+      fs.copyFileSync(srcFile, path.join(targetDirs.views, `${fileBaseName}${ext}`));
     }
   }
 
-  // ✅ копируем изображения, если есть
   const imagesDir = path.join(sourceDir, "images");
   if (fs.existsSync(imagesDir)) {
     const targetImagesDir = targetDirs.images;
