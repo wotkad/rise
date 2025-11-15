@@ -153,20 +153,20 @@ import initSlider from '@p-components/slider/slider';
 
 ## 4.1 Создание нового компонента вручную
 
-1. Создай папку в `src/views/custom_components/my-component/`
+1. Создай папку в `src/views/custom-components/my-component/`
 
 Например:
 
 ```bash
-src/views/custom_components/button/
+src/views/custom-components/button/
 ```
 
 2. Создай файлы:
 
 ```bash
-src/views/custom_components/button/button.pug
-src/assets/styles/custom_components/button/button.scss
-src/assets/js/custom_components/button/button.js
+src/views/custom-components/button/button.pug
+src/assets/styles/custom-components/button/button.scss
+src/assets/js/custom-components/button/button.js
 ```
 
 3. Пример `button.pug`:

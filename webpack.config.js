@@ -62,6 +62,8 @@ module.exports = (env) => {
         './@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
         '@p-components': path.resolve(__dirname, 'src/views/components'),
         './@p-components': path.resolve(__dirname, 'src/views/components'),
+        '@p-custom-components': path.resolve(__dirname, 'src/views/custom-components'),
+        './@p-custom-components': path.resolve(__dirname, 'src/views/custom-components'),
         '@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
         './@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
       },
@@ -127,6 +129,7 @@ module.exports = (env) => {
                         const aliasMap = {
                           "@s-base": path.resolve(__dirname, "src/assets/styles/base"),
                           "@s-components": path.resolve(__dirname, "src/assets/styles/components"),
+                          "@s-custom-components": path.resolve(__dirname, "src/assets/styles/custom-components"),
                           "@s-mixins": path.resolve(__dirname, "src/assets/styles/mixins"),
                           "@s-utils": path.resolve(__dirname, "src/assets/styles/utils"),
                           "@fonts": path.resolve(__dirname, "src/assets/fonts"),

@@ -10,6 +10,7 @@ function AliasesGenerator() {
   const fonts = path.resolve(srcPath, 'assets/fonts');
   const views = path.resolve(srcPath, 'views');
   const components = path.resolve(views, 'components');
+  const custom_components = path.resolve(views, 'custom-components');
   const mixins = path.resolve(views, 'mixins');
   const layouts = path.resolve(views, 'layouts');
 
@@ -28,6 +29,7 @@ function AliasesGenerator() {
     '@s-utils': path.resolve(scssBase, 'utils'),
     '@s-mixins': path.resolve(scssBase, 'mixins'),
     '@s-components': path.resolve(scssBase, 'components'),
+    '@s-custom-components': path.resolve(scssBase, 'custom-components'),
     '@s-base': path.resolve(scssBase, 'base'),
 
     '@images': images,
@@ -36,6 +38,7 @@ function AliasesGenerator() {
     '@pug': views,
     '@p-mixins': mixins,
     '@p-components': components,
+    '@p-custom-components': custom_components,
     '@p-layouts': layouts,
   };
 }

@@ -49,7 +49,7 @@ block content
           .page-wrapper
             section.content
               .wrapper` + '\n' + formattedHtml + `
-          include @p-components/footer.pug`;
+          include @p-custom-components/footer.pug`;
       fs.writeFileSync(compiledPath + newFileName, renderedFile, "utf8");
     });
   });
