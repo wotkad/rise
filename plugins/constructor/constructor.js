@@ -57,11 +57,11 @@ const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 
 // импорт scss версии (например: @use "@components/header-v1/header-v1";)
-const importScssLine = `@use "@components/${componentFolderName}/${fileBaseName}";`;
+const importScssLine = `@use "@s-components/${componentFolderName}/${fileBaseName}";`;
 // НЕ импортируем версию JS (требование) — вместо этого подключаем общий js ниже
 
 // импорт общего JS (без версии): import "@components/header/header.js";
-const importCommonJsLine = `import "@components/${name}/${name}.js";`;
+const importCommonJsLine = `import "@components/${name}/${name}";`;
 
 /**
  * Удаляет строки импортов из файла (scss/js).
@@ -77,7 +77,7 @@ function removeImportLines(filePath, name) {
 
   // @use "@components/<name>-vX/<name>-vX";
   const scssRegex = new RegExp(
-    `^\\s*@use\\s+["']@components\\/${name}-v\\d+\\/${name}-v\\d+["'];?\\s*\\n?`,
+    `^\\s*@use\\s+["']@s-components\\/${name}-v\\d+\\/${name}-v\\d+["'];?\\s*\\n?`,
     "gm"
   );
 
@@ -89,7 +89,7 @@ function removeImportLines(filePath, name) {
 
   // import "@components/<name>/<name>.js";
   const commonJsRegex = new RegExp(
-    `^\\s*import\\s+["']@components\\/${name}\\/${name}\\.js["'];?\\s*\\n?`,
+    `^\\s*import\\s+["']@components\\/${name}\\/${name}["'];?\\s*\\n?`,
     "gm"
   );
 
