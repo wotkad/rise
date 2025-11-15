@@ -21,13 +21,19 @@ if (!name || !version) {
 }
 
 const rootDir = path.resolve(__dirname, "../..");
+
+// исходники версий (pug, scss, js внутри v1/v2)
 const sourceDir = path.join(__dirname, "components", name, version);
+
+// !!! новая папка общих js
+const commonJsSource = path.join(__dirname, "js", `${name}.js`);
 
 const basePaths = {
   js: path.join(rootDir, "src/assets/js/components"),
   styles: path.join(rootDir, "src/assets/styles/components"),
   views: path.join(rootDir, "src/views/components"),
-  images: path.join(rootDir, "src/assets/images/components"), // ✅ добавлено
+  images: path.join(rootDir, "src/assets/images/components"),
+  commonJs: path.join(rootDir, "src/assets/js/components"), // общие js сюда же
 };
 
 if (!fs.existsSync(sourceDir)) {
@@ -43,19 +49,23 @@ const targetDirs = {
   styles: path.join(basePaths.styles, componentFolderName),
   views: path.join(basePaths.views, componentFolderName),
   images: path.join(basePaths.images, componentFolderName),
+  commonJs: path.join(basePaths.commonJs, name), // без версии!
 };
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
 
+// Импорт версии
 const importScssLine = `@use "@components/${componentFolderName}/${fileBaseName}";`;
 const importJsLine = `import "@components/${componentFolderName}/${fileBaseName}";`;
+
+// Импорт общего JS
+const importCommonJsLine = `import "@components/${name}/${name}.js";`;
 
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
 
-  let content = fs.readFileSync(filePath, "utf8");
-  content = content.replace(/\r\n/g, "\n");
+  let content = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
 
   const scssRegex = new RegExp(
     `^\\s*@use\\s+["']@components\\/${name}-v\\d+\\/${name}-v\\d+["'];?\\s*\\n?`,
@@ -67,10 +77,17 @@ function removeImportLines(filePath, name) {
     "gm"
   );
 
-  content = content.replace(scssRegex, "");
-  content = content.replace(jsRegex, "");
+  const commonJsRegex = new RegExp(
+    `^\\s*import\\s+["']@components\\/${name}\\/${name}\\.js["'];?\\s*\\n?`,
+    "gm"
+  );
 
-  content = content.replace(/\s+$/, "");
+  content = content
+    .replace(scssRegex, "")
+    .replace(jsRegex, "")
+    .replace(commonJsRegex, "")
+    .replace(/\s+$/, "");
+
   fs.writeFileSync(filePath, content, "utf8");
 }
 
@@ -87,9 +104,7 @@ function appendImportLine(filePath, line) {
 function removeEmptyParent(dir) {
   if (!fs.existsSync(dir)) return;
   const files = fs.readdirSync(dir);
-  if (files.length === 0) {
-    fs.rmdirSync(dir);
-  }
+  if (files.length === 0) fs.rmdirSync(dir);
 }
 
 function removeTargetDirs() {
@@ -101,13 +116,7 @@ function removeTargetDirs() {
     }
   }
 
-  // ✅ удаляем изображения компонента
-  const componentImagesDir = targetDirs.images;
-  if (fs.existsSync(componentImagesDir)) {
-    fs.rmSync(componentImagesDir, { recursive: true, force: true });
-    removeEmptyParent(path.dirname(componentImagesDir));
-  }
-
+  // удаляем импорт
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 }
@@ -123,12 +132,10 @@ function rewriteTargetDirs() {
 
 let alreadyExists = false;
 for (const key in targetDirs) {
-  if (fs.existsSync(targetDirs[key])) {
-    const entries = fs.readdirSync(targetDirs[key]);
-    if (entries.length > 0) {
-      alreadyExists = true;
-      break;
-    }
+  const dir = targetDirs[key];
+  if (fs.existsSync(dir) && fs.readdirSync(dir).length > 0) {
+    alreadyExists = true;
+    break;
   }
 }
 
@@ -163,6 +170,7 @@ if (alreadyExists) {
 createComponent();
 
 function createComponent() {
+  // создаем папки
   for (const key in targetDirs) {
     const dir = targetDirs[key];
     const parent = path.dirname(dir);
@@ -172,6 +180,7 @@ function createComponent() {
 
   const files = fs.readdirSync(sourceDir);
 
+  // копируем v1/v2 файлы
   for (const file of files) {
     const ext = path.extname(file);
     const srcFile = path.join(sourceDir, file);
@@ -185,23 +194,40 @@ function createComponent() {
     }
   }
 
+  // КОПИРОВАНИЕ ИЗОБРАЖЕНИЙ
   const imagesDir = path.join(sourceDir, "images");
   if (fs.existsSync(imagesDir)) {
     const targetImagesDir = targetDirs.images;
-    if (!fs.existsSync(targetImagesDir)) fs.mkdirSync(targetImagesDir, { recursive: true });
-    const imageFiles = fs.readdirSync(imagesDir);
-    for (const img of imageFiles) {
+    if (!fs.existsSync(targetImagesDir))
+      fs.mkdirSync(targetImagesDir, { recursive: true });
+
+    for (const img of fs.readdirSync(imagesDir)) {
       const srcImg = path.join(imagesDir, img);
       const destImg = path.join(targetImagesDir, img);
       fs.copyFileSync(srcImg, destImg);
     }
   }
 
+  // КОПИРОВАНИЕ ОБЩЕГО JS
+  if (fs.existsSync(commonJsSource)) {
+    if (!fs.existsSync(targetDirs.commonJs)) {
+      fs.mkdirSync(targetDirs.commonJs, { recursive: true });
+    }
+    fs.copyFileSync(
+      commonJsSource,
+      path.join(targetDirs.commonJs, `${name}.js`)
+    );
+  }
+
+  // обновляем импорты
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 
   appendImportLine(appScssPath, importScssLine);
   appendImportLine(appJsPath, importJsLine);
+
+  // импорт общего js
+  appendImportLine(appJsPath, importCommonJsLine);
 
   console.log(`✅ Компонент ${name} успешно создан и подключён!`);
 }
