@@ -13,7 +13,6 @@ if (args.length < 1) {
 const componentArg = args[0];
 const flags = args.slice(1);
 
-// разбиваем component-v1 → name, version
 const [name, version] = componentArg.split("-");
 
 if (!name || !version) {
@@ -22,11 +21,7 @@ if (!name || !version) {
 }
 
 const rootDir = path.resolve(__dirname, "../..");
-
-// исходники: /plugins/constructor/components/<name>/<version>
 const sourceDir = path.join(__dirname, "components", name, version);
-
-// общий js: /plugins/constructor/js/<name>.js
 const commonJsSource = path.join(__dirname, "js", `${name}.js`);
 
 const basePaths = {
@@ -41,9 +36,6 @@ if (!fs.existsSync(sourceDir)) {
   process.exit(0);
 }
 
-// Имя файлов БЕЗ версии
-const fileBaseName = name;
-
 const targetDirs = {
   styles: path.join(basePaths.styles, name),
   views: path.join(basePaths.views, name),
@@ -53,28 +45,19 @@ const targetDirs = {
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
-
-// импорт SCSS БЕЗ версии
 const importScssLine = `@use "@s-components/${name}/${name}" as *;`;
-
-// импорт общего JS
 const importCommonJsLine = `import "@components/${name}/${name}";`;
 
-/**
- * Удаляет строки импортов
- */
 function removeImportLines(filePath, name) {
   if (!fs.existsSync(filePath)) return;
 
   let content = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
 
-  // @use "@s-components/header/header" as *;
   const scssRegex = new RegExp(
     `^\\s*@use\\s+["']@s-components\\/${name}\\/${name}["']\\s+as\\s+\\*;?\\s*\\n?`,
     "gm"
   );
 
-  // import "@components/header/header";
   const commonJsRegex = new RegExp(
     `^\\s*import\\s+["']@components\\/${name}\\/${name}["'];?\\s*\\n?`,
     "gm"
@@ -169,7 +152,8 @@ if (alreadyExists) {
 createComponent();
 
 function createComponent() {
-  // создаём папки без версий
+  let hasCommonJs = false;
+
   for (const key of ["styles", "views", "images"]) {
     const dir = targetDirs[key];
     const parent = path.dirname(dir);
@@ -177,8 +161,17 @@ function createComponent() {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   }
 
-  if (!fs.existsSync(targetDirs.commonJs)) {
-    fs.mkdirSync(targetDirs.commonJs, { recursive: true });
+  if (fs.existsSync(commonJsSource)) {
+    if (!fs.existsSync(targetDirs.commonJs)) {
+      fs.mkdirSync(targetDirs.commonJs, { recursive: true });
+    }
+
+    fs.copyFileSync(
+      commonJsSource,
+      path.join(targetDirs.commonJs, `${name}.js`)
+    );
+
+    hasCommonJs = true;
   }
 
   const files = fs.readdirSync(sourceDir);
@@ -189,12 +182,10 @@ function createComponent() {
 
     if (ext === ".js") continue;
 
-    // SCSS — оставляем поведение прежним
     if (ext === ".scss" || ext === ".sass") {
       fs.copyFileSync(srcFile, path.join(targetDirs.styles, `${name}${ext}`));
     }
 
-    // Копировать ВСЕ pug/jade/html файлы с их исходными именами
     else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
       fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
     }
@@ -216,13 +207,17 @@ function createComponent() {
       commonJsSource,
       path.join(targetDirs.commonJs, `${name}.js`)
     );
+    hasCommonJs = true;
   }
 
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 
   appendImportLine(appScssPath, importScssLine);
-  appendImportLine(appJsPath, importCommonJsLine);
-
-  console.log(`✅ Компонент ${name}-${version} успешно создан и подключён!`);
+  if (hasCommonJs) {
+    appendImportLine(appJsPath, importCommonJsLine);
+  }
+  if (!alreadyExists) {
+    console.log(`✅ Компонент ${name}-${version} успешно создан и подключён!`);
+  }
 }

@@ -35,9 +35,12 @@ h1 {
 
 .intro {
   &__content {
-    margin-top: $spacing-40;
+    margin-top: $spacing-24;
 
     max-width: 660px;
+    @include screen(lg) {
+      margin-top: $spacing-40;
+    }
     ol {
       margin-top: 16px;
       margin-left: 18px;

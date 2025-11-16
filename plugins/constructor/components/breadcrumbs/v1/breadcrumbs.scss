@@ -1,0 +1,69 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.breadcrumbs {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: $spacing-20 0;
+    gap: $spacing-8;
+    @include screen(md) {
+      gap: $spacing-10;
+    }
+    li {
+      display: flex;
+    }
+    svg {
+      width: 12px;
+      height: 12px;
+      color: $gray-400;
+    }
+    a, span {
+      display: flex;
+      align-items: center;
+
+      font-weight: 500;
+      color: $gray-700;
+
+      transition: color $transition-default;
+
+      svg {
+        margin-right: $spacing-10;
+        color: $gray-700;
+        width: 12px;
+        height: 12px;
+
+        transition: color $transition-default;
+        body.dark & {
+          color: $gray-400;
+        }
+        @include screen(md) {
+          width: 14px;
+          height: 14px;
+        }
+      }
+      @include font-xs;
+      @include screen(md) {
+        @include font-sm;
+      }
+      body.dark & {
+        color: $gray-400;
+      }
+      @include screen(xl) {
+        &:hover {
+          color: $blue-600;
+          span {
+            color: $blue-600;
+          }
+          svg {
+            color: $blue-600;
+            body.dark & {
+              color: $blue-600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
