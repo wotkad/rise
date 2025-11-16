@@ -162,7 +162,7 @@ if (flags.includes("--remove")) {
 }
 
 if (alreadyExists) {
-  console.log(`🚫 Компонент ${name} НЕ создан — используйте --rewrite`);
+  console.log(`🚫 Компонент ${name} уже создан — используйте флаг --rewrite`);
   process.exit(0);
 }
 

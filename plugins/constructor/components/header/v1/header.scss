@@ -1,0 +1,345 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.header-v1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+
+  width: 100%;
+  border-bottom: 1px solid $gray-200;
+  transition:
+    background-color $transition-default,
+    border-color $transition-default;
+
+  background-color: $white;
+  body.dark & {
+    border-color: $gray-700;
+    background-color: $gray-900;
+  }
+  &__logo {
+    svg {
+      path {
+        transition: fill $transition-default;
+      }
+      rect {
+        transition: stroke $transition-default;
+      }
+      body.dark & {
+        path {
+          fill: $white;
+        }
+        rect {
+          stroke: $white;
+        }
+      }
+    }
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 61px;
+    gap: $spacing-32;
+    @include screen(xl) {
+      height: 80px;
+    }
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+
+      z-index: -1;
+      visibility: hidden;
+
+      width: 100%;
+      height: calc(100% - 62px);
+
+      transition: background-color $transition-default;
+      background-color: $white;
+      @include screen(xl) {
+        transition:
+          opacity 0,
+          visibility 0,
+          z-index 0;
+        position: static;
+        z-index: 1;
+
+        width: auto;
+        height: calc(100% - 80px);
+
+        background-color: transparent;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &.active {
+        opacity: 1;
+
+        z-index: 10;
+        visibility: visible;
+      }
+      body.dark & {
+        background-color: $gray-900;
+        @include screen(xl) {
+          background-color: transparent;
+        }
+      }
+      .wrapper {
+        @include screen(xl) {
+          padding: 0;
+        }
+        .header-v1__button {
+          display: block;
+          @include screen(xl) {
+            display: none;
+          }
+        }
+        .header-v1__controls {
+          width: 100%;
+          display: flex;
+          gap: $spacing-8;
+          padding-top: $spacing-24;
+          align-items: flex-start;
+          &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $gray-200;
+            transition: background-color $transition-default;
+            body.dark & {
+              background-color: $gray-700;
+            }
+            @include screen(xl) {
+              display: none;
+            }
+          }
+          @include screen(xl) {
+            padding-top: 0;
+            border-top: 0;
+          }
+        }
+      }
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: $spacing-16;
+        padding: $spacing-16 0;
+        @include screen(xl) {
+          flex-direction: row;
+          align-items: center;
+          row-gap: 0;
+          column-gap: $spacing-32;
+          padding: 0;
+        }
+      }
+    }
+  }
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include screen(xl) {
+      flex: 1;
+      gap: $spacing-32;
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    column-gap: $spacing-6;
+
+    font-weight: 500;
+    color: $gray-900;
+
+    transition: color $transition-default;
+    @include font-xl;
+    @include screen(xl) {
+      @include font-base;
+    }
+    @include screen(xl) {
+      &:hover {
+        color: $blue-600;
+      }
+    }
+    body.dark & {
+      color: $white;
+      @include screen(xl) {
+        &:hover {
+          color: $blue-600;
+        }
+      }
+      &.active {
+        color: $blue-600;
+      }
+    }
+    span,
+    &.active {
+      color: $blue-600;
+    }
+  }
+  &__button {
+    padding: $spacing-10 $spacing-20;
+    border-radius: $rounded-8;
+    display: none;
+    border: 1px solid $gray-200;
+    transition:
+      border-color $transition-default,
+      background-color $transition-default;
+    @include screen(xl) {
+      display: block;
+    }
+    body.dark & {
+      border-color: $gray-600;
+    }
+    @include screen(xl) {
+      &:hover {
+        background-color: $gray-100;
+        body.dark & {
+          background-color: $gray-700;
+        }
+      }
+    }
+    &-mob {
+      @include screen(xl) {
+        display: none;
+      }
+    }
+    &-blue {
+      padding: $spacing-10 $spacing-20;
+      background-color: $blue-600;
+      color: $white;
+      border: 1px solid $blue-600;
+      body.dark & {
+        border-color: $blue-600;
+      }
+      @include screen(xl) {
+        &:hover {
+          background-color: $blue-700;
+          border-color: $blue-700;
+          body.dark & {
+            background-color: $blue-700;
+            border-color: $blue-700;
+          }
+        }
+      }
+    }
+  }
+  &__controls {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    column-gap: $spacing-16;
+  }
+  &__theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    &-light,
+    &-dark {
+      position: absolute;
+
+      width: 20px;
+      height: 20px;
+
+      background-size: 20px;
+      background-repeat: no-repeat;
+
+      transition:
+        opacity $transition-default,
+        visibility $transition-default,
+        z-index $transition-default;
+    }
+    &-light {
+      opacity: 1;
+
+      z-index: 1;
+      visibility: visible;
+
+      background-image: url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDIwIDIwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTEwIDIuNVYzLjMzMzMzTTEwIDE2LjY2NjdWMTcuNU0xNy41IDEwSDE2LjY2NjdNMy4zMzMzMyAxMEgyLjVNMTUuMzAzMyAxNS4zMDMzTDE0LjcxNDIgMTQuNzE0Mk01LjI4NTgzIDUuMjg1ODNMNC42OTY2NyA0LjY5NjY3TTE1LjMwMzMgNC42OTY2N0wxNC43MTQyIDUuMjg1ODNNNS4yODU4MyAxNC43MTQyTDQuNjk2NjcgMTUuMzAzM00xMy4zMzMzIDEwQzEzLjMzMzMgMTAuODg0MSAxMi45ODIyIDExLjczMTkgMTIuMzU3IDEyLjM1N0MxMS43MzE5IDEyLjk4MjIgMTAuODg0MSAxMy4zMzMzIDEwIDEzLjMzMzNDOS4xMTU5MiAxMy4zMzMzIDguMjY4MSAxMi45ODIyIDcuNjQyOTcgMTIuMzU3QzcuMDE3ODYgMTEuNzMxOSA2LjY2NjY3IDEwLjg4NDEgNi42NjY2NyAxMEM2LjY2NjY3IDkuMTE1OTIgNy4wMTc4NiA4LjI2ODEgNy42NDI5NyA3LjY0Mjk3QzguMjY4MSA3LjAxNzg2IDkuMTE1OTIgNi42NjY2NyAxMCA2LjY2NjY3QzEwLjg4NDEgNi42NjY2NyAxMS43MzE5IDcuMDE3ODYgMTIuMzU3IDcuNjQyOTdDMTIuOTgyMiA4LjI2ODEgMTMuMzMzMyA5LjExNTkyIDEzLjMzMzMgMTBaIiBzdHJva2U9IiMxMTE5MjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+PC9zdmc+);
+    }
+    &-dark {
+      opacity: 0;
+      visibility: hidden;
+
+      z-index: -1;
+
+      background-image: url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDIwIDIwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTE3LjI5MyAxMy4yOTNDMTUuODExNSAxMy45NjMxIDE0LjE2MSAxNC4xNjU5IDEyLjU2MTQgMTMuODc0M0MxMC45NjE3IDEzLjU4MjcgOS40ODg5NSAxMi44MTA2IDguMzM5MTkgMTEuNjYwOUM3LjE4OTQ0IDEwLjUxMTEgNi40MTczNCA5LjAzODMgNi4xMjU3NCA3LjQzODY2QzUuODM0MTUgNS44MzkwMyA2LjAzNjkxIDQuMTg4NTIgNi43MDcwMSAyLjcwNzAzQzUuNTI3NTggMy4yNDAwNCA0LjQ5NTA1IDQuMDUxMjMgMy42OTgwMiA1LjA3MDk5QzIuOTAwOTkgNi4wOTA3NSAyLjM2MzI0IDcuMjg4NjUgMi4xMzA5MiA4LjU2MTkyQzEuODk4NiA5LjgzNTE4IDEuOTc4NjQgMTEuMTQ1OCAyLjM2NDE3IDEyLjM4MTNDMi43NDk3IDEzLjYxNjkgMy40MjkyMiAxNC43NDA0IDQuMzQ0NDIgMTUuNjU1NkM1LjI1OTYxIDE2LjU3MDggNi4zODMxOCAxNy4yNTAzIDcuNjE4NzEgMTcuNjM1OUM4Ljg1NDI0IDE4LjAyMTQgMTAuMTY0OSAxOC4xMDE0IDExLjQzODEgMTcuODY5MUMxMi43MTE0IDE3LjYzNjggMTMuOTA5MyAxNy4wOTkxIDE0LjkyOTEgMTYuMzAyQzE1Ljk0ODggMTUuNTA1IDE2Ljc2IDE0LjQ3MjUgMTcuMjkzIDEzLjI5M1oiIGZpbGw9IiNGRkZGRkYiPjwvcGF0aD48L3N2Zz4=);
+    }
+    &.active {
+      .header-v1 {
+        &__theme {
+          &-light {
+            opacity: 0;
+
+            z-index: -1;
+            visibility: hidden;
+          }
+          &-dark {
+            opacity: 1;
+
+            z-index: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+  &__burger {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: $spacing-8;
+    width: 32px;
+    height: 32px;
+    @include screen(xl) {
+      display: none;
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+      path,
+      rect {
+        transition:
+          transform $transition-default,
+          opacity $transition-default,
+          fill $transition-default;
+
+        body.dark & {
+          fill: $white;
+        }
+      }
+    }
+    &.active {
+      svg {
+        rect {
+          &:nth-child(1) {
+            transform: translateX(3px) rotate(45deg);
+          }
+          &:nth-child(2) {
+            opacity: 0;
+          }
+        }
+        path {
+          &:nth-child(3) {
+            transform: translateX(-7px) translateY(3px) rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+}

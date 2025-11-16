@@ -16,20 +16,46 @@ a {
   border-radius: 0;
 
   font-weight: 400;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
   touch-action: manipulation;
 }
 
 html,
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
   color: $gray-900;
 
-  transition: background-color $transition-default, color $transition-default;
+  transition:
+    background-color $transition-default,
+    color $transition-default;
 
   @include font-base;
 
@@ -129,7 +155,7 @@ body {
   @include screen(md) {
     max-width: calc(#{$screen-md} + #{$container-padding * 2});
   }
-  @include screen(xl) {
+  @include screen(lg) {
     max-width: calc(#{$screen-lg} + #{$container-padding * 2});
   }
   @include screen(xl) {
@@ -141,11 +167,10 @@ body {
 }
 
 .page-wrapper {
-  padding-top: calc(var(--header-height));
-  padding-bottom: 24px;
+  padding-top: calc(var(--header-offset));
   width: 100%;
   @include screen(lg) {
-    padding-top: calc(var(--header-height));
+    padding-top: calc(var(--header-offset));
   }
 }
 

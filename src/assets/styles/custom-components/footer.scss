@@ -2,9 +2,10 @@
 @use "@s-mixins/mixins" as *;
 
 .footer {
+  margin-top: 24px;
   width: 100%;
 
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid $gray-200;
 
   transition: border-color $transition-default;
   body.dark & {

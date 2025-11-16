@@ -12,13 +12,13 @@
   "license": "MIT",
   "lint-staged": {
     "src/**/*.scss": [
-      "prettier --write",
+      "yarn --silent prettier --write --log-level silent './src/assets/styles/**/*.scss'",
       "yarn prettify:scss-files",
       "yarn prettify:stylelint"
     ],
     "src/**/*.pug": [
       "yarn prettify:pug-files",
-      "prettier --write",
+      "yarn --silent prettier --write --log-level silent './src/views/**/*.pug'",
       "yarn prettify:pug-files",
       "yarn prettify:pug-mixins",
       "yarn prettify:js-defaults"
@@ -40,7 +40,7 @@
     "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/optimization/images.js\"",
     "development:sequence": "yarn --silent reports:content && yarn --silent production:markdown && webpack serve --env mode=development --config ./webpack.config --progress",
     "prettify:scss": "yarn --silent prettier --write --log-level silent './src/assets/styles/**/*.scss' && yarn --silent prettify:scss-files && yarn --silent prettify:stylelint",
-    "prettify:pug": "yarn --silent prettify:pug-files && prettier --write --log-level silent './src/views/**/*.pug' && yarn --silent prettify:pug-files && yarn --silent prettify:pug-mixins && yarn --silent prettify:js-defaults",
+    "prettify:pug": "yarn --silent prettify:pug-files && yarn --silent prettier --write --log-level silent './src/views/**/*.pug' && yarn --silent prettify:pug-files && yarn --silent prettify:pug-mixins && yarn --silent prettify:js-defaults",
     "prettify:all": "yarn --silent prettify:svg && yarn --silent prettify:scss && yarn --silent prettify:pug",
     "prettify:stylelint": "stylelint src/assets/styles/**/*.scss",
     "prettify:svg": "node ./plugins/prettify/svg",

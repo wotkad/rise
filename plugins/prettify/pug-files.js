@@ -27,9 +27,7 @@ function removeWhiteSpaces(dir, files_) {
             newData = newData
                         .join("\n")
                         .replace(/[\n]+$/,'')
-                        .replace(/img.+?,/g, match => match.replace('",', '"'))
-                        .replace('<pre>', 'pre.\n' + '                ')
-                        .replace('<code class="hljs">  ', '<code class="hljs">');
+                        .replace(/img.+?,/g, match => match.replace('",', '"'));
             fs.writeFile(filePath, newData, err => {
               if (err) { throw err }
             });
@@ -44,9 +42,7 @@ function removeWhiteSpaces(dir, files_) {
             newData = newData
                         .join("\n")
                         .replace(/[\n]+$/,'')
-                        .replace(/img.+?,/g, match => match.replace('",', '"'))
-                        .replace('<pre>', 'pre.\n' + '                ')
-                        .replace('<code class="hljs">  ', '<code class="hljs">');
+                        .replace(/img.+?,/g, match => match.replace('",', '"'));
             fs.writeFile(filePath, newData, err => {
               if (err) { throw err }
             });

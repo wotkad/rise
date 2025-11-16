@@ -1,0 +1,79 @@
+header.header-v1.header-offset(itemscope itemtype="https://schema.org/WPHeader")
+  .wrapper
+    .header-v1__wrapper
+      .header-v1__left(itemscope itemtype="https://schema.org/Organization")
+        a.header-v1__logo.close-burger(
+          href="/"
+          aria-label="Логотип"
+          itemprop="url"
+        )
+          img(
+            src=require("@images/logos/google.svg")
+            alt="logo"
+            itemprop="logo"
+          )
+      .header-v1__right
+        nav.nav(
+          aria-label="Основное меню"
+          itemscope
+          itemtype="https://schema.org/SiteNavigationElement"
+        )
+          .wrapper
+            .nav__wrapper
+              a.header-v1__link.close-burger(href="#" itemprop="url") Company
+              a.header-v1__link.close-burger(href="#" itemprop="url") Marketplace
+              a.header-v1__link.close-burger(href="#" itemprop="url") Features
+              a.header-v1__link.close-burger(href="#" itemprop="url") Team
+              a.header-v1__link.close-burger(href="#" itemprop="url") Contact
+            .header-v1__controls
+              a.header-v1__button.header-v1__button-mob(
+                href="#"
+                itemprop="url"
+                itemscope
+                itemtype="https://schema.org/Action"
+              ) Log in
+              a.header-v1__button.header-v1__button-blue.header-v1__button-mob(
+                href="#"
+                itemprop="url"
+                itemscope
+                itemtype="https://schema.org/Action"
+              ) Get started
+        .header-v1__controls
+          a.header-v1__button(
+            href="#"
+            itemprop="url"
+            itemscope
+            itemtype="https://schema.org/Action"
+          ) Log in
+          a.header-v1__button.header-v1__button-blue(
+            href="#"
+            itemprop="url"
+            itemscope
+            itemtype="https://schema.org/Action"
+          ) Get started
+          button.header-v1__theme.theme-toggle(
+            type="button"
+            aria-label="Переключить цветовую тему"
+            aria-pressed="false"
+          )
+            .header-v1__theme-light
+            .header-v1__theme-dark
+        button.header-v1__burger.burger(
+          type="button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Открыть меню"
+        )
+          svg(
+            aria-hidden="true"
+            viewBox="0 0 16 14"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="14"
+          )
+            rect(fill="#1F2937" rx="1" width="16" height="2")
+            rect(fill="#1F2937" rx="1" y="6" width="16" height="2")
+            path(
+              d="M0 13C0 12.4477 0.447715 12 1 12H15C15.5523 12 16 12.4477 16 13V13C16 13.5523 15.5523 14 15 14H1C0.447715 14 0 13.5523 0 13V13Z"
+              fill="#1F2937"
+            )
