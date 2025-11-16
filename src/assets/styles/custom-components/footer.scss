@@ -2,7 +2,7 @@
 @use "@s-mixins/mixins" as *;
 
 .footer {
-  margin-top: 24px;
+  margin-top: $spacing-24;
   width: 100%;
 
   border-top: 1px solid $gray-200;

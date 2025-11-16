@@ -42,7 +42,7 @@
     "prettify:scss": "yarn --silent prettier --write --log-level silent './src/assets/styles/**/*.scss' && yarn --silent prettify:scss-files && yarn --silent prettify:stylelint",
     "prettify:pug": "yarn --silent prettify:pug-files && yarn --silent prettier --write --log-level silent './src/views/**/*.pug' && yarn --silent prettify:pug-files && yarn --silent prettify:pug-mixins && yarn --silent prettify:js-defaults",
     "prettify:all": "yarn --silent prettify:svg && yarn --silent prettify:scss && yarn --silent prettify:pug",
-    "prettify:stylelint": "stylelint src/assets/styles/**/*.scss",
+    "prettify:stylelint": "stylelint 'src/assets/styles/**/*.scss'",
     "prettify:svg": "node ./plugins/prettify/svg",
     "prettify:scss-files": "node ./plugins/prettify/scss-files",
     "prettify:pug-files": "node ./plugins/prettify/pug-files",
