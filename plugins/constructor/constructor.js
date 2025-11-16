@@ -189,11 +189,16 @@ function createComponent() {
 
     if (ext === ".js") continue;
 
+    // SCSS — оставляем поведение прежним
     if (ext === ".scss" || ext === ".sass") {
       fs.copyFileSync(srcFile, path.join(targetDirs.styles, `${name}${ext}`));
-    } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.views, `${name}${ext}`));
     }
+
+    // Копировать ВСЕ pug/jade/html файлы с их исходными именами
+    else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
+      fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+    }
+
   }
 
   const imagesDir = path.join(sourceDir, "images");
