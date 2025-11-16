@@ -4,15 +4,18 @@
 .breadcrumbs {
   &__list {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    padding: $spacing-20 0;
     gap: $spacing-8;
+    max-width: max-content;
+    padding: $spacing-20 0;
+    width: 100%;
+    overflow-x: auto;
     @include screen(md) {
       gap: $spacing-10;
     }
     li {
       display: flex;
+      white-space: nowrap;
     }
     svg {
       width: 12px;
@@ -50,6 +53,8 @@
       body.dark & {
         color: $gray-400;
       }
+    }
+    a {
       @include screen(xl) {
         &:hover {
           color: $blue-600;
