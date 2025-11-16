@@ -1,22 +1,144 @@
 @use "@s-base/variables" as *;
 @use "@s-mixins/mixins" as *;
 
+h1 {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+
+  font-weight: 700;
+  @include font-2xl;
+  @include screen(md) {
+    @include font-3xl;
+  }
+  @include screen(lg) {
+    @include font-5xl;
+  }
+  img {
+    margin-right: 12px;
+    width: 24px;
+    min-width: 24px;
+    @include screen(md) {
+      width: 32px;
+      min-width: 32px;
+    }
+    @include screen(lg) {
+      width: 48px;
+      min-width: 48px;
+    }
+  }
+  &:first-child {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+}
+
 .intro {
   &__content {
     margin-top: $spacing-40;
 
     max-width: 660px;
-    li {
-      a {
-        border-bottom: 1px solid transparent;
-
-        color: $blue-500;
-        @include screen(xl) {
-          transition: border-color $transition-default;
-          &:hover {
-            border-color: $blue-500;
-          }
+    ol {
+      margin-top: 16px;
+      margin-left: 18px;
+      list-style: decimal;
+      @include screen(lg) {
+        margin-top: 20px;
+      }
+      & > span {
+        @include font-sm;
+        @include screen(md) {
+          @include font-base;
         }
+      }
+      li {
+        margin-top: 12px;
+        @include font-sm;
+        @include screen(md) {
+          @include font-base;
+        }
+        &::marker {
+          font-weight: 500;
+          color: $blue-500;
+        }
+        span {
+          display: block;
+          margin-top: 4px;
+
+          color: $gray-500;
+        }
+        ul {
+          margin-top: 12px;
+        }
+      }
+    }
+    a {
+      border-bottom: 1px solid transparent;
+
+      color: $blue-500;
+      @include screen(xl) {
+        transition: border-color $transition-default;
+        &:hover {
+          border-color: $blue-500;
+        }
+      }
+    }
+    code {
+      padding: 2px 6px;
+
+      border-radius: $rounded-4;
+      background-color: $blue-100 !important;
+
+      transition: $transition-default;
+      @include font-xs;
+      @include screen(lg) {
+        padding: 4px 8px;
+        @include font-sm;
+      }
+      span {
+        transition: $transition-default;
+      }
+
+      body.dark & {
+        background-color: $gray-800 !important;
+      }
+    }
+    ul {
+      margin-top: 16px;
+      margin-left: 16px;
+      list-style: disc;
+      @include screen(lg) {
+        margin-top: 20px;
+      }
+      li {
+        margin-top: 8px;
+        @include font-sm;
+        @include screen(md) {
+          @include font-base;
+        }
+        &::marker {
+          color: $blue-500;
+        }
+      }
+    }
+    span {
+      color: $gray-500;
+      display: inline-block;
+
+      @include font-sm;
+    }
+    h2 {
+      margin-top: 24px;
+
+      font-weight: 600;
+      @include font-xl;
+      @include screen(lg) {
+        margin-top: 40px;
+
+        @include font-3xl;
+      }
+      &:first-child {
+        margin-top: 0;
       }
     }
   }

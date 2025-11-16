@@ -16,4 +16,18 @@
       }
     }
   }
+  h3 {
+    margin-top: 16px;
+
+    font-weight: 600;
+    @include font-xl;
+    @include screen(lg) {
+      margin-top: 24px;
+
+      @include font-2xl;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }

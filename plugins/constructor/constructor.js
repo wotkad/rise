@@ -17,7 +17,7 @@ const flags = args.slice(1);
 const [name, version] = componentArg.split("-");
 
 if (!name || !version) {
-  console.error("❌ Неверный формат. Используйте: component-v1");
+  console.error("❌ Неверный формат. Используйте версию: component-[v1|v2]");
   process.exit(0);
 }
 

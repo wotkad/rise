@@ -79,6 +79,15 @@
       background-color $transition-default;
     span {
       color: $gray-900;
+      font-weight: 500;
+      transition: color $transition-default;
+      body.dark & {
+        color: $white;
+      }
+    }
+    svg {
+      max-width: 16px;
+      color: $gray-900;
       transition: color $transition-default;
       body.dark & {
         color: $white;
@@ -103,6 +112,9 @@
         border-color: $blue-600;
       }
       span {
+        color: $white;
+      }
+      svg {
         color: $white;
       }
       @include screen(xl) {
