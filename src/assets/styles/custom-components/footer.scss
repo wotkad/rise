@@ -6,7 +6,7 @@
   width: 100%;
 
   border-top: 1px solid $gray-200;
-
+  margin-top: $spacing-24;
   transition: border-color $transition-default;
   body.dark & {
     border-color: $gray-700;

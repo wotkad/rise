@@ -167,11 +167,10 @@ body {
 }
 
 .page-wrapper {
-  padding-top: calc(var(--header-height));
-  padding-bottom: 24px;
+  padding-top: calc(var(--header-offset));
   width: 100%;
   @include screen(lg) {
-    padding-top: calc(var(--header-height));
+    padding-top: calc(var(--header-offset));
   }
 }
 
