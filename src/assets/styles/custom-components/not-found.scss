@@ -17,12 +17,12 @@
     }
   }
   h3 {
-    margin-top: 16px;
+    margin-top: $spacing-16;
 
     font-weight: 600;
     @include font-xl;
     @include screen(lg) {
-      margin-top: 24px;
+      margin-top: $spacing-24;
 
       @include font-2xl;
     }
