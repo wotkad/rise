@@ -58,11 +58,18 @@ function findComponents() {
 }
 
 function replaceImageAliases(pugFile) {
-  const componentDir = path.dirname(pugFile);
+  const componentDir = path.dirname(pugFile);               // /components/header/v1
+  const compName = path.basename(componentDir);             // v1
+  const parentName = path.basename(path.dirname(componentDir)); // header
   let content = fs.readFileSync(pugFile, "utf-8");
 
   content = content.replace(/require\(["']@images\/([^\s'")]+)["']\)/g, (_match, p1) => {
-    const localPath = path.join(componentDir, path.basename(pugFile, ".pug"), p1);
+
+    // убираем components/header/ если есть
+    p1 = p1.replace(new RegExp(`^components/${parentName}/`), "");
+
+    // путь к папке картинок: /components/header/v1/header/
+    const localPath = path.join(componentDir, parentName, p1);
 
     if (fs.existsSync(localPath)) {
       return encodeFileToBase64(localPath);
@@ -166,7 +173,6 @@ ${htmlBody}
 </body>
 </html>`;
 }
-
 (async function run() {
   const components = findComponents();
   console.log(`📦 Найдено компонентов: ${components.length}`);
@@ -190,14 +196,24 @@ ${htmlBody}
       const el = await page.$("#root");
       let box = await el.boundingBox();
 
-      const screenshotName = `${comp.compName}-${comp.version}.png`;
+      const screenshotName = `${comp.compName}-${comp.version}.webp`;
       const screenshotPath = path.join(SCREENSHOT_DIR, screenshotName);
 
       if (!box || box.height === 0 || box.width === 0) {
         console.warn(`⚠️ ${comp.name} пустой или fixed, делаем fullPage скрин`);
-        await page.screenshot({ path: screenshotPath, fullPage: true });
+        await page.screenshot({
+          path: screenshotPath,
+          fullPage: true,
+          type: "webp",
+          quality: 100,
+        });
       } else {
-        await page.screenshot({ path: screenshotPath, clip: box });
+        await page.screenshot({
+          path: screenshotPath,
+          clip: box,
+          type: "webp",
+          quality: 100,
+        });
       }
 
       await page.close();
@@ -230,15 +246,32 @@ ${htmlBody}
 <tbody>
 `;
 
-  for (const item of report) {
-    htmlReport += `
+// сортировка по алфавиту и версии
+report.sort((a, b) => {
+  const parse = (name) => {
+    const [comp, ver] = name.split("-v");
+    return { comp, version: Number(ver) };
+  };
+
+  const A = parse(a.name);
+  const B = parse(b.name);
+
+  if (A.comp < B.comp) return -1;
+  if (A.comp > B.comp) return 1;
+
+  return A.version - B.version;
+});
+
+// генерация HTML
+for (const item of report) {
+  htmlReport += `
 <tr class="border-b hover:bg-gray-50">
 <td class="px-4 py-2 font-semibold min-w-64">${item.name}</td>
 <td class="px-4 py-2 text-center">
   <img src="screenshots/${item.screenshot}" class="border rounded shadow object-contain w-full h-full">
 </td>
 </tr>`;
-  }
+}
 
   htmlReport += `
 </tbody></table>
@@ -246,5 +279,5 @@ ${htmlBody}
 </html>`;
 
   fs.writeFileSync(path.join(REPORT_DIR, "report.html"), htmlReport);
-  console.log(`✅ Готово: ${REPORT_DIR}/report.html`);
+  console.log(`✅ Готово: отчёт о компонентах доступен в (/reports/constructor)`);
 })();

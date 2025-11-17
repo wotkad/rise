@@ -189,7 +189,7 @@ async function run() {
 
   const htmlPath = path.join(REPORT_DIR, 'report.html');
   fs.writeFileSync(htmlPath, generateHtmlReport(reportData));
-  console.log(`✅ Отчёт о контенте сохранён в /reports/content`);
+  console.log(`✅ Отчёт о контенте сохранён в (/reports/content)`);
 }
 
 run();
