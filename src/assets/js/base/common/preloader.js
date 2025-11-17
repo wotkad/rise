@@ -12,6 +12,14 @@ function renderPage() {
   });
 }
 
-$(window).on("load", () => {
-  renderPage();
-});
+// Надёжный способ вызвать после полной загрузки окна
+function onWindowLoad(callback) {
+  if (document.readyState === "complete") {
+    // Если страница уже загружена
+    callback();
+  } else {
+    $(window).on("load", callback);
+  }
+}
+
+onWindowLoad(renderPage);

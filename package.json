@@ -37,7 +37,7 @@
     "production:service-worker": "node ./plugins/production/service-worker",
     "production:markdown": "yarn --silent rimraf ./src/views/pages/blog/ && node ./plugins/production/markdown.mjs",
     "dev": "yarn --silent development",
-    "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/optimization/images.js\" \"node ./plugins/constructor/preview.js\"",
+    "development": "NODE_NO_WARNINGS=1 concurrently --raw \"yarn --silent development:sequence\" \"node ./plugins/optimization/images.js\"",
     "development:sequence": "yarn --silent reports:content && yarn --silent production:markdown && webpack serve --env mode=development --config ./webpack.config --progress",
     "prettify:scss": "yarn --silent prettier --write --log-level silent './src/assets/styles/**/*.scss' && yarn --silent prettify:scss-files && yarn --silent prettify:stylelint",
     "prettify:pug": "yarn --silent prettify:pug-files && yarn --silent prettier --write --log-level silent './src/views/**/*.pug' && yarn --silent prettify:pug-files && yarn --silent prettify:pug-mixins && yarn --silent prettify:js-defaults",

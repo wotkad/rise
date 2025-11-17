@@ -154,6 +154,7 @@ createComponent();
 function createComponent() {
   let hasCommonJs = false;
 
+  // создаём папки для стилей, шаблонов и изображений
   for (const key of ["styles", "views", "images"]) {
     const dir = targetDirs[key];
     const parent = path.dirname(dir);
@@ -161,6 +162,7 @@ function createComponent() {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   }
 
+  // копируем общий JS компонента
   if (fs.existsSync(commonJsSource)) {
     if (!fs.existsSync(targetDirs.commonJs)) {
       fs.mkdirSync(targetDirs.commonJs, { recursive: true });
@@ -176,6 +178,7 @@ function createComponent() {
 
   const files = fs.readdirSync(sourceDir);
 
+  // копируем scss и pug/html файлы, остальные — изображения
   for (const file of files) {
     const ext = path.extname(file).toLowerCase();
     const srcFile = path.join(sourceDir, file);
@@ -184,32 +187,15 @@ function createComponent() {
 
     if (ext === ".scss" || ext === ".sass") {
       fs.copyFileSync(srcFile, path.join(targetDirs.styles, `${name}${ext}`));
-    }
-
-    else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
+    } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
       fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
     }
-
   }
 
-  const imagesDir = path.join(sourceDir, "images");
-  if (fs.existsSync(imagesDir)) {
-    for (const img of fs.readdirSync(imagesDir)) {
-      fs.copyFileSync(
-        path.join(imagesDir, img),
-        path.join(targetDirs.images, img)
-      );
-    }
-  }
+  // рекурсивно копируем все изображения из компонента
+  copyImagesRecursively(sourceDir, targetDirs.images);
 
-  if (fs.existsSync(commonJsSource)) {
-    fs.copyFileSync(
-      commonJsSource,
-      path.join(targetDirs.commonJs, `${name}.js`)
-    );
-    hasCommonJs = true;
-  }
-
+  // удаляем старые импорт строки и добавляем новые
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 
@@ -217,7 +203,32 @@ function createComponent() {
   if (hasCommonJs) {
     appendImportLine(appJsPath, importCommonJsLine);
   }
+
   if (!alreadyExists) {
     console.log(`✅ Компонент ${name}-${version} успешно создан и подключён!`);
+  }
+}
+
+// функция для рекурсивного копирования изображений
+function copyImagesRecursively(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return;
+
+  const entries = fs.readdirSync(srcDir);
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry);
+    const stat = fs.statSync(srcPath);
+
+    if (stat.isDirectory()) {
+      copyImagesRecursively(srcPath, destDir);
+    } else {
+      const ext = path.extname(entry).toLowerCase();
+      // игнорируем исходники компонента
+      if ([".js", ".scss", ".sass", ".pug", ".jade", ".html"].includes(ext)) continue;
+
+      if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+
+      fs.copyFileSync(srcPath, path.join(destDir, entry));
+    }
   }
 }
