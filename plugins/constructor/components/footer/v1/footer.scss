@@ -7,9 +7,6 @@
   @include screen(md) {
     padding: $spacing-32 0;
   }
-  @include screen(xl) {
-    padding: $spacing-48 0;
-  }
   &__wrapper {
     display: flex;
     align-items: flex-start;
