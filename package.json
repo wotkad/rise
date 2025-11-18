@@ -54,7 +54,9 @@
     "reports:lighthouse": "node ./plugins/reports/lighthouse",
     "reports:a11y": "node ./plugins/reports/a11y",
     "reports:content": "node ./plugins/reports/content",
-    "constructor": "node ./plugins/constructor/constructor"
+    "constructor": "node ./plugins/constructor/constructor",
+    "constructor:preview": "yarn --silent preview",
+    "preview": "node ./plugins/constructor/preview"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
