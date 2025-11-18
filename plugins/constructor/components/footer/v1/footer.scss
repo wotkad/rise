@@ -1,0 +1,44 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.footer-v1 {
+  width: 100%;
+  padding: $spacing-16 0;
+  @include screen(md) {
+    padding: $spacing-32 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-48 0;
+  }
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacing-20;
+    flex-direction: column;
+    @include screen(md) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  &__copyright {
+    color: $gray-500;
+    @include font-base;
+  }
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: $spacing-16;
+  }
+  &__icon {
+    svg {
+      color: $gray-500;
+      transition: color $transition-default;
+    }
+    &:hover {
+      svg {
+        color: $blue-500;
+      }
+    }
+  }
+}

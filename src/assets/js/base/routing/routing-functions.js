@@ -6,6 +6,7 @@ import setSvgSize from "@common/set-svg-size";
 import loadImages from "@common/load-images";
 import { setTheme, initTheme } from "@common/set-theme";
 import textareaAutoheight from "@common/textarea-autoheight";
+import formAutosave from "../common/form-autosave";
 
 export default function routingFunctions() {
   setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -17,4 +18,5 @@ export default function routingFunctions() {
   scrollReveal();
   loadImages();
   textareaAutoheight();
+  formAutosave();
 }
