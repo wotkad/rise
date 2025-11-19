@@ -142,10 +142,26 @@ function removeTargetDirs() {
     removeEmptyParent(targetDirs.commonJs);
   }
 
+  function removeIfDirEmpty(dir) {
+    if (!fs.existsSync(dir)) return;
+
+    const items = fs.readdirSync(dir).filter(i => i !== "." && i !== "..");
+    if (items.length === 0) {
+      try {
+        fs.rmdirSync(dir);
+      } catch (_) {}
+    }
+  }
+
   // убираем строчки импорта (удаляем и старые и новые шаблоны)
   removeImportLines(appScssPath, componentFileName);
   removeImportLines(appScssPath, name); // на всякий случай — старый формат
   removeImportLines(appJsPath, name);
+
+  // удаление пустых директорий /components
+  removeIfDirEmpty(basePaths.styles);
+  removeIfDirEmpty(basePaths.views);
+  removeIfDirEmpty(basePaths.js);
 }
 
 // ---------- переписывание (удаление старой версии + создание новой) ----------
