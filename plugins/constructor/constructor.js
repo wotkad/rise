@@ -10,20 +10,24 @@ if (args.length < 1) {
   process.exit(0);
 }
 
-const componentArg = args[0];
+const componentArg = args[0]; // например header-v1
 const flags = args.slice(1);
 
-const [name, version] = componentArg.split("-");
-
-if (!name || !version) {
-  console.error("❌ Неверный формат. Используйте возможные версии: component-[v1|v2]");
+const componentParts = componentArg.split("-");
+if (componentParts.length < 2) {
+  console.error("❌ Неверный формат. Используйте возможные версии: component-v1 (например header-v1)");
   process.exit(0);
 }
 
+const name = componentParts.slice(0, -1).join("-"); // header (поддерживает имена с дефисами)
+const version = componentParts[componentParts.length - 1]; // v1
+const componentFileName = `${name}-${version}`; // header-v1
+
 const rootDir = path.resolve(__dirname, "../..");
-const sourceDir = path.join(__dirname, "components", name, version);
+const sourceDir = path.join(__dirname, "components", name, version); // исходник остаётся components/<name>/<version>
 const commonJsSource = path.join(__dirname, "js", `${name}.js`);
 
+// целевые базовые папки
 const basePaths = {
   js: path.join(rootDir, "src/assets/js/components"),
   styles: path.join(rootDir, "src/assets/styles/components"),
@@ -31,42 +35,44 @@ const basePaths = {
   images: path.join(rootDir, "src/assets/images/components"),
 };
 
-if (!fs.existsSync(sourceDir)) {
-  console.error(`❌ Компонент ${name}-${version} не найден в ${sourceDir}`);
-  process.exit(0);
-}
-
 const targetDirs = {
-  styles: path.join(basePaths.styles, name),
-  views: path.join(basePaths.views, name),
-  images: path.join(basePaths.images, name),
-  commonJs: path.join(basePaths.js, name),
+  styles: basePaths.styles, // файлы будут как styles/components/<componentFileName>.scss
+  views: basePaths.views,   // views/components/<componentFileName>.pug
+  images: path.join(basePaths.images, componentFileName), // images/components/<componentFileName>/*
+  commonJs: path.join(basePaths.js, name), // js по-прежнему в components/<name>/<name>.js
 };
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
 const appJsPath = path.join(rootDir, "src/assets/js/app.js");
-const importScssLine = `@use "@s-components/${name}/${name}" as *;`;
+
+// строки импорта — SCSS теперь с версией в имени, JS остаётся по имени компонента (без версии)
+const importScssLine = `@use "@s-components/${componentFileName}" as *;`;
 const importCommonJsLine = `import "@components/${name}/${name}";`;
 
-function removeImportLines(filePath, name) {
+// ---------- вспомогательные функции ----------
+function removeImportLines(filePath, nameOrComponentFileName) {
   if (!fs.existsSync(filePath)) return;
 
   let content = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
 
-  const scssRegex = new RegExp(
-    `^\\s*@use\\s+["']@s-components\\/${name}\\/${name}["']\\s+as\\s+\\*;?\\s*\\n?`,
-    "gm"
-  );
+  // удаляем как старый формат с папкой (например @s-components/header/header), так и новый формат с версией (@s-components/header-v1)
+  const patterns = [
+    // старый SCSS: @use "@s-components/header/header" as *;
+    new RegExp(`^\\s*@use\\s+["']@s-components\\/${escapeRegExp(nameOrComponentFileName)}\\/${escapeRegExp(nameOrComponentFileName)}["']\\s+as\\s+\\*;?\\s*\\n?`, "gm"),
+    // новый SCSS: @use "@s-components/header-v1" as *;
+    new RegExp(`^\\s*@use\\s+["']@s-components\\/${escapeRegExp(nameOrComponentFileName)}["']\\s+as\\s+\\*;?\\s*\\n?`, "gm"),
+    // старый JS: import "@components/header/header";
+    new RegExp(`^\\s*import\\s+["']@components\\/${escapeRegExp(nameOrComponentFileName)}\\/${escapeRegExp(nameOrComponentFileName)}["'];?\\s*\\n?`, "gm"),
+    // старый JS variant (if someone used import "@components/header"; ) - be conservative
+    new RegExp(`^\\s*import\\s+["']@components\\/${escapeRegExp(nameOrComponentFileName)}["'];?\\s*\\n?`, "gm"),
+  ];
 
-  const commonJsRegex = new RegExp(
-    `^\\s*import\\s+["']@components\\/${name}\\/${name}["'];?\\s*\\n?`,
-    "gm"
-  );
+  for (const regex of patterns) {
+    content = content.replace(regex, "");
+  }
 
-  content = content
-    .replace(scssRegex, "")
-    .replace(commonJsRegex, "")
-    .replace(/\s+$/, "");
+  // очистка хвостовых пробельных строк
+  content = content.replace(/\s+$/g, "");
 
   fs.writeFileSync(filePath, content, "utf8");
 }
@@ -76,59 +82,98 @@ function appendImportLine(filePath, line) {
   let content = fs.readFileSync(filePath, "utf8");
   if (!content.includes(line)) {
     if (!content.endsWith("\n")) content += "\n";
-    content += line;
+    content += line + "\n";
     fs.writeFileSync(filePath, content, "utf8");
   }
 }
 
 function removeEmptyParent(dir) {
   if (!fs.existsSync(dir)) return;
-  const files = fs.readdirSync(dir);
-  if (files.length === 0) {
-    try {
+  try {
+    const files = fs.readdirSync(dir);
+    if (files.length === 0) {
       fs.rmdirSync(dir);
-    } catch (_) {}
+    }
+  } catch (e) {
+    // молча
   }
 }
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// ---------- удаление целевых директорий/файлов для конкретного componentFileName ----------
 function removeTargetDirs() {
-  const folders = [targetDirs.styles, targetDirs.views, targetDirs.images];
-  for (const dir of folders) {
-    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
-    removeEmptyParent(path.dirname(dir));
+  // стили и views — файлы с точным именем
+  const styleFiles = [
+    `${componentFileName}.scss`,
+    `${componentFileName}.sass`,
+  ];
+  for (const sf of styleFiles) {
+    const fp = path.join(targetDirs.styles, sf);
+    if (fs.existsSync(fp)) {
+      fs.rmSync(fp, { force: true });
+    }
   }
 
+  const viewFiles = [
+    `${componentFileName}.pug`,
+    `${componentFileName}.jade`,
+    `${componentFileName}.html`,
+  ];
+  for (const vf of viewFiles) {
+    const fp = path.join(targetDirs.views, vf);
+    if (fs.existsSync(fp)) {
+      fs.rmSync(fp, { force: true });
+    }
+  }
+
+  // изображения — удаляем папку images/components/<componentFileName>
+  if (fs.existsSync(targetDirs.images)) {
+    fs.rmSync(targetDirs.images, { recursive: true, force: true });
+    removeEmptyParent(path.dirname(targetDirs.images)); // пробуем удалить parent если пуст
+  }
+
+  // общий JS — path: src/assets/js/components/<name>/<name>.js
   const commonJsFile = path.join(targetDirs.commonJs, `${name}.js`);
   if (fs.existsSync(commonJsFile)) {
-    fs.rmSync(commonJsFile);
+    fs.rmSync(commonJsFile, { force: true });
     removeEmptyParent(targetDirs.commonJs);
   }
 
-  removeImportLines(appScssPath, name);
+  // убираем строчки импорта (удаляем и старые и новые шаблоны)
+  removeImportLines(appScssPath, componentFileName);
+  removeImportLines(appScssPath, name); // на всякий случай — старый формат
   removeImportLines(appJsPath, name);
 }
 
+// ---------- переписывание (удаление старой версии + создание новой) ----------
 function rewriteTargetDirs() {
   removeTargetDirs();
 }
 
+// ---------- проверяем наличие точных целевых файлов/папок (чтобы понять alreadyExists) ----------
 let alreadyExists = false;
+// стиль
+const styleExists = ["scss", "sass"].some(ext => fs.existsSync(path.join(targetDirs.styles, `${componentFileName}.${ext}`)));
+// view
+const viewExists = ["pug", "jade", "html"].some(ext => fs.existsSync(path.join(targetDirs.views, `${componentFileName}.${ext}`)));
+// images directory
+const imagesExists = fs.existsSync(targetDirs.images) && fs.statSync(targetDirs.images).isDirectory();
+// common js file (по имени компонента без версии)
+const commonJsExists = fs.existsSync(path.join(targetDirs.commonJs, `${name}.js`));
 
-if (
-  (fs.existsSync(targetDirs.styles) && fs.readdirSync(targetDirs.styles).length > 0) ||
-  (fs.existsSync(targetDirs.views) && fs.readdirSync(targetDirs.views).length > 0) ||
-  (fs.existsSync(targetDirs.images) && fs.readdirSync(targetDirs.images).length > 0) ||
-  (fs.existsSync(path.join(targetDirs.commonJs, `${name}.js`)))
-) {
+if (styleExists || viewExists || imagesExists || commonJsExists) {
   alreadyExists = true;
 }
 
 if (flags.includes("--rewrite")) {
   if (!alreadyExists) {
-    console.log(`🚫 Компонент ${name} не существует.`);
+    console.log(`🚫 Компонент ${componentFileName} не существует.`);
     process.exit(0);
   }
-  console.log(`♻️ Компонент ${name} перезаписан.`);
+  console.log(`♻️ Компонент ${componentFileName} перезаписан.`);
   rewriteTargetDirs();
   createComponent();
   process.exit(0);
@@ -136,80 +181,85 @@ if (flags.includes("--rewrite")) {
 
 if (flags.includes("--remove")) {
   if (!alreadyExists) {
-    console.log(`🚫 Компонент ${name} не существует.`);
+    console.log(`🚫 Компонент ${componentFileName} не существует.`);
     process.exit(0);
   }
   removeTargetDirs();
-  console.log(`🗑️ Компонент ${name} удалён.`);
+  console.log(`🗑️ Компонент ${componentFileName} удалён.`);
   process.exit(0);
 }
 
 if (alreadyExists) {
-  console.log(`🚫 Компонент ${name} уже создан — используйте флаг --rewrite`);
+  console.log(`🚫 Компонент ${componentFileName} уже создан — используйте флаг --rewrite`);
   process.exit(0);
 }
 
+// ---------- создание компонента ----------
 createComponent();
 
 function createComponent() {
   let hasCommonJs = false;
 
-  // создаём папки для стилей, шаблонов и изображений
-  for (const key of ["styles", "views", "images"]) {
-    const dir = targetDirs[key];
-    const parent = path.dirname(dir);
-    if (!fs.existsSync(parent)) fs.mkdirSync(parent, { recursive: true });
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-  }
+  // создаём директории, если их нет (styles и views принимают файлы напрямую)
+  if (!fs.existsSync(targetDirs.styles)) fs.mkdirSync(targetDirs.styles, { recursive: true });
+  if (!fs.existsSync(targetDirs.views)) fs.mkdirSync(targetDirs.views, { recursive: true });
+  if (!fs.existsSync(path.dirname(targetDirs.images))) fs.mkdirSync(path.dirname(targetDirs.images), { recursive: true });
 
-  // копируем общий JS компонента
+  // копируем общий JS компонента (в папку components/<name>/<name>.js)
   if (fs.existsSync(commonJsSource)) {
     if (!fs.existsSync(targetDirs.commonJs)) {
       fs.mkdirSync(targetDirs.commonJs, { recursive: true });
     }
 
-    fs.copyFileSync(
-      commonJsSource,
-      path.join(targetDirs.commonJs, `${name}.js`)
-    );
-
+    fs.copyFileSync(commonJsSource, path.join(targetDirs.commonJs, `${name}.js`));
     hasCommonJs = true;
+  }
+
+  if (!fs.existsSync(sourceDir)) {
+    console.error(`❌ Исходник компонента ${name}-${version} не найден в ${sourceDir}`);
+    process.exit(0);
   }
 
   const files = fs.readdirSync(sourceDir);
 
-  // копируем scss и pug/html файлы, остальные — изображения
+  // копируем scss/sass -> styles/components/<componentFileName>.scss
   for (const file of files) {
     const ext = path.extname(file).toLowerCase();
     const srcFile = path.join(sourceDir, file);
 
-    if (ext === ".js") continue;
+    if (ext === ".js") continue; // исходный js игнорируем (мы копируем общий js отдельно)
 
     if (ext === ".scss" || ext === ".sass") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.styles, `${name}${ext}`));
+      const destName = `${componentFileName}${ext}`;
+      fs.copyFileSync(srcFile, path.join(targetDirs.styles, destName));
     } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-      fs.copyFileSync(srcFile, path.join(targetDirs.views, file));
+      const destName = `${componentFileName}${ext}`;
+      fs.copyFileSync(srcFile, path.join(targetDirs.views, destName));
     }
+    // остальные файлы (картинки и т.п.) обработаем рекурсивно
   }
 
-  // рекурсивно копируем все изображения из компонента
+  // рекурсивно копируем все изображения/ресурсы, игнорируя исходники кода
   copyImagesRecursively(sourceDir, targetDirs.images);
 
-  // удаляем старые импорт строки и добавляем новые
+  // удаляем старые строки импорта и добавляем новые
+  // удаляем возможные старые строки (и со старым форматом и с новым)
+  removeImportLines(appScssPath, componentFileName);
   removeImportLines(appScssPath, name);
   removeImportLines(appJsPath, name);
 
+  // добавляем новую строку импорта для scss (с версией в имени)
   appendImportLine(appScssPath, importScssLine);
+
+  // добавляем импорт общего js (если есть)
   if (hasCommonJs) {
     appendImportLine(appJsPath, importCommonJsLine);
   }
 
-  if (!alreadyExists) {
-    console.log(`✅ Компонент ${name}-${version} успешно создан и подключён!`);
-  }
+  console.log(`✅ Компонент ${componentFileName} успешно создан и подключён!`);
 }
 
-// функция для рекурсивного копирования изображений
+// функция для рекурсивного копирования изображений/ресурсов
 function copyImagesRecursively(srcDir, destDir) {
   if (!fs.existsSync(srcDir)) return;
 
@@ -220,6 +270,7 @@ function copyImagesRecursively(srcDir, destDir) {
     const stat = fs.statSync(srcPath);
 
     if (stat.isDirectory()) {
+      // рекурсивно копируем папки (сохраняя структуру внутри destDir/<subdirs> )
       copyImagesRecursively(srcPath, destDir);
     } else {
       const ext = path.extname(entry).toLowerCase();
@@ -228,7 +279,9 @@ function copyImagesRecursively(srcDir, destDir) {
 
       if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
 
-      fs.copyFileSync(srcPath, path.join(destDir, entry));
+      // имя файла оставляем как в исходнике (внутри images/components/<componentFileName>/)
+      const destPath = path.join(destDir, entry);
+      fs.copyFileSync(srcPath, destPath);
     }
   }
 }
