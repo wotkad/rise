@@ -8,61 +8,35 @@
     align-items: center;
     gap: $spacing-8;
     padding: $spacing-8 $spacing-12;
-    border: 1px solid $gray-200;
-    background-color: $gray-050;
-    border-radius: $rounded-8;
-    transition: background-color $transition-default, border-color $transition-default;
-    max-width: max-content;
     width: 100%;
+    max-width: max-content;
     overflow-x: auto;
+
+    border: 1px solid $gray-200;
+    border-radius: $rounded-8;
+    background-color: $gray-050;
+
+    transition:
+      background-color $transition-default,
+      border-color $transition-default;
     @include screen(md) {
-      padding: $spacing-12 $spacing-20;
       gap: $spacing-10;
+      padding: $spacing-12 $spacing-20;
     }
     body.dark & {
-      background-color: $gray-800;
       border-color: $gray-700;
+      background-color: $gray-800;
     }
     li {
       display: flex;
+
       white-space: nowrap;
     }
     svg {
       width: 12px;
       height: 12px;
+
       color: $gray-400;
-    }
-    a, span {
-      display: flex;
-      align-items: center;
-
-      font-weight: 500;
-      color: $gray-700;
-
-      transition: color $transition-default;
-
-      svg {
-        margin-right: $spacing-10;
-        color: $gray-700;
-        width: 12px;
-        height: 12px;
-
-        transition: color $transition-default;
-        body.dark & {
-          color: $gray-400;
-        }
-        @include screen(md) {
-          width: 14px;
-          height: 14px;
-        }
-      }
-      @include font-xs;
-      @include screen(md) {
-        @include font-sm;
-      }
-      body.dark & {
-        color: $gray-400;
-      }
     }
     a {
       @include screen(xl) {
@@ -78,6 +52,40 @@
             }
           }
         }
+      }
+    }
+    a,
+    span {
+      display: flex;
+      align-items: center;
+
+      font-weight: 500;
+      color: $gray-700;
+
+      transition: color $transition-default;
+      @include font-12;
+      @include screen(md) {
+        @include font-14;
+      }
+
+      svg {
+        margin-right: $spacing-10;
+        width: 12px;
+        height: 12px;
+
+        color: $gray-700;
+
+        transition: color $transition-default;
+        @include screen(md) {
+          width: 14px;
+          height: 14px;
+        }
+        body.dark & {
+          color: $gray-400;
+        }
+      }
+      body.dark & {
+        color: $gray-400;
       }
     }
   }

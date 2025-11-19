@@ -20,11 +20,11 @@
     margin-top: $spacing-16;
 
     font-weight: 600;
-    @include font-xl;
+    @include font-20;
     @include screen(lg) {
       margin-top: $spacing-24;
 
-      @include font-2xl;
+      @include font-24;
     }
     &:first-child {
       margin-top: 0;

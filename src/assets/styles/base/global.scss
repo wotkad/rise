@@ -62,7 +62,7 @@ body {
     background-color $transition-default,
     color $transition-default;
 
-  @include font-base;
+  @include font-16;
 
   &.dark {
     background-color: $gray-900;

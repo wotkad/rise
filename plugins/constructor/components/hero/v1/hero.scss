@@ -35,12 +35,12 @@
     text-align: center;
 
     transition: color $transition-default;
-    @include font-4xl;
+    @include font-36;
     @include screen(md) {
-      @include font-5xl;
+      @include font-48;
     }
     @include screen(xl) {
-      @include font-6xl;
+      @include font-60;
     }
     body.dark & {
       color: $white;
@@ -53,10 +53,13 @@
 
     text-align: center;
     color: $gray-500;
-
-    @include font-base;
+    @include font-16;
     @include screen(md) {
-      @include font-lg;
+      @include font-18;
+    }
+
+    body.dark & {
+      color: $gray-400;
     }
   }
 
@@ -67,35 +70,18 @@
     gap: $spacing-16;
   }
   &__button {
-    padding: $spacing-14 $spacing-24;
-    border-radius: $rounded-8;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: $spacing-8;
+    padding: $spacing-14 $spacing-24;
+
     border: 1px solid $gray-200;
+    border-radius: $rounded-8;
+
     transition:
       border-color $transition-default,
       background-color $transition-default;
-    span {
-      color: $gray-900;
-      font-weight: 500;
-      transition: color $transition-default;
-      body.dark & {
-        color: $white;
-      }
-    }
-    svg {
-      max-width: 16px;
-      color: $gray-900;
-      transition: color $transition-default;
-      body.dark & {
-        color: $white;
-      }
-    }
-    body.dark & {
-      border-color: $gray-600;
-    }
     @include screen(xl) {
       &:hover {
         background-color: $gray-100;
@@ -104,10 +90,43 @@
         }
       }
     }
+    body.dark & {
+      border-color: $gray-600;
+    }
+    span {
+      font-weight: 500;
+      color: $gray-900;
+
+      transition: color $transition-default;
+      body.dark & {
+        color: $white;
+      }
+    }
+    svg {
+      max-width: 16px;
+
+      color: $gray-900;
+
+      transition: color $transition-default;
+      body.dark & {
+        color: $white;
+      }
+    }
     &-blue {
-      background-color: $blue-600;
-      color: $white;
       border-color: $blue-600;
+      background-color: $blue-600;
+
+      color: $white;
+      @include screen(xl) {
+        &:hover {
+          border-color: $blue-700;
+          background-color: $blue-700;
+          body.dark & {
+            border-color: $blue-700;
+            background-color: $blue-700;
+          }
+        }
+      }
       body.dark & {
         border-color: $blue-600;
       }
@@ -116,16 +135,6 @@
       }
       svg {
         color: $white;
-      }
-      @include screen(xl) {
-        &:hover {
-          background-color: $blue-700;
-          border-color: $blue-700;
-          body.dark & {
-            background-color: $blue-700;
-            border-color: $blue-700;
-          }
-        }
       }
     }
   }

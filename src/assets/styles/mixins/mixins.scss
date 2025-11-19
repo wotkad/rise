@@ -32,67 +32,67 @@
   }
 }
 
-@mixin font-xs {
+@mixin font-12 {
   font-size: 12px;
   line-height: 16px;
 }
 
-@mixin font-sm {
+@mixin font-14 {
   font-size: 14px;
   line-height: 20px;
 }
 
-@mixin font-base {
+@mixin font-16 {
   font-size: 16px;
   line-height: 24px;
 }
 
-@mixin font-lg {
+@mixin font-18 {
   font-size: 18px;
   line-height: 28px;
 }
 
-@mixin font-xl {
+@mixin font-20 {
   font-size: 20px;
   line-height: 28px;
 }
 
-@mixin font-2xl {
+@mixin font-24 {
   font-size: 24px;
   line-height: 32px;
 }
 
-@mixin font-3xl {
+@mixin font-30 {
   font-size: 30px;
   line-height: 36px;
 }
 
-@mixin font-4xl {
+@mixin font-36 {
   font-size: 36px;
   line-height: 40px;
 }
 
-@mixin font-5xl {
+@mixin font-48 {
   font-size: 48px;
   line-height: 1;
 }
 
-@mixin font-6xl {
+@mixin font-60 {
   font-size: 60px;
   line-height: 1;
 }
 
-@mixin font-7xl {
+@mixin font-72 {
   font-size: 72px;
   line-height: 1;
 }
 
-@mixin font-8xl {
+@mixin font-96 {
   font-size: 96px;
   line-height: 1;
 }
 
-@mixin font-9xl {
+@mixin font-128 {
   font-size: 128px;
   line-height: 1;
 }

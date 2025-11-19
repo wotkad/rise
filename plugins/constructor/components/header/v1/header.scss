@@ -8,12 +8,14 @@
   z-index: 50;
 
   width: 100%;
+
   border-bottom: 1px solid $gray-200;
+
+  background-color: $white;
+
   transition:
     background-color $transition-default,
     border-color $transition-default;
-
-  background-color: $white;
   body.dark & {
     border-color: $gray-700;
     background-color: $gray-900;
@@ -40,8 +42,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 61px;
     gap: $spacing-32;
+    height: 61px;
     @include screen(xl) {
       height: 80px;
     }
@@ -49,21 +51,18 @@
       position: fixed;
       bottom: 0;
       left: 0;
-      opacity: 0;
 
       z-index: -1;
-      visibility: hidden;
 
       width: 100%;
       height: calc(100% - 62px);
 
-      transition: background-color $transition-default;
       background-color: $white;
+
+      transition: background-color $transition-default;
+      opacity: 0;
+      visibility: hidden;
       @include screen(xl) {
-        transition:
-          opacity 0,
-          visibility 0,
-          z-index 0;
         position: static;
         z-index: 1;
 
@@ -71,6 +70,11 @@
         height: calc(100% - 80px);
 
         background-color: transparent;
+
+        transition:
+          opacity 0,
+          visibility 0,
+          z-index 0;
         opacity: 1;
         visibility: visible;
       }
@@ -98,29 +102,34 @@
           }
         }
         .header-v1__controls {
-          width: 100%;
           display: flex;
+          align-items: flex-start;
           gap: $spacing-8;
           padding-top: $spacing-24;
-          align-items: flex-start;
+          width: 100%;
           &:before {
             content: "";
+
             position: absolute;
             top: 0;
             left: 0;
+
             width: 100%;
             height: 1px;
+
             background-color: $gray-200;
+
             transition: background-color $transition-default;
-            body.dark & {
-              background-color: $gray-700;
-            }
             @include screen(xl) {
               display: none;
+            }
+            body.dark & {
+              background-color: $gray-700;
             }
           }
           @include screen(xl) {
             padding-top: 0;
+
             border-top: 0;
           }
         }
@@ -148,8 +157,8 @@
   }
   &__right {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     @include screen(xl) {
       flex: 1;
       gap: $spacing-32;
@@ -164,9 +173,9 @@
     color: $gray-900;
 
     transition: color $transition-default;
-    @include font-xl;
+    @include font-20;
     @include screen(xl) {
-      @include font-base;
+      @include font-16;
     }
     @include screen(xl) {
       &:hover {
@@ -190,20 +199,20 @@
     }
   }
   &__button {
-    padding: $spacing-10 $spacing-20;
-    border-radius: $rounded-8;
     display: none;
-    text-align: center;
-    font-weight: 500;
+    padding: $spacing-10 $spacing-20;
+
     border: 1px solid $gray-200;
+    border-radius: $rounded-8;
+
+    font-weight: 500;
+    text-align: center;
+
     transition:
       border-color $transition-default,
       background-color $transition-default;
     @include screen(xl) {
       display: block;
-    }
-    body.dark & {
-      border-color: $gray-600;
     }
     @include screen(xl) {
       &:hover {
@@ -213,6 +222,9 @@
         }
       }
     }
+    body.dark & {
+      border-color: $gray-600;
+    }
     &-mob {
       @include screen(xl) {
         display: none;
@@ -220,21 +232,23 @@
     }
     &-blue {
       padding: $spacing-10 $spacing-20;
-      background-color: $blue-600;
-      color: $white;
+
       border: 1px solid $blue-600;
-      body.dark & {
-        border-color: $blue-600;
-      }
+      background-color: $blue-600;
+
+      color: $white;
       @include screen(xl) {
         &:hover {
-          background-color: $blue-700;
           border-color: $blue-700;
+          background-color: $blue-700;
           body.dark & {
-            background-color: $blue-700;
             border-color: $blue-700;
+            background-color: $blue-700;
           }
         }
+      }
+      body.dark & {
+        border-color: $blue-600;
       }
     }
   }
@@ -250,14 +264,15 @@
     justify-content: center;
     align-items: center;
     width: 20px;
-    height: 20px;
     min-width: 20px;
+    height: 20px;
     &-light,
     &-dark {
       position: absolute;
+
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       width: 20px;
       height: 20px;
