@@ -90,13 +90,11 @@ function appendImportLine(filePath, line) {
 function removeEmptyParent(dir) {
   if (!fs.existsSync(dir)) return;
   try {
-    const files = fs.readdirSync(dir);
-    if (files.length === 0) {
+    const items = fs.readdirSync(dir).filter(i => i !== "." && i !== "..");
+    if (items.length === 0) {
       fs.rmdirSync(dir);
     }
-  } catch (e) {
-    // молча
-  }
+  } catch (_) {}
 }
 
 function escapeRegExp(string) {
@@ -132,8 +130,10 @@ function removeTargetDirs() {
   // изображения — удаляем папку images/components/<componentFileName>
   if (fs.existsSync(targetDirs.images)) {
     fs.rmSync(targetDirs.images, { recursive: true, force: true });
-    removeEmptyParent(path.dirname(targetDirs.images)); // пробуем удалить parent если пуст
   }
+
+  // после удаления папки компонента, удаляем /src/assets/images/components если она пуста
+  removeIfDirEmpty(basePaths.images);
 
   // общий JS — path: src/assets/js/components/<name>/<name>.js
   const commonJsFile = path.join(targetDirs.commonJs, `${name}.js`);
