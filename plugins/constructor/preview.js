@@ -59,30 +59,29 @@ function findComponents() {
 
 function replaceImageAliases(pugFile) {
   const componentDir = path.dirname(pugFile);               // /components/header/v1
-  const compName = path.basename(componentDir);             // v1
   const parentName = path.basename(path.dirname(componentDir)); // header
   let content = fs.readFileSync(pugFile, "utf-8");
 
-  content = content.replace(/require\(["']@images\/([^\s'")]+)["']\)/g, (_match, p1) => {
+  content = content.replace(
+    /require\(["']@images\/components\/([a-z0-9-]+)-v\d+\/([^\s'")]+)["']\)/gi,
+    (_match, compName, fileName) => {
+      // правильный путь к локальному файлу на диске: /components/header/v1/header/google.svg
+      const localPath = path.join(componentDir, parentName, fileName);
 
-    // убираем components/header/ если есть
-    p1 = p1.replace(new RegExp(`^components/${parentName}/`), "");
+      if (fs.existsSync(localPath)) {
+        return encodeFileToBase64(localPath);
+      }
 
-    // путь к папке картинок: /components/header/v1/header/
-    const localPath = path.join(componentDir, parentName, p1);
+      // fallback: глобальная папка images
+      const globalPath = path.join(IMAGES_PATH, fileName);
+      if (fs.existsSync(globalPath)) {
+        return encodeFileToBase64(globalPath);
+      }
 
-    if (fs.existsSync(localPath)) {
-      return encodeFileToBase64(localPath);
+      console.warn(`⚠️ Картинка не найдена: ${fileName}`);
+      return '""';
     }
-
-    const globalPath = path.join(IMAGES_PATH, p1);
-    if (fs.existsSync(globalPath)) {
-      return encodeFileToBase64(globalPath);
-    }
-
-    console.warn(`⚠️ Картинка не найдена: ${p1}`);
-    return '""';
-  });
+  );
 
   return content;
 }
