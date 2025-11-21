@@ -33,6 +33,8 @@ const markdown = MarkdownIt({
         .join('\n')
         .trimEnd();
       let renderedFile = `extends @p-layouts/master.pug
+include @p-mixins/title
+
 block title
   title ${markdown.meta.title ? markdown.meta.title : "Страница без названия"}
 
