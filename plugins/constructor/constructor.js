@@ -33,13 +33,19 @@ const basePaths = {
   styles: path.join(rootDir, "src/assets/styles/components"),
   views: path.join(rootDir, "src/views/components"),
   images: path.join(rootDir, "src/assets/images/components"),
+  mixinsViews: path.join(rootDir, "src/views/mixins"),
+  mixinsStyles: path.join(rootDir, "src/assets/styles/mixins"),
+  defaults: path.join(rootDir, "src/assets/js/_defaults"),
 };
 
 const targetDirs = {
-  styles: basePaths.styles, // файлы будут как styles/components/<componentFileName>.scss
-  views: basePaths.views,   // views/components/<componentFileName>.pug
-  images: path.join(basePaths.images, componentFileName), // images/components/<componentFileName>/*
-  commonJs: path.join(basePaths.js, name), // js по-прежнему в components/<name>/<name>.js
+  styles: basePaths.styles,
+  views: basePaths.views,
+  images: path.join(basePaths.images, componentFileName),
+  commonJs: path.join(basePaths.js, name),
+  mixinViews: path.join(basePaths.mixinsViews, componentFileName),
+  mixinStyles: path.join(basePaths.mixinsStyles, componentFileName),
+  defaults: path.join(basePaths.defaults, componentFileName),
 };
 
 const appScssPath = path.join(rootDir, "src/assets/styles/app.scss");
@@ -142,6 +148,49 @@ function removeTargetDirs() {
     removeEmptyParent(targetDirs.commonJs);
   }
 
+  // миксины pug
+  if (fs.existsSync(targetDirs.mixinViews)) {
+    fs.rmSync(targetDirs.mixinViews, { recursive: true, force: true });
+    removeIfDirEmpty(basePaths.mixinsViews);
+  }
+  // миксины scss
+  if (fs.existsSync(targetDirs.mixinStyles)) {
+    fs.rmSync(targetDirs.mixinStyles, { recursive: true, force: true });
+    removeIfDirEmpty(basePaths.mixinsStyles);
+  }
+  // _defaults
+  if (fs.existsSync(targetDirs.defaults)) {
+    fs.rmSync(targetDirs.defaults, { recursive: true, force: true });
+    removeIfDirEmpty(basePaths.defaults);
+  }
+
+  // миксины pug/styles: ищем папки миксинов внутри компонента
+  const mixinDirs = fs.existsSync(sourceDir)
+    ? fs.readdirSync(sourceDir).filter(d => {
+        const fullPath = path.join(sourceDir, d);
+        return fs.statSync(fullPath).isDirectory() && d !== name; // игнорируем папку компонента
+      })
+    : [];
+
+  for (const mixinDir of mixinDirs) {
+    const mixinFolderName = `${mixinDir}-${version}`;
+    const mixinTargetViews = path.join(basePaths.mixinsViews, mixinFolderName);
+    const mixinTargetStyles = path.join(basePaths.mixinsStyles, mixinFolderName);
+    const mixinTargetDefaults = path.join(basePaths.defaults, mixinFolderName);
+
+    if (fs.existsSync(mixinTargetViews)) fs.rmSync(mixinTargetViews, { recursive: true, force: true });
+    if (fs.existsSync(mixinTargetStyles)) fs.rmSync(mixinTargetStyles, { recursive: true, force: true });
+    if (fs.existsSync(mixinTargetDefaults)) fs.rmSync(mixinTargetDefaults, { recursive: true, force: true });
+
+    // удаляем подключение миксина в app.scss
+    const mixinFiles = fs.existsSync(path.join(sourceDir, mixinDir))
+      ? fs.readdirSync(path.join(sourceDir, mixinDir)).filter(f => f.endsWith(".scss"))
+      : [];
+    for (const mf of mixinFiles) {
+      removeMixinFromAppScss(mixinFolderName, mf);
+    }
+  }
+
   function removeIfDirEmpty(dir) {
     if (!fs.existsSync(dir)) return;
 
@@ -210,6 +259,23 @@ if (alreadyExists) {
   process.exit(0);
 }
 
+function removeMixinFromAppScss(mixinName, mixinFile) {
+  const filePath = appScssPath;
+  if (!fs.existsSync(filePath)) return;
+
+  let content = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
+  const lines = content.split("\n");
+
+  const importBase = mixinFile.replace(/\.scss$/i, "");
+  const importLine = `@use "@s-mixins/${mixinName}/${importBase}" as *;`;
+
+  const filtered = lines.filter(line => line !== importLine);
+
+  if (filtered.length !== lines.length) {
+    fs.writeFileSync(filePath, filtered.join("\n"), "utf8");
+  }
+}
+
 // ---------- создание компонента ----------
 createComponent();
 
@@ -238,19 +304,131 @@ function createComponent() {
 
   const files = fs.readdirSync(sourceDir);
 
-  // копируем scss/sass -> styles/components/<componentFileName>.scss
+  // миксины pug/styles: ищем папки миксинов внутри компонента
+  const mixinDirs = fs.existsSync(sourceDir)
+    ? fs.readdirSync(sourceDir).filter(d => {
+        const fullPath = path.join(sourceDir, d);
+        // проверяем, что это папка и не совпадает с именем компонента
+        return fs.statSync(fullPath).isDirectory() && d !== name;
+      })
+    : [];
+
+  // ---------- внутри createComponent(), после копирования файлов миксина ----------
+  for (const mixinDir of mixinDirs) {
+    const mixinSourcePath = path.join(sourceDir, mixinDir);
+    const mixinFolderName = `${mixinDir}-${version}`;
+    const mixinTargetViews = path.join(basePaths.mixinsViews, mixinFolderName);
+    const mixinTargetStyles = path.join(basePaths.mixinsStyles, mixinFolderName);
+    const mixinTargetDefaults = path.join(basePaths.defaults, mixinFolderName);
+
+    if (!fs.existsSync(mixinTargetViews)) fs.mkdirSync(mixinTargetViews, { recursive: true });
+    if (!fs.existsSync(mixinTargetStyles)) fs.mkdirSync(mixinTargetStyles, { recursive: true });
+    if (!fs.existsSync(mixinTargetDefaults)) fs.mkdirSync(mixinTargetDefaults, { recursive: true });
+
+    const mixinFiles = fs.readdirSync(mixinSourcePath);
+    for (const mf of mixinFiles) {
+      const ext = path.extname(mf).toLowerCase();
+      const srcFile = path.join(mixinSourcePath, mf);
+
+      if ([".pug", ".jade", ".html"].includes(ext)) {
+        fs.copyFileSync(srcFile, path.join(mixinTargetViews, mf));
+      } else if ([".scss", ".sass"].includes(ext)) {
+        fs.copyFileSync(srcFile, path.join(mixinTargetStyles, mf));
+        if (mf.endsWith(".scss")) appendMixinToAppScss(mixinFolderName, mf);
+      } else if (mf === "_defaults.js") {
+        fs.copyFileSync(srcFile, path.join(mixinTargetDefaults, "_defaults.js"));
+      }
+    }
+  }
+
+  // ---------- функция для подключения миксина в app.scss ----------
+  function appendMixinToAppScss(mixinName, mixinFile) {
+    const filePath = appScssPath;
+    if (!fs.existsSync(filePath)) return;
+
+    let content = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
+    const lines = content.split("\n");
+
+    // убираем расширение и добавляем as *;
+    const importBase = mixinFile.replace(/\.scss$/i, "");
+    const newImportLine = `@use "@s-mixins/${mixinName}/${importBase}" as *;`;
+
+    if (!lines.includes(newImportLine)) {
+      let lastUseIndex = -1;
+
+      lines.forEach((line, i) => {
+        if (line.includes(`@use "@s-mixins/`)) lastUseIndex = i;
+      });
+
+      if (lastUseIndex !== -1) {
+        lines.splice(lastUseIndex + 1, 0, newImportLine);
+      } else {
+        // если не найдено ни одного @use "@s-mixins/", вставляем в начало файла
+        lines.unshift(newImportLine);
+      }
+
+      // удаляем пустые строки в конце файла
+      while (lines.length && lines[lines.length - 1].trim() === "") {
+        lines.pop();
+      }
+
+      fs.writeFileSync(filePath, lines.join("\n"), "utf8");
+    }
+  }
+
+
   for (const file of files) {
     const ext = path.extname(file).toLowerCase();
     const srcFile = path.join(sourceDir, file);
 
-    if (ext === ".js") continue; // исходный js игнорируем (мы копируем общий js отдельно)
+    if (ext === ".js") continue;
 
-    if (ext === ".scss" || ext === ".sass") {
-      const destName = `${componentFileName}${ext}`;
-      fs.copyFileSync(srcFile, path.join(targetDirs.styles, destName));
+    // SCSS миксин
+    if (file === `${name}${ext}` && (ext === ".scss" || ext === ".sass")) {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.styles, `${componentFileName}${ext}`)
+      );
+    }
+    // PUG миксин
+    else if (file === `${name}${ext}` && (ext === ".pug" || ext === ".jade" || ext === ".html")) {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.views, `${componentFileName}${ext}`)
+      );
+    }
+    // SCSS mixin (имя: <componentFileName>.scss)
+    else if (file === `${componentFileName}${ext}` && (ext === ".scss" || ext === ".sass")) {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.mixinStyles, `${componentFileName}${ext}`)
+      );
+    }
+    // PUG mixin (имя: <componentFileName>.pug)
+    else if (file === `${componentFileName}${ext}` && (ext === ".pug" || ext === ".jade" || ext === ".html")) {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.mixinViews, `${componentFileName}${ext}`)
+      );
+    }
+    // _defaults.js
+    else if (file === "_defaults.js") {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.defaults, "_defaults.js")
+      );
+    }
+    // обычные стили/views (старый формат)
+    else if (ext === ".scss" || ext === ".sass") {
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.styles, `${componentFileName}${ext}`)
+      );
     } else if (ext === ".pug" || ext === ".jade" || ext === ".html") {
-      const destName = `${componentFileName}${ext}`;
-      fs.copyFileSync(srcFile, path.join(targetDirs.views, destName));
+      fs.copyFileSync(
+        srcFile,
+        path.join(targetDirs.views, `${componentFileName}${ext}`)
+      );
     }
     // остальные файлы (картинки и т.п.) обработаем рекурсивно
   }
