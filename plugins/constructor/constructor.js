@@ -88,7 +88,7 @@ function appendImportLine(filePath, line) {
   let content = fs.readFileSync(filePath, "utf8");
   if (!content.includes(line)) {
     if (!content.endsWith("\n")) content += "\n";
-    content += line + "\n";
+    content += line;
     fs.writeFileSync(filePath, content, "utf8");
   }
 }
