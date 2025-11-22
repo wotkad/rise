@@ -57,6 +57,32 @@ function findComponents() {
   return components;
 }
 
+function replaceMixinAliases(pugContent, component) {
+  return pugContent.replace(
+    /include\s+@p-mixins\/([a-z0-9-]+)-v\d+\/([a-z0-9-]+)/gi,
+    (_m, compName, mixinName) => {
+      const cleanMixinName = compName.replace(/-v\d+$/, "");
+
+      const mixinPath = path.resolve(
+        __dirname,
+        `./components/${component.compName}/${component.version}/${cleanMixinName}/${cleanMixinName}.pug`
+      );
+
+      if (!fs.existsSync(mixinPath)) {
+        console.warn("⚠️ Миксин не найден:", mixinPath);
+        return "";
+      }
+
+      let mixinContent = fs.readFileSync(mixinPath, "utf8");
+
+      // ⬅️ Вот здесь очищаем миксин
+      mixinContent = cleanupMixinPug(mixinContent);
+
+      return mixinContent;
+    }
+  );
+}
+
 function replaceImageAliases(pugFile) {
   const componentDir = path.dirname(pugFile);               // /components/header/v1
   const parentName = path.basename(path.dirname(componentDir)); // header
@@ -82,6 +108,24 @@ function replaceImageAliases(pugFile) {
       return '""';
     }
   );
+
+  return content;
+}
+
+function cleanupMixinPug(content) {
+  // 1. Удаляем require и mergeConfig строки
+  content = content.replace(
+    /^\s*-\s*const\s+\{[^}]+\}\s*=\s*require\([^)]+\);\s*$/gm,
+    ""
+  );
+
+  content = content.replace(
+    /^\s*-\s*const\s+modefied\s*=\s*mergeConfig\(data,\s*defaults\);\s*$/gm,
+    ""
+  );
+
+  // 2. Заменяем modefied → data
+  content = content.replace(/\bmodefied\b/g, "data");
 
   return content;
 }
@@ -137,18 +181,33 @@ function compileScss(file) {
 }
 
 function renderComponent(component) {
-  const { pugFile, scssFile } = component;
+  const { pugFile, scssFile, compName, version } = component;
 
   const scssFilesToCompile = [...GLOBAL_SCSS];
+
+  // SCSS самого компонента
   if (scssFile) scssFilesToCompile.push(scssFile);
+
+  // SCSS миксинов рядом с pug
+  const componentDir = path.dirname(pugFile);
+  const mixinScssFiles = glob.sync(path.join(componentDir, "**/*.scss"));
+  mixinScssFiles.forEach((file) => {
+    if (!scssFilesToCompile.includes(file)) {
+      scssFilesToCompile.push(file);
+    }
+  });
 
   let css = "";
   scssFilesToCompile.forEach((file) => {
     css += compileScss(file) + "\n";
   });
 
-  const pugContent = replaceImageAliases(pugFile);
-  const htmlBody = pug.compile(pugContent)();
+  let pugContent = replaceImageAliases(pugFile);
+  pugContent = replaceMixinAliases(pugContent, component);
+  const htmlBody = pug.compile(pugContent, {
+    filename: pugFile,
+    basedir: "/",
+  })();
 
   return `
 <!DOCTYPE html>
@@ -172,6 +231,7 @@ ${htmlBody}
 </body>
 </html>`;
 }
+
 (async function run() {
   const components = findComponents();
   console.log(`📦 Найдено компонентов: ${components.length}`);
