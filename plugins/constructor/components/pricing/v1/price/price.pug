@@ -1,0 +1,19 @@
+mixin price(data = {})
+  - const { defaults, mergeConfig } = require("@defaults/price-v1/_defaults");
+  - const modefied = mergeConfig(data, defaults);
+
+  .price-v1(class=modefied.tag ? 'price-v1-popular': '')
+    if modefied.tag
+      .price-v1__tag= modefied.tag
+    .price-v1__title= modefied.title
+    .price-v1__price= modefied.price
+    .price-v1__description= modefied.description
+    a(href= modefied.link.href target= modefied.link.target).price-v1__link 
+      span= modefied.link.text
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 5L21 12M21 12L14 19M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    a(href= modefied.button.href target= modefied.button.target).price-v1__button= modefied.button.text
+    ul.price-v1__advantages
+      for item in modefied.items
+        li.price-v1__advantage(class=item.isDisabled ? 'price-v1__advantage-disabled': '')
+          != item.icon
+          span= item.text

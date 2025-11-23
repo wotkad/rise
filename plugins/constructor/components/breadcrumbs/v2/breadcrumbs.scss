@@ -38,22 +38,6 @@
 
       color: $gray-400;
     }
-    a {
-      @include screen(xl) {
-        &:hover {
-          color: $blue-600;
-          span {
-            color: $blue-600;
-          }
-          svg {
-            color: $blue-600;
-            body.dark & {
-              color: $blue-600;
-            }
-          }
-        }
-      }
-    }
     a,
     span {
       display: flex;
@@ -86,6 +70,28 @@
       }
       body.dark & {
         color: $gray-400;
+      }
+    }
+    a {
+      @include screen(xl) {
+        &:hover {
+          color: $blue-700;
+          body.dark & {
+            color: $blue-600;
+          }
+          span {
+            color: $blue-700;
+            body.dark & {
+              color: $blue-600;
+            }
+          }
+          svg {
+            color: $blue-700;
+            body.dark & {
+              color: $blue-600;
+            }
+          }
+        }
       }
     }
   }

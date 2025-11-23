@@ -1,10 +1,8 @@
 module.exports = {
   defaults: {
-    link: {
-      title: 'Заголовок',
-      description: 'Описание',
-      icon: 'Перейти',
-    },
+    title: 'Заголовок',
+    description: 'Описание',
+    icon: 'Перейти',
   },
   mergeConfig(data, defaults) {
     return {

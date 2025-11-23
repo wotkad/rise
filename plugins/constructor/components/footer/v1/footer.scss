@@ -35,7 +35,10 @@
     }
     &:hover {
       svg {
-        color: $blue-600;
+        color: $blue-700;
+        body.dark & {
+          color: $blue-600;
+        }
       }
     }
   }

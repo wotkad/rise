@@ -1,0 +1,154 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.price-v1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-16;
+  border-radius: $spacing-8;
+  border: 1px solid $gray-200;
+  transition: border-color $transition-default;
+  flex: 1;
+  width: 100%;
+  max-width: 343px;
+  body.dark & {
+    border-color: $gray-500;
+  }
+  &-popular {
+    border-color: $blue-600;
+    .price-v1__button {
+      background-color: $blue-700;
+      &:hover {
+        background-color: $blue-800;
+        body.dark & {
+          background-color: $blue-600;
+        }
+      }
+    }
+    body.dark & {
+      border-color: $blue-500;
+    }
+  }
+  @include screen(md) {
+    max-width: 448px;
+    padding: $spacing-32;
+  }
+  @include screen(xl) {
+    max-width: 400px;
+    padding: $spacing-32;
+  }
+  &__tag {
+    padding: $spacing-2 $spacing-12;
+    background-color: $blue-100;
+    color: $blue-800;
+    border-radius: $rounded-6;
+    font-weight: 500;
+    margin-bottom: $spacing-16;
+    transition: background-color $transition-default, color $transition-default;
+    @include font-14;
+    body.dark & {
+      background-color: $blue-900;
+      color: $blue-300;
+    }
+  }
+  &__title {
+    font-weight: 600;
+    margin-bottom: $spacing-16;
+    @include font-24;
+  }
+  &__price {
+    font-weight: 800;
+    margin-bottom: $spacing-16;
+    @include font-48;
+  }
+  &__description {
+    color: $gray-500;
+    margin-bottom: $spacing-4;
+    @include font-16;
+  }
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-10;
+    margin-bottom: $spacing-32;
+    span {
+      color: $blue-600;
+      font-weight: 500;
+      transition: color $transition-default;
+      body.dark & {
+        color: $blue-500;
+      }
+    }
+    svg {
+      color: $blue-600;
+      width: 14px;
+      height: 14px;
+      transition: color $transition-default;
+      body.dark & {
+        color: $blue-500;
+      }
+    }
+    &:hover {
+      span {
+        color: $blue-700;
+        body.dark & {
+          color: $blue-400;
+        }
+      }
+      svg {
+        color: $blue-700;
+        body.dark & {
+          color: $blue-400;
+        }
+      }
+    }
+  }
+  &__button {
+    background-color: $gray-800;
+    padding: $spacing-10;
+    border-radius: $rounded-8;
+    width: 100%;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    transition: background-color $transition-default;
+    margin-bottom: $spacing-32;
+    @include font-14;
+    &:hover {
+      background-color: $gray-900;
+      body.dark & {
+        background-color: $gray-700;
+      }
+    }
+  }
+  &__advantages {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-16;
+    width: 100%;
+    align-items: flex-start;
+  }
+  &__advantage {
+    display: flex;
+    gap: $spacing-10;
+    svg {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: $spacing-4;
+    }
+    &-disabled {
+      text-decoration: line-through;
+      text-decoration-color: $gray-500;
+      span {
+        color: $gray-500;
+      }
+      svg {
+        color: $gray-500;
+      }
+    }
+  }
+}
