@@ -1,0 +1,27 @@
+section.contact-v1
+  .wrapper
+    .contact-v1__wrapper
+      .contact-v1__heading
+        h2 Contact Us
+        p Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.
+      form.contact-v1__form.contact-form(action="#")
+        label.contact-v1__label
+          span Your email
+          input(
+            type="email"
+            placeholder="name@example.com"
+            name="email"
+            required
+          )
+        label.contact-v1__label
+          span Subject
+          input(
+            type="text"
+            placeholder="Let us know how we can help you"
+            name="subject"
+            required
+          )
+        label.contact-v1__label
+          span Your message
+          textarea(name="message" required)
+        button.contact-v1__button.contact-button(type="submit") Send message
