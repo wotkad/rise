@@ -3,13 +3,15 @@
 
 .feature-v1 {
   &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 48px;
     height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     border-radius: $rounded-full;
     background-color: $blue-100;
+
     transition: $transition-default;
     body.dark & {
       background-color: $blue-900;
@@ -17,7 +19,9 @@
     svg {
       width: 24px;
       height: 24px;
+
       color: $blue-700;
+
       transition: $transition-default;
       body.dark & {
         color: $blue-400;
@@ -25,12 +29,14 @@
     }
   }
   &__title {
-    font-weight: 700;
     margin-top: $spacing-16;
+
+    font-weight: 700;
     @include font-20;
   }
   &__description {
     margin-top: $spacing-8;
+
     color: $gray-500;
     @include font-16;
   }
