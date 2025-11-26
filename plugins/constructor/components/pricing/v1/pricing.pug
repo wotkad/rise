@@ -3,11 +3,11 @@ include @p-mixins/price-v1/price
 section.pricing-v1
   .wrapper
     .pricing-v1__wrapper
+      input#pricing.pricing-v1__input.hidden(type="checkbox")
       .pricing-v1__heading
         h2 Designed for business teams like yours
         p Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
-        label.pricing-v1__toggle
-          input(type="checkbox" name="pricing")
+        label.pricing-v1__toggle(for="pricing")
           p.pricing-v1__toggle-monthly Monthly
           span
           p.pricing-v1__toggle-yearly Yearly
@@ -64,6 +64,7 @@ section.pricing-v1
             text: 'Go to annual plan',
           },
           price: '$29',
+          priceSecondary: '$129',
           tag: '',
           title: 'Starter',
         })
@@ -117,6 +118,7 @@ section.pricing-v1
             text: 'Go to annual plan',
           },
           price: '$199',
+          priceSecondary: '$249',
           tag: 'Most popular',
           title: 'Pro',
         })
@@ -167,6 +169,7 @@ section.pricing-v1
             text: 'Go to annual plan',
           },
           price: '$599',
+          priceSecondary: '$999',
           tag: '',
           title: 'Platinum',
         })

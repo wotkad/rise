@@ -4,6 +4,50 @@
 .pricing-v1 {
   &__wrapper {
     padding: $spacing-32 0;
+    input {
+      &:checked {
+        & ~ {
+          .pricing-v1__heading {
+            .pricing-v1__toggle-yearly {
+              color: $gray-900;
+              body.dark & {
+                color: $white;
+              }
+            }
+            .pricing-v1__toggle-monthly {
+              color: $gray-500;
+              body.dark & {
+                color: $gray-400;
+              }
+            }
+            span {
+              background-color: $blue-700;
+              body.dark & {
+                background-color: $blue-600;
+              }
+              &:before {
+                transform: translateX(18px);
+                body.dark & {
+                  background-color: $white;
+                }
+              }
+            }
+          }
+          .pricing-v1__items {
+            .price-v1 .price-v1__price {
+              span {
+                display: none;
+              }
+              &:before {
+                content: attr(data-price);
+
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
     @include screen(md) {
       padding: $spacing-64 0;
     }
@@ -15,8 +59,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-16;
     align-items: flex-start;
+    gap: $spacing-16;
     @include screen(md) {
       align-items: center;
     }
@@ -49,62 +93,34 @@
     align-items: center;
     gap: $spacing-16;
     cursor: pointer;
-    input {
-      width: 0;
-      height: 0;
-      opacity: 0;
-      visibility: hidden;
-      position: absolute;
-      &:checked {
-        & ~ {
-          .pricing-v1__toggle-yearly {
-            color: $gray-900;
-            body.dark & {
-              color: $white;
-            }
-          }
-          .pricing-v1__toggle-monthly {
-            color: $gray-500;
-            body.dark & {
-              color: $gray-400;
-            }
-          }
-          span {
-            background-color: $blue-700;
-            body.dark & {
-              background-color: $blue-600;
-            }
-            &:before {
-              transform: translateX(18px);
-              body.dark & {
-                background-color: $white;
-              }
-            }
-          }
-        }
-      }
-    }
     span {
-      border-radius: $rounded-40;
-      width: 36px;
+      position: relative;
+
       display: flex;
       align-items: center;
+      width: 36px;
       height: 20px;
+
+      border-radius: $rounded-40;
       background-color: $gray-200;
-      position: relative;
+
       transition: background-color $transition-default;
       body.dark & {
         background-color: $gray-600;
       }
       &:before {
         content: '';
+
         position: absolute;
+
         width: 16px;
-        transform: translateX(2px);
-        transition: transform $transition-default, background-color $transition-default;
         height: 16px;
+
         border-radius: $rounded-full;
         background-color: $white;
+
+        transition: transform $transition-default, background-color $transition-default;
+        transform: translateX(2px);
         body.dark & {
           background-color: $gray-400;
         }
@@ -112,6 +128,7 @@
     }
     p {
       font-weight: 500;
+
       transition: color $transition-default;
       @include font-16;
       &.pricing-v1__toggle-yearly {
@@ -128,12 +145,12 @@
   }
   &__items {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: $spacing-32;
     margin-top: $spacing-48;
-    flex-direction: column;
     @include screen(xl) {
       flex-direction: row;
     }

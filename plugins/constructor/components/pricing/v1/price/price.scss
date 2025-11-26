@@ -9,6 +9,7 @@
   padding: $spacing-16;
   width: 100%;
   max-width: 343px;
+  position: relative;
 
   border: 1px solid $gray-200;
   border-radius: $spacing-8;
@@ -71,6 +72,9 @@
 
     font-weight: 800;
     @include font-48;
+    &:before {
+      display: none;
+    }
   }
   &__description {
     margin-bottom: $spacing-4;

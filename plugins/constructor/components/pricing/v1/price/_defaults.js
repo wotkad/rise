@@ -19,6 +19,7 @@ module.exports = {
       text: 'Link',
     },
     price: '$29',
+    priceSecondary: '$129',
     tag: 'Tag',
     title: 'Заголовок',
   },
@@ -29,6 +30,7 @@ module.exports = {
       items: data.items !== undefined && data.items.length > 0 ? data.items : defaults.items,
       link: data.link !== undefined ? data.link : defaults.link,
       price: data.price !== undefined ? data.price : defaults.price,
+      priceSecondary: data.priceSecondary !== undefined ? data.priceSecondary : defaults.priceSecondary,
       tag: data.tag !== undefined ? data.tag : defaults.tag,
       title: data.title !== undefined ? data.title : defaults.title,
     }

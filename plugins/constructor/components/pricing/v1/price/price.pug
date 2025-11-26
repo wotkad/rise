@@ -6,7 +6,8 @@ mixin price(data = {})
     if modefied.tag
       .price-v1__tag= modefied.tag
     .price-v1__title= modefied.title
-    .price-v1__price= modefied.price
+    .price-v1__price(data-price=modefied.priceSecondary)
+      span= modefied.price
     .price-v1__description= modefied.description
     a.price-v1__link(href=modefied.link.href target=modefied.link.target)
       span= modefied.link.text
