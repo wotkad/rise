@@ -285,7 +285,6 @@ function createComponent() {
   // создаём директории, если их нет (styles и views принимают файлы напрямую)
   if (!fs.existsSync(targetDirs.styles)) fs.mkdirSync(targetDirs.styles, { recursive: true });
   if (!fs.existsSync(targetDirs.views)) fs.mkdirSync(targetDirs.views, { recursive: true });
-  if (!fs.existsSync(path.dirname(targetDirs.images))) fs.mkdirSync(path.dirname(targetDirs.images), { recursive: true });
 
   // копируем общий JS компонента (в папку components/<name>/<name>.js)
   if (fs.existsSync(commonJsSource)) {
@@ -433,8 +432,12 @@ function createComponent() {
     // остальные файлы (картинки и т.п.) обработаем рекурсивно
   }
 
-  // рекурсивно копируем все изображения/ресурсы, игнорируя исходники кода
-  copyImagesRecursively(sourceDir, targetDirs.images);
+  // Пример использования
+  const sourceImagesDir = path.join(sourceDir, name);
+
+  if (hasSourceImages(sourceDir)) {
+    copyImagesRecursively(sourceImagesDir, targetDirs.images);
+  }
 
   // удаляем старые строки импорта и добавляем новые
   // удаляем возможные старые строки (и со старым форматом и с новым)
@@ -453,6 +456,25 @@ function createComponent() {
   console.log(`✅ Компонент ${componentFileName} успешно создан и подключён!`);
 }
 
+// Проверка, есть ли файлы в папке
+function hasSourceImages(componentSourceDir) {
+  // путь к папке с картинками внутри компонента
+  const imagesDir = path.join(componentSourceDir, name); // <sourceDir>/<componentName>
+
+  if (!fs.existsSync(imagesDir)) return false;
+
+  const files = fs.readdirSync(imagesDir).filter(file => {
+    const filePath = path.join(imagesDir, file);
+    if (!fs.statSync(filePath).isFile()) return false;
+
+    const ext = path.extname(file).toLowerCase();
+    // считаем картинкой всё кроме исходников компонента
+    return ![".js", ".scss", ".sass", ".pug", ".jade", ".html"].includes(ext);
+  });
+
+  return files.length > 0;
+}
+
 // функция для рекурсивного копирования изображений/ресурсов
 function copyImagesRecursively(srcDir, destDir) {
   if (!fs.existsSync(srcDir)) return;
@@ -460,20 +482,21 @@ function copyImagesRecursively(srcDir, destDir) {
   const entries = fs.readdirSync(srcDir);
 
   for (const entry of entries) {
+    // игнорируем скрытые файлы (например .DS_Store)
+    if (entry.startsWith('.')) continue;
+
     const srcPath = path.join(srcDir, entry);
     const stat = fs.statSync(srcPath);
 
     if (stat.isDirectory()) {
-      // рекурсивно копируем папки (сохраняя структуру внутри destDir/<subdirs> )
-      copyImagesRecursively(srcPath, destDir);
+      copyImagesRecursively(srcPath, path.join(destDir, entry));
     } else {
       const ext = path.extname(entry).toLowerCase();
-      // игнорируем исходники компонента
       if ([".js", ".scss", ".sass", ".pug", ".jade", ".html"].includes(ext)) continue;
 
+      // создаём папку только при первом реальном файле
       if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
 
-      // имя файла оставляем как в исходнике (внутри images/components/<componentFileName>/)
       const destPath = path.join(destDir, entry);
       fs.copyFileSync(srcPath, destPath);
     }
