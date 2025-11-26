@@ -33,6 +33,9 @@ async function optimizeImage(filePath) {
   }
 }
 chokidar
-  .watch([IMAGES_SRC, CONSTRUCTOR_SRC], { ignoreInitial: true })
+  .watch([IMAGES_SRC, CONSTRUCTOR_SRC], {
+    ignoreInitial: true,
+    ignored: /\/src\/assets\/images\/favicons\//, // <--- исключаем папку
+  })
   .on('add', file => setTimeout(() => optimizeImage(file), 100))
   .on('change', file => setTimeout(() => optimizeImage(file), 100));

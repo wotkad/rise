@@ -24,35 +24,7 @@ html(lang="ru")
     meta(content="" property="og:description")
     meta(content="" property="og:image")
 
-    link(
-      href=require("@images/favicons/apple-touch-icon.png")
-      rel="apple-touch-icon"
-      sizes="180x180"
-    )
-    link(
-      href=require("@images/favicons/android-chrome-192x192.png")
-      rel="icon"
-      sizes="192x192"
-      type="image/png"
-    )
-    link(
-      href=require("@images/favicons/favicon-32x32.png")
-      rel="icon"
-      sizes="32x32"
-      type="image/png"
-    )
-    link(
-      href=require("@images/favicons/favicon-16x16.png")
-      rel="icon"
-      sizes="16x16"
-      type="image/png"
-    )
-    link(href=require("@images/favicons/favicon.ico") rel="shortcut icon")
-    link(
-      color="#5bbad5"
-      href=require("@images/favicons/safari-pinned-tab.svg")
-      rel="mask-icon"
-    )
+    include @p-custom-components/favicons
 
     block title
       title Rise | Страница без названия

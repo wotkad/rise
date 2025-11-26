@@ -17,6 +17,7 @@ const ManifestGenerator = require('./plugins/production/manifest');
 const AliasesGenerator = require('./plugins/optimization/aliases');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 const CSSPurgePlugin = require("./plugins/optimization/css-purge");
+const FaviconGenerator = require("./plugins/production/favicon-generator");
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
@@ -244,6 +245,15 @@ module.exports = (env) => {
       }),
 
       new ManifestGenerator(),
+
+      new FaviconGenerator({
+        root: path.resolve(__dirname),
+        source: path.resolve(__dirname, "src/assets/images/favicons/favicon.svg"),
+        output: "assets/images/favicons",
+        appName: "Rise",
+        appShortName: "Rise",
+        appDescription: "Your website",
+      }),
 
       new RelativeAssetsPlugin({
         baseDir: path.resolve(__dirname, 'build'),
