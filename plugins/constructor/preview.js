@@ -75,7 +75,6 @@ function replaceMixinAliases(pugContent, component) {
 
       let mixinContent = fs.readFileSync(mixinPath, "utf8");
 
-      // ⬅️ Вот здесь очищаем миксин
       mixinContent = cleanupMixinPug(mixinContent);
 
       return mixinContent;
@@ -84,21 +83,19 @@ function replaceMixinAliases(pugContent, component) {
 }
 
 function replaceImageAliases(pugFile) {
-  const componentDir = path.dirname(pugFile);               // /components/header/v1
-  const parentName = path.basename(path.dirname(componentDir)); // header
+  const componentDir = path.dirname(pugFile);
+  const parentName = path.basename(path.dirname(componentDir));
   let content = fs.readFileSync(pugFile, "utf-8");
 
   content = content.replace(
     /require\(["']@images\/components\/([a-z0-9-]+)-v\d+\/([^\s'")]+)["']\)/gi,
     (_match, compName, fileName) => {
-      // правильный путь к локальному файлу на диске: /components/header/v1/header/google.svg
       const localPath = path.join(componentDir, parentName, fileName);
 
       if (fs.existsSync(localPath)) {
         return encodeFileToBase64(localPath);
       }
 
-      // fallback: глобальная папка images
       const globalPath = path.join(IMAGES_PATH, fileName);
       if (fs.existsSync(globalPath)) {
         return encodeFileToBase64(globalPath);
@@ -113,7 +110,6 @@ function replaceImageAliases(pugFile) {
 }
 
 function cleanupMixinPug(content) {
-  // 1. Удаляем require и mergeConfig строки
   content = content.replace(
     /^\s*-\s*const\s+\{[^}]+\}\s*=\s*require\([^)]+\);\s*$/gm,
     ""
@@ -124,7 +120,6 @@ function cleanupMixinPug(content) {
     ""
   );
 
-  // 2. Заменяем modefied → data
   content = content.replace(/\bmodefied\b/g, "data");
 
   return content;
@@ -185,10 +180,8 @@ function renderComponent(component) {
 
   const scssFilesToCompile = [...GLOBAL_SCSS];
 
-  // SCSS самого компонента
   if (scssFile) scssFilesToCompile.push(scssFile);
 
-  // SCSS миксинов рядом с pug
   const componentDir = path.dirname(pugFile);
   const mixinScssFiles = glob.sync(path.join(componentDir, "**/*.scss"));
   mixinScssFiles.forEach((file) => {
@@ -305,7 +298,6 @@ ${htmlBody}
 <tbody>
 `;
 
-// сортировка по алфавиту и версии
 report.sort((a, b) => {
   const parse = (name) => {
     const [comp, ver] = name.split("-v");
@@ -321,7 +313,6 @@ report.sort((a, b) => {
   return A.version - B.version;
 });
 
-// генерация HTML
 for (const item of report) {
   htmlReport += `
 <tr class="border-b hover:bg-gray-50">

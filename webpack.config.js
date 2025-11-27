@@ -11,13 +11,11 @@ const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugi
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const pager = require("./pager");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const SitemapGenerator = require('./plugins/production/sitemap');
 const ManifestGenerator = require('./plugins/production/manifest');
 const AliasesGenerator = require('./plugins/optimization/aliases');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 const CSSPurgePlugin = require("./plugins/optimization/css-purge");
-const FaviconGenerator = require("./plugins/production/favicon-generator");
 
 module.exports = (env) => {
   const MODE = env.mode || "production";
@@ -38,7 +36,8 @@ module.exports = (env) => {
     output: {
       publicPath: '/',
       path: path.join(__dirname, "./build"),
-      filename: "assets/js/bundle.js",
+      filename: "assets/js/[name].[contenthash].js",
+      clean: true,
     },
     devServer: {
       static: path.join(__dirname, "/src"),
@@ -217,20 +216,41 @@ module.exports = (env) => {
       minimizer: [
         new TerserPlugin({
           parallel: true,
+          terserOptions: { compress: { drop_console: true } },
+          extractComments: false,
         }),
-        new CssMinimizerPlugin(),
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              "default",
+              {
+                map: true,
+              },
+            ],
+          },
+        })
       ],
       splitChunks: {
+        chunks: "all",
         cacheGroups: {
           default: false,
           vendors: false,
           vendor: {
-            filename: "assets/js/vendor.js",
-            chunks: "all",
+            filename: "assets/js/vendor.[contenthash].js",
             test: /node_modules/,
+            chunks: "all",
+          },
+          common: {
+            name: "common",
+            minChunks: 2,
+            chunks: "all",
+            priority: -10,
+            reuseExistingChunk: true,
           },
         },
       },
+      runtimeChunk: { name: "runtime" },
+      usedExports: true,
     },
 
     plugins: [
@@ -245,15 +265,6 @@ module.exports = (env) => {
       }),
 
       new ManifestGenerator(),
-
-      new FaviconGenerator({
-        root: path.resolve(__dirname),
-        source: path.resolve(__dirname, "src/assets/images/favicons/favicon.svg"),
-        output: "assets/images/favicons",
-        appName: "Rise",
-        appShortName: "Rise",
-        appDescription: "Your website",
-      }),
 
       new RelativeAssetsPlugin({
         baseDir: path.resolve(__dirname, 'build'),
@@ -273,8 +284,8 @@ module.exports = (env) => {
       }),
 
       new MiniCssExtractPlugin({
-        filename: "assets/css/bundle.css",
-        chunkFilename: "[id].css",
+        filename: "assets/css/[name].[contenthash].css",
+        chunkFilename: "assets/css/[id].[contenthash].css",
       }),
 
       new HtmlWebpackPlugin({

@@ -22,7 +22,6 @@ function findScssFiles(dir) {
 function processScssFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
 
-  // добавляем ; в конце @apply если нужно
   let updated = content.split('\n').map(line => {
     if (line.trim().startsWith('@apply') && !line.trim().endsWith(';')) {
       return line.trimEnd() + ';';
@@ -30,7 +29,6 @@ function processScssFile(filePath) {
     return line;
   });
 
-  // УДАЛЯЕМ пустые строки в конце файла
   while (updated.length > 0 && updated[updated.length - 1].trim() === '') {
     updated.pop();
   }
