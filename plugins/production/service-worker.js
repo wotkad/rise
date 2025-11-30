@@ -119,10 +119,8 @@ function isCacheableResponse(request, response) {
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      console.log('[ServiceWorker] Caching', STATIC_ASSETS.length, 'files');
       for (const url of STATIC_ASSETS) {
         if (!isHttpUrl(url)) {
-          console.warn('[SW] Пропущен (не http):', url);
           continue;
         }
         try {
@@ -130,10 +128,8 @@ self.addEventListener('install', (event) => {
           if (isCacheableResponse({ url }, response)) {
             await cache.put(url, response.clone());
           } else {
-            console.warn('[SW] Пропущен (', response && response.status, '):', url);
           }
         } catch (err) {
-          console.warn('[SW] Ошибка при загрузке:', url, err);
         }
       }
     })
@@ -148,7 +144,6 @@ self.addEventListener('activate', (event) => {
         keys
           .filter((key) => key !== CACHE_NAME)
           .map((key) => {
-            console.log('[ServiceWorker] Старый кеш удалён', key);
             return caches.delete(key);
           })
       )
@@ -195,14 +190,11 @@ async function cacheFirst(request) {
       try {
         await cache.put(request, response.clone());
       } catch (err) {
-        console.warn('[SW] cache.put failed for', request.url, err);
       }
     } else {
-      console.warn('[SW] Не кешируем ответ (not ok or unsupported):', request.url, response && response.status);
     }
     return response;
   } catch (err) {
-    console.warn('[SW] Cache-first failed', request.url, err);
     return cached;
   }
 }
