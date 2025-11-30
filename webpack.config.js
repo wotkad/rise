@@ -181,7 +181,6 @@ module.exports = (env) => {
               options: {
                 root: path.resolve(__dirname, 'src/views'),
                 basedir: path.resolve(__dirname, 'src/views'),
-                pretty: true
               }
             },
           ],
