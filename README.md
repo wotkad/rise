@@ -1468,7 +1468,6 @@ module.exports = ManifestGenerator;
   "icons": [
     { "src": "/assets/images/favicons/android-chrome-36x36.png", "sizes": "36x36", "type": "image/png" },
     { "src": "/assets/images/favicons/android-chrome-48x48.png", "sizes": "48x48", "type": "image/png" },
-    ...
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
