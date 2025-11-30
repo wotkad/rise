@@ -1567,7 +1567,37 @@ Cохраняет отчёты в ()`/reports/performance`).
 
 ## 11.5 Умное кэширование через Service Worker
 
-Cache-first стратегия и offline fallback.
+Файл service-worker.js автоматически генерируется при сборке и отвечает за оффлайн-работу сайта, кэширование ресурсов, ускорение загрузки и безопасную работу с API. Он сочетает стратегии cache-first, network-first, автоматическую инвалидацию кэша и интеллектуальное хранение данных DatoCMS.
+
+### Основные возможности:
+
+* кэширование статических файлов (CSS, JS, изображения, шрифты)
+* network-first обработка HTML-страниц
+* генерация страницы `offline.html`
+* кэширование POST-запросов к DatoCMS с TTL
+* хеширование всего кэша на основе файлов билда
+* автоматическое удаление старых версий кеша
+
+Пример регистрация на сайте:
+
+```js
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/assets/js/base/common/service-worker.js')
+      .then(reg => console.log('[SW] Registered', reg))
+      .catch(err => console.error('[SW] Registration failed', err));
+  });
+}
+```
+
+Как работает система:
+
+* Cache-first для ассетов: статические файлы загружаются из кэша и обновляются в фоне.
+* Network-first для HTML: страницы всегда стремятся загрузиться из сети, но fallback — из кэша.
+* Offline fallback: если страница не найдена ни в сети, ни в кэше, отображается offline.html.
+* DatoCMS кэширование: POST-запросы к `https://graphql.datocms.com/` хэшируются, хранятся 10 минут и работают оффлайн.
+* Автоинвалидация: при каждом билде формируется новый CACHE_NAME, основанный на хеше содержимого всех файлов.
 
 ---
 
