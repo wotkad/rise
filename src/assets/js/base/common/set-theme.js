@@ -13,7 +13,7 @@ function updateMetaImages(theme) {
   $('meta[property="og:image"]').remove();
   $('meta[name="twitter:image"]').remove();
   const imageName = theme === 'dark' ? 'banner-dark.png' : 'banner-light.png';
-  const imageUrl = `http://localhost:8080/assets/images/${imageName}`;
+  const imageUrl = `/assets/images/${imageName}`;
   $('<meta>', { property: 'og:image', content: imageUrl }).appendTo('head');
   $('<meta>', { name: 'twitter:image', content: imageUrl }).appendTo('head');
 }
