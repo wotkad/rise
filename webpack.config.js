@@ -254,7 +254,21 @@ module.exports = (env) => {
     },
 
     plugins: [
-      new RobotstxtPlugin(),
+      new RobotstxtPlugin({
+        filePath: './robots.txt',
+        policy: [
+          {
+            userAgent: '*',
+            allow: '/',
+          },
+        ],
+        sitemap: `${isDev
+          ? 'http://localhost:8080'
+          : 'https://yourwebsite.ru'}/sitemap.xml`,
+        host: isDev
+          ? 'http://localhost:8080'
+          : 'https://yourwebsite.ru',
+      }),
 
       new SitemapGenerator({
         baseUrl: pager.isDevMode(MODE)
