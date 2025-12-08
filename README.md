@@ -977,7 +977,7 @@ rimraf build
 Удаляет старую директорию `build`, чтобы исключить возможные конфликты и устаревшие файлы.
 `rimraf` - это кроссплатформенная альтернатива `rm -rf`.
 
-### 7.1.2. Компиляция проекта через Webpack
+### 7.1.2 Компиляция проекта через Webpack
 
 ```bash
 webpack --env mode=production --config ./webpack.config --progress
@@ -997,7 +997,7 @@ webpack --env mode=production --config ./webpack.config --progress
 * Генерирует `robots.txt`.
 * Собирает отчёты о доступности, производительности, размере файлов и ошибках в контенте.
 
-### 7.1.3. Build Metadata Injector
+### 7.1.3 Build Metadata Injector
 
 Этот скрипт автоматически вставляет в `<head>` тег с информацией о текущей сборке:
 
@@ -1014,7 +1014,7 @@ yarn production:metatag
 Данные берутся из Git (commit hash) и текущего времени.
 Позволяет легко отследить, какая версия кода деплоилась и когда.
 
-### 7.1.4. Performance Report - отчёт по весу сборки
+### 7.1.4 Performance Report - отчёт по весу сборки
 
 ```bash
 yarn reports:performance
@@ -1027,7 +1027,7 @@ yarn reports:performance
 
 Результаты сохраняются в (`/reports)/performance`)
 
-### 7.1.5. Lighthouse Report - анализ производительности
+### 7.1.5 Lighthouse Report - анализ производительности
 
 ```bash
 yarn reports:lighthouse
@@ -1045,7 +1045,7 @@ Lighthouse проверяет:
 
 Результаты сохраняются в (`/reports/lighthouse`) в форматах `.html` и `.json`.
 
-### 7.1.6. Accessibility Report (A11y Audit)
+### 7.1.6 Accessibility Report (A11y Audit)
 
 ```bash
 yarn reports:a11y
@@ -1063,7 +1063,7 @@ yarn reports:a11y
 
 Результаты сохраняются в (`/reports/a11y`).
 
-### 7.1.7. Service Worker и Offline Cache
+### 7.1.7 Service Worker и Offline Cache
 
 ```bash
 yarn production:service-worker
