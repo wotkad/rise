@@ -262,10 +262,10 @@ module.exports = (env) => {
             allow: '/',
           },
         ],
-        sitemap: `${isDev
+        sitemap: `${pager.isDevMode(MODE)
           ? 'http://localhost:8080'
           : 'https://yourwebsite.ru'}/sitemap.xml`,
-        host: isDev
+        host: pager.isDevMode(MODE)
           ? 'http://localhost:8080'
           : 'https://yourwebsite.ru',
       }),
