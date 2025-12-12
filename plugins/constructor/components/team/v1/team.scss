@@ -1,0 +1,67 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.team-v1 {
+  &__wrapper {
+    padding: $spacing-32 0;
+    @include screen(md) {
+      padding: $spacing-64 0;
+    }
+    @include screen(xl) {
+      padding: $spacing-96 0;
+    }
+  }
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-16;
+    @include screen(md) {
+      align-items: center;
+    }
+    h2 {
+      font-weight: 800;
+      @include font-30;
+      @include screen(md) {
+        @include font-36;
+      }
+    }
+    p {
+      max-width: 660px;
+
+      color: $gray-500;
+      @include font-16;
+      @include screen(md) {
+        text-align: center;
+        @include font-18;
+      }
+      @include screen(xl) {
+        @include font-20;
+      }
+      body.dark & {
+        color: $gray-400;
+      }
+    }
+  }
+  &__items {
+    margin-top: $spacing-32;
+    @include screen(md) {
+      margin-top: $spacing-48;
+    }
+    @include screen(xl) {
+      margin-top: $spacing-64;
+    }
+    &.swiper {
+      padding-bottom: $spacing-40;
+    }
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+      bottom: 0;
+    }
+    .swiper-pagination-bullet {
+      background-color: $gray-700;
+      &-active {
+        background-color: $blue-600;
+      }
+    }
+  }
+}

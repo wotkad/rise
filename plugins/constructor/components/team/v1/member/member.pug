@@ -1,0 +1,15 @@
+mixin member(data = {})
+  - const { defaults, mergeConfig } = require("@defaults/member-v1/_defaults");
+  - const modefied = mergeConfig(data, defaults);
+
+  .swiper-slide
+    .member-v1
+      .member-v1__content 
+        .member-v1__image 
+          img(src=modefied.src, alt="member")
+        h3.member-v1__title= modefied.title
+        .member-v1__role= modefied.role
+        p.member-v1__description= modefied.description
+      .member-v1__links 
+        each link in modefied.links
+          a(href="#" target="_blank").member-v1__link !{link.icon}
