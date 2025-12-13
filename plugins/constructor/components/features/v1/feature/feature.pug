@@ -2,7 +2,15 @@ mixin feature(data = {})
   - const { defaults, mergeConfig } = require("@defaults/feature-v1/_defaults");
   - const modefied = mergeConfig(data, defaults);
 
-  .feature-v1__item
+  .feature-v1__item(
+    itemscope
+    itemprop="itemListElement"
+    itemtype="https://schema.org/Service"
+  )
     .feature-v1__icon!= modefied.icon
-    h3.feature-v1__title= modefied.title
-    p.feature-v1__description= modefied.description
+    h3.feature-v1__title(
+      itemprop="name"
+    )= modefied.title
+    p.feature-v1__description(
+      itemprop="description"
+    )= modefied.description

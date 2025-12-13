@@ -1,12 +1,15 @@
 include @p-mixins/price-v1/price
 
-section.pricing-v1
+section.pricing-v1(
+  itemscope
+  itemtype="https://schema.org/Product"
+)
   .wrapper
     .pricing-v1__wrapper
       input#pricing.pricing-v1__input.hidden(type="checkbox")
       .pricing-v1__heading
-        h2 Designed for business teams like yours
-        p Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
+        h2(itemprop="name") Designed for business teams like yours
+        p(itemprop="description") Here at flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
         label.pricing-v1__toggle(for="pricing")
           p.pricing-v1__toggle-monthly Monthly
           span

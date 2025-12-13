@@ -1,10 +1,20 @@
-section.contact-v1
+section.contact-v1(
+  itemscope
+  itemtype="https://schema.org/ContactPage"
+)
   .wrapper
     .contact-v1__wrapper
       .contact-v1__heading
         h2 Contact Us
-        p Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.
-      form.contact-v1__form.contact-form(action="#")
+        p(
+          itemprop="description"
+        ) Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.
+      form.contact-v1__form.contact-form(
+        action="#"
+        itemscope
+        itemtype="https://schema.org/ContactPoint"
+      )
+        meta(itemprop="contactType" content="customer support")
         label.contact-v1__label
           span Your email
           input(
@@ -12,6 +22,7 @@ section.contact-v1
             placeholder="name@example.com"
             name="email"
             required
+            itemprop="email"
           )
         label.contact-v1__label
           span Subject
@@ -23,5 +34,9 @@ section.contact-v1
           )
         label.contact-v1__label
           span Your message
-          textarea(name="message" required)
+          textarea(
+            name="message"
+            required
+            itemprop="description"
+          )
         button.contact-v1__button.contact-button(type="submit") Send message
