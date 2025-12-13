@@ -8,6 +8,9 @@
   border-top: 1px solid $gray-200;
 
   transition: border-color $transition-default;
+  @include screen(xl) {
+    margin-top: $spacing-56;
+  }
   body.dark & {
     border-color: $gray-700;
   }
