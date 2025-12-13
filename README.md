@@ -204,6 +204,8 @@ img(src=require("@images/logo.svg") alt="logo")
 
 ## 4.2 Автоматическая генерация компонентов (Конструктор)
 
+Используются компоненты из дизайна Flowbite v2.10.0
+
 Для добавления в проект готового компонента выполните команду `yarn constructor my-component`. Компонент будет добавлен в проект, если он существует в библиотеке компонентов. Список и визуальное представление всех доступных компонентов можно посмотреть тут (`/reports/constructor/report.html`).
 
 ```bash
@@ -1081,39 +1083,40 @@ yarn production:service-worker
 ## 8.1 Основные команды
 
 ```bash
-yarn dev                         # запуск локального сервера
-yarn build                       # сборка проекта
-yarn prettify:all                # линтинг всего проекта
+yarn dev                                   # запуск локального сервера
+yarn build                                 # сборка проекта
+yarn prettify:all                          # линтинг всего проекта
 ```
 
 ## 8.2 Команды аналитики
 
 ```bash
-yarn reports:performance         # Performance Report: сравнение веса JS, CSS, IMG, FONTS
-yarn reports:lighthouse          # Lighthouse Report (только при запущенном dev)
-yarn reports:a11y                # Accessibility Report через pa11y/axe-core
-yarn reports:content             # Content Report (title, description, alt, SCSS)
+yarn reports:performance                   # Performance Report: сравнение веса JS, CSS, IMG, FONTS
+yarn reports:lighthouse                    # Lighthouse Report (только при запущенном dev)
+yarn reports:a11y                          # Accessibility Report через pa11y/axe-core
+yarn reports:content                       # Content Report (title, description, alt, SCSS)
 ```
 
 ## 8.3 Сервисные команды
 
 ```bash
-yarn production:markdown         # компилятор .md в .pug
-yarn production:favicons         # генерация favicons для проекта
-yarn production:service-worker   # генерация service-worker и offline.html
+yarn production:markdown                   # компилятор .md в .pug
+yarn production:favicons                   # генерация favicons для проекта
+yarn production:service-worker             # генерация service-worker и offline.html
 
-yarn prettify:scss               # линтинг SCSS
-yarn prettify:pug                # линтинг PUG
-yarn prettify:svg                # линтинг SVG
-yarn prettify:staged             # precommit скрипт
-yarn prettify:linkinator         # проверка всех ссылок проекта
+yarn prettify:scss                         # линтинг SCSS
+yarn prettify:pug                          # линтинг PUG
+yarn prettify:svg                          # линтинг SVG
+yarn prettify:staged                       # precommit скрипт
+yarn prettify:linkinator                   # проверка всех ссылок проекта
 ```
 
 ## 8.4 Автоматическая генерация компонентов
 
 ```bash
-yarn constructor my-component    # генерация готовых компонентов в проект
-yarn constructor:preview         # генерация превью для готовых компонентов
+yarn constructor my-component              # генерация готового компонента в проект
+yarn constructor my-component --rewrite    # перезапись готового компонента в проект
+yarn constructor my-component --remove     # удаление готового компонента в проект
 ```
 
 ---
@@ -1620,7 +1623,6 @@ if ('serviceWorker' in navigator) {
   - `constructor`: Директория конструктора секций.
     - `components`: Библиотека готовых секций.
     - `constructor.js`: Скрипт подключения секций.
-    - `preview.js`: Скрипт для создания превью готовых компонентов.
   - `optimization`: Скрипты для оптимизации проекта.
     - `aliases.js`: Алиасы для проекта. Можно настроить под себя.
     - `css-purge.js`: Скрипт очистки и оптимизации CSS при сборке проекта.

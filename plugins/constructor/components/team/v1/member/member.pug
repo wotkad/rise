@@ -1,6 +1,7 @@
 mixin member(data = {})
   - const { defaults, mergeConfig } = require("@defaults/member-v1/_defaults");
   - const modefied = mergeConfig(data, defaults);
+  - if (!modefied.links) modefied.links = [];
 
   .swiper-slide
     .member-v1(
@@ -10,7 +11,7 @@ mixin member(data = {})
       .member-v1__content
         .member-v1__image
           img(
-            src=modefied.src
+            src=modefied.image.src
             alt="member"
             itemprop="image"
           )

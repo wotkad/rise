@@ -28,10 +28,10 @@ module.exports = {
   mergeConfig(data, defaults) {
     return {
       description: data.description !== undefined ? data.description : defaults.description,
-      link: data.link !== undefined ? data.link : defaults.link,
       links: data.links !== undefined && data.links.length > 0 ? data.links : defaults.links,
       role: data.role !== undefined ? data.role : defaults.role,
       title: data.title !== undefined ? data.title : defaults.title,
+      image: data.image !== undefined ? data.image : defaults.image,
     }
   },
 };
