@@ -236,7 +236,7 @@
     transition: $transition-default;
     @include font-12;
     @include screen(lg) {
-      padding: $spacing-4 $spacing-8;
+      padding: $spacing-2 $spacing-8;
       @include font-14;
     }
 
