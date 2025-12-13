@@ -206,12 +206,12 @@ img(src=require("@images/logo.svg") alt="logo")
 
 Используются компоненты из дизайна Flowbite v2.10.0
 
-Для добавления в проект готового компонента выполните команду `yarn constructor my-component`. Компонент будет добавлен в проект, если он существует в библиотеке компонентов. Список и визуальное представление всех доступных компонентов можно посмотреть тут (`/reports/constructor/report.html`).
+Для добавления в проект готового компонента выполните команду `yarn constructor my-component`. Компонент будет добавлен в проект, если он существует в библиотеке компонентов.
 
 ```bash
-yarn constructor <component-name>              # добавление компонента
-yarn constructor <component-name> --rewrite    # обновление компонента
-yarn constructor <component-name> --remove     # удаление компонента
+yarn constructor <component-name>              # генерация готового компонента в проект
+yarn constructor <component-name> --rewrite    # перезапись готового компонента в проект
+yarn constructor <component-name> --remove     # удаление готового компонента в проект
 ```
 
 При добавлении, компонент создаётся в проекте в папках `/components/` и `/mixins/`, для PUG, SCSS, JS, для изображений в `/assets/`, и для `_defaults` в `/assets/js/_defaults/<mixin-name>`. Все прочие компоненты находятся в `/custom-components/`. При создании автоматически добавляются импорты в `app.scss` и `app.js`.
