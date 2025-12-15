@@ -2,14 +2,12 @@
 @use "@s-mixins/mixins" as *;
 
 .team-v1 {
-  &__wrapper {
-    padding: $spacing-32 0;
-    @include screen(md) {
-      padding: $spacing-64 0;
-    }
-    @include screen(xl) {
-      padding: $spacing-96 0;
-    }
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
   }
   &__heading {
     display: flex;
@@ -43,7 +41,8 @@
       }
     }
   }
-  &__items {
+  .swiper {
+    padding-bottom: $spacing-40;
     margin-top: $spacing-32;
     @include screen(md) {
       margin-top: $spacing-48;
@@ -51,17 +50,14 @@
     @include screen(xl) {
       margin-top: $spacing-64;
     }
-    &.swiper {
-      padding-bottom: $spacing-40;
-    }
-    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-      bottom: 0;
-    }
-    .swiper-pagination-bullet {
-      background-color: $gray-700;
-      &-active {
-        background-color: $blue-600;
-      }
+  }
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 0;
+  }
+  .swiper-pagination-bullet {
+    background-color: $gray-700;
+    &-active {
+      background-color: $blue-600;
     }
   }
 }

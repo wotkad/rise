@@ -1,7 +1,7 @@
 import Swiper from "swiper";
 import { Grid, Pagination } from 'swiper/modules';
 
-export default function sliderTeam() {
+export default function teamSlider() {
   if ($('.swiper-team').length == 0) {
     return;
   }
@@ -50,15 +50,13 @@ export default function sliderTeam() {
   
   function handleResize() {
     const newWindowWidth = window.innerWidth;
-    
-    if ($('.swiper-team').length > 0) {
-      if ((windowWidth <= 1280 && newWindowWidth > 1280) || 
-          (windowWidth > 1280 && newWindowWidth <= 1280)) {
-        if (swiperInstance && swiperInstance.destroy) {
-          swiperInstance.destroy(true, true);
-        }
-        initSwiper();
+  
+    if ((windowWidth <= 1280 && newWindowWidth > 1280) || 
+        (windowWidth > 1280 && newWindowWidth <= 1280)) {
+      if (swiperInstance && swiperInstance.destroy) {
+        swiperInstance.destroy(true, true);
       }
+      initSwiper();
     }
     
     windowWidth = newWindowWidth;
@@ -71,4 +69,4 @@ export default function sliderTeam() {
   });
 }
 
-sliderTeam();
+teamSlider();

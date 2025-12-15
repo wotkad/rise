@@ -2,14 +2,12 @@
 @use "@s-mixins/mixins" as *;
 
 .customer-logos-v1 {
-  &__wrapper {
-    padding: $spacing-32 0;
-    @include screen(md) {
-      padding: $spacing-64 0;
-    }
-    @include screen(xl) {
-      padding: $spacing-96 0;
-    }
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
   }
   &__heading {
     gap: $spacing-16;

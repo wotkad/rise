@@ -2,8 +2,14 @@
 @use "@s-mixins/mixins" as *;
 
 .pricing-v1 {
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
+  }
   &__wrapper {
-    padding: $spacing-32 0;
     input {
       &:checked {
         & ~ {
@@ -47,12 +53,6 @@
           }
         }
       }
-    }
-    @include screen(md) {
-      padding: $spacing-64 0;
-    }
-    @include screen(xl) {
-      padding: $spacing-96 0;
     }
   }
   &__heading {

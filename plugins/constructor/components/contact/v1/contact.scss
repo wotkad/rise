@@ -2,16 +2,16 @@
 @use "@s-mixins/mixins" as *;
 
 .contact-v1 {
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
+  }
   &__wrapper {
     margin: 0 auto;
-    padding: $spacing-32 0;
     max-width: 640px;
-    @include screen(md) {
-      padding: $spacing-64 0;
-    }
-    @include screen(xl) {
-      padding: $spacing-96 0;
-    }
   }
   &__heading {
     display: flex;
