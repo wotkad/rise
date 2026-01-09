@@ -99,3 +99,37 @@ export default function contentGallery() {
 }
 
 contentGallery();
+
+export function contentVideo() {
+  let button = $('.content-v2__play');
+  let container = $('.content-v2__video video')[0];
+  let video = $('.content-v2__video video');
+  if (container !== undefined) {
+    container.addEventListener('play', function() {
+      button.fadeOut();
+    });
+    container.addEventListener('pause', function() {
+      button.fadeIn();
+    });
+  }
+
+  button.on('click', function() {
+    button.fadeOut();
+    container.volume = 0.5;
+
+    if (container.paused) {
+      container.play();
+    } else {
+      container.pause();
+    }
+
+  });
+
+  video.on('click', function() {
+    button.fadeIn();
+    container.volume = 0;
+    container.pause();
+  });
+}
+
+contentVideo();

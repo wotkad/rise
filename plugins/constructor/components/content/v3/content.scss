@@ -1,7 +1,7 @@
 @use "@s-base/variables" as *;
 @use "@s-mixins/mixins" as *;
 
-.content-v2 {
+.content-v3 {
   padding: $spacing-32 0;
   @include screen(md) {
     padding: $spacing-64 0;
