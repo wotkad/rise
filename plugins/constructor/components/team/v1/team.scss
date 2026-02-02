@@ -54,10 +54,4 @@
   .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: 0;
   }
-  .swiper-pagination-bullet {
-    background-color: $gray-700;
-    &-active {
-      background-color: $blue-600;
-    }
-  }
 }

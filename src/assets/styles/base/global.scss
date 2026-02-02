@@ -198,6 +198,20 @@ body {
   min-height: 100dvh;
 }
 
+.swiper-pagination-bullet {
+  background-color: $gray-400;
+
+  transition: $transition-default !important;
+  body.dark & {
+    background-color: $gray-100;
+  }
+  &-active {
+    body.dark & {
+      background-color: $blue-600;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.01ms !important;
