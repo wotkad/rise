@@ -5,6 +5,9 @@
   margin: 0 auto;
   padding: $spacing-24 0;
   max-width: 800px;
+  &-full {
+    max-width: 100%;
+  }
   & > *:last-child {
     margin-bottom: 0;
   }
@@ -166,16 +169,6 @@
         transition: border-color $transition-default;
         body.dark & {
           border-color: $gray-700;
-        }
-      }
-    }
-    tbody {
-      tr {
-        &:nth-child(2n + 1) {
-          background-color: $blue-100;
-          body.dark & {
-            background-color: $gray-800;
-          }
         }
       }
     }

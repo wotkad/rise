@@ -1,0 +1,22 @@
+extends @p-layouts/master
+include @p-mixins/title
+
+block title
+  title Rise | Компоненты
+
+block basicSeo
+  meta(content="Это страница блога" name="description")
+  meta(content="Страница, блог" name="keywords")
+  link(href="/blog/" rel="canonical")
+
+block content
+  main
+    .barba(data-barba="wrapper")
+      .barba-container(data-barba="container" data-barba-namespace="components")
+        .page-container
+          .page-wrapper
+            +title({
+              title: 'Компоненты',
+            })
+            include @p-custom-components/components
+          include @p-custom-components/footer

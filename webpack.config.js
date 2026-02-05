@@ -34,7 +34,7 @@ module.exports = (env) => {
       bundle: path.join(__dirname, "./src/bundle.js"),
     },
     output: {
-      publicPath: '/',
+      publicPath: pager.isDevMode(MODE) ? 'http://localhost:8081/' : '/',
       path: path.join(__dirname, "./build"),
       filename: "assets/js/[name].[contenthash].js",
       clean: true,
@@ -45,6 +45,11 @@ module.exports = (env) => {
       liveReload: false,
       hot: true,
       port: 8081,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+      },
       client: {
         logging: 'error'
       },
@@ -89,14 +94,12 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
+            pager.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
                 importLoaders: 1,
-                sourceMap: true,
+                sourceMap: pager.isDevMode(MODE),
               },
             },
             "postcss-loader",
@@ -105,12 +108,10 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
+            pager.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
-              options: { importLoaders: 1, sourceMap: true },
+              options: { sourceMap: pager.isDevMode(MODE) },
             },
             "postcss-loader",
             {
@@ -297,10 +298,11 @@ module.exports = (env) => {
         ],
       }),
 
-      new MiniCssExtractPlugin({
-        filename: "assets/css/[name].[contenthash].css",
-        chunkFilename: "assets/css/[id].[contenthash].css",
-      }),
+      ...(pager.isDevMode(MODE) ? [] : [
+        new MiniCssExtractPlugin({
+          filename: "assets/css/[name].[contenthash].css",
+        })
+      ]),
 
       new HtmlWebpackPlugin({
         minify: false,
