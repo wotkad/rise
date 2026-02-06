@@ -1,0 +1,175 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.price-v1 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-16;
+  width: 100%;
+  max-width: 343px;
+  position: relative;
+
+  border: 1px solid $gray-200;
+  border-radius: $spacing-8;
+
+  transition: border-color $transition-default;
+  @include screen(md) {
+    padding: $spacing-32;
+    max-width: 448px;
+  }
+  @include screen(xl) {
+    padding: $spacing-32;
+    max-width: 400px;
+  }
+  body.dark & {
+    border-color: $gray-500;
+  }
+  &-popular {
+    border-color: $blue-600;
+    .price-v1__button {
+      background-color: $blue-700;
+      &:hover {
+        background-color: $blue-800;
+        body.dark & {
+          background-color: $blue-600;
+        }
+      }
+    }
+    body.dark & {
+      border-color: $blue-500;
+    }
+  }
+  &__tag {
+    margin-bottom: $spacing-16;
+    padding: $spacing-2 $spacing-12;
+
+    border-radius: $rounded-6;
+    background-color: $blue-100;
+
+    font-weight: 500;
+    color: $blue-800;
+
+    transition:
+      background-color $transition-default,
+      color $transition-default;
+    @include font-14;
+    body.dark & {
+      background-color: $blue-900;
+
+      color: $blue-300;
+    }
+  }
+  &__title {
+    margin-bottom: $spacing-16;
+
+    font-weight: 600;
+    @include font-24;
+  }
+  &__price {
+    margin-bottom: $spacing-16;
+
+    font-weight: 800;
+    @include font-48;
+    &:before {
+      display: none;
+    }
+  }
+  &__description {
+    margin-bottom: $spacing-4;
+
+    color: $gray-500;
+    @include font-16;
+  }
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-10;
+    margin-bottom: $spacing-32;
+    span {
+      font-weight: 500;
+      color: $blue-600;
+
+      transition: color $transition-default;
+      body.dark & {
+        color: $blue-500;
+      }
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+
+      color: $blue-600;
+
+      transition: color $transition-default;
+      body.dark & {
+        color: $blue-500;
+      }
+    }
+    &:hover {
+      span {
+        color: $blue-700;
+        body.dark & {
+          color: $blue-400;
+        }
+      }
+      svg {
+        color: $blue-700;
+        body.dark & {
+          color: $blue-400;
+        }
+      }
+    }
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $spacing-32;
+    padding: $spacing-10;
+    width: 100%;
+
+    border-radius: $rounded-8;
+    background-color: $gray-800;
+
+    font-weight: 500;
+    color: $white;
+
+    transition: background-color $transition-default;
+    @include font-14;
+    &:hover {
+      background-color: $gray-900;
+      body.dark & {
+        background-color: $gray-700;
+      }
+    }
+  }
+  &__advantages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-16;
+    width: 100%;
+  }
+  &__advantage {
+    display: flex;
+    gap: $spacing-10;
+    svg {
+      margin-top: $spacing-4;
+      width: 16px;
+      min-width: 16px;
+      height: 16px;
+    }
+    &-disabled {
+      text-decoration: line-through;
+      text-decoration-color: $gray-500;
+      span {
+        color: $gray-500;
+      }
+      svg {
+        color: $gray-500;
+      }
+    }
+  }
+}

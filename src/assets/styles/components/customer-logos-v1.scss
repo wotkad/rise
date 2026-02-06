@@ -1,0 +1,49 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.customer-logos-v1 {
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
+  }
+  &__heading {
+    gap: $spacing-16;
+
+    text-align: center;
+    h2 {
+      font-weight: 800;
+      @include font-30;
+      @include screen(md) {
+        @include font-36;
+      }
+    }
+  }
+  &__logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing-32;
+    margin-top: $spacing-32;
+    @include screen(md) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: $spacing-48;
+    }
+    @include screen(xl) {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: $transition-default;
+    &-chameleon {
+      body.dark & {
+        filter: invert(1);
+      }
+    }
+  }
+}

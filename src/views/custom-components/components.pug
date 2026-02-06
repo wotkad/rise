@@ -2,217 +2,142 @@ section.components
   .wrapper 
     .components__wrapper
       .content.content-full
-        details(open)
-          summary Blog
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong blog-v1 
-              td 
-                code yarn constructor blog-v1
-              td
-                img(src="#", alt="blog-v1")
-              td
-                img(src="#", alt="blog-v1")
-        details
-          summary Breadcrumbs
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong breadcrumbs-v1 
-              td 
-                code yarn constructor breadcrumbs-v1
-              td
-                img(src="#", alt="breadcrumbs-v1")
-              td
-                img(src="#", alt="breadcrumbs-v1")
-            tr 
-              td 
-                strong breadcrumbs-v2
-              td 
-                code yarn constructor breadcrumbs-v2
-              td
-                img(src="#", alt="breadcrumbs-v2")
-              td
-                img(src="#", alt="breadcrumbs-v2")
-        details
-          summary Contact
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong contact-v1 
-              td 
-                code yarn constructor contact-v1
-              td
-                img(src="#", alt="contact-v1")
-              td
-                img(src="#", alt="contact-v1")
-        details
-          summary Content
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong content-v1 
-              td 
-                code yarn constructor content-v1
-              td
-                img(src="#", alt="content-v1")
-              td
-                img(src="#", alt="content-v1")
-            tr 
-              td 
-                strong content-v2
-              td 
-                code yarn constructor content-v2
-              td
-                img(src="#", alt="content-v2")
-              td
-                img(src="#", alt="content-v2")
-            tr 
-              td 
-                strong content-v3
-              td 
-                code yarn constructor content-v3
-              td
-                img(src="#", alt="content-v3")
-              td
-                img(src="#", alt="content-v3")
-        details
-          summary Customer logos
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong customer-logos-v1 
-              td 
-                code yarn constructor customer-logos-v1
-              td
-                img(src="#", alt="customer-logos-v1")
-              td
-                img(src="#", alt="customer-logos-v1")
-        details
-          summary Features
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong features-v1 
-              td 
-                code yarn constructor features-v1
-              td
-                img(src="#", alt="features-v1")
-              td
-                img(src="#", alt="features-v1")
-        details
-          summary Footer
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong footer-v1 
-              td 
-                code yarn constructor footer-v1
-              td
-                img(src="#", alt="footer-v1")
-              td
-                img(src="#", alt="footer-v1")
-        details
-          summary Header
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong header-v1 
-              td 
-                code yarn constructor header-v1
-              td
-                img(src="#", alt="header-v1")
-              td
-                img(src="#", alt="header-v1")
-        details
-          summary Hero
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong hero-v1 
-              td 
-                code yarn constructor hero-v1
-              td
-                img(src="#", alt="hero-v1")
-              td
-                img(src="#", alt="hero-v1")
-        details
-          summary Pricing
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong pricing-v1 
-              td 
-                code yarn constructor pricing-v1
-              td
-                img(src="#", alt="pricing-v1")
-              td
-                img(src="#", alt="pricing-v1")
-        details
-          summary Team
-          table 
-            tr 
-              th Name
-              th Command
-              th Preview Light
-              th Preview Dark
-            tr 
-              td 
-                strong team-v1 
-              td 
-                code yarn constructor team-v1
-              td
-                img(src="#", alt="team-v1")
-              td
-                img(src="#", alt="team-v1")
+        table 
+          colgroup
+            col(style="width:10%")
+            col(style="width:10%")
+            col(style="width:25%")
+            col(style="width:25%")
+          tr 
+            th Name
+            th Command
+            th Preview Light
+            th Preview Dark
+          tr 
+            td 
+              strong blog-v1 
+            td 
+              code yarn constructor blog-v1
+            td
+              img.preview(src=require("@images/constructor-components/blog-v1.webp"), alt="blog-v1")
+            td
+              img.preview(src=require("@images/constructor-components/blog-v1-dark.webp"), alt="blog-v1-dark")
+          tr 
+            td 
+              strong breadcrumbs-v1 
+            td 
+              code yarn constructor breadcrumbs-v1
+            td
+              img.preview(src=require("@images/constructor-components/breadcrumbs-v1.webp"), alt="breadcrumbs-v1")
+            td
+              img.preview(src=require("@images/constructor-components/breadcrumbs-v1-dark.webp"), alt="breadcrumbs-v1-dark")
+          tr 
+            td 
+              strong breadcrumbs-v2
+            td 
+              code yarn constructor breadcrumbs-v2
+            td
+              img.preview(src=require("@images/constructor-components/breadcrumbs-v2.webp"), alt="breadcrumbs-v2")
+            td
+              img.preview(src=require("@images/constructor-components/breadcrumbs-v2-dark.webp"), alt="breadcrumbs-v2-dark")
+          tr 
+            td 
+              strong contact-v1 
+            td 
+              code yarn constructor contact-v1
+            td
+              img.preview(src=require("@images/constructor-components/contact-v1.webp"), alt="contact-v1")
+            td
+              img.preview(src=require("@images/constructor-components/contact-v1-dark.webp"), alt="contact-v1-dark")
+          tr 
+            td 
+              strong content-v1 
+            td 
+              code yarn constructor content-v1
+            td
+              img.preview(src=require("@images/constructor-components/content-v1.webp"), alt="content-v1")
+            td
+              img.preview(src=require("@images/constructor-components/content-v1-dark.webp"), alt="content-v1-dark")
+          tr 
+            td 
+              strong content-v2
+            td 
+              code yarn constructor content-v2
+            td
+              img.preview(src=require("@images/constructor-components/content-v2.webp"), alt="content-v2")
+            td
+              img.preview(src=require("@images/constructor-components/content-v2-dark.webp"), alt="content-v2-dark")
+          tr 
+            td 
+              strong content-v3
+            td 
+              code yarn constructor content-v3
+            td
+              img.preview(src=require("@images/constructor-components/content-v3.webp"), alt="content-v3")
+            td
+              img.preview(src=require("@images/constructor-components/content-v3-dark.webp"), alt="content-v3-dark")
+          tr 
+            td 
+              strong customer-logos-v1 
+            td 
+              code yarn constructor customer-logos-v1
+            td
+              img.preview(src=require("@images/constructor-components/customer-logos-v1.webp"), alt="customer-logos-v1")
+            td
+              img.preview(src=require("@images/constructor-components/customer-logos-v1-dark.webp"), alt="customer-logos-v1-dark")
+          tr 
+            td 
+              strong features-v1 
+            td 
+              code yarn constructor features-v1
+            td
+              img.preview(src=require("@images/constructor-components/features-v1.webp"), alt="features-v1")
+            td
+              img.preview(src=require("@images/constructor-components/features-v1-dark.webp"), alt="features-v1-dark")
+          tr 
+            td 
+              strong footer-v1 
+            td 
+              code yarn constructor footer-v1
+            td
+              img.preview(src=require("@images/constructor-components/footer-v1.webp"), alt="footer-v1")
+            td
+              img.preview(src=require("@images/constructor-components/footer-v1-dark.webp"), alt="footer-v1-dark")
+          tr 
+            td 
+              strong header-v1 
+            td 
+              code yarn constructor header-v1
+            td
+              img.preview(src=require("@images/constructor-components/header-v1.webp"), alt="header-v1")
+            td
+              img.preview(src=require("@images/constructor-components/header-v1-dark.webp"), alt="header-v1-dark")
+          tr 
+            td 
+              strong hero-v1 
+            td 
+              code yarn constructor hero-v1
+            td
+              img.preview(src=require("@images/constructor-components/hero-v1.webp"), alt="hero-v1")
+            td
+              img.preview(src=require("@images/constructor-components/hero-v1-dark.webp"), alt="hero-v1-dark")
+          tr 
+            td 
+              strong pricing-v1 
+            td 
+              code yarn constructor pricing-v1
+            td
+              img.preview(src=require("@images/constructor-components/pricing-v1.webp"), alt="pricing-v1")
+            td
+              img.preview(src=require("@images/constructor-components/pricing-v1-dark.webp"), alt="pricing-v1-dark")
+          tr 
+            td 
+              strong team-v1 
+            td 
+              code yarn constructor team-v1
+            td
+              img.preview(src=require("@images/constructor-components/team-v1.webp"), alt="team-v1")
+            td
+              img.preview(src=require("@images/constructor-components/team-v1-dark.webp"), alt="team-v1-dark")
+.image-modal
+  img.image-modal__img

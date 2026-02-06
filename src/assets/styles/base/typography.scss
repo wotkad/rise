@@ -1,6 +1,41 @@
 @use "@s-base/variables" as *;
 @use "@s-mixins/mixins" as *;
 
+h1 {
+  display: flex;
+  align-items: center;
+  margin-top: $spacing-24;
+
+  font-weight: 700;
+  @include font-24;
+  @include screen(md) {
+    @include font-30;
+  }
+  @include screen(lg) {
+    @include font-48;
+  }
+  img {
+    margin-right: $spacing-12;
+    width: 24px;
+    min-width: $spacing-24;
+    @include screen(md) {
+      width: 32px;
+      min-width: 32px;
+    }
+    @include screen(lg) {
+      width: 48px;
+      min-width: 48px;
+    }
+  }
+  &:first-child {
+    margin-top: 0;
+    margin-bottom: $spacing-32;
+    @include screen(xl) {
+      margin-bottom: $spacing-40;
+    }
+  }
+}
+
 .content {
   margin: 0 auto;
   padding: $spacing-24 0;

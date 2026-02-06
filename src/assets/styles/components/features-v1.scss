@@ -1,0 +1,54 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.features-v1 {
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
+  }
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-16;
+    h2 {
+      font-weight: 800;
+      @include font-30;
+      @include screen(md) {
+        @include font-36;
+      }
+    }
+    p {
+      max-width: 768px;
+
+      color: $gray-500;
+      @include font-16;
+      @include screen(md) {
+        @include font-18;
+      }
+      @include screen(xl) {
+        @include font-20;
+      }
+      body.dark & {
+        color: $gray-400;
+      }
+    }
+  }
+  &__items {
+    margin-top: $spacing-48;
+    display: grid;
+    gap: $spacing-24;
+    @include screen(md) {
+      row-gap: $spacing-48;
+      column-gap: $spacing-16;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @include screen(xl) {
+      gap: $spacing-48;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

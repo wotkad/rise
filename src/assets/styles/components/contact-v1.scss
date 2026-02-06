@@ -1,0 +1,138 @@
+@use "@s-base/variables" as *;
+@use "@s-mixins/mixins" as *;
+
+.contact-v1 {
+  padding: $spacing-32 0;
+  @include screen(md) {
+    padding: $spacing-64 0;
+  }
+  @include screen(xl) {
+    padding: $spacing-96 0;
+  }
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 640px;
+  }
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: flex-start;
+    gap: $spacing-16;
+    @include screen(md) {
+      align-items: center;
+    }
+    h2 {
+      font-weight: 800;
+      @include font-30;
+      @include screen(md) {
+        @include font-36;
+      }
+    }
+    p {
+      color: $gray-500;
+      @include font-16;
+      @include screen(md) {
+        text-align: center;
+        @include font-18;
+      }
+      @include screen(xl) {
+        @include font-20;
+      }
+      body.dark & {
+        color: $gray-400;
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: $spacing-24;
+    margin-top: $spacing-32;
+    @include screen(md) {
+      gap: $spacing-32;
+      margin-top: $spacing-64;
+    }
+  }
+  &__label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-8;
+    width: 100%;
+    span {
+      font-weight: 500;
+      @include font-14;
+    }
+    input,
+    textarea {
+      padding: $spacing-14 $spacing-16;
+      width: 100%;
+
+      border: 1px solid $gray-300;
+      border-radius: $rounded-8;
+      background-color: $gray-050;
+
+      transition:
+        border-color $transition-default,
+        background-color $transition-default,
+        color $transition-default;
+      @include font-16;
+      body.dark & {
+        border-color: $gray-600;
+        background-color: $gray-700;
+
+        color: $white;
+        &.error {
+          border-color: $red-500;
+        }
+      }
+      &.error {
+        border-color: $red-500;
+      }
+      &::placeholder {
+        color: $gray-500;
+        body.dark & {
+          color: $gray-400;
+        }
+      }
+    }
+    textarea {
+      min-height: 193px;
+      max-height: 193px;
+      overflow-y: auto;
+      resize: none;
+    }
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-8;
+    padding: $spacing-10 $spacing-20;
+
+    border-color: $blue-700;
+    border-radius: $rounded-8;
+    background-color: $blue-700;
+
+    font-weight: 500;
+    color: $white;
+
+    transition:
+      border-color $transition-default,
+      background-color $transition-default;
+    @include font-14;
+    @include screen(xl) {
+      &:hover {
+        border-color: $blue-800;
+        background-color: $blue-800;
+        body.dark & {
+          border-color: $blue-600;
+          background-color: $blue-600;
+        }
+      }
+    }
+  }
+}

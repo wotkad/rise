@@ -4,72 +4,63 @@
 .components {
   &__wrapper {
     .content {
-      details {
-        padding: $spacing-32 0;
-        border-top: 1px solid $gray-300;
-        &:last-child {
-          border-bottom: 1px solid $gray-300;
+      padding-top: 0;
+      overflow-x: auto;
+      table {
+        width: 100%;
+        min-width: 500px;
+        margin-top: 0;
+        @include font-16;
+        thead {
+          background-color: $gray-050;
         }
-        transition: border-color $transition-default;
-        body.dark & {
-          border-color: $gray-700;
-        }
-        &[open] {
-          summary {
-            &:after {
-              transform: rotate(180deg);
-            }
+        tbody tr {
+          th {
+            padding: $spacing-12 $spacing-16;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $gray-500;
+            white-space: nowrap;
           }
-        }
-        summary {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          list-style: none;
-          font-weight: 600;
-          position: relative;
-          @include font-30;
-          &:after {
-            content: '';
-            position: absolute;
-            transition: $transition-default;
-            right: 0;
-            width: 24px;
-            height: 24px;
-            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS4yOTI5IDE2LjcwNzFDMTEuNjgzNCAxNy4wOTc2IDEyLjMxNjYgMTcuMDk3NiAxMi43MDcxIDE2LjcwNzFMMTkuNzA3MSA5LjcwNzExQzIwLjA5NzYgOS4zMTY1OCAyMC4wOTc2IDguNjgzNDIgMTkuNzA3MSA4LjI5Mjg5QzE5LjMxNjYgNy45MDIzNyAxOC42ODM0IDcuOTAyMzcgMTguMjkyOSA4LjI5Mjg5TDEyIDE0LjU4NThMNS43MDcxMSA4LjI5Mjg5QzUuMzE2NTggNy45MDIzNyA0LjY4MzQyIDcuOTAyMzcgNC4yOTI4OSA4LjI5Mjg5QzMuOTAyMzcgOC42ODM0MiAzLjkwMjM3IDkuMzE2NTggNC4yOTI4OSA5LjcwNzExTDExLjI5MjkgMTYuNzA3MVoiIGZpbGw9ImN1cnJlbnRDb2xvciIvPgo8L3N2Zz4K);
-            body.dark & {
-              filter: invert(1);
-            }
-          }
-        }
-        table {
-          margin-top: $spacing-32;
-          width: 100%;
-          @include font-16;
-          thead {
-            background-color: $gray-050;
-          }
-          tbody tr {
-            th {
-              padding: $spacing-12 $spacing-16;
-              text-align: left;
-              font-weight: 600;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-              color: $gray-500;
-            }
-            td {
-              padding: $spacing-12 $spacing-16;
-              vertical-align: middle;
-              img {
-                object-fit: contain;
-                width: auto;
-                max-height: 50px;
-              }
+          td {
+            padding: $spacing-12 $spacing-16;
+            vertical-align: middle;
+            white-space: nowrap;
+            img {
+              border-radius: 0;
+              width: 100%;
+              cursor: zoom-in;
             }
           }
         }
       }
     }
   }
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  cursor: zoom-out;
+  z-index: 1000;
+}
+
+.image-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.image-modal__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
 }

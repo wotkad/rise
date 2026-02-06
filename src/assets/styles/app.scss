@@ -26,6 +26,9 @@
 @use "@s-mixins/mixins";
 @use "@s-mixins/title";
 @use "@s-mixins/article";
+@use "@s-mixins/feature-v1/feature" as *;
+@use "@s-mixins/price-v1/price" as *;
+@use "@s-mixins/member-v1/member" as *;
 
 /*
   Компоненты
@@ -36,3 +39,17 @@
 @use "@s-custom-components/blog";
 @use "@s-custom-components/not-found";
 @use "@s-custom-components/components";
+@use "@s-components/blog-v1" as *;
+@use "@s-components/contact-v1" as *;
+@use "@s-components/content-v1" as *;
+@use "@s-components/content-v2" as *;
+@use "@s-components/content-v3" as *;
+@use "@s-components/customer-logos-v1" as *;
+@use "@s-components/features-v1" as *;
+@use "@s-components/footer-v1" as *;
+@use "@s-components/pricing-v1" as *;
+@use "@s-components/team-v1" as *;
+@use "@s-components/hero-v1" as *;
+@use "@s-components/header-v1" as *;
+@use "@s-components/breadcrumbs-v1" as *;
+@use "@s-components/breadcrumbs-v2" as *;
