@@ -23,8 +23,3 @@ import "@common/get-current-year";
 import "@common/get-header-height";
 import "@common/set-svg-size";
 import "@common/service-worker";
-import "@components/blog/blog";
-import "@components/contact/contact";
-import "@components/content/content";
-import "@components/team/team";
-import "@components/header/header";
