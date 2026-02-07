@@ -3,7 +3,6 @@ export default function toggleComponentsPopup() {
   const modal = document.querySelector('.image-modal');
   const modalImg = document.querySelector('.image-modal__img');
 
-  // если нет картинок или модалки — просто выходим
   if (!previews.length || !modal || !modalImg) {
     return;
   }
