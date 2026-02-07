@@ -20,7 +20,7 @@
             text-align: left;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: $spacing-1;
             color: $gray-500;
             white-space: nowrap;
           }
@@ -28,6 +28,28 @@
             padding: $spacing-12 $spacing-16;
             vertical-align: middle;
             white-space: nowrap;
+            .code-block {
+              display: flex;
+              align-items: center;
+              gap: $spacing-4;
+              &.active {
+                code {
+                  background-color: $green-300 !important;
+                }
+              }
+              button {
+                svg {
+                  width: 20px;
+                  transition: $transition-default;
+                  height: 20px;
+                }
+                &:hover {
+                  svg {
+                    color: $blue-700;
+                  }
+                }
+              }
+            }
             img {
               border-radius: 0;
               width: 100%;

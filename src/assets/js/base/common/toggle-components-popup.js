@@ -1,21 +1,52 @@
 export default function toggleComponentsPopup() {
-  const previews = document.querySelectorAll('.preview');
-  const modal = document.querySelector('.image-modal');
-  const modalImg = document.querySelector('.image-modal__img');
+  const $previews = $('.preview');
+  const $modal = $('.image-modal');
+  const $modalImg = $('.image-modal__img');
 
-  if (!previews.length || !modal || !modalImg) {
+  if (!$previews.length || !$modal.length || !$modalImg.length) {
     return;
   }
 
-  previews.forEach(img => {
-    img.addEventListener('click', () => {
-      modalImg.src = img.src;
-      modal.classList.add('active');
-    });
+  $previews.on('click', function () {
+    $modalImg.attr('src', $(this).attr('src'));
+    $modal.addClass('active');
   });
 
-  modal.addEventListener('click', () => {
-    modal.classList.remove('active');
+  $modal.on('click', function () {
+    $modal.removeClass('active');
+  });
+
+  $(document).on('keydown', function (e) {
+    if (e.key === 'Escape' && $modal.hasClass('active')) {
+      $modal.removeClass('active');
+    }
+  });
+
+  const $codeBlocks = $('.code-block');
+
+  if (!$codeBlocks.length) return;
+
+  $codeBlocks.each(function () {
+    const $block = $(this);
+    const $button = $block.find('button');
+    const $code = $block.find('code');
+
+    $button.on('click', function () {
+      const text = $code.text().trim();
+
+      if (!text) return;
+
+      navigator.clipboard.writeText(text).then(() => {
+        $block.addClass('active');
+
+        setTimeout(() => {
+          $block.removeClass('active');
+        }, 300);
+      }).catch(() => {
+        console.error('Ошибка копирования');
+      });
+    });
   });
 }
+
 toggleComponentsPopup();
