@@ -14,6 +14,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const SitemapGenerator = require('./plugins/production/sitemap');
 const ManifestGenerator = require('./plugins/production/manifest');
 const AliasesGenerator = require('./plugins/optimization/aliases');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 const CSSPurgePlugin = require("./plugins/optimization/css-purge");
 
@@ -37,6 +38,8 @@ module.exports = (env) => {
       publicPath: pager.isDevMode(MODE) ? 'http://localhost:8081/' : '/',
       path: path.join(__dirname, "./build"),
       filename: "assets/js/[name].[contenthash].js",
+      chunkFilename: "assets/js/[name].[contenthash].js",
+      hashDigestLength: 6,
       clean: true,
     },
     devServer: {
@@ -229,29 +232,48 @@ module.exports = (env) => {
               },
             ],
           },
-        })
+        }),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ['mozjpeg', { quality: 75 }],
+                ['pngquant', { quality: [0.6, 0.8] }],
+                ['gifsicle'],
+                ['svgo'],
+              ],
+            },
+          },
+        }),
       ],
       splitChunks: {
         chunks: "all",
         cacheGroups: {
           default: false,
-          vendors: false,
-          vendor: {
-            filename: "assets/js/vendor.[contenthash].js",
+          defaultVendors: false,
+
+          vendors: {
             test: /node_modules/,
+            name: "vendors",
             chunks: "all",
+            enforce: true,
           },
-          common: {
-            name: "common",
-            minChunks: 2,
+
+          styles: {
+            name: "bundle",
+            type: "css/mini-extract",
+            test: (module) => {
+              return (
+                module.type === "css/mini-extract" &&
+                !/node_modules/.test(module.identifier())
+              );
+            },
             chunks: "all",
-            priority: -10,
-            reuseExistingChunk: true,
+            enforce: true,
           },
         },
       },
-      runtimeChunk: { name: "runtime" },
-      usedExports: true,
     },
 
     plugins: [
@@ -301,6 +323,7 @@ module.exports = (env) => {
       ...(pager.isDevMode(MODE) ? [] : [
         new MiniCssExtractPlugin({
           filename: "assets/css/[name].[contenthash].css",
+          chunkFilename: "assets/css/[name].[contenthash].css",
         })
       ]),
 
