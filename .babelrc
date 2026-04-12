@@ -3,18 +3,14 @@
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "chrome": 100,
-          "safari": 15,
-          "firefox": 91
-        }
+        "useBuiltIns": "usage",
+        "corejs": 3
       }
     ],
-    [
-      "@babel/preset-typescript"
-    ]
+    "@babel/preset-typescript"
   ],
   "plugins": [
+    "@babel/plugin-transform-runtime",
     [
       "module-resolver",
       {
@@ -28,8 +24,5 @@
         }
       }
     ]
-  ],
-  "ignore": [
-    "node_modules"
   ]
 }

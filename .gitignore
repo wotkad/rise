@@ -1,9 +1,51 @@
+# dependencies
 node_modules/
-.vscode/
-.DS_Store
-build/
-yarn-error.log
+
+# env
 .env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# build / dist
+build/
+dist/
+public/build/
+out/
+
+# cache
 .cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+
+# coverage / reports
+coverage/
+reports/
+
+# IDE
+.vscode/
 .idea/
-/reports
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# misc
+*.log
+*.tmp
+*.temp
+
+# lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

@@ -1,4 +1,8 @@
+
 require("./postcss.config");
+require("dotenv").config({
+  quiet: true
+});
 
 const path = require('path');
 const webpack = require("webpack");
@@ -18,8 +22,18 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const RelativeAssetsPlugin = require('./plugins/production/relative-paths');
 const CSSPurgePlugin = require("./plugins/optimization/css-purge");
 
-module.exports = (env) => {
+module.exports = (env = {}) => {
   const MODE = env.mode || "production";
+  const SRC_DIR = path.resolve(__dirname, 'src');
+  const BUILD_DIR = path.resolve(__dirname, 'build');
+  const VIEWS_DIR = path.resolve(SRC_DIR, 'views');
+  const ASSETS_DIR = path.resolve(SRC_DIR, 'assets');
+  const FONTS_DIR = path.resolve(ASSETS_DIR, 'fonts');
+  const IMAGES_DIR = path.resolve(ASSETS_DIR, 'images');
+  const STYLES_DIR = path.resolve(ASSETS_DIR, 'styles');
+  const BASE_URL = process.env.BASE_URL || (pager.isDevMode(MODE) ? 'http://localhost:8080' : 'https://yourwebsite.ru');
+  const HOST = process.env.HOST || (pager.isDevMode(MODE) ? 'http://localhost:8080' : 'https://yourwebsite.ru');
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8081;
   return {
     mode: MODE,
     stats: 'errors-warnings',
@@ -30,24 +44,24 @@ module.exports = (env) => {
     },
     target: "web",
     devtool: pager.isDevMode(MODE) ? "eval-source-map" : 'source-map',
-    context: path.join(__dirname, "./src"),
+    context: SRC_DIR,
     entry: {
-      bundle: path.join(__dirname, "./src/bundle.js"),
+      bundle: path.join(SRC_DIR, "bundle.js"),
     },
     output: {
-      publicPath: pager.isDevMode(MODE) ? 'http://localhost:8081/' : '/',
-      path: path.join(__dirname, "./build"),
+      publicPath: pager.isDevMode(MODE) ? `http://localhost:${PORT}/` : '/',
+      path: BUILD_DIR,
       filename: "assets/js/[name].[contenthash].js",
       chunkFilename: "assets/js/[name].[contenthash].js",
       hashDigestLength: 6,
       clean: true,
     },
     devServer: {
-      static: path.join(__dirname, "/src"),
+      static: SRC_DIR,
       compress: true,
       liveReload: false,
       hot: true,
-      port: 8081,
+      port: PORT,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -66,20 +80,20 @@ module.exports = (env) => {
     resolve: {
       alias: {
         ...AliasesGenerator(),
-        '@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
-        './@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
-        '@p-components': path.resolve(__dirname, 'src/views/components'),
-        './@p-components': path.resolve(__dirname, 'src/views/components'),
-        '@p-custom-components': path.resolve(__dirname, 'src/views/custom-components'),
-        './@p-custom-components': path.resolve(__dirname, 'src/views/custom-components'),
-        '@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
-        './@p-mixins': path.resolve(__dirname, 'src/views/mixins'),
+        '@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
+        './@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
+        '@p-components': path.resolve(VIEWS_DIR, 'components'),
+        './@p-components': path.resolve(VIEWS_DIR, 'components'),
+        '@p-custom-components': path.resolve(VIEWS_DIR, 'custom-components'),
+        './@p-custom-components': path.resolve(VIEWS_DIR, 'custom-components'),
+        '@p-mixins': path.resolve(VIEWS_DIR, 'mixins'),
+        './@p-mixins': path.resolve(VIEWS_DIR, 'mixins'),
       },
       extensions: ['.js', '.pug', '.scss'],
       modules: [
         'node_modules',
-        path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'src/views'),
+        SRC_DIR,
+        VIEWS_DIR,
       ]
     },
     module: {
@@ -125,19 +139,19 @@ module.exports = (env) => {
                 implementation: require("sass"),
                 sassOptions: {
                   includePaths: [
-                    path.resolve(__dirname, "src/assets/styles"),
+                    STYLES_DIR,
                   ],
                   importers: [
                     {
                       findFileUrl(url) {
                         const aliasMap = {
-                          "@s-base": path.resolve(__dirname, "src/assets/styles/base"),
-                          "@s-components": path.resolve(__dirname, "src/assets/styles/components"),
-                          "@s-custom-components": path.resolve(__dirname, "src/assets/styles/custom-components"),
-                          "@s-mixins": path.resolve(__dirname, "src/assets/styles/mixins"),
-                          "@s-utils": path.resolve(__dirname, "src/assets/styles/utils"),
-                          "@fonts": path.resolve(__dirname, "src/assets/fonts"),
-                          "@images": path.resolve(__dirname, "src/assets/images"),
+                          "@s-base": path.resolve(STYLES_DIR, "base"),
+                          "@s-components": path.resolve(STYLES_DIR, "components"),
+                          "@s-custom-components": path.resolve(STYLES_DIR, "custom-components"),
+                          "@s-mixins": path.resolve(STYLES_DIR, "mixins"),
+                          "@s-utils": path.resolve(STYLES_DIR, "utils"),
+                          "@fonts": FONTS_DIR,
+                          "@images": IMAGES_DIR,
                         };
                         for (const [alias, aliasPath] of Object.entries(aliasMap)) {
                           if (url.startsWith(alias)) {
@@ -171,20 +185,20 @@ module.exports = (env) => {
               loader: '@webdiscus/pug-loader',
               options: {
                 method: 'render',
-                root: path.resolve(__dirname, 'src/views'),
-                basedir: path.resolve(__dirname, 'src/views'),
+                root: VIEWS_DIR,
+                basedir: VIEWS_DIR,
                 resolve: {
                   alias: {
-                    '@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
-                    './@p-layouts': path.resolve(__dirname, 'src/views/layouts'),
+                    '@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
+                    './@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
                   }
                 }
               }
             } : {
               loader: "pug-loader",
               options: {
-                root: path.resolve(__dirname, 'src/views'),
-                basedir: path.resolve(__dirname, 'src/views'),
+                root: VIEWS_DIR,
+                basedir: VIEWS_DIR,
               }
             },
           ],
@@ -277,6 +291,12 @@ module.exports = (env) => {
     },
 
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.BASE_URL': JSON.stringify(BASE_URL),
+        'process.env.HOST': JSON.stringify(HOST),
+        'process.env.PORT': JSON.stringify(PORT),
+      }),
+
       new RobotstxtPlugin({
         filePath: './robots.txt',
         policy: [
@@ -285,26 +305,20 @@ module.exports = (env) => {
             allow: '/',
           },
         ],
-        sitemap: `${pager.isDevMode(MODE)
-          ? 'http://localhost:8080'
-          : 'https://yourwebsite.ru'}/sitemap.xml`,
-        host: pager.isDevMode(MODE)
-          ? 'http://localhost:8080'
-          : 'https://yourwebsite.ru',
+        sitemap: `${BASE_URL}/sitemap.xml`,
+        host: HOST,
       }),
 
       new SitemapGenerator({
-        baseUrl: pager.isDevMode(MODE)
-          ? 'http://localhost:8080'
-          : 'https://yourwebsite.ru',
-        viewsDir: path.resolve(__dirname, 'src/views'),
-        output: path.resolve(__dirname, 'build/sitemap.xml'),
+        baseUrl: BASE_URL,
+        viewsDir: VIEWS_DIR,
+        output: path.resolve(BUILD_DIR, 'sitemap.xml'),
       }),
 
       new ManifestGenerator(),
 
       new RelativeAssetsPlugin({
-        baseDir: path.resolve(__dirname, 'build'),
+        baseDir: BUILD_DIR,
         targetDir: '/assets'
       }),
 
@@ -353,7 +367,7 @@ module.exports = (env) => {
         {
           host: 'localhost',
           port: 8080,
-          proxy: 'http://localhost:8081/',
+          proxy: `http://localhost:${PORT}/`,
           files: [
             {
               match: [
