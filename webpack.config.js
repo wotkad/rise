@@ -79,29 +79,21 @@ module.exports = (env = {}) => {
     },
     resolve: {
       alias: {
-        // core project alias
-        '@': path.resolve(SRC_DIR),
-
-        // views system (Rise templating layer)
-        '@views': VIEWS_DIR,
-
-        '@layouts': path.resolve(VIEWS_DIR, 'layouts'),
-        '@components': path.resolve(VIEWS_DIR, 'components'),
-        '@custom-components': path.resolve(VIEWS_DIR, 'custom-components'),
-        '@mixins': path.resolve(VIEWS_DIR, 'mixins'),
-
-        // assets (если есть)
-        '@assets': path.resolve(SRC_DIR, 'assets'),
-        '@images': path.resolve(SRC_DIR, 'assets/images'),
-        '@styles': path.resolve(SRC_DIR, 'assets/styles'),
-        '@js': path.resolve(SRC_DIR, 'assets/js'),
+        ...AliasesGenerator(),
+        '@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
+        './@p-layouts': path.resolve(VIEWS_DIR, 'layouts'),
+        '@p-components': path.resolve(VIEWS_DIR, 'components'),
+        './@p-components': path.resolve(VIEWS_DIR, 'components'),
+        '@p-custom-components': path.resolve(VIEWS_DIR, 'custom-components'),
+        './@p-custom-components': path.resolve(VIEWS_DIR, 'custom-components'),
+        '@p-mixins': path.resolve(VIEWS_DIR, 'mixins'),
+        './@p-mixins': path.resolve(VIEWS_DIR, 'mixins'),
       },
-
-      extensions: ['.js', '.json', '.pug', '.scss'],
-
+      extensions: ['.js', '.pug', '.scss'],
       modules: [
+        'node_modules',
         SRC_DIR,
-        'node_modules'
+        VIEWS_DIR,
       ]
     },
     module: {
@@ -361,13 +353,6 @@ module.exports = (env = {}) => {
 
       ...pager.pages(MODE),
       ...pager.pages(MODE, "blog"),
-
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.$": "jquery",
-        "window.jQuery": "jquery",
-      }),
 
       ...(pager.isDevMode(MODE) ? [] : [new CSSPurgePlugin(__dirname)]),
 

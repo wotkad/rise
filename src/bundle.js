@@ -1,3 +1,6 @@
+import $ from "jquery";
+window.$ = $;
+
 if ($('.swiper')) {
   import('swiper/css');
   import('swiper/css/pagination');
