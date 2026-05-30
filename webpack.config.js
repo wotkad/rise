@@ -365,7 +365,6 @@ module.exports = (env = {}) => {
             {
               match: [
                 './src/views/**/*.pug',
-                './src/assets/**/*.js',
                 './src/assets/images/**/*.{webp,jpg,jpeg,png,gif,svg}'
               ],
               options: {
