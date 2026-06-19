@@ -2,7 +2,7 @@ import Inputmask from "inputmask";
 
 function sendMail(selector) {
   let formData = new FormData($(selector).get(0));
-  return fetch('#p', {
+  return fetch('#', {
     method: 'POST',
     body: formData
   });

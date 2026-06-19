@@ -14,6 +14,11 @@ h1 {
   @include screen(lg) {
     @include font-48;
   }
+  span {
+    display: inline-block;
+
+    @include font-14;
+  }
   img {
     margin-right: $spacing-12;
     width: 24px;
@@ -228,12 +233,6 @@ h1 {
     p {
       margin: 0;
     }
-  }
-
-  span {
-    display: inline-block;
-
-    @include font-14;
   }
 
   ul {

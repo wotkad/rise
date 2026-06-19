@@ -7,9 +7,9 @@
       padding-top: 0;
       overflow-x: auto;
       table {
+        margin-top: 0;
         width: 100%;
         min-width: 500px;
-        margin-top: 0;
         @include font-16;
         thead {
           background-color: $gray-050;
@@ -17,16 +17,18 @@
         tbody tr {
           th {
             padding: $spacing-12 $spacing-16;
-            text-align: left;
+
             font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: $spacing-1;
-            color: $gray-500;
+            text-align: left;
+            text-transform: uppercase;
             white-space: nowrap;
+            color: $gray-500;
           }
           td {
             padding: $spacing-12 $spacing-16;
             vertical-align: middle;
+
             white-space: nowrap;
             .code-block {
               display: flex;
@@ -40,8 +42,9 @@
               button {
                 svg {
                   width: 20px;
-                  transition: $transition-default;
                   height: 20px;
+
+                  transition: $transition-default;
                 }
                 &:hover {
                   svg {
@@ -51,8 +54,9 @@
               }
             }
             img {
-              border-radius: 0;
               width: 100%;
+
+              border-radius: 0;
               cursor: zoom-in;
             }
           }
@@ -65,15 +69,18 @@
 .image-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.8);
+  z-index: 1000;
+
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  transition: 0.3s;
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
   cursor: zoom-out;
-  z-index: 1000;
 }
 
 .image-modal.active {
@@ -84,5 +91,6 @@
 .image-modal__img {
   max-width: 90vw;
   max-height: 90vh;
+
   border-radius: 12px;
 }
