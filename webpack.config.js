@@ -111,7 +111,14 @@ module.exports = (env = {}) => {
         {
           test: /\.css$/,
           use: [
-            pager.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
+            pager.isDevMode(MODE)
+            ? {
+                loader: "style-loader",
+                options: {
+                  injectType: "singletonStyleTag"
+                }
+            }
+            : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
@@ -125,7 +132,14 @@ module.exports = (env = {}) => {
         {
           test: /\.scss$/,
           use: [
-            pager.isDevMode(MODE) ? 'style-loader' : MiniCssExtractPlugin.loader,
+            pager.isDevMode(MODE)
+            ? {
+                loader: "style-loader",
+                options: {
+                  injectType: "singletonStyleTag"
+                }
+            }
+            : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: { sourceMap: pager.isDevMode(MODE) },
@@ -345,7 +359,7 @@ module.exports = (env = {}) => {
         minify: false,
         filename: "index.html",
         template: "views/index.pug",
-        inject: "body",
+        inject: "head",
         templateParameters: {
           manifestPath: "/manifest.json"
         }

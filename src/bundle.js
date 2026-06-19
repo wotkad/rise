@@ -13,9 +13,15 @@ import "highlight.js/scss/atom-one-dark.scss";
 
 import "@styles/app.scss";
 
+const html = document.documentElement;
+
 if (module.hot) {
-  module.hot.accept();
+    module.hot.accept();
 }
+
+requestAnimationFrame(() => {
+    html.classList.add('webpack-loaded');
+});
 
 $(function () {
   require("js/app");

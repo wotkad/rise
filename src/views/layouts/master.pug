@@ -24,6 +24,11 @@ html(lang="ru")
     meta(content="" property="og:description")
     meta(content="" property="og:image")
 
+    style.
+      html:not(.webpack-loaded) body {
+          visibility: hidden;
+      }
+
     include @p-custom-components/favicons
 
     block title

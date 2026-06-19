@@ -40,7 +40,7 @@ exports.pages = function (mode, folder = "") {
       minify: false,
       filename: fileName,
       template: `views/${rootPagesFolderName}/${layoutName}`,
-      inject: true,
+      inject: 'head',
     };
 
     pages.push(new HtmlWebpackPlugin(options));
