@@ -3,6 +3,9 @@
 
 .title {
   padding-top: $spacing-24;
+  @include screen(md) {
+    padding-top: $spacing-32;
+  }
   @include screen(xl) {
     padding-top: $spacing-56;
   }
